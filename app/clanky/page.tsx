@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getAllArticles } from "../../app/lib/articles";
+import Nav from "../components/Nav";
 
 export const metadata: Metadata = {
   title: "Články – ADHD Slovakia",
@@ -12,25 +13,7 @@ export default function ClankyPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#f0ede6]">
 
-      {/* NAV */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-8 py-4 border-b border-[#1e1e1e] bg-[rgba(10,10,10,0.92)] backdrop-blur-md">
-        <a href="/" className="font-display text-xl font-extrabold tracking-tight">
-          ADHD<span className="text-green-400">.</span>Slovakia
-        </a>
-        <div className="hidden md:flex gap-7 text-[13px] font-medium text-[#888]">
-          {[
-            { label: "Domov", href: "/" },
-            { label: "Články", href: "/clanky" },
-              { label: "Informácie o ADHD", href: "/informacie-o-adhd" },
-            { label: "O nás", href: "/o-nas" },
-            { label: "Kontakt", href: "/kontakt" },
-          ].map((item) => (
-            <a key={item.label} href={item.href} className="hover:text-[#f0ede6] transition-colors">
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <Nav />
 
       {/* HEADER */}
       <section className="px-8 pt-14 pb-10 border-b border-[#1e1e1e]">
