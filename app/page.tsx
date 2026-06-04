@@ -105,8 +105,8 @@ export default function Home() {
       )}
 
       {/* AD SLOT */}
-      <div className="mx-8 my-6 bg-[#0f0f0f] border border-dashed border-[#2a2a2a] rounded-lg h-20 flex items-center justify-center text-[11px] text-[#333] tracking-widest uppercase">
-        Reklamný priestor
+      <div className="mx-8 my-6">
+        <AdBanner />
       </div>
 
       {/* AWARENESS SECTION */}
