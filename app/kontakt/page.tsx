@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "./components/Nav";
+
 
 export const metadata: Metadata = {
   title: "Kontakt – ADHD Slovakia",
