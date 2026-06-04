@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import Nav from "./components/Nav";
 
 export const metadata: Metadata = {
   title: "Kontakt – ADHD Slovakia",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function KontaktPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#f0ede6]">
-
+     <Nav />
       {/* NAV */}
       <nav className="sticky top-0 z-50 flex items-center justify-between px-8 py-4 border-b border-[#1e1e1e] bg-[rgba(10,10,10,0.92)] backdrop-blur-md">
         <a href="/" className="font-display text-xl font-extrabold tracking-tight">
