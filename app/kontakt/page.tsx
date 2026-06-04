@@ -47,27 +47,27 @@ export default function KontaktPage() {
           {[
             {
               label: "Email",
-              value: "info@adhdslovakia.sk",
-              href: "mailto:info@adhdslovakia.sk",
+              value: "info@adhdslovakia.eu",
+              href: "mailto:info@adhdslovakia.eu",
               desc: "Pre všeobecné otázky a spoluprácu",
             },
             {
               label: "Instagram",
-              value: "@adhdslovakia",
-              href: "https://instagram.com/adhdslovakia",
+              value: "@adhd_slovensko",
+              href: "https://www.instagram.com/adhd_slovensko?igsh=bHVsY2lpZmQ2NmV0&utm_source=qr",
               desc: "Sledujte nás pre každodenný obsah",
             },
              {
               label: "Facebook",
               value: "ADHD SLOVENSKO",
-              href: "https://instagram.com/adhdslovakia",
-              desc: "Sledujte nás pre každodenný obsah",
+              href: "https://www.facebook.com/share/1D5PZDYNER/?mibextid=wwXIfr",
+              desc: "Sledujte nás na našej Facebook stránke",
             },
              {
               label: "TikTok",
               value: "@adhdslovakia",
-              href: "https://instagram.com/adhdslovakia",
-              desc: "Sledujte nás pre každodenný obsah",
+              href: "https://www.tiktok.com/@iny_mozog?_r=1&_t=ZN-96wOVFy7krW",
+              desc: "Sledujte nás na TikToku",
             },
           ].map((item) => (
             <a
