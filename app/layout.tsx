@@ -27,6 +27,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sk">
+      <head> 
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6150590591009223"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+       </head>
       <body className={`${syne.variable} ${dmSans.variable}`}>
         {children}
       </body>
