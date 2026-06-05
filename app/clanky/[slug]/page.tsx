@@ -2,6 +2,8 @@ import { getArticleBySlug, getAllArticles } from "../../lib/articles";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import type { Metadata } from "next";
+import AdBanner from "../../AdBanner";
+
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -83,7 +85,7 @@ export default async function ArticlePage({ params }: Props) {
         {/* AD SLOT */}
         <div className="bg-[#0f0f0f] border border-dashed border-[#2a2a2a] rounded-lg h-16 flex items-center justify-center text-[11px] text-[#333] tracking-widest uppercase mb-8">
           {/* Tu vložíš Google AdSense kód */}
-          Reklamný priestor
+          <AdBanner />
         </div>
 
         {/* ARTICLE CONTENT */}
@@ -94,7 +96,7 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* AD SLOT bottom */}
         <div className="bg-[#0f0f0f] border border-dashed border-[#2a2a2a] rounded-lg h-16 flex items-center justify-center text-[11px] text-[#333] tracking-widest uppercase mt-12">
-          Reklamný priestor
+          <AdBanner />
         </div>
 
         <div className="mt-12 pt-8 border-t border-[#1e1e1e]">
