@@ -1,6 +1,6 @@
 ---
 title: "Prečo je také ťažké dostať diagnózu ADHD ako dospelý na Slovensku"
-date: "01.06.2026"
+date: "2025-06-01"
 category: "Diagnóza"
 excerpt: "Odborníkov je málo, mýty sú silné a systém nie je nastavený na dospelých pacientov."
 readTime: "5 min čítania"
@@ -11,7 +11,6 @@ coverImage: "/images/young-conceptual-image-large-stone-shape-human-brain-concep
 
 Na Slovensku je diagnostika ADHD u dospelých stále veľkou výzvou. Hoci sa o tejto téme na sociálnych sieťach hovorí čoraz viac, realita v ambulanciách slovenského zdravotníctva vyzerá úplne inak. Ak máte po tridsiatke a začnete mať podozrenie, že za vaším celoživotným chaosom, prokrastináciou a neschopnosťou udržať pozornosť nestojí lenivosť, ale neurovývojová porucha, čaká vás beh na extrémne dlhú trať.
 
-![Hľadanie odpovedí v systéme](../../public/images/adult-adhd-slovakia.webp)
 
 ## Prečo je to tak?
 
@@ -28,9 +27,9 @@ Problém je, že **detski psychiatri**, ktorí ADHD bežne diagnostikujú, vás 
 Keďže symptómy ADHD u dospelých (vnútorný nepokoj, emocionálna dysregulácia, vyhorenie, úzkosti) vyzerajú inak ako u detí, systém ich často klasifikuje nesprávne.
 
 Dospelí ľudia s nediagnostikovaným ADHD bežne odchádzajú z ambulancií s diagnózami ako:
-*   Depresia a úzkostná porucha
-*   Bipolárna afektívna porucha (BAP)
-*   Hraničná porucha osobnosti (HPO)
+* Depresia a úzkostná porucha
+* Bipolárna afektívna porucha (BAP)
+* Hraničná porucha osobnosti (HPO)
 
 Liečba týmito nesprávnymi smermi pritom nerieši primárnu príčinu, čo vedie k ďalšej frustrácii pacienta.
 
@@ -65,6 +64,6 @@ Ak máte pocit, že vaše symptómy zodpovedajú ADHD, nenechajte sa odradiť pr
 
 ## Záver
 
-Dostať diagnózu ADHD v dospelosti na Slovensku vyžaduje obrovskú dávku trpezlivosti a bohužiaľ aj financií – čo je paradoxné, keďže práve trpezlivosť a organizácia sú pre ľudí s ADHD najväčším problémom.
+Dostať diagnózu ADHD v dospelosti na Slovensku vyžaduje obrovskú dávku trpezlivosti a bohužiaľ aj financií – čo je paradoxné, keďže práve trpezlivosť a organizácia sú pre ľudí s ADHD najväčším probleemom.
 
 Diagnóza však nie je len "nálepka". Pre mnohých je to **moment úľavy**, kedy konečne pochopia, že nie sú neschopní, ale že ich mozog jednoducho funguje inak. Zmena v slovenskom zdravotníctve prichádza pomaly, no s rastúcou osvetou sa dvere k pomoci postupne otvárajú.
