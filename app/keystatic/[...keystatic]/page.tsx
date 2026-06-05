@@ -1,3 +1,5 @@
+'use main';
+
 import { makePage } from '@keystatic/next/ui/app';
 import config from '../../../keystatic.config';
 
