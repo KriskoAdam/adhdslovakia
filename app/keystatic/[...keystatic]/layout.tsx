@@ -10,10 +10,10 @@ export default function KeystaticLayout({
   children: React.ReactNode;
 }) {
   return (
-    
-      
-        {children}
-      
-    
+    React.createElement('html', { lang: 'sk' },
+      React.createElement('body', { style: { background: '#ffffff', color: '#000000', margin: 0 } },
+        children
+      )
+    )
   );
 }
