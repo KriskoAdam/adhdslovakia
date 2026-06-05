@@ -13,7 +13,7 @@ Na Slovensku je diagnostika ADHD u dospelých stále veľkou výzvou. Hoci sa o 
 
 ## Prečo je to tak?
 
-Odborníkov je málo... a to je len špička ľadovca. Ak sa pokúsite objednať k psychiatrovi, ktorý sa špecializuje na ADHD u dospelých, rýchlo narazíte na tvrdú realitu.
+Odborníkov je málo.... a to je len špička ľadovca. Ak sa pokúsite objednať k psychiatrovi, ktorý sa špecializuje na ADHD u dospelých, rýchlo narazíte na tvrdú realitu.
 
 Tu sú tri hlavné dôvody, prečo je tento proces na Slovensku taký komplikovaný:
 
