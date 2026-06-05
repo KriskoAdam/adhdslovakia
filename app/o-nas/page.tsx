@@ -26,16 +26,16 @@ export default function ONasPage() {
 
         <div className="space-y-6 text-[15px] text-[#888] font-light leading-relaxed">
           <p>
-            Celý život som hľadal odpovede. Niečo nebolo v poriadku — vedel som to —
+            Celý život som hľadal odpovede. Niečo nebolo v poriadku, vedel som to
             ale nikto mi nevedel povedať čo. Nie škola, nie lekári, nie systém.
             Odpoveď som nakoniec našiel vďaka zahraničným tvorcom obsahu, ktorí
-            otvorene hovorili o ADHD u dospelých. Bol to zlom, ktorý zmenil môj život.
+            otvorene hovorili o ADHD u dospelých. Bol to zlom.
           </p>
           <p>
             Vtedy mi došlo: na Slovensku takýto obsah jednoducho neexistuje.
             Dospelí s ADHD tu nemajú kde hľadať informácie v slovenčine,
             odborníkov je málo, a mýtus že „ADHD majú len deti" je stále živý
-            — aj medzi zdravotníkmi.
+            a to aj medzi zdravotníkmi.
           </p>
           <p>
             ADHD Slovakia som založil preto, aby som pomohol ľuďom nájsť odpovede
@@ -46,7 +46,7 @@ export default function ONasPage() {
           <p>
             Vďaka tejto komunite sa už podarilo úspešne diagnostikovať viac ako
             10 dospelých pacientov, ktorým diagnózu potvrdil odborník. Každý
-            z nich prežil podobný moment ako ja — konečne dostali odpoveď.
+            z nich prežil podobný moment ako ja konečne dostali odpoveď.
           </p>
         </div>
 
@@ -59,10 +59,10 @@ export default function ONasPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-12">
           {[
-            { icon: "📰", title: "Obsah a články", desc: "Píšeme o ADHD na základe vedeckých a medicínskych zdrojov — v slovenčine, zrozumiteľne." },
-            { icon: "🔬", title: "Búranie mýtov", desc: "Bojujeme proti zastaraným predstavám o ADHD — že je to len detská diagnóza, alebo výhovorka." },
-            { icon: "🤝", title: "Pomoc s diagnózou", desc: "Pomáhame ľuďom zorientovať sa — kde hľadať odborníka, čo očakávať, ako sa pripraviť." },
-            { icon: "⚖️", title: "Advokácia", desc: "Presadzujeme práva dospelých pacientov — vrátane preplácania liekov zdravotnými poisťovňami." },
+            { icon: "📰", title: "Obsah a články", desc: "Píšeme o ADHD na základe vedeckých a medicínskych zdrojov v slovenčine, zrozumiteľne." },
+            { icon: "🔬", title: "Búranie mýtov", desc: "Bojujeme proti zastaraným predstavám o ADHD, že je to len detská diagnóza, alebo výhovorka." },
+            { icon: "🤝", title: "Pomoc s diagnózou", desc: "Pomáhame ľuďom zorientovať sa kde hľadať odborníka, čo očakávať, ako sa pripraviť." },
+            { icon: "⚖️", title: "Advokácia", desc: "Presadzujeme práva dospelých pacientov vrátane preplácania liekov zdravotnými poisťovňami." },
           ].map((item) => (
             <div key={item.title} className="bg-[#111] p-6 flex flex-col gap-2">
               <span className="text-2xl">{item.icon}</span>
