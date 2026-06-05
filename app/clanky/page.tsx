@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllArticles } from "../../app/lib/articles";
+import { getAllArticles } from "../lib/articles";
 import Nav from "../components/Nav";
 
 export const metadata: Metadata = {
