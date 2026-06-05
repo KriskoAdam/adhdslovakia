@@ -1,6 +1,6 @@
 ---
 title: "Prečo je také ťažké dostať diagnózu ADHD ako dospelý na Slovensku"
-date: "2025-06-01"
+date: "01.06.2026"
 category: "Diagnóza"
 excerpt: "Odborníkov je málo, mýty sú silné a systém nie je nastavený na dospelých pacientov."
 readTime: "5 min čítania"
