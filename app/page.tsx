@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getAllArticles } from "./lib/articles";
 import Nav from "./components/Nav";
+import AdBanner from "./AdBanner";
 
 const awarenessCards = [
   {

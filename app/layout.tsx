@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Syne } from "next/font/google";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const syne = Syne({
   subsets: ["latin"],
