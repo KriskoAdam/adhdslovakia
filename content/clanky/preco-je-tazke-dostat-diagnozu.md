@@ -11,7 +11,6 @@ coverImage: "/images/young-conceptual-image-large-stone-shape-human-brain-concep
 
 Na Slovensku je diagnostika ADHD u dospelých stále veľkou výzvou. Hoci sa o tejto téme na sociálnych sieťach hovorí čoraz viac, realita v ambulanciách slovenského zdravotníctva vyzerá úplne inak. Ak máte po tridsiatke a začnete mať podozrenie, že za vaším celoživotným chaosom, prokrastináciou a neschopnosťou udržať pozornosť nestojí lenivosť, ale neurovývojová porucha, čaká vás beh na extrémne dlhú trať.
 
-
 ## Prečo je to tak?
 
 Odborníkov je málo... a to je len špička ľadovca. Ak sa pokúsite objednať k psychiatrovi, ktorý sa špecializuje na ADHD u dospelých, rýchlo narazíte na tvrdú realitu.
