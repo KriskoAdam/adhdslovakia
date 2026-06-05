@@ -1,5 +1,5 @@
 ---
-title: “Na rovnakej vlne: Prečo by mali ADHD a autizmus držať spolu”
+title: 'Na rovnakej vlne: Prečo by mali ADHD a autizmus držať spolu'
 date: “2026-06-03”
 category: “Výskum”
 excerpt: “Ľudia s ADHD a Autizmom majú viac spoločné ako si myslíme.”
