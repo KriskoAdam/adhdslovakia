@@ -74,7 +74,7 @@ Nemusíte na ten večný chaos v hlave byť sami a už vôbec pred nami nemusít
 
 Zatiaľ je nás v skupine pár ale pevne veríme, že to bude rásť a vy môžete byť toho súčasťou. 
 
-**Pridať sa môžete tu : ** 
+**Pridať sa môžete tu :** 
 
 [Skupina na Facebooku](https://www.facebook.com/share/g/1Edr73fHGL/?mibextid=wwXIfr)
 
