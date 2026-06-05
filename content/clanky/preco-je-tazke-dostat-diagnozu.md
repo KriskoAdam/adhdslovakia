@@ -43,11 +43,33 @@ Navyše, ak vám aj diagnózu potvrdia, vyhraté nemáte. Dostupnosť účinnýc
 
 ## Porovnanie: Štátny vs. Súkromný sektor
 
-| Sledovaný parameter | Štátna ambulancia (VšZP, Dôvera, Union) | Súkromná klinika / Samoplatca |
-| :--- | :--- | :--- |
-| **Čakacia doba** | 6 až 14 mesiacov (často stop-stav) | 1 až 3 mesiace |
-| **Cena vyšetrenia** | Bezplatne (hradené poisťovňou) | 200 € – 500 € |
-| **Prístup k novým metódam** | Často zastarané dotazníky | Moderné diagnostické batérie (napr. DIVA-5) |
+<table>
+  <thead>
+    <tr>
+      <th>Sledovaný parameter</th>
+      <th>Štátna ambulancia (VšZP, Dôvera, Union)</th>
+      <th>Súkromná klinika / Samoplatca</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Čakacia doba</strong></td>
+      <td>6 až 14 mesiacov (často stop-stav)</td>
+      <td>1 až 3 mesiace</td>
+    </tr>
+    <tr>
+      <td><strong>Cena vyšetrenia</strong></td>
+      <td>Bezplatne (hradené poisťovňou)</td>
+      <td>200 € – 500 €</td>
+    </tr>
+    <tr>
+      <td><strong>Prístup k novým metódam</strong></td>
+      <td>Často zastarané dotazníky</td>
+      <td>Moderné diagnostické batérie (napr. DIVA-5)</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ---
 
