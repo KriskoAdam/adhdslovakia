@@ -1,4 +1,3 @@
-import { makePage } from '@keystatic/next/ui/app';
-import config from '../../keystatic.config';
-
-export default makePage(config);
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
+}
