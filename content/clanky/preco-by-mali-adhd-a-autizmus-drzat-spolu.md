@@ -1,10 +1,10 @@
 ---
 title: 'Na rovnakej vlne: Prečo by mali ADHD a autizmus držať spolu'
-date: '2026-06-03'
-category: 'Výskum'
-excerpt: 'Ľudia s ADHD a Autizmom majú viac spoločné ako si myslíme.'
-readTime: '4 min čítania'
-coverImage: '/images/C1.jpg'
+date: 03.06.2026
+category: Výskum
+excerpt: Ľudia s ADHD a Autizmom majú viac spoločné ako si myslíme.
+readTime: 4 min čítania
+coverImage: /images/C1.jpg
 ---
 
 Predstavte si, že celý život počúvate rádio, v ktorom je neustály šum. Moderátorom poriadne nerozumiete, hudba hrá v zvláštnom rytme a vy sa musíte neskutočne sústrediť, aby ste vôbec zachytili pointu. A zrazu stretnete niekoho, kto prepne na vašu frekvenciu. Šum zmizne. Zrazu všetko dáva zmysel.
@@ -39,8 +39,8 @@ Tu je pár príkladov, ako to vyzerá v praxi:
 
 V bežnom svete je neslušné rozprávať 40 minút v kuse o tom, ako funguje jadrový reaktor alebo aký je najlepší build v RPG hre. Ľudia s ADHD a autizmom však presne takto prejavujú náklonnosť. Volá sa to infodumping. Keď pred vami autista alebo ADHD-čkar začne vášnivo vysypávať všetky svoje vedomosti o jeho obľúbenej téme, znamená to: “Cítim sa pri tebe v bezpečí a chcem s tebou zdieľať kúsok svojej duše.” A my to navzájom chápeme. S nadšením počúvame, aj keď téme vôbec nerozumieme.
 
- **(Zdieľaná samota)**
- 
+**(Zdieľaná samota)**
+
 Pamätáte si, keď ste ako deti sedeli v pieskovisku vy ste si stavali hrad, kamarát vedľa vás piekol pieskové bábovky. Nerozprávali ste sa, nehrali ste sa spolu, ale boli ste tam vedľa seba a bolo to super. Neurodivergentní dospelí toto milujú. Jeden môže sedieť na gauči so slúchadlami a hrať na konzoli, druhý sedí v kresle a číta si knihu. Ticho. Žiadny tlak na “zabávanie toho druhého”. Len čistý, bezpečný pocit, že nie sme sami.
 
 **Skákanie do reči**
@@ -61,7 +61,7 @@ Keď tieto dva svety spojíme či už v jednom človeku (AuDHD), alebo v priate�
 
 Takže ak máte vo svojom okolí nejakého „divného“ kamoša, s ktorým si rozumiete aj bez slov... držte si ho. Hráte totiž na rovnakej frekvencii.
 
-A presne toto bol ten hlavný dôvod, prečo sme založili **novú skupinu na Facebooku pre dospelých s ADHD a autizmom.** 
+A presne toto bol ten hlavný dôvod, prečo sme založili **novú skupinu na Facebooku pre dospelých s ADHD a autizmom.**
 Dobre vieme, že nie každý má to šťastie mať vo svojom bezprostrednom okolí niekoho, kto mu stopercentne rozumie. Ak takého človeka vedľa seba zatiaľ nemáte, naša skupina je tu presne pre vás. Sme bezpečný prístav, kde môžete:
 
 **Nájsť ľudí na rovnakej frekvencii** či už na online pokec, spoločné hranie, alebo skutočné priateľstvo v reálnom živote.
@@ -72,9 +72,9 @@ Dobre vieme, že nie každý má to šťastie mať vo svojom bezprostrednom okol
 
 Nemusíte na ten večný chaos v hlave byť sami a už vôbec pred nami nemusíte nič maskovať. Pridajte sa k nám, napíšte svoj prvý príspevok a zistite, aké oslobodzujúce to je byť v prostredí, kde netreba nikomu nič zložito vysvetľovať.
 
-Zatiaľ je nás v skupine pár ale pevne veríme, že to bude rásť a vy môžete byť toho súčasťou. 
+Zatiaľ je nás v skupine pár ale pevne veríme, že to bude rásť a vy môžete byť toho súčasťou.
 
-**Pridať sa môžete tu :** 
+**Pridať sa môžete tu :**
 
 [Skupina na Facebooku](https://www.facebook.com/share/g/1Edr73fHGL/?mibextid=wwXIfr)
 
