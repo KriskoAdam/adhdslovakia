@@ -77,6 +77,29 @@ body {
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
+.prose-adhd table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 14px;
+}
+.prose-adhd th {
+  background: #1e1e1e;
+  color: #f0ede6;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  border: 1px solid #2a2a2a;
+}
+.prose-adhd td {
+  padding: 10px 14px;
+  border: 1px solid #2a2a2a;
+  color: #888;
+  vertical-align: top;
+}
+.prose-adhd tr:nth-child(even) td {
+  background: #0f0f0f;
+}
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;

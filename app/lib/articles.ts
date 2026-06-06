@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import remarkGfm from "remark-gfm";
 
 const articlesDir = path.join(process.cwd(), "content/clanky");
 
@@ -51,8 +52,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
-
-  const processed = await remark().use(html).process(content);
+  const processed = await remark().use(remarkGfm).use(html, { sanitize: false }).process(content);
   const contentHtml = processed.toString();
 
   return {
