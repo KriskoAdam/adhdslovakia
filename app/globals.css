@@ -100,6 +100,74 @@ body {
 .prose-adhd tr:nth-child(even) td {
   background: #0f0f0f;
 }
+.prose-adhd code {
+  background: #1e1e1e;       /* Tmavé pozadie, aby ladilo s th hlavičkou */
+  color: #4ade80;            /* Pekná zelená, ktorú používaš na odkazy */
+  padding: 3px 6px;          /* Jemný vnútorný okraj, nech to vyzerá ako bublina */
+  border-radius: 4px;        /* Zaoblené rohy */
+  font-family: var(--font-mono), monospace; /* Monospace font pre kód */
+  font-size: 0.9em;          /* O niečo menšie ako bežný text */
+  border: 1px solid #2a2a2a; /* Jemný okraj, aby to vyskočilo z pozadia */
+}
+/* --- KOMPLETNÉ ŠTÝLOVANIE NADPISOV PRE TINA CMS (H1 - H6) --- */
+
+.prose-adhd h1,
+.prose-adhd h2,
+.prose-adhd h3,
+.prose-adhd h4,
+.prose-adhd h5,
+.prose-adhd h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+.prose-adhd h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #f0ede6;
+  margin: 2.5rem 0 1rem;
+  letter-spacing: -1px;
+}
+
+.prose-adhd h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #f0ede6;
+  margin: 2.25rem 0 0.75rem;
+}
+
+.prose-adhd h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #d0cdc6;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.prose-adhd h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #c0beb8;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.prose-adhd h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #b0aea8;
+  margin: 1.25rem 0 0.5rem;
+  text-transform: uppercase; /* Jemné vizuálne odlíšenie pre malé podnadpisy */
+  letter-spacing: 0.5px;
+}
+
+.prose-adhd h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #908e88;
+  margin: 1.25rem 0 0.5rem;
+}
+
+
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
