@@ -1,6 +1,6 @@
 ---
 title: 'Keď sa stretne ADHD a depresia'
-date: 2026-06-06
+date: 06.06.2026
 category: Veda
 excerpt: Spojenie ADHD a depresie
 readTime: '7 min čítania'
