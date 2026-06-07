@@ -3,6 +3,7 @@ import { Syne } from "next/font/google";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from '@vercel/analytics/react';
 
 const syne = Syne({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
        </head>
       <body className={`${syne.variable} ${dmSans.variable}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );

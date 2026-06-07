@@ -19,6 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${article.title} – ADHD Slovakia`,
     description: article.excerpt,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      images: article.coverImage ? [article.coverImage] : [],
+      type: "article",
+      locale: "sk_SK",
+    },
   };
 }
 

@@ -13,7 +13,7 @@ Pre dieťa s ADHD je škola miestom, kde sa systematicky dozvedá, že nie je do
 
 Dôsledky sú zdokumentované a opakujúce sa. Dieťa dostáva poznámky za vyrušovanie. Rodičia sú volaní do školy. Učitelia, spravidla bez akéhokoľvek vzdelania o ADHD, označia žiaka za "lenivého", "nevychovaného" alebo "málo motivovaného". Spolužiaci, vnímaví na sociálne signály dospelých, si rýchlo vytvoria obraz. Dieťa sa stáva terčom posmeškov, je vyčleňované zo skupín, nebýva pozvané na narodeniny. Sebaobraz, ktorý si formuje v týchto rokoch, bude sprevádzať toto dieťa celé desaťročia.
 
-Výskumy opakovane ukazujú, že deti s ADHD zažívajú signifikantne vyššiu mieru šikanovania ako ich rovesníci. Štúdia Holmberg a Hjern (2008) zistila, že až 35 % desaťročných chlapcov s ADHD sa stalo obeťami šikanovania zo strany spolužiakov. Nejde len o fyzické ubližovanie. Rovnako devastujúca je systematická sociálna exklúzia — tá forma, keď niekto nie je priamo napádaný, ale len neexistuje pre ostatných.
+Výskumy opakovane ukazujú, že deti s ADHD zažívajú signifikantne vyššiu mieru šikanovania ako ich rovesníci. Štúdia Holmberg a Hjern (2008) zistila, že až 35 % desaťročných chlapcov s ADHD sa stalo obeťami šikanovania zo strany spolužiakov. Nejde len o fyzické ubližovanie. Rovnako devastujúca je systematická sociálna exklúzia tá forma, keď niekto nie je priamo napádaný, ale len neexistuje pre ostatných.
 
 Výskum publikovaný v časopise *PLOS One* dokumentuje, že dievčatá s ADHD vykazujú vyššiu mieru odmietnutia zo strany rovesníkov vo všetkých skúmaných štúdiách, pričom efekty dosahujú stredné až veľké veľkosti. Viac ako polovica detí s ADHD nemá v škole žiadneho blízkeho priateľa.
 
