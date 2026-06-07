@@ -177,6 +177,15 @@ body {
   background: rgba(74, 222, 128, 0.35);
   border-radius: 999px;
 }
+.prose-adhd {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.prose-adhd a {
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(74, 222, 128, 0.55);
