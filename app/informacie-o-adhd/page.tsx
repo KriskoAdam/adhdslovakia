@@ -3,6 +3,7 @@ import { getAllArticles } from "../../app/lib/articles";
 import ADHDInfoGrid from "../components/ADHDInfoGrid";
 import Nav from "../components/Nav";
 
+
 export const metadata: Metadata = {
   title: "Články – ADHD Slovakia",
   description: "Všetky články o ADHD v slovenčine.",
@@ -18,28 +19,29 @@ export default function ClankyPage() {
 
       {/* HEADER */}
       <section className="px-8 pt-14 pb-10 border-b border-[#1e1e1e]">
-        <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-4">
+        <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-4 animate-fade-up">
           Informácie
         </div>
-        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-tight animate-fade-up delay-100">
           Informácie o ADHD
         </h1>
-        <p className="text-[#888] text-[15px] font-light mt-3 max-w-md leading-relaxed">
+        <p className="text-[#888] text-[15px] font-light mt-3 max-w-md leading-relaxed animate-fade-up delay-200">
           Všetky informácie na jednom mieste
         </p>
       </section>
         <section className="px-8 py-14 max-w-7xl mx-auto">
   <div className="mb-10">
-    <h2 className="font-display text-3xl font-bold tracking-tight mb-3">
+    <h2 className="font-display text-3xl font-bold tracking-tight mb-3 animate-fade-up delay-300">
       Sprievodca ADHD
     </h2>
-    <p className="text-[#888] max-w-2xl">
+    <p className="text-[#888] max-w-2xl animate-fade-up delay-400">
       Vyberte si tému, ktorá vás zaujíma, a kliknutím zobrazte
       podrobnejšie informácie.
     </p>
   </div>
-
+    <div className="animate-fade-up delay-500">
   <ADHDInfoGrid />
+  </div>
 </section>
 
       {/* FOOTER */}

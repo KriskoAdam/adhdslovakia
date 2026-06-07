@@ -150,7 +150,72 @@ body {
   color: #c0beb8;
   margin: 1.5rem 0 0.5rem;
 }
+/* === ENTRANCE ANIMÁCIE === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Utility triedy */
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-scale {
+  opacity: 0;
+  animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Delay triedy pre staggered efekt */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Rešpektovanie prefer-reduced-motion (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade,
+  .animate-scale {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 .prose-adhd h5 {
   font-size: 1rem;
   font-weight: 600;

@@ -15,16 +15,16 @@ export default function ONasPage() {
 
       <div className="max-w-2xl mx-auto px-8 pt-14 pb-20">
 
-        <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5">
+        <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5 animate-fade-up">
           O projekte
         </div>
 
-        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-8">
+        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-8 animate-fade-up delay-100">
           Prečo vzniklo<br />
-          <span className="text-green-400">ADHD Slovakia</span>
+          <span className="text-green-400 animate-fade-up delay-200">ADHD Slovakia</span>
         </h1>
 
-        <div className="space-y-6 text-[15px] text-[#888] font-light leading-relaxed">
+        <div className="space-y-6 text-[15px] text-[#888] font-light leading-relaxed animate-fade-up delay-300">
           <p>
             Celý život som hľadal odpovede. Niečo nebolo v poriadku, vedel som to
             ale nikto mi nevedel povedať čo. Nie škola, nie lekári, nie systém.
@@ -54,17 +54,17 @@ export default function ONasPage() {
         <div className="border-t border-[#1e1e1e] my-12" />
 
         {/* MISSION */}
-        <h2 className="font-display text-2xl font-extrabold tracking-tight mb-6">
+        <h2 className="font-display text-2xl font-extrabold tracking-tight mb-6 animate-fade-up delay-400">
           Čo robíme
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-12 animate-fade-up delay-500">
           {[
             { icon: "📰", title: "Obsah a články", desc: "Píšeme o ADHD na základe vedeckých a medicínskych zdrojov v slovenčine, zrozumiteľne." },
             { icon: "🔬", title: "Búranie mýtov", desc: "Bojujeme proti zastaraným predstavám o ADHD, že je to len detská diagnóza, alebo výhovorka." },
             { icon: "🤝", title: "Pomoc s diagnózou", desc: "Pomáhame ľuďom zorientovať sa kde hľadať odborníka, čo očakávať, ako sa pripraviť." },
             { icon: "⚖️", title: "Advokácia", desc: "Presadzujeme práva dospelých pacientov vrátane preplácania liekov zdravotnými poisťovňami." },
           ].map((item) => (
-            <div key={item.title} className="bg-[#111] p-6 flex flex-col gap-2">
+            <div key={item.title} className="bg-[#111] p-6 flex flex-col gap-2 animate-fade-up delay-600">
               <span className="text-2xl">{item.icon}</span>
               <h3 className="font-display text-[15px] font-bold text-[#f0ede6]">{item.title}</h3>
               <p className="text-[13px] text-[#555] font-light leading-relaxed">{item.desc}</p>

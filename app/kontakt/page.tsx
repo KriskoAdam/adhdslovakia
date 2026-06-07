@@ -13,20 +13,20 @@ export default function KontaktPage() {
       
       <div className="max-w-xl mx-auto px-8 pt-14 pb-20">
 
-        <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5">
+        <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5 animate-fade-up">
           Kontakt
         </div>
 
-        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 animate-fade-up delay-100">
           Napíšte nám
         </h1>
-        <p className="text-[#888] text-[15px] font-light leading-relaxed mb-10">
+        <p className="text-[#888] text-[15px] font-light leading-relaxed mb-10 animate-fade-up delay-200">
           Máte otázku, chcete zdieľať svoj príbeh alebo spolupracovať?
           Ozvite sa — každá správa sa počíta.
         </p>
 
         {/* CONTACT OPTIONS */}
-        <div className="flex flex-col gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-10">
+        <div className="flex flex-col gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-10 animate-fade-up delay-300">
           {[
             {
               label: "Email",
@@ -80,7 +80,7 @@ export default function KontaktPage() {
         <div className="bg-[#111] border border-[#1e1e1e] rounded-xl p-6">
           <p className="text-[13px] text-[#555] font-light leading-relaxed">
             Ak hľadáte pomoc s diagnózou alebo potrebujete poradiť kde sa obrátiť,
-            napíšte nám — pokúsime sa pomôcť alebo nasmerovať na správneho odborníka.
+            napíšte nám pokúsime sa pomôcť alebo nasmerovať na správneho odborníka.
           </p>
         </div>
 
