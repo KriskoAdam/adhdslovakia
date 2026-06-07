@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getAllArticles } from "./lib/articles";
 import Nav from "./components/Nav";
 import AdBanner from "./AdBanner";
+import MiniSelfCheck from "./components/MiniSelfCheck";
 
 const awarenessCards = [
   {
@@ -37,29 +38,46 @@ export default function Home() {
       <Nav />
 
       {/* HERO */}
-      <section className="px-8 pt-16 pb-12 border-b border-[#1e1e1e]">
-        <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5">
-          Neurodiverzita · Osveta · Slovensko
-        </div>
-        <h1 className="font-display text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-[-2px] mb-5 max-w-2xl">
-          ADHD nie je
-          <br />
-          len pre{" "}
-          <em className="not-italic text-green-400">deti.</em>
-        </h1>
-        <p className="text-[16px] text-[#888] max-w-md leading-relaxed font-light mb-8">
-          Informácie, skúsenosti a veda o ADHD v slovenčine. Pre dospelých,
-          ktorí hľadajú odpovede.
-        </p>
-        <div className="flex gap-3 flex-wrap">
-          <a href="/clanky" className="inline-block bg-green-400 text-[#0a0a0a] text-[13px] font-semibold px-5 py-2.5 rounded-md hover:bg-green-300 transition-colors">
-            Čítať články
-          </a>
-          <a href="/o-nas" className="inline-block bg-transparent text-[#f0ede6] text-[13px] font-semibold px-5 py-2.5 rounded-md border border-[#2a2a2a] hover:border-[#444] transition-colors">
-            O projekte
-          </a>
-        </div>
-      </section>
+      {/* HERO */}
+<section className="px-8 pt-16 pb-12 border-b border-[#1e1e1e]">
+  <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_430px] gap-12 xl:gap-20 items-start">
+    <div>
+      <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5">
+        Neurodiverzita · Osveta · Slovensko
+      </div>
+
+      <h1 className="font-display text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-[-2px] mb-5 max-w-2xl">
+        ADHD nie je
+        <br />
+        len pre{" "}
+        <em className="not-italic text-green-400">deti.</em>
+      </h1>
+
+      <p className="text-[16px] text-[#888] max-w-md leading-relaxed font-light mb-8">
+        Informácie, skúsenosti a veda o ADHD v slovenčine. Pre dospelých,
+        ktorí hľadajú odpovede.
+      </p>
+
+      <div className="flex gap-3 flex-wrap">
+        <a
+          href="/clanky"
+          className="inline-block bg-green-400 text-[#0a0a0a] text-[13px] font-semibold px-5 py-2.5 rounded-md hover:bg-green-300 transition-colors"
+        >
+          Čítať články
+        </a>
+
+        <a
+          href="/o-nas"
+          className="inline-block bg-transparent text-[#f0ede6] text-[13px] font-semibold px-5 py-2.5 rounded-md border border-[#2a2a2a] hover:border-[#444] transition-colors"
+        >
+          O projekte
+        </a>
+      </div>
+    </div>
+
+    <MiniSelfCheck />
+  </div>
+</section>
 
       {/* STATS */}
       <div className="flex flex-wrap gap-10 px-8 py-7 border-b border-[#1e1e1e]">
