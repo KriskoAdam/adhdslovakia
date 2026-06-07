@@ -1,3 +1,12 @@
+---
+title: "Odvrátená strana ADHD"
+date: "07.06.2026"
+category: "Veda"
+excerpt: "ADHD nie je len rozptýlenosť. Pre tisíce ľudí na Slovensku je to celoživotný boj so školou, s prácou, so sebou samým. Článok, ktorý otvorene hovorí o depresii, beznádeji a zvýšenom riziku samovraždy u ľudí s ADHD a o tom, prečo nás systémová mlčanlivosť na Slovensku stojí viac, než si pripúšťame."
+readTime: "9 min čítania"
+coverImage: "/images/odvratenastrana.jpg"
+---
+
 ## Škola: prvé rany
 
 Pre dieťa s ADHD je škola miestom, kde sa systematicky dozvedá, že nie je dosť dobré. Nie preto, že by chcelo zlyhávať, práve naopak. Mnohé deti s ADHD sú nadpriemerné až nadané, no vzdelávací systém ich hodnotí výhradne podľa schopnosti dlhodobo sedieť v lavici, počúvať lineárny výklad a odovzdávať domáce úlohy načas. Všetky tri veci sú pre mozog s ADHD extrémne náročné nie zo vzdoru, ale kvôli odlišnej neurológii.
