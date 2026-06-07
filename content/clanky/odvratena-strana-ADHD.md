@@ -1,10 +1,10 @@
 ---
-title: "Odvrátená strana ADHD"
-date: "07.06.2026"
-category: "Veda"
-excerpt: "ADHD nie je len rozptýlenosť. Pre tisíce ľudí na Slovensku je to celoživotný boj so školou, s prácou, so sebou samým. Článok, ktorý otvorene hovorí o depresii, beznádeji a zvýšenom riziku samovraždy u ľudí s ADHD a o tom, prečo nás systémová mlčanlivosť na Slovensku stojí viac, než si pripúšťame."
-readTime: "9 min čítania"
-coverImage: "/images/odvratenastrana.jpg"
+title: Odvrátená strana ADHD
+date: 07.06.2026
+category: Veda
+excerpt: 'ADHD nie je len rozptýlenosť. Pre tisíce ľudí na Slovensku je to celoživotný boj so školou, s prácou, so sebou samým. Článok, ktorý otvorene hovorí o depresii, beznádeji a zvýšenom riziku samovraždy u ľudí s ADHD a o tom, prečo nás systémová mlčanlivosť na Slovensku stojí viac, než si pripúšťame.'
+readTime: 9 min čítania
+coverImage: /images/IMG_4207.jpeg
 ---
 
 ## Škola: prvé rany
@@ -17,7 +17,7 @@ Výskumy opakovane ukazujú, že deti s ADHD zažívajú signifikantne vyššiu 
 
 Výskum publikovaný v časopise *PLOS One* dokumentuje, že dievčatá s ADHD vykazujú vyššiu mieru odmietnutia zo strany rovesníkov vo všetkých skúmaných štúdiách, pričom efekty dosahujú stredné až veľké veľkosti. Viac ako polovica detí s ADHD nemá v škole žiadneho blízkeho priateľa.
 
----
+***
 
 ## Pracovný život: neviditeľné prekážky
 
@@ -29,7 +29,7 @@ Podľa výskumu publikovaného v *PMC* (Fuermaier et al., 2021) majú ľudia s A
 
 Prehľad literatúry publikovaný v roku 2024 v *SAGE Journals* potvrdzuje, že pracovníci s ADHD dokážu prosperovať v správnom prostredí, no systémy s rigidným plánovaním, nepružnými termínmi a absenciou štruktúrovanej podpory ich výzvam priamo nepomáhajú.
 
----
+***
 
 ## Emocionálna dysregulácia: ten príbeh, čo sa nerozpráva
 
@@ -39,7 +39,7 @@ Tento fenomén má dokonca vlastný názov: RSD, čiže Rejection Sensitive Dysp
 
 Práve táto dysregulácia je jedným z kľúčových dôvodov, prečo majú ľudia s ADHD ťažšie vzťahy, romantické aj priateľské. Partneri a priatelia nerozumejú intenzite reakcií. Vzťahy sa trhajú. A každé ďalšie odmietnutie potvrdí to, čo si dotyčný šepkal od základnej školy: *Niečo je so mnou zle.*
 
----
+***
 
 ## Depresia a úzkosť: predvídateľný dôsledok
 
@@ -51,7 +51,7 @@ Predstavte si desaťročia, počas ktorých ste sa snažili zo všetkých síl, 
 
 Beznádej, ktorá z toho plynie, nie je pesimizmus ako charakterová vlastnosť. Je to vyčerpanie z toho, že musíte každý deň bojovať s vlastným mozgom, zároveň spĺňať štandardy navrhnuté pre iný typ mozgu a zároveň vysvetľovať okoliu, prečo to pre vás nie je jednoduché.
 
----
+***
 
 ## Riziko samovraždy: čísla, ktoré by mali triasť spoločnosťou
 
@@ -65,7 +65,7 @@ Mechanizmus nie je záhadný. Roky kumulatívneho zlyhania. Pocit, že ste breme
 
 Vhodná diagnostika, liečba a predovšetkým pochopenie, vlastné aj okolím, dokážu toto riziko dramaticky znížiť. Informovanosť zachraňuje životy. To nie je rečnícka figúra, je to verifikovateľný fakt.
 
----
+***
 
 ## Slovensko: krajina, kde sa o tom nehovorí
 
@@ -73,7 +73,7 @@ Na Slovensku neexistuje systematická verejná kampaň o ADHD u dospelých. Čak
 
 Dôsledky tohto informačného vákua sú merateľné: neskoré diagnózy (u žien a dievčat obzvlášť), zbytočné roky trápenia, prerušené kariéry, rozpadnuté vzťahy a v krajných prípadoch stratené životy. Každý rok bez systémovej zmeny je ďalším rokom, v ktorom ľudia hľadajú odpovede sami, vo večerných hodinách, na smartfóne, presvedčení, že so svetom je niečo v poriadku a len oni sami sú kazom na skle.
 
----
+***
 
 ## Čo by pomohlo
 
@@ -85,7 +85,7 @@ Dôsledky tohto informačného vákua sú merateľné: neskoré diagnózy (u ži
 
 **Mediálna zodpovednosť.** Slovenské médiá nosia na tejto téme svoju časť zodpovednosti. Každý článok, ktorý redukuje ADHD na "módnu diagnózu" alebo "výhovorku lenivých", škodí reálnym ľuďom. Každý rozhovor, ktorý ukazuje celú komplexnosť, môže niekomu zachrániť aspoň rok zbytočného trápenia.
 
----
+***
 
 ## Záver
 
@@ -93,38 +93,25 @@ ADHD nie je výmysel, módny trend ani výhovorka. Je to neurobiologická odliš
 
 Tí, čo dnes sedí v školských laviciach s ADHD mozgom, si nezaslúžia ďalšie desaťročie ticha.
 
----
+***
 
 *Ak vy alebo niekto vo vašom okolí prechádza ťažkým obdobím, kontaktujte Linku dôvery IPčko na čísle 0800 500 333 (nonstop, bezplatná) alebo navštívte ipčko.sk.*
 
----
+***
 
 ## Zdroje
 
-1. Garas, P. et al. (2025). *Longitudinal Suicide Risk in Children and Adolescents With Attention Deficit and Hyperactivity Disorder: A Systematic Review and Meta-Analysis.* Brain and Behavior. https://pmc.ncbi.nlm.nih.gov/articles/PMC12177204/
-
+1. Garas, P. et al. (2025). *Longitudinal Suicide Risk in Children and Adolescents With Attention Deficit and Hyperactivity Disorder: A Systematic Review and Meta-Analysis.* Brain and Behavior. [https://pmc.ncbi.nlm.nih.gov/articles/PMC12177204/](https://pmc.ncbi.nlm.nih.gov/articles/PMC12177204/)
 2. Septier, M. et al. (2019). *Association between suicidal spectrum behaviors and Attention-Deficit/Hyperactivity Disorder: A systematic review and meta-analysis.* Neuroscience & Biobehavioral Reviews.
-
-3. Di Salvo, G. et al. (2024). Citované in: *Machine learning-based prediction of suicide risk using adult ADHD symptoms.* ScienceDirect. https://www.sciencedirect.com/science/article/abs/pii/S016517812500349X
-
+3. Di Salvo, G. et al. (2024). Citované in: *Machine learning-based prediction of suicide risk using adult ADHD symptoms.* ScienceDirect. [https://www.sciencedirect.com/science/article/abs/pii/S016517812500349X](https://www.sciencedirect.com/science/article/abs/pii/S016517812500349X)
 4. Austgulen, A. et al. (2023). Citované v kontexte suicidálnych ideácií u mladých s ADHD. Prevzaté z prehľadu Di Salvo et al. (2024).
-
 5. Chen, Q. et al. (2014). *Drug treatment for attention-deficit/hyperactivity disorder and suicidal behavior: a register-based study.* BMJ, 348, g3769.
-
-6. Liu, C. et al. (2025). *Adult ADHD and comorbid anxiety and depressive disorders: a review of etiology and treatment.* Frontiers in Psychiatry. https://www.frontiersin.org/articles/10.3389/fpsyt.2025.1597559/full
-
-7. Larsson, H. et al. (2018). *Common psychiatric and metabolic comorbidity of adult attention-deficit/hyperactivity disorder: A population-based cross-sectional study.* PLOS One. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6157884/
-
+6. Liu, C. et al. (2025). *Adult ADHD and comorbid anxiety and depressive disorders: a review of etiology and treatment.* Frontiers in Psychiatry. [https://www.frontiersin.org/articles/10.3389/fpsyt.2025.1597559/full](https://www.frontiersin.org/articles/10.3389/fpsyt.2025.1597559/full)
+7. Larsson, H. et al. (2018). *Common psychiatric and metabolic comorbidity of adult attention-deficit/hyperactivity disorder: A population-based cross-sectional study.* PLOS One. [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6157884/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6157884/)
 8. Holmberg, K. & Hjern, A. (2008). Bullying and attention-deficit-hyperactivity disorder in 10-year-olds in a Swedish community. *Developmental Medicine & Child Neurology*, 50(2), 134–138.
-
-9. Canu, W.H. et al. (2016). *Problematic Peer Functioning in Girls with ADHD: A Systematic Literature Review.* PLOS One. https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165119
-
-10. Pinho, C. & Coutinho, M. (2024). Citované in: *Workplace Realities of ADHD: Daily Experiences, Challenges, and Solutions.* National Career Development Association. https://www.ncda.org/aws/NCDA/pt/sd/news_article/603220
-
-11. Fuermaier, A.B.M. et al. (2021). *ADHD at the workplace: ADHD symptoms, diagnostic status, and work-related functioning.* PMC. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8295111/
-
-12. Hotte-Meunier, A. et al. (2024). *Strengths and challenges to embrace attention-deficit/hyperactivity disorder in employment: A systematic review.* SAGE Journals. https://journals.sagepub.com/doi/10.1177/27546330241287655
-
-13. Grinblat, N. & Rosenblum, S. (2025). *Work Performance Challenges and Needs of Adults with ADHD: Exploring Lived Experiences.* European Psychiatry / PMC. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12420443/
-
-14. Adamou, M. et al. (2013). *Occupational issues of adults with ADHD.* BMC Psychiatry. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3599848/
+9. Canu, W\.H. et al. (2016). *Problematic Peer Functioning in Girls with ADHD: A Systematic Literature Review.* PLOS One. [https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165119](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165119)
+10. Pinho, C. & Coutinho, M. (2024). Citované in: *Workplace Realities of ADHD: Daily Experiences, Challenges, and Solutions.* National Career Development Association. [https://www.ncda.org/aws/NCDA/pt/sd/news\_article/603220](https://www.ncda.org/aws/NCDA/pt/sd/news_article/603220)
+11. Fuermaier, A.B.M. et al. (2021). *ADHD at the workplace: ADHD symptoms, diagnostic status, and work-related functioning.* PMC. [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8295111/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8295111/)
+12. Hotte-Meunier, A. et al. (2024). *Strengths and challenges to embrace attention-deficit/hyperactivity disorder in employment: A systematic review.* SAGE Journals. [https://journals.sagepub.com/doi/10.1177/27546330241287655](https://journals.sagepub.com/doi/10.1177/27546330241287655)
+13. Grinblat, N. & Rosenblum, S. (2025). *Work Performance Challenges and Needs of Adults with ADHD: Exploring Lived Experiences.* European Psychiatry / PMC. [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12420443/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12420443/)
+14. Adamou, M. et al. (2013). *Occupational issues of adults with ADHD.* BMC Psychiatry. [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3599848/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3599848/)
