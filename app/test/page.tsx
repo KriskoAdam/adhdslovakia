@@ -3,9 +3,9 @@
 import { useMemo, useState } from "react";
 import Nav from "../components/Nav";
 
-// PRE SEO (Umiestni do samostatného layoutu alebo vymaž, ak netreba):
-// Title: "Online ADHD Test pre dospelých (DIVA screening) | ADHD Slovakia"
-// Description: "Otestujte sa pomocou rýchleho indikatívneho screeningového testu pre dospelých vychádzajúceho z diagnostických kritérií DIVA."
+
+Title: "Online ADHD Test pre dospelých (DIVA screening) | ADHD Slovakia"
+Description: "Otestujte sa pomocou rýchleho indikatívneho screeningového testu pre dospelých vychádzajúceho z diagnostických kritérií DIVA."
 
 type AnswerValue = 0 | 1 | 2;
 
