@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import type { Metadata } from "next";
 import AdBanner from "../../AdBanner";
+import Nav from "../../components/Nav";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -34,30 +35,13 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   return (
-    // Pridané overflow-x-hidden ako poistka pre celý viewport
-    <div className="min-h-screen bg-[#0a0a0a] text-[#f0ede6] overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f0ede6]">
+      
+      {/* POUŽITÝ GLOBÁLNY NAV KOMPONENT */}
+      <Nav />
 
-      {/* NAV - Zmenšený padding na mobiloch (px-4 md:px-8) */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-4 md:px-8 py-4 border-b border-[#1e1e1e] bg-[rgba(10,10,10,0.92)] backdrop-blur-md">
-        <a href="/" className="font-display text-xl font-extrabold tracking-tight">
-          ADHD<span className="text-green-400">.</span>Slovakia
-        </a>
-        <div className="hidden md:flex gap-7 text-[13px] font-medium text-[#888]">
-          {[
-            { label: "Domov", href: "/" },
-            { label: "Články", href: "/clanky" },
-            { label: "O nás", href: "/o-nas" },
-            { label: "Kontakt", href: "/kontakt" },
-          ].map((item) => (
-            <a key={item.label} href={item.href} className="hover:text-[#f0ede6] transition-colors">
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </nav>
-
-      {/* ARTICLE WRAPPER - pridané min-w-0, w-full a upravený padding px-4 md:px-8 */}
-      <article className="w-full max-w-2xl mx-auto px-4 md:px-8 pt-14 pb-20 min-w-0">
+      {/* ARTICLE HEADER & CONTENT */}
+      <article className="max-w-2xl mx-auto px-8 pt-14 pb-20">
         <a
           href="/clanky"
           className="inline-flex items-center gap-2 text-[12px] text-[#555] hover:text-green-400 transition-colors mb-8"
@@ -69,8 +53,14 @@ export default async function ArticlePage({ params }: Props) {
           {article.category}
         </div>
 
-        {/* H1 - KLÚČOVÁ ZMENA: Pridané break-words a jemne zmenšené text-2xl na mobile (text-2xl md:text-4xl) */}
-        <h1 className="font-display text-2xl md:text-4xl font-extrabold leading-tight tracking-tight mb-5 break-words overflow-wrap-anywhere">
+        <h1 
+          className="font-display text-2xl sm:text-2xl md:text-3xl font-extrabold leading-tight tracking-tight mb-5"
+          style={{ 
+            wordBreak: 'break-all', 
+            overflowWrap: 'anywhere', 
+            whiteSpace: 'normal' 
+          }}
+        >
           {article.title}
         </h1>
 
@@ -79,7 +69,7 @@ export default async function ArticlePage({ params }: Props) {
           <span>·</span>
           <span>{article.date}</span>
         </div>
-        
+
         {article.coverImage && (
           <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden mb-8">
             <Image
@@ -92,14 +82,14 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         )}
 
-        {/* AD SLOT */}
+        {/* AD SLOT top */}
         <div className="bg-[#0f0f0f] border border-dashed border-[#2a2a2a] rounded-lg h-16 flex items-center justify-center text-[11px] text-[#333] tracking-widest uppercase mb-8">
           <AdBanner />
         </div>
 
-        {/* ARTICLE CONTENT - Pridané break-words aj sem pre istotu, ak by bolo dlhé slovo v texte */}
+        {/* ARTICLE CONTENT */}
         <div
-          className="prose-adhd break-words min-w-0 w-full"
+          className="prose-adhd"
           dangerouslySetInnerHTML={{ __html: article.contentHtml }}
         />
 

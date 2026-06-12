@@ -39,7 +39,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-8 py-4 border-b border-[#1e1e1e] bg-[rgba(10,10,10,0.92)] backdrop-blur-md">
+      <nav className="sticky top-0 z-50 flex items-center justify-between px-4 md:px-8 py-4 border-b border-[#1e1e1e] bg-[rgba(10,10,10,0.92)] backdrop-blur-md w-full">
         <a href="/" className="font-display text-xl font-extrabold tracking-tight">
           ADHD<span className="text-green-400">.</span>Slovakia
         </a>
