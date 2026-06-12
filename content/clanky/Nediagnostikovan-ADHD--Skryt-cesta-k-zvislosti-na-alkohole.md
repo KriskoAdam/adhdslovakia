@@ -43,6 +43,12 @@ Jedným zo symptómov ADHD je impulzivita a znížená schopnosť sebaregulácie
 
 Mozog si na dávky dopamínu z alkoholu zvykne. K dosiahnutiu rovnakého pocitu "vypnutia hlavy" je zrazu potrebné piť viac a častejšie.
 
+***
+
+*Ak vy alebo niekto vo vašom okolí prechádza ťažkým obdobím, kontaktujte Linku dôvery IPčko na čísle 0800 500 333 (nonstop, bezplatná) alebo navštívte ipčko.sk.*
+
+***
+
 ## cesta von 
 
 Rozbitie tohto bludného kruhu je takmer nemožné bez pochopenia samotného základu problému. Ak sa lieči iba závislosť na alkohole, ale ADHD zostáva nediagnostikované a nepovšimnuté, riziko recidívy je obrovské. Mozog si totiž bude naďalej hľadať cestu, ako vykompenzovať svoj dopamínový deficit.
