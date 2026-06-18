@@ -72,7 +72,15 @@ export default function AnimatedStat({
         hasStarted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
       }`}
     >
-      <div className="relative inline-block font-display text-3xl font-extrabold text-green-400 tabular-nums">
+      {/* 
+        KĽÚČOVÁ ZMENA: Pridali sme 'notranslate' a 'translate="no"' priamo sem.
+        Google Translate si teraz toto číslo a jeho vnútorné spany vôbec nevšimne,
+        vďaka čomu animácia prebehne čisto až do konca (1.5–3.6%).
+      */}
+      <div 
+        className="notranslate relative inline-block font-display text-3xl font-extrabold text-green-400 tabular-nums"
+        translate="no"
+      >
         {/* Neviditeľná hodnota drží šírku, aby layout neskákal */}
         <span className="invisible">{num}</span>
 
@@ -85,6 +93,7 @@ export default function AnimatedStat({
         </span>
       </div>
 
+      {/* Tento popis zostáva bez triedy, takže ho Google Translate normálne preloží do maďarčiny/angličtiny */}
       <div className="text-[12px] text-[#555] mt-0.5 font-light">
         {label}
       </div>
