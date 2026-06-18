@@ -77,22 +77,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS */}
+            {/* STATS */}
       <div className="flex flex-wrap gap-10 px-8 py-7 border-b border-[#1e1e1e]">
         {[
           { num: "10+", label: "úspešných diagnóz cez komunitu" },
           { num: "1.5–3.6%", label: "dospelých má ADHD v Európe" },
           { num: "∞", label: "mýtov ktoré treba zbúrať" },
         ].map((s, i) => (
-          <AnimatedStat
-            key={s.label}
-            num={s.num}
-            label={s.label}
-            delay={i * 180}
-            speed={65}
-          />
+          /* Obalíme AnimatedStat do divu, ktorý chráni iba samotné číslo pred prekladačom */
+          <div key={s.label} className="contents [&_h2]:notranslate" data-translate-ignore>
+            <AnimatedStat
+              num={s.num}
+              label={s.label}
+              delay={i * 180}
+              speed={65}
+            />
+          </div>
         ))}
       </div>
+
 
       {/* FEATURED ARTICLES */}
       {featuredArticles.length > 0 && (
