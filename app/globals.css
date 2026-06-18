@@ -38,6 +38,7 @@ body {
   word-break: break-word !important;
 }
 
+
 /* Spoločné vlastnosti pre všetky nadpisy v článku */
 .prose-adhd h1,
 .prose-adhd h2,
@@ -139,11 +140,28 @@ body {
 }
 
 .prose-adhd blockquote {
-  border-left: 3px solid #4ade80;
-  padding-left: 1rem;
-  color: #666;
+  border-left: 4px solid #4ade80; /* O niečo hrubšia, výraznejšia zelená */
+  padding-left: 1.25rem;
+  margin: 2rem 0;
+  background: rgba(74, 222, 128, 0.02); /* Veľmi jemný zelenkastý nádych pozadia citácie */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 1rem;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Fix pre TinaCMS: Správne stylovanie textu vnútri odsekov v citácii */
+.prose-adhd blockquote p {
+  color: #b0aea8 !important; /* Príjemná, čitateľná svetlosivá na tmavom pozadí */
   font-style: italic;
-  margin: 1.5rem 0;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 0 !important; /* Zrušíme spodný margin, ak je v citácii iba jeden odstavec */
+}
+
+/* Ak by mala odpoveď viac odsekov, dáme medzi ne medzeru */
+.prose-adhd blockquote p + p {
+  margin-top: 0.75rem !important;
 }
 
 .prose-adhd table {

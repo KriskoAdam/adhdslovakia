@@ -40,6 +40,26 @@ export default function RootLayout({
        </head>
       <body className={`${syne.variable} ${dmSans.variable}`}>
         {children}
+
+        {/* 1. Definícia funkcie – bezpečne priradená na globálny objekt window */}
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            window.googleTranslateElementInit = function() {
+              new google.translate.TranslateElement({
+                pageLanguage: 'sk',
+                includedLanguages: 'en,de,cs,pl,hu',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+              }, 'google_translate_element');
+            }
+          `}
+        </Script>
+
+        {/* 2. Načítanie skriptu s lazyOnload – počká, kým React kompletne vykreslí Nav lištu */}
+        <Script 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
+          strategy="lazyOnload"
+        />
+
         <Analytics />
       </body>
     </html>

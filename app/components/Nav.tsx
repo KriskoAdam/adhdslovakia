@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation"; // Import hooku na detekciu aktuálnej URL
 import MiniSelfCheckMobile from "./MiniSelfCheckmobile";
 
 const navLinks = [
@@ -11,9 +12,42 @@ const navLinks = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
+// Zoznam jazykov pre tvoje vlastné menu
+const languages = [
+  { label: "Slovenčina", code: "sk" },
+  { label: "English", code: "en" },
+  { label: "Čeština", code: "cs" },
+  { label: "Maďarčina", code: "hu" },
+  { label: "Nemčina", code: "de" },
+  { label: "Poľština", code: "pl" },
+];
+
 export default function Nav() {
+  const pathname = usePathname(); // Získanie aktuálnej cesty (napr. "/" alebo "/clanky")
   const [menuOpen, setMenuOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState("Vyberte jazyk");
+
+  // Načítanie aktuálne zvoleného jazyka z cookie pri načítaní stránky
+  useEffect(() => {
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(";").shift();
+    };
+
+    const googtrans = getCookie("googtrans");
+    if (googtrans) {
+      const langCode = googtrans.split("/").pop();
+      const foundLang = languages.find((l) => l.code === langCode);
+      if (foundLang) {
+        setCurrentLang(foundLang.label);
+        return;
+      }
+    }
+    setCurrentLang("Vyberte jazyk");
+  }, []);
 
   // Blokovanie scrollovania stránky pri otvorenom teste
   useEffect(() => {
@@ -22,11 +56,22 @@ export default function Nav() {
     } else {
       document.body.style.overflow = "unset";
     }
-
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [testOpen]);
+
+  // Funkcia na prepínanie jazyka pomocou Google Translate cookie
+  const changeLanguage = (langCode: string) => {
+    if (langCode === "sk") {
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+    } else {
+      document.cookie = `googtrans=/sk/${langCode}; path=/;`;
+      document.cookie = `googtrans=/sk/${langCode}; path=/; domain=${window.location.hostname};`;
+    }
+    window.location.reload();
+  };
 
   const openTest = () => {
     setMenuOpen(false);
@@ -39,63 +84,115 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-4 md:px-8 py-4 border-b border-[#1e1e1e] bg-[rgba(10,10,10,0.92)] backdrop-blur-md w-full">
-        <a href="/" className="font-display text-xl font-extrabold tracking-tight">
+      <nav className="sticky top-0 z-50 flex items-center justify-between px-4 lg:px-8 py-4 border-b border-[#1e1e1e] bg-[rgba(10,10,10,0.92)] backdrop-blur-md w-full">
+        {/* Logo */}
+        <a
+          href="/"
+          className="font-display text-xl font-extrabold tracking-tight shrink-0"
+        >
           ADHD<span className="text-green-400">.</span>Slovakia
         </a>
 
-        <div className="hidden md:flex gap-7 text-[13px] font-medium text-[#888]">
-          {navLinks.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="hover:text-[#f0ede6] transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-        >
-          <span
-            className={`block w-6 h-0.5 bg-[#f0ede6] transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-[#f0ede6] transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-[#f0ede6] transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
-        </button>
-
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-[#0a0a0a] border-b border-[#1e1e1e] flex flex-col md:hidden">
-            {navLinks.map((item) => (
+        {/* Hlavné menu pre PC – zmenené na lg:flex a opravený preklep v classe */}
+        <div className="hidden lg:flex gap-6 xl:gap-8 text-[13px]">
+          {navLinks.map((item) => {
+            const isActive = pathname === item.href;
+            return (
               <a
                 key={item.label}
                 href={item.href}
-                className="px-8 py-4 text-[14px] font-medium text-[#888] hover:text-[#f0ede6] border-t border-[#1e1e1e] transition-colors"
-                onClick={() => setMenuOpen(false)}
+                className={`transition-colors duration-200 font-semibold whitespace-nowrap ${
+                  isActive 
+                    ? "text-green-400" 
+                    : "text-[#888] hover:text-green-400"
+                }`}
               >
                 {item.label}
               </a>
-            ))}
+            );
+          })}
+        </div>
 
-            {/* Nová položka - ADHD Test */}
+        {/* Pravá strana: Naše vlastné dizajnové menu + Mobilné Menu tlačidlo */}
+        <div className="flex items-center gap-4 shrink-0">
+          
+          <div className="relative shrink-0">
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="bg-[#141414] border border-[#4ade80] hover:border-green-300 rounded-[6px] py-2 px-3 text-[13px] font-medium text-[#cfcfcf] w-[135px] text-center transition-all cursor-pointer"
+            >
+              {currentLang}
+            </button>
+
+            <div id="google_translate_element" className="hidden" />
+
+            {langOpen && (
+              <div className="absolute top-full mt-1.5 left-0 w-[135px] bg-[#141414] border border-[#4ade80] rounded-[6px] overflow-hidden z-[100] flex flex-col shadow-xl">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      changeLanguage(lang.code);
+                      setLangOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2.5 text-[13px] text-[#ffffff] hover:bg-[#1e1e1e] hover:text-[#4ade80] transition-colors bg-transparent border-none cursor-pointer"
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Hamburger tlačidlo pre mobil a tablety – zmenené na lg:hidden */}
+          <button
+            className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menu"
+          >
+            <span
+              className={`block w-6 h-0.5 bg-[#f0ede6] transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-[#f0ede6] transition-all duration-300 ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-[#f0ede6] transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Mobilné a tabletové rozbaľovacie Menu – zmenené na lg:hidden */}
+        {menuOpen && (
+          <div className="absolute top-full left-0 right-0 bg-[#0a0a0a] border-b border-[#1e1e1e] flex flex-col lg:hidden">
+            {navLinks.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`px-8 py-4 text-[14px] font-semibold border-t border-[#1e1e1e] transition-colors ${
+                    isActive 
+                      ? "text-green-400" 
+                      : "text-[#888] hover:text-green-400"
+                  }`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+
+            {/* ADHD Test v menu */}
             <button
               onClick={openTest}
-              className="px-8 py-4 text-[14px] font-semibold text-green-400 hover:text-green-300 border-t border-[#1e1e1e] transition-colors flex items-center gap-3 text-left"
+              className="px-8 py-4 text-[14px] font-semibold text-green-400 hover:text-green-300 border-t border-[#1e1e1e] transition-colors flex items-center gap-3 text-left cursor-pointer"
             >
               <span className="text-xl">🧠</span>
               <span>Urobiť si ADHD test</span>
@@ -107,11 +204,10 @@ export default function Nav() {
         )}
       </nav>
 
-      {/* Fullscreen Modal pre mobilný test */}
+      {/* Fullscreen Modal pre mobilný/tabletový test */}
       {testOpen && (
         <div className="fixed inset-0 z-[100] bg-[#0a0a0a] overflow-y-auto">
           <div className="min-h-screen p-4 pb-20">
-            {/* Header modálu */}
             <div className="sticky top-0 z-10 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#1e1e1e] -mx-4 px-4 py-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🧠</span>
@@ -119,25 +215,46 @@ export default function Nav() {
                   <h2 className="font-display text-lg font-bold text-[#f0ede6]">
                     ADHD Test
                   </h2>
-                  <p className="text-[11px] text-[#555]">Orientácia podľa DSM-5</p>
+                  <p className="text-[11px] text-[#555]">
+                    Orientácia podľa DSM-5
+                  </p>
                 </div>
               </div>
 
               <button
                 onClick={closeTest}
-                className="text-[#888] hover:text-white text-2xl leading-none px-3 py-1"
+                className="text-[#888] hover:text-white text-2xl leading-none px-3 py-1 cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            {/* Mobilný test */}
             <div className="mt-4">
               <MiniSelfCheckMobile />
             </div>
           </div>
         </div>
       )}
+
+      {/* VYČISTENÉ GLOBÁLNE ŠTÝLY */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        .goog-te-banner-frame.skiptranslate, 
+        .goog-te-banner-frame, 
+        #goog-gt-tt,
+        .goog-te-banner,
+        .skiptranslate.goog-te-gadget {
+          display: none !important;
+          visibility: hidden !important;
+        }
+        body {
+          top: 0 !important;
+          position: static !important;
+        }
+      `,
+        }}
+      />
     </>
   );
 }
