@@ -1,4 +1,4 @@
-"use client";
+#"use client";
 
 import { useState, useEffect } from "react";
 
@@ -109,16 +109,17 @@ export default function TypewriterHeading() {
     };
   }, [currentLang]); // <-- Dôležité: Reaguje na zmenu jazyka
 
-  return (
-    <h1 
-      className="notranslate font-display text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-[-2px] mb-5 max-w-2xl min-h-[105px] md:min-h-[126px]"
-      translate="no"
-    >
-      {part1}
-      {showBreak && <br />}
-      {part2}
-      <em className="not-italic text-green-400">{part3}</em>
-      <span className="animate-pulse text-green-400 ml-1 font-light">|</span>
-    </h1>
-  );
+  return ( 
+<h1 
+className="notranslate font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-[-2px] mb-5 max-w-full break-words min-h-[105px] md:min-h-[126px] overflow-hidden"
+translate="no"
+> 
+{part1} 
+{showBreak && <br />} 
+{part2} 
+<span className="text-green-400">{part3}</span> 
+{/* Blikajúci kurzor na konci textu */} 
+<span className="animate-pulse text-green-400 ml-1 font-light">|</span> 
+</h1> 
+);
 }
