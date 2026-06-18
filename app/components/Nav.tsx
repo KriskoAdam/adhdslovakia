@@ -29,7 +29,7 @@ export default function Nav() {
   const [langOpen, setLangOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState("Vyberte jazyk");
 
-  // Načítanie aktuálne zvoleného jazyka z cookie pri načítaní stránky
+  // Načítanie aktuálne zvoleného jazyka z cookie pri prvom načítaní stránky
   useEffect(() => {
     const getCookie = (name: string) => {
       const value = `; ${document.cookie}`;
@@ -47,6 +47,29 @@ export default function Nav() {
       }
     }
     setCurrentLang("Vyberte jazyk");
+  }, []);
+
+  // Sledovanie zmeny html lang atribútu — zachytí, keď Google Translate
+  // reálne preloží stránku a nastaví lang="en" a pod. Vďaka tomu sa
+  // tlačidlo a stav currentLang zosynchronizujú okamžite, nielen pri loade.
+  useEffect(() => {
+    const updateLangFromHtml = () => {
+      const htmlLang = document.documentElement.getAttribute("lang") || "sk";
+      const code = htmlLang.split("-")[0];
+      const foundLang = languages.find((l) => l.code === code);
+      if (foundLang) {
+        setCurrentLang(foundLang.label);
+      }
+    };
+
+    updateLangFromHtml();
+    const observer = new MutationObserver(updateLangFromHtml);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   // Blokovanie scrollovania stránky pri otvorenom teste
@@ -169,65 +192,70 @@ export default function Nav() {
           </button>
         </div>
 
-        {/* Mobilné a tabletové rozbaľovacie Menu */}
-        {menuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-[#0a0a0a] border-b border-[#1e1e1e] flex flex-col lg:hidden max-h-[85vh] overflow-y-auto">
-            {navLinks.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`px-6 py-4 text-[14px] font-semibold border-t border-[#1e1e1e] transition-colors ${
-                    isActive 
-                      ? "text-green-400" 
-                      : "text-[#888] hover:text-green-400"
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
+        {/* Mobilné a tabletové rozbaľovacie Menu.
+            DÔLEŽITÉ: menu je v DOMe prítomné VŽDY (žiadne podmienené {menuOpen && ...}).
+            Viditeľnosť riešime cez className block/hidden, aby ho Google Translate
+            vedel prečítať a preložiť aj keď je vizuálne zatvorené. */}
+        <div
+          className={`absolute top-full left-0 right-0 bg-[#0a0a0a] border-b border-[#1e1e1e] flex-col lg:hidden max-h-[85vh] overflow-y-auto ${
+            menuOpen ? "flex" : "hidden"
+          }`}
+        >
+          {navLinks.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`px-6 py-4 text-[14px] font-semibold border-t border-[#1e1e1e] transition-colors ${
+                  isActive 
+                    ? "text-green-400" 
+                    : "text-[#888] hover:text-green-400"
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            );
+          })}
 
-            {/* ADHD Test v menu */}
-            <button
-              onClick={openTest}
-              className="px-6 py-4 text-[14px] font-semibold text-green-400 hover:text-green-300 border-t border-[#1e1e1e] transition-colors flex items-center gap-3 text-left cursor-pointer"
-            >
-              <span className="text-xl">🧠</span>
-              <span>Urobiť si ADHD test</span>
-              <span className="ml-auto text-xs bg-green-400/10 px-2.5 py-1 rounded text-green-400 font-medium">
-                NOVÉ
-              </span>
-            </button>
+          {/* ADHD Test v menu */}
+          <button
+            onClick={openTest}
+            className="px-6 py-4 text-[14px] font-semibold text-green-400 hover:text-green-300 border-t border-[#1e1e1e] transition-colors flex items-center gap-3 text-left cursor-pointer"
+          >
+            <span className="text-xl">🧠</span>
+            <span>Urobiť si ADHD test</span>
+            <span className="ml-auto text-xs bg-green-400/10 px-2.5 py-1 rounded text-green-400 font-medium">
+              NOVÉ
+            </span>
+          </button>
 
-            {/* MOBILNÝ RESPONDZÍVNY VÝBER JAZYKOV (Zobrazený iba tu na mobile/tablete) */}
-            <div className="px-6 py-5 border-t border-[#1e1e1e] bg-[#0d0d0d] flex flex-col gap-2.5">
-              <span className="text-[11px] font-bold text-[#555] uppercase tracking-wider">
-                Zmeniť jazyk / Language
-              </span>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {languages.map((lang) => {
-                  const isSelected = currentLang === lang.label || (currentLang === "Vyberte jazyk" && lang.code === "sk");
-                  return (
-                    <button
-                      key={lang.code}
-                      onClick={() => changeLanguage(lang.code)}
-                      className={`px-3 py-2.5 text-[12px] font-semibold rounded-[6px] text-center transition-all cursor-pointer ${
-                        isSelected
-                          ? "bg-green-400/10 border border-green-400 text-green-400"
-                          : "bg-[#141414] border border-[#1e1e1e] text-[#aaa] hover:text-white hover:border-[#333]"
-                      }`}
-                    >
-                      {lang.label}
-                    </button>
-                  );
-                })}
-              </div>
+          {/* MOBILNÝ RESPONDZÍVNY VÝBER JAZYKOV (Zobrazený iba tu na mobile/tablete) */}
+          <div className="px-6 py-5 border-t border-[#1e1e1e] bg-[#0d0d0d] flex flex-col gap-2.5">
+            <span className="text-[11px] font-bold text-[#555] uppercase tracking-wider">
+              Zmeniť jazyk / Language
+            </span>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {languages.map((lang) => {
+                const isSelected = currentLang === lang.label || (currentLang === "Vyberte jazyk" && lang.code === "sk");
+                return (
+                  <button
+                    key={lang.code}
+                    onClick={() => changeLanguage(lang.code)}
+                    className={`px-3 py-2.5 text-[12px] font-semibold rounded-[6px] text-center transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-green-400/10 border border-green-400 text-green-400"
+                        : "bg-[#141414] border border-[#1e1e1e] text-[#aaa] hover:text-white hover:border-[#333]"
+                    }`}
+                  >
+                    {lang.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
-        )}
+        </div>
       </nav>
 
       {/* Fullscreen Modal pre mobilný/tabletový test */}
