@@ -10,12 +10,12 @@ const awarenessCards = [
   {
     icon: "🧠",
     title: "Čo je ADHD?",
-    desc: "ADHD je neurovývojová porucha ktorá pretrváva do dospelosti. Nie je to len neposlušnosť alebo lenivosť — je to rozdielne fungujúci mozog.",
+    desc: "ADHD je neurovývojová porucha ktorá pretrváva do dospelosti. Nie je to len neposlušnosť alebo lenivosť ide o rozdielne fungujúci mozog.",
   },
   {
     icon: "👤",
     title: "ADHD u dospelých",
-    desc: "Odhaduje sa že 1.5–3.6% dospelých v Európe má ADHD. Väčšina z nich NEVER dostala diagnózu — a nevie prečo im niektoré veci nejdú.",
+    desc: "Odhaduje sa že 4–5% ľudí v Európe má ADHD. Väčšina z nich nikdy nedostala diagnózu a nevie prečo im niektoré veci v ich živote nejdú.",
   },
   {
     icon: "🔍",
@@ -81,7 +81,7 @@ export default function Home() {
       <div className="flex flex-wrap gap-10 px-8 py-7 border-b border-[#1e1e1e]">
         {[
           { num: "10+", label: "úspešných diagnóz cez komunitu" },
-          { num: "2.5–4.0%", label: "ľudí má ADHD v Európe" },
+          { num: "4–5%", label: "ľudí má ADHD v Európe" },
           { num: "∞", label: "mýtov ktoré treba zbúrať" },
         ].map((s, i) => (
           /* Obalíme AnimatedStat do divu, ktorý chráni iba samotné číslo pred prekladačom */
