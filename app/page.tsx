@@ -81,7 +81,7 @@ export default function Home() {
       <div className="flex flex-wrap gap-10 px-8 py-7 border-b border-[#1e1e1e]">
         {[
           { num: "10+", label: "úspešných diagnóz cez komunitu" },
-          { num: "1.5–3.6%", label: "dospelých má ADHD v Európe" },
+          { num: "2.5–4.0%", label: "ľudí má ADHD v Európe" },
           { num: "∞", label: "mýtov ktoré treba zbúrať" },
         ].map((s, i) => (
           /* Obalíme AnimatedStat do divu, ktorý chráni iba samotné číslo pred prekladačom */
