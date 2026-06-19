@@ -5,8 +5,8 @@ import { useState, useEffect, useRef } from "react";
 // 15 výrokov pre každý jazyk. Každý výrok má tri časti, presne ako v
 // pôvodnom dizajne: part1 (prvý riadok), part2 (začiatok druhého riadku,
 // nezvýraznený) a part3 (koniec druhého riadku, zvýraznený zelenou).
-// Štruktúra musí zostať rovnaká vo všetkých jazykoch, aby layout (zalomenie
-// na <br/>) fungoval konzistentne.
+// Štruktúra musí zostať rovnaká vo všetkých jazykoch, aby layout
+// fungoval konzistentne.
 type Phrase = { part1: string; part2: string; part3: string };
 
 const PHRASES: Record<string, Phrase[]> = {
@@ -258,12 +258,21 @@ export default function TypewriterHeading() {
       translate="no"
       lang={currentLang}
     >
-      {part1}
-      {showBreak && <br />}
-      {part2}
-      <span className="text-green-400">{part3}</span>
-      {/* Blikajúci kurzor na konci textu */}
-      <span className="animate-pulse text-green-400 ml-1 font-light">|</span>
+      <span className="block">
+        {part1}
+        {/* Zobrazenie kurzora na prvom riadku, kým sa píše part1 */}
+        {!showBreak && (
+          <span className="animate-pulse text-green-400 ml-1 font-light">|</span>
+        )}
+      </span>
+      <span className="block">
+        {part2}
+        <span className="text-green-400">{part3}</span>
+        {/* Po dopísaní part1 sa kurzor presunie na druhý riadok */}
+        {showBreak && (
+          <span className="animate-pulse text-green-400 ml-1 font-light">|</span>
+        )}
+      </span>
     </h1>
   );
 }
