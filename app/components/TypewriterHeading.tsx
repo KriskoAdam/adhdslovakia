@@ -2,11 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 
-// 15 výrokov pre každý jazyk. Každý výrok má tri časti, presne ako v
-// pôvodnom dizajne: part1 (prvý riadok), part2 (začiatok druhého riadku,
-// nezvýraznený) a part3 (koniec druhého riadku, zvýraznený zelenou).
-// Štruktúra musí zostať rovnaká vo všetkých jazykoch, aby layout (zalomenie
-// na <br/>) fungoval konzistentne.
 type Phrase = { part1: string; part2: string; part3: string };
 
 const PHRASES: Record<string, Phrase[]> = {
@@ -59,7 +54,7 @@ const PHRASES: Record<string, Phrase[]> = {
     { part1: "Genetika hraje", part2: "u ADHD velkou ", part3: "roli." },
     { part1: "Většina dospělých", part2: "nemá ", part3: "diagnózu." },
     { part1: "ADHD není o vůli,", part2: "ale o ", part3: "mozku." },
-    { part1: "ADHD přetrvává", part2: "i do ", part3: "dospělosti." },
+    { part1: "ADHD přetrvává", part2: "i do ", bad: "dospělosti." },
   ],
   de: [
     { part1: "ADHD ist nicht", part2: "nur für ", part3: "Kinder." },
@@ -76,7 +71,7 @@ const PHRASES: Record<string, Phrase[]> = {
     { part1: "Genetik spielt", part2: "bei ADHD eine große ", part3: "Rolle." },
     { part1: "Die meisten Erwachsenen", part2: "bleiben ", part3: "undiagnostiziert." },
     { part1: "ADHD ist keine Frage des Willens,", part2: "sondern des ", part3: "Gehirns." },
-    { part1: "ADHD bleibt busses in", part2: "bis ins ", part3: "Erwachsenenalter." },
+    { part1: "ADHD bleibt bestehen", part2: "bis ins ", part3: "Erwachsenenalter." },
   ],
   pl: [
     { part1: "ADHD to nie", part2: "tylko dla ", part3: "dzieci." },
@@ -116,18 +111,82 @@ const PHRASES: Record<string, Phrase[]> = {
 
 const SUPPORTED_LANGS = Object.keys(PHRASES);
 
+// Pomocný komponent na vykresľovanie textu po slovách bez toho, aby sa porušila celistvosť slova
+function RenderWordByWord({
+  visibleStr,
+  fullStr,
+  isCurrentTypingPart,
+  extraClasses = "",
+}: {
+  visibleStr: string;
+  fullStr: string;
+  isCurrentTypingPart: boolean;
+  extraClasses?: string;
+}) {
+  // Rozdelíme reťazec na slová a biele znaky (medzery zostanú zachované)
+  const tokens = fullStr.split(/(\s+)/);
+  let charCounter = 0;
+  const visibleCount = visibleStr.length;
+
+  return (
+    <>
+      {tokens.map((token, idx) => {
+        if (!token) return null;
+
+        const L = token.length;
+        const startIdx = charCounter;
+        charCounter += L;
+
+        const isWhitespace = /^\s+$/.test(token);
+        const localVisibleLen = Math.max(0, Math.min(L, visibleCount - startIdx));
+        const visiblePart = token.slice(0, localVisibleLen);
+        const transparentPart = token.slice(localVisibleLen);
+
+        // Presná logika pre zobrazenie kurzora iba na jednom správnom mieste v celom bloku
+        const showCursorHere =
+          isCurrentTypingPart &&
+          ((visibleCount >= startIdx && visibleCount < startIdx + L) ||
+            (visibleCount === startIdx + L && idx === tokens.length - 1));
+
+        if (isWhitespace) {
+          return (
+            <span key={idx} className="inline">
+              {visiblePart}
+              {showCursorHere && (
+                <span className="animate-pulse text-green-400 font-light select-none">|</span>
+              )}
+              <span className="text-transparent select-none">{transparentPart}</span>
+            </span>
+          );
+        }
+
+        // Každé slovo obalíme do inline-block, čím zabránime jeho roztrhnutiu zalamovaním
+        return (
+          <span key={idx} className="inline-block whitespace-nowrap">
+            <span className={extraClasses}>{visiblePart}</span>
+            {showCursorHere && (
+              <span className="animate-pulse text-green-400 font-light select-none">|</span>
+            )}
+            <span className="text-transparent select-none">{transparentPart}</span>
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
 export default function TypewriterHeading() {
   const [part1, setPart1] = useState("");
   const [part2, setPart2] = useState("");
   const [part3, setPart3] = useState("");
   const [showBreak, setShowBreak] = useState(false);
   const [currentLang, setCurrentLang] = useState("sk");
-  // Index aktuálneho výroku v rotácii. Uložený v ref, nie v state, lebo ho
-  // potrebujeme čítať synchrónne vo vnútri setTimeout reťazí bez toho, aby
-  // sme efekt znova spúšťali pri každej zmene (to by reštartovalo písanie).
+  
+  // State na synchrónne prepojenie podkladového layoutu s bežiacim cyklom písania
+  const [activePhraseIndex, setActivePhraseIndex] = useState(0);
   const phraseIndexRef = useRef(0);
 
-  // 1. SLEDOVANIE ZMENY JAZYKA (Google Translate mení atribút lang na <html lang="...">)
+  // 1. SLEDOVANIE ZMENY JAZYKA
   useEffect(() => {
     const detectLanguage = () => {
       const htmlLang = document.documentElement.getAttribute("lang");
@@ -162,6 +221,7 @@ export default function TypewriterHeading() {
   useEffect(() => {
     const phrases = PHRASES[currentLang] || PHRASES.sk;
     phraseIndexRef.current = 0;
+    setActivePhraseIndex(0);
 
     setPart1("");
     setPart2("");
@@ -228,7 +288,12 @@ export default function TypewriterHeading() {
           if (i === str1.length - 1) setShowBreak(false);
           activeTimeout = setTimeout(erase, 35);
         } else {
-          phraseIndexRef.current = (phraseIndexRef.current + 1) % phrases.length;
+          // Výrok je kompletne zmazaný. Okamžite prepíname index na nový,
+          // čím sa podkladový layout prekreslí počas 400ms pauzy, kedy je text neviditeľný.
+          const nextIndex = (phraseIndexRef.current + 1) % phrases.length;
+          phraseIndexRef.current = nextIndex;
+          setActivePhraseIndex(nextIndex);
+          
           activeTimeout = setTimeout(typePhrase, 400);
         }
       }
@@ -244,40 +309,38 @@ export default function TypewriterHeading() {
     };
   }, [currentLang]);
 
-  // Pomocné premenné na zistenie, ktorá časť sa práve píše (kvôli pozícii kurzora)
   const phrases = PHRASES[currentLang] || PHRASES.sk;
-  const currentPhrase = phrases[phraseIndexRef.current] || { part1: "", part2: "", part3: "" };
+  const currentPhrase = phrases[activePhraseIndex] || { part1: "", part2: "", part3: "" };
 
-  const isTypingPart1 = part1.length < currentPhrase.part1.length;
-  const isTypingPart2 = !isTypingPart1 && part2.length < currentPhrase.part2.length;
-  const isTypingPart3 = !isTypingPart1 && !isTypingPart2 && part3.length < currentPhrase.part3.length;
-  const isDone = part1.length === currentPhrase.part1.length && 
-                 part2.length === currentPhrase.part2.length && 
-                 part3.length === currentPhrase.part3.length;
+  const isTypingPart1 = !showBreak;
+  const isTypingPart2 = showBreak && part2.length < currentPhrase.part2.length;
+  const isTypingPart3 = showBreak && part2.length === currentPhrase.part2.length;
 
   return (
     <h1
-      className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 max-w-full break-words [overflow-wrap:break-word] [hyphens:auto] min-h-[140px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[170px] overflow-hidden"
+      className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 max-w-full min-h-[140px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[170px] overflow-hidden"
       translate="no"
       lang={currentLang}
     >
-      {/* 1. ČASŤ (Prvý riadok) */}
-      {part1}
-      {isTypingPart1 && <span className="animate-pulse text-green-400 ml-1 font-light">|</span>}
-      <span className="text-transparent select-none">{currentPhrase.part1.slice(part1.length)}</span>
-
-      <br />
-
-      {/* 2. ČASŤ (Začiatok druhého riadku) */}
-      {part2}
-      {isTypingPart2 && <span className="animate-pulse text-green-400 ml-1 font-light">|</span>}
-      <span className="text-transparent select-none">{currentPhrase.part2.slice(part2.length)}</span>
-
-      {/* 3. ČASŤ (Zelený koniec druhého riadku) */}
-      <span className="text-green-400">
-        {part3}
-        {(isTypingPart3 || isDone) && <span className="animate-pulse text-green-400 ml-1 font-light">|</span>}
-        <span className="text-transparent select-none">{currentPhrase.part3.slice(part3.length)}</span>
+      <span className="block">
+        <RenderWordByWord
+          visibleStr={part1}
+          fullStr={currentPhrase.part1}
+          isCurrentTypingPart={isTypingPart1}
+        />
+      </span>
+      <span className="block">
+        <RenderWordByWord
+          visibleStr={part2}
+          fullStr={currentPhrase.part2}
+          isCurrentTypingPart={isTypingPart2}
+        />
+        <RenderWordByWord
+          visibleStr={part3}
+          fullStr={currentPhrase.part3}
+          isCurrentTypingPart={isTypingPart3}
+          extraClasses="text-green-400"
+        />
       </span>
     </h1>
   );
