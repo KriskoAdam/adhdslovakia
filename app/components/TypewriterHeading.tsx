@@ -54,7 +54,7 @@ const PHRASES: Record<string, Phrase[]> = {
     { part1: "Genetika hraje", part2: "u ADHD velkou ", part3: "roli." },
     { part1: "Většina dospělých", part2: "nemá ", part3: "diagnózu." },
     { part1: "ADHD není o vůli,", part2: "ale o ", part3: "mozku." },
-    { part1: "ADHD přetrvává", part2: "i do ", bad: "dospělosti." },
+    { part1: "ADHD přetrvává", part2: "i do ", part3: "dospělosti." },
   ],
   de: [
     { part1: "ADHD ist nicht", part2: "nur für ", part3: "Kinder." },
