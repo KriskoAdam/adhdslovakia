@@ -1,6 +1,6 @@
 ---
 title: Porovnanie liekov na ADHD na Slovensku
-date: 19. júna 2026
+date: 19.06.2026
 category: Lieky
 excerpt: 'Ako funguje Concerta, Strattera, Intuniv či nový Livizux? Pozreli sme sa na hlbokú vedu za ADHD medikáciou na Slovensku. Zistite, ako tieto lieky upravujú dopamín, aké majú vedľajšie účinky a ako sa líšia.'
 readTime: 9 min čítania
@@ -14,9 +14,9 @@ Ak žijete s ADHD na Slovensku, možnosti liečby sa v poslednom období výrazn
 
 Naša prefrontálna kôra (časť mozgu zodpovedná za plánovanie, pozornosť, organizáciu a sebakontrolu) potrebuje pre správne fungovanie optimálnu hladinu dvoch chemických poslov: **dopamín** a **noradrenalín**.
 
- funguje ako filter šumu. Pomáha mozgu vybrať si, čo je dôležité, a ignorovať nepodstatné podnety.
+funguje ako filter šumu. Pomáha mozgu vybrať si, čo je dôležité, a ignorovať nepodstatné podnety.
 
- funguje ako zosilňovač signálu. Pomáha mozgu udržať energiu a pozornosť pri danej úlohe.
+funguje ako zosilňovač signálu. Pomáha mozgu udržať energiu a pozornosť pri danej úlohe.
 
 Pri ADHD je týchto látok v synaptických štrbinách (priestoroch medzi nervovými bunkami) nedostatok, prípadne ich mozog odčerpáva príliš rýchlo. Lieky nerobia nič iné, len to, že tento chemický deficit vyrovnávajú.
 
@@ -30,21 +30,21 @@ Stimulanty sú prvolíniovou liečbou ADHD na celom svete a majú historicky naj
 
 Metylfenidát funguje ako **NDRI** (inhibítor spätného vychytávania dopamínu a noradrenalínu). Predstavte si synapsiu ako miestnosť, kde dopamín upratuje chaos. Pri ADHD mozog príliš rýchlo otvorí „dvere“ (transportéry) a dopamín z miestnosti vyhodí skôr, než stihne upratať. Metylfenidát tieto dvere mechanicky zablokuje.
 
- Výsledok? Dopamín zostáva tam, kde má, a vy sa dokážete sústrediť.
+Výsledok? Dopamín zostáva tam, kde má, a vy sa dokážete sústrediť.
 
 Concerta využíva pokročilý uvoľňovací systém **OROS**. Tableta sa v žalúdku nerozpustí naraz. Má v sebe mikroskopický laserom vyvŕtaný otvor a pomocou osmotického tlaku uvoľňuje liečivo postupne počas 10 až 12 hodín.
 
 **Hlavné vedľajšie účinky:**
 
-* **Znížená chuť do jedla: **Veľmi časté. Mozog v stave optimálneho dopamínu neustále nehľadá rýchlu odmenu v jedle.
+* \*\*Znížená chuť do jedla: \*\*Veľmi časté. Mozog v stave optimálneho dopamínu neustále nehľadá rýchlu odmenu v jedle.
 * **Problémy so spánkom (nespavosť):** Ak sa liek užije neskoro, stimulačný efekt nedovolí mozgu vypnúť.
-* **Rebound efekt: **Keď liek po cca 12 hodinách vyprchá, môže nastať dočasný prepad nálady, podráždenosť, úzkosť alebo extrémna únava.
+* \*\*Rebound efekt: \*\*Keď liek po cca 12 hodinách vyprchá, môže nastať dočasný prepad nálady, podráždenosť, úzkosť alebo extrémna únava.
 
 ##### Lizdexamfetamín (obchodný názov: Livizux)
 
 Horúca novinka na slovenskom trhu (v oficiálnej kategorizácii od roku 2026), ktorá zásadne mení pravidlá hry pre pacientov, ktorým nezabral alebo nesadol Metylfenidát.
 
-Livizux je amfetamínový stimulant, ale v tele sa správa mimoriadne inteligentne. Ide o takzvaný **proliek (prodrug)**. 
+Livizux je amfetamínový stimulant, ale v tele sa správa mimoriadne inteligentne. Ide o takzvaný **proliek (prodrug)**.
 
 V kapsule prehltnete úplne neaktívnu molekulu (amfetamín pevne naviazaný na aminokyselinu lyzín). Táto látka sama o sebe nemá žiadny psychotropný účinok. Začne fungovať až vtedy, keď ju vaše červené krvinky v obehu metabolicky „rozstrihnú“ a začnú z nej pomaly odštepovať čistý dexamfetamín.
 
@@ -68,9 +68,9 @@ Atomoxetín je **NRI** (selektívny inhibítor spätného vychytávania noradren
 
 **Hlavné vedľajšie účinky:**
 
-* **Nevoľnosť a žalúdočné ťažkosti: **Často pomáha užiť liek tesne po výdatnom, ideálne bielkovinovom jedle.
-* **Únava a ospalosť: **Najmä v prvých týždňoch liečby, kým si mozog na novú hladinu zvykne.
-* **Sexuálna dysfunkcia: **U dospelých sa môže objaviť prechodné zníženie libida alebo problémy s erekciou.
+* \*\*Nevoľnosť a žalúdočné ťažkosti: \*\*Často pomáha užiť liek tesne po výdatnom, ideálne bielkovinovom jedle.
+* \*\*Únava a ospalosť: \*\*Najmä v prvých týždňoch liečby, kým si mozog na novú hladinu zvykne.
+* \*\*Sexuálna dysfunkcia: \*\*U dospelých sa môže objaviť prechodné zníženie libida alebo problémy s erekciou.
 
 ##### Guanfacín (obchodný názov: Intuniv)
 
@@ -80,8 +80,8 @@ Guanfacín nie je ani stimulant, ani inhibítor spätného vychytávania. Je to 
 
 **Hlavné vedľajšie účinky:**
 
-* **Výrazná somnolencia (ospalosť) a únava: **Keďže prirodzene tlmí nadmernú aktivitu nervovej sústavy.
-* **Pokles krvného tlaku (hypotenzia) a spomalený tep: **Vyžaduje si pravidelné meranie tlaku.
+* \*\*Výrazná somnolencia (ospalosť) a únava: \*\*Keďže prirodzene tlmí nadmernú aktivitu nervovej sústavy.
+* \*\*Pokles krvného tlaku (hypotenzia) a spomalený tep: \*\*Vyžaduje si pravidelné meranie tlaku.
 
 ### porovnanie liečiv
 
