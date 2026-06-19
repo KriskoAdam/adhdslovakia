@@ -37,9 +37,9 @@ Concerta využíva pokročilý uvoľňovací systém **OROS**. Tableta sa v žal
 
 **Hlavné vedľajšie účinky:**
 
-* \*\*Znížená chuť do jedla: \*\*Veľmi časté. Mozog v stave optimálneho dopamínu neustále nehľadá rýchlu odmenu v jedle.
+* **Znížená chuť do jedla: **Veľmi časté. Mozog v stave optimálneho dopamínu neustále nehľadá rýchlu odmenu v jedle.
 * **Problémy so spánkom (nespavosť):** Ak sa liek užije neskoro, stimulačný efekt nedovolí mozgu vypnúť.
-* \*\*Rebound efekt: \*\*Keď liek po cca 12 hodinách vyprchá, môže nastať dočasný prepad nálady, podráždenosť, úzkosť alebo extrémna únava.
+* **Rebound efekt: **Keď liek po cca 12 hodinách vyprchá, môže nastať dočasný prepad nálady, podráždenosť, úzkosť alebo extrémna únava.
 
 ##### Lizdexamfetamín (obchodný názov: Livizux)
 
@@ -69,9 +69,9 @@ Atomoxetín je **NRI** (selektívny inhibítor spätného vychytávania noradren
 
 **Hlavné vedľajšie účinky:**
 
-* \*\*Nevoľnosť a žalúdočné ťažkosti: \*\*Často pomáha užiť liek tesne po výdatnom, ideálne bielkovinovom jedle.
-* \*\*Únava a ospalosť: \*\*Najmä v prvých týždňoch liečby, kým si mozog na novú hladinu zvykne.
-* \*\*Sexuálna dysfunkcia: \*\*U dospelých sa môže objaviť prechodné zníženie libida alebo problémy s erekciou.
+* **Nevoľnosť a žalúdočné ťažkosti: **Často pomáha užiť liek tesne po výdatnom, ideálne bielkovinovom jedle.
+* **Únava a ospalosť: **Najmä v prvých týždňoch liečby, kým si mozog na novú hladinu zvykne.
+* **Sexuálna dysfunkcia: **U dospelých sa môže objaviť prechodné zníženie libida alebo problémy s erekciou.
 
 ##### Guanfacín (obchodný názov: Intuniv)
 
@@ -81,8 +81,8 @@ Guanfacín nie je ani stimulant, ani inhibítor spätného vychytávania. Je to 
 
 **Hlavné vedľajšie účinky:**
 
-* \*\*Výrazná somnolencia (ospalosť) a únava: \*\*Keďže prirodzene tlmí nadmernú aktivitu nervovej sústavy.
-* \*\*Pokles krvného tlaku (hypotenzia) a spomalený tep: \*\*Vyžaduje si pravidelné meranie tlaku.
+* **Výrazná somnolencia (ospalosť) a únava: **Keďže prirodzene tlmí nadmernú aktivitu nervovej sústavy.
+* **Pokles krvného tlaku (hypotenzia) a spomalený tep: **Vyžaduje si pravidelné meranie tlaku.
 
 ### porovnanie liečiv
 
