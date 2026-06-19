@@ -5,8 +5,8 @@ import { useState, useEffect, useRef } from "react";
 // 15 výrokov pre každý jazyk. Každý výrok má tri časti, presne ako v
 // pôvodnom dizajne: part1 (prvý riadok), part2 (začiatok druhého riadku,
 // nezvýraznený) a part3 (koniec druhého riadku, zvýraznený zelenou).
-// Štruktúra musí zostať rovnaká vo všetkých jazykoch, aby layout
-// fungoval konzistentne.
+// Štruktúra musí zostať rovnaká vo všetkých jazykoch, aby layout (zalomenie
+// na <br/>) fungoval konzistentne.
 type Phrase = { part1: string; part2: string; part3: string };
 
 const PHRASES: Record<string, Phrase[]> = {
@@ -76,7 +76,7 @@ const PHRASES: Record<string, Phrase[]> = {
     { part1: "Genetik spielt", part2: "bei ADHD eine große ", part3: "Rolle." },
     { part1: "Die meisten Erwachsenen", part2: "bleiben ", part3: "undiagnostiziert." },
     { part1: "ADHD ist keine Frage des Willens,", part2: "sondern des ", part3: "Gehirns." },
-    { part1: "ADHD bleibt bestehen", part2: "bis ins ", part3: "Erwachsenenalter." },
+    { part1: "ADHD bleibt busses in", part2: "bis ins ", part3: "Erwachsenenalter." },
   ],
   pl: [
     { part1: "ADHD to nie", part2: "tylko dla ", part3: "dzieci." },
@@ -89,7 +89,7 @@ const PHRASES: Record<string, Phrase[]> = {
     { part1: "Zawsze wiedziałeś,", part2: "że jesteś ", part3: "inny." },
     { part1: "ADHD ma", part2: "około 5% ", part3: "dzieci." },
     { part1: "ADHD to", part2: "zaburzenie ", part3: "neurorozwojowe." },
-    { part1: "ADHD często towarzyszy", part2: "także ", part3: "lęk." },
+    { part1: "ADHD často towarzyszy", part2: "także ", part3: "lęk." },
     { part1: "Genetyka odgrywa", part2: "w ADHD dużą ", part3: "rolę." },
     { part1: "Większość dorosłych", part2: "nie ma ", part3: "diagnozy." },
     { part1: "ADHD to nie kwestia woli,", part2: "lecz ", part3: "mózgu." },
@@ -159,9 +159,6 @@ export default function TypewriterHeading() {
   }, []);
 
   // 2. PÍSACÍ STROJ S ROTÁCIOU VÝROKOV
-  // Spustí sa nanovo pri zmene jazyka (reštartuje rotáciu od prvého výroku
-  // v danom jazyku) a inak beží nekonečne sám: napíše výrok, počká, zmaže
-  // ho, prejde na ďalší výrok v poli (cyklicky), zopakuje.
   useEffect(() => {
     const phrases = PHRASES[currentLang] || PHRASES.sk;
     phraseIndexRef.current = 0;
@@ -199,8 +196,6 @@ export default function TypewriterHeading() {
           k++;
           activeTimeout = setTimeout(type, 110);
         } else {
-          // Výrok je celý napísaný — počkáme, kým si ho človek stihne
-          // prečítať, potom ho zmažeme a prejdeme na ďalší v poradí.
           activeTimeout = setTimeout(erasePhrase, 2200);
         }
       }
@@ -233,8 +228,6 @@ export default function TypewriterHeading() {
           if (i === str1.length - 1) setShowBreak(false);
           activeTimeout = setTimeout(erase, 35);
         } else {
-          // Celý výrok zmazaný — posunieme sa na ďalší (cyklicky) a po
-          // krátkej pauze začneme písať znova.
           phraseIndexRef.current = (phraseIndexRef.current + 1) % phrases.length;
           activeTimeout = setTimeout(typePhrase, 400);
         }
@@ -243,7 +236,6 @@ export default function TypewriterHeading() {
       erase();
     }
 
-    // Prvotné spustenie s rovnakým úvodným oneskorením ako v origináli
     activeTimeout = setTimeout(typePhrase, 400);
 
     return () => {
@@ -252,26 +244,40 @@ export default function TypewriterHeading() {
     };
   }, [currentLang]);
 
+  // Pomocné premenné na zistenie, ktorá časť sa práve píše (kvôli pozícii kurzora)
+  const phrases = PHRASES[currentLang] || PHRASES.sk;
+  const currentPhrase = phrases[phraseIndexRef.current] || { part1: "", part2: "", part3: "" };
+
+  const isTypingPart1 = part1.length < currentPhrase.part1.length;
+  const isTypingPart2 = !isTypingPart1 && part2.length < currentPhrase.part2.length;
+  const isTypingPart3 = !isTypingPart1 && !isTypingPart2 && part3.length < currentPhrase.part3.length;
+  const isDone = part1.length === currentPhrase.part1.length && 
+                 part2.length === currentPhrase.part2.length && 
+                 part3.length === currentPhrase.part3.length;
+
   return (
     <h1
       className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 max-w-full break-words [overflow-wrap:break-word] [hyphens:auto] min-h-[140px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[170px] overflow-hidden"
       translate="no"
       lang={currentLang}
     >
-      <span className="block">
-        {part1}
-        {/* Zobrazenie kurzora na prvom riadku, kým sa píše part1 */}
-        {!showBreak && (
-          <span className="animate-pulse text-green-400 ml-1 font-light">|</span>
-        )}
-      </span>
-      <span className="block">
-        {part2}
-        <span className="text-green-400">{part3}</span>
-        {/* Po dopísaní part1 sa kurzor presunie na druhý riadok */}
-        {showBreak && (
-          <span className="animate-pulse text-green-400 ml-1 font-light">|</span>
-        )}
+      {/* 1. ČASŤ (Prvý riadok) */}
+      {part1}
+      {isTypingPart1 && <span className="animate-pulse text-green-400 ml-1 font-light">|</span>}
+      <span className="text-transparent select-none">{currentPhrase.part1.slice(part1.length)}</span>
+
+      <br />
+
+      {/* 2. ČASŤ (Začiatok druhého riadku) */}
+      {part2}
+      {isTypingPart2 && <span className="animate-pulse text-green-400 ml-1 font-light">|</span>}
+      <span className="text-transparent select-none">{currentPhrase.part2.slice(part2.length)}</span>
+
+      {/* 3. ČASŤ (Zelený koniec druhého riadku) */}
+      <span className="text-green-400">
+        {part3}
+        {(isTypingPart3 || isDone) && <span className="animate-pulse text-green-400 ml-1 font-light">|</span>}
+        <span className="text-transparent select-none">{currentPhrase.part3.slice(part3.length)}</span>
       </span>
     </h1>
   );
