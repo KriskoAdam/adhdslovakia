@@ -20,6 +20,12 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "ADHD Slovakia",
   description: "Neurodiverzita, osveta, Slovensko",
+  // Hovoríme prehliadaču (Safari/Chrome), nech sám nenavrhuje natívnu
+  // prekladovú lištu na vrchu obrazovky. O preklad sa staráme my sami
+  // cez vlastný google.translate.TranslateElement widget nižšie.
+  other: {
+    google: "notranslate",
+  },
 };
 
 export default function RootLayout({
