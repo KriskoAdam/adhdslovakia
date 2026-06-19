@@ -5,12 +5,38 @@ import { getAllArticles } from "./lib/articles";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = getAllArticles();
 
-  const articleUrls = articles.map((a) => ({
-    url: `https://adhdslovakia.eu/clanky/${a.slug}`,
-    lastModified: a.date ? new Date(a.date) : new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  const articleUrls = articles.map((a) => {
+    let finalDate = new Date(); // Fallback na dnešný dátum, ak by niečo zlyhalo
+
+    if (a.date) {
+      let dateString = a.date.trim();
+
+      // Ak dátum obsahuje bodky (DD.MM.YYYY), prerobíme ho na ISO formát (YYYY-MM-DD)
+      if (dateString.includes('.')) {
+        const parts = dateString.split('.');
+        if (parts.length === 3) {
+          const day = parts[0].trim().padStart(2, '0');
+          const month = parts[1].trim().padStart(2, '0');
+          const year = parts[2].trim();
+          dateString = `${year}-${month}-${day}`;
+        }
+      }
+
+      const parsedDate = new Date(dateString);
+      
+      // Ak je dátum po úprave platný, použijeme ho
+      if (!isNaN(parsedDate.getTime())) {
+        finalDate = parsedDate;
+      }
+    }
+
+    return {
+      url: `https://adhdslovakia.eu/clanky/${a.slug}`,
+      lastModified: finalDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    };
+  });
 
   return [
     {
