@@ -50,18 +50,10 @@ export default function Nav() {
   }, []);
 
   // Sledovanie zmeny html lang atribútu — zachytí, keď Google Translate
-  // reálne preloží stránku a nastaví lang="en" a pod. Vďaka tomu sa
-  // tlačidlo a stav currentLang zosynchronizujú okamžite, nielen pri loade.
+  // reálne preloží stránku priamo cez DOM (napr. keď widget zmení obsah
+  // bez plného reloadu). Slúži len ako doplnok ku cookie efektu vyššie.
   useEffect(() => {
     const updateLangFromHtml = () => {
-      // Ak sme práve klikli na "Slovenčina", chceme zostať na sk natrvalo
-      // pre túto session, aj keby Google Translate skript ešte na chvíľu
-      // vrátil starý lang atribút (napr. tesne po reloade).
-      if (sessionStorage.getItem("forceLangSk") === "1") {
-        setCurrentLang("Slovenčina");
-        return;
-      }
-
       const htmlLang = document.documentElement.getAttribute("lang") || "sk";
       const code = htmlLang.split("-")[0];
       const foundLang = languages.find((l) => l.code === code);
@@ -70,7 +62,6 @@ export default function Nav() {
       }
     };
 
-    updateLangFromHtml();
     const observer = new MutationObserver(updateLangFromHtml);
     observer.observe(document.documentElement, {
       attributes: true,
@@ -95,45 +86,18 @@ export default function Nav() {
   // Funkcia na prepínanie jazyka pomocou Google Translate cookie
   const changeLanguage = (langCode: string) => {
     if (langCode === "sk") {
-      // Zmazanie googtrans cookie vo VŠETKÝCH bežných kombináciách path/domain.
-      // Google Translate widget si cookie zapisuje niekedy s domain, niekedy
-      // bez, niekedy s leading bodkou pred doménou - stačí jeden "zabudnutý"
-      // variant a widget pri ďalšom načítaní znova prepne na predošlý jazyk,
-      // čo je presne dôvod, prečo bolo treba klikať na Slovenčinu viackrát.
+      // Zmazanie googtrans cookie. Google Translate ju vie zapísať buď bez
+      // domain, alebo s domain (s bodkou pred doménou aj bez nej) - ak sa
+      // zmaže iba jeden variant a widget pôvodne zapísal druhý, cookie
+      // "ostane" platná a pri reloade sa stránka znova preloží do
+      // predošlého jazyka. Preto mažeme všetky tri varianty naraz.
       const hostname = window.location.hostname;
-      const expire = "expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-      document.cookie = `googtrans=; ${expire} path=/;`;
-      document.cookie = `googtrans=; ${expire} path=/; domain=${hostname};`;
-      document.cookie = `googtrans=; ${expire} path=/; domain=.${hostname};`;
-      document.cookie = `googtrans=; ${expire} path=/;domain=${hostname}`;
-      document.cookie = `googtrans=/auto/sk; ${expire} path=/;`;
-
-      // Google Translate si môže časť stavu držať aj mimo cookie.
-      // Vyčistíme všetky kľúče, ktoré obsahujú "goog" alebo "trans",
-      // aby po reloade nemal z čoho obnoviť predošlý jazyk.
-      try {
-        Object.keys(localStorage)
-          .filter((k) => /goog|trans/i.test(k))
-          .forEach((k) => localStorage.removeItem(k));
-        Object.keys(sessionStorage)
-          .filter((k) => /goog|trans/i.test(k) && k !== "forceLangSk")
-          .forEach((k) => sessionStorage.removeItem(k));
-      } catch (e) {
-        // localStorage/sessionStorage môže byť v niektorých kontextoch
-        // nedostupný (napr. private mode) - v tom prípade len pokračujeme.
-      }
-
-      // Explicitne vrátime html lang na "sk" HNEĎ, predtým než stránka stihne
-      // reloadnúť, pre prípad že widget sám neobnoví lang atribút včas.
-      document.documentElement.lang = "sk";
-
-      // Lokálny flag pre MutationObserver, aby currentLang zostal "Slovenčina"
-      // aj keby widget na chvíľu po reloade vrátil starý lang atribút.
-      sessionStorage.setItem("forceLangSk", "1");
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + hostname;
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + hostname;
     } else {
       document.cookie = `googtrans=/sk/${langCode}; path=/;`;
       document.cookie = `googtrans=/sk/${langCode}; path=/; domain=${window.location.hostname};`;
-      sessionStorage.removeItem("forceLangSk");
     }
     window.location.reload();
   };
