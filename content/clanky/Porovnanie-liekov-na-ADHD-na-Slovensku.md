@@ -4,6 +4,7 @@ date: 19.06.2026
 category: Lieky
 excerpt: 'Ako funguje Concerta, Strattera, Intuniv či nový Livizux? Pozreli sme sa na hlbokú vedu za ADHD medikáciou na Slovensku. Zistite, ako tieto lieky upravujú dopamín, aké majú vedľajšie účinky a ako sa líšia.'
 readTime: 9 min čítania
+coverImage: /images/pexels-ron-lach-9902277.jpg
 ---
 
 Predstava, že lieky na ADHD sú len „zázračné tabletky na sústredenie“ alebo nebodaj „legálny doping“, je jedným z najväčších mýtov, ktoré kolujú spoločnosťou. Pravda je oveľa fascinujúcejšia. ADHD nie je nedostatok vôle, ale neurobiologický fakt konkrétne iné fungovanie neurotransmiterov v mozgu.
