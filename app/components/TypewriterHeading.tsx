@@ -254,8 +254,9 @@ export default function TypewriterHeading() {
 
   return (
     <h1
-      className="notranslate font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-[-2px] mb-5 max-w-full break-words min-h-[105px] md:min-h-[126px] overflow-hidden"
+      className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 max-w-full break-words [overflow-wrap:break-word] [hyphens:auto] min-h-[140px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[170px] overflow-hidden"
       translate="no"
+      lang={currentLang}
     >
       {part1}
       {showBreak && <br />}
