@@ -95,44 +95,41 @@ export default function Nav() {
   // Funkcia na prepínanie jazyka pomocou Google Translate cookie
   const changeLanguage = (langCode: string) => {
     if (langCode === "sk") {
-      // Zmazanie googtrans cookie na všetkých bežných variantoch cesty/domény,
-      // pretože Google Translate vie cookie zapísať s rôznym path/domain
-      // a stačí jeden "zabudnutý" zápis, aby sa preklad nevypol.
+      // Zmazanie googtrans cookie vo VŠETKÝCH bežných kombináciách path/domain.
+      // Google Translate widget si cookie zapisuje niekedy s domain, niekedy
+      // bez, niekedy s leading bodkou pred doménou - stačí jeden "zabudnutý"
+      // variant a widget pri ďalšom načítaní znova prepne na predošlý jazyk,
+      // čo je presne dôvod, prečo bolo treba klikať na Slovenčinu viackrát.
       const hostname = window.location.hostname;
-      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${hostname};`;
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${hostname};`;
+      const expire = "expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+      document.cookie = `googtrans=; ${expire} path=/;`;
+      document.cookie = `googtrans=; ${expire} path=/; domain=${hostname};`;
+      document.cookie = `googtrans=; ${expire} path=/; domain=.${hostname};`;
+      document.cookie = `googtrans=; ${expire} path=/;domain=${hostname}`;
+      document.cookie = `googtrans=/auto/sk; ${expire} path=/;`;
+
+      // Google Translate si môže časť stavu držať aj mimo cookie.
+      // Vyčistíme všetky kľúče, ktoré obsahujú "goog" alebo "trans",
+      // aby po reloade nemal z čoho obnoviť predošlý jazyk.
+      try {
+        Object.keys(localStorage)
+          .filter((k) => /goog|trans/i.test(k))
+          .forEach((k) => localStorage.removeItem(k));
+        Object.keys(sessionStorage)
+          .filter((k) => /goog|trans/i.test(k) && k !== "forceLangSk")
+          .forEach((k) => sessionStorage.removeItem(k));
+      } catch (e) {
+        // localStorage/sessionStorage môže byť v niektorých kontextoch
+        // nedostupný (napr. private mode) - v tom prípade len pokračujeme.
+      }
 
       // Explicitne vrátime html lang na "sk" HNEĎ, predtým než stránka stihne
-      // reloadnúť. Google Translate widget niekedy nestihne sám obnoviť
-      // lang atribút na <html> len kvôli zmazanej cookie, takže to nastavíme ručne.
+      // reloadnúť, pre prípad že widget sám neobnoví lang atribút včas.
       document.documentElement.lang = "sk";
 
-      // Lokálny flag, aby sme po reloade vedeli, že ide o explicitný návrat
-      // na slovenčinu, a MutationObserver tým pádom nemal dôvod prepísať
-      // currentLang naspäť podľa starého lang atribútu, ak by ho Translate
-      // ešte na chvíľu obnovil.
+      // Lokálny flag pre MutationObserver, aby currentLang zostal "Slovenčina"
+      // aj keby widget na chvíľu po reloade vrátil starý lang atribút.
       sessionStorage.setItem("forceLangSk", "1");
-
-      // KĽÚČOVÁ ČASŤ: priamo ovládneme skrytý <select class="goog-te-combo">,
-      // ktorý si Google Translate widget vytvára sám. Samotné zmazanie cookie
-      // totiž widget často "neposlúchne" pri prvom reloade, lebo widget má
-      // svoj vlastný interný stav nezávislý od cookie. Nastavením selectu na
-      // prázdnu hodnotu (čo zodpovedá pôvodnému jazyku) a vyvolaním "change"
-      // donútime widget reálne sa vrátiť, takže netreba klikať druhýkrát.
-      const combo = document.querySelector(
-        "select.goog-te-combo"
-      ) as HTMLSelectElement | null;
-      if (combo) {
-        combo.value = "sk";
-        combo.dispatchEvent(new Event("change"));
-        // Necháme widgetu chvíľu na spracovanie, potom až reloadneme,
-        // aby sa zmena stihla prejaviť skôr, než stránku znova načítame.
-        setTimeout(() => {
-          window.location.reload();
-        }, 150);
-        return;
-      }
     } else {
       document.cookie = `googtrans=/sk/${langCode}; path=/;`;
       document.cookie = `googtrans=/sk/${langCode}; path=/; domain=${window.location.hostname};`;
