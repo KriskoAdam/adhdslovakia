@@ -50,7 +50,7 @@ export default function Home() {
             <TypewriterHeading />
 
             <p className="text-[16px] text-[#888] max-w-md leading-relaxed font-light mb-8 animate-fade-up delay-200">
-              Informácie, skúsenosti a veda o ADHD v slovenčine. Pre dospelých,
+              Informácie, skúsenosti a veda o ADHD v slovenčine. Pre ľudí,
               ktorí hľadajú odpovede.
             </p>
 
