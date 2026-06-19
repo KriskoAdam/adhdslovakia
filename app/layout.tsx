@@ -4,6 +4,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { Analytics } from '@vercel/analytics/react';
+import SplashScreen from "./SplashScreen";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
         />
        </head>
       <body className={`${syne.variable} ${dmSans.variable}`}>
+        <SplashScreen />
         {children}
 
         {/* 1. Definícia funkcie – bezpečne priradená na globálny objekt window */}
