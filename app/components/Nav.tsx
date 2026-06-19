@@ -113,6 +113,26 @@ export default function Nav() {
       // currentLang naspäť podľa starého lang atribútu, ak by ho Translate
       // ešte na chvíľu obnovil.
       sessionStorage.setItem("forceLangSk", "1");
+
+      // KĽÚČOVÁ ČASŤ: priamo ovládneme skrytý <select class="goog-te-combo">,
+      // ktorý si Google Translate widget vytvára sám. Samotné zmazanie cookie
+      // totiž widget často "neposlúchne" pri prvom reloade, lebo widget má
+      // svoj vlastný interný stav nezávislý od cookie. Nastavením selectu na
+      // prázdnu hodnotu (čo zodpovedá pôvodnému jazyku) a vyvolaním "change"
+      // donútime widget reálne sa vrátiť, takže netreba klikať druhýkrát.
+      const combo = document.querySelector(
+        "select.goog-te-combo"
+      ) as HTMLSelectElement | null;
+      if (combo) {
+        combo.value = "sk";
+        combo.dispatchEvent(new Event("change"));
+        // Necháme widgetu chvíľu na spracovanie, potom až reloadneme,
+        // aby sa zmena stihla prejaviť skôr, než stránku znova načítame.
+        setTimeout(() => {
+          window.location.reload();
+        }, 150);
+        return;
+      }
     } else {
       document.cookie = `googtrans=/sk/${langCode}; path=/;`;
       document.cookie = `googtrans=/sk/${langCode}; path=/; domain=${window.location.hostname};`;
