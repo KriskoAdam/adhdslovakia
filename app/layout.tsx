@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="sk">
+    <html lang="sk" translate="no" className="notranslate">
       <head> 
         <meta name="google-adsense-account" content="ca-pub-6150590591009223"></meta>
         <Script
