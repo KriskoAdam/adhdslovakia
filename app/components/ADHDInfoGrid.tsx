@@ -205,7 +205,7 @@ export default function ADHDInfoGrid() {
           <div
             key={i}
             className={`border rounded-xl overflow-hidden transition-all duration-200 ${
-              isOpen ? "border-green-400/40 bg-[#111]" : "border-[#1e1e1e] bg-[#0f0f0f]"
+              isOpen ? "border-green-400/40 bg-[var(--bg-secondary)]" : "border-[var(--border-color)] bg-[var(--bg-tertiary)]"
             }`}
           >
             {/* HEADER */}
@@ -215,7 +215,7 @@ export default function ADHDInfoGrid() {
             >
               <div className="flex items-center gap-3">
                 <span className="text-xl">{item.icon}</span>
-                <span className="font-display font-bold text-[15px] text-[#f0ede6]">
+                <span className="font-display font-bold text-[15px] text-[var(--text-primary)]">
                   {item.title}
                 </span>
               </div>
@@ -226,8 +226,8 @@ export default function ADHDInfoGrid() {
 
             {/* CONTENT */}
             {isOpen && (
-              <div className="px-5 pb-6 border-t border-[#1e1e1e]">
-                <div className="pt-4 text-[14px] text-[#888] leading-7 font-light whitespace-pre-line">
+              <div className="px-5 pb-6 border-t border-[var(--border-color)]">
+                <div className="pt-4 text-[14px] text-[var(--text-secondary)] leading-7 font-light whitespace-pre-line">
                   {item.content}
                 </div>
               </div>
@@ -237,8 +237,8 @@ export default function ADHDInfoGrid() {
       })}
 
       {/* FAQ CTA */}
-      <div className="mt-4 border border-[#1e1e1e] rounded-xl bg-[#0f0f0f] px-5 py-5">
-        <p className="text-[13px] text-[#555] mb-3">Nenašli ste odpoveď na svoju otázku?</p>
+      <div className="mt-4 border border-[var(--border-color)] rounded-xl bg-[var(--bg-tertiary)] px-5 py-5">
+        <p className="text-[13px] text-[var(--text-muted)] mb-3">Nenašli ste odpoveď na svoju otázku?</p>
         <a
           href="https://forms.gle/ai1TLsWiWL1Jo5u7A"
           target="_blank"

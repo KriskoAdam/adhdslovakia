@@ -8,9 +8,7 @@ export const metadata: Metadata = {
 
 export default function ONasPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#f0ede6]">
-
-      
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
 
       <div className="max-w-2xl mx-auto px-8 pt-14 pb-20">
@@ -24,7 +22,7 @@ export default function ONasPage() {
           <span className="text-green-400 animate-fade-up delay-200">ADHD Slovakia</span>
         </h1>
 
-        <div className="space-y-6 text-[15px] text-[#888] font-light leading-relaxed animate-fade-up delay-300">
+        <div className="space-y-6 text-[15px] text-[var(--text-secondary)] font-light leading-relaxed animate-fade-up delay-300">
           <p>
             Celý život som hľadal odpovede. Niečo nebolo v poriadku, vedel som to
             ale nikto mi nevedel povedať čo. Nie škola, nie lekári, nie systém.
@@ -51,33 +49,33 @@ export default function ONasPage() {
         </div>
 
         {/* DIVIDER */}
-        <div className="border-t border-[#1e1e1e] my-12" />
+        <div className="border-t border-[var(--border-color)] my-12" />
 
         {/* MISSION */}
         <h2 className="font-display text-2xl font-extrabold tracking-tight mb-6 animate-fade-up delay-400">
           Čo robíme
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-12 animate-fade-up delay-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden mb-12 animate-fade-up delay-500">
           {[
             { icon: "📰", title: "Obsah a články", desc: "Píšeme o ADHD na základe vedeckých a medicínskych zdrojov v slovenčine, zrozumiteľne." },
             { icon: "🔬", title: "Búranie mýtov", desc: "Bojujeme proti zastaraným predstavám o ADHD, že je to len detská diagnóza, alebo výhovorka." },
             { icon: "🤝", title: "Pomoc s diagnózou", desc: "Pomáhame ľuďom zorientovať sa kde hľadať odborníka, čo očakávať, ako sa pripraviť." },
             { icon: "⚖️", title: "Advokácia", desc: "Presadzujeme práva dospelých pacientov vrátane preplácania liekov zdravotnými poisťovňami." },
           ].map((item) => (
-            <div key={item.title} className="bg-[#111] p-6 flex flex-col gap-2 animate-fade-up delay-600">
+            <div key={item.title} className="bg-[var(--bg-secondary)] p-6 flex flex-col gap-2 animate-fade-up delay-600">
               <span className="text-2xl">{item.icon}</span>
-              <h3 className="font-display text-[15px] font-bold text-[#f0ede6]">{item.title}</h3>
-              <p className="text-[13px] text-[#555] font-light leading-relaxed">{item.desc}</p>
+              <h3 className="font-display text-[15px] font-bold text-[var(--text-primary)]">{item.title}</h3>
+              <p className="text-[13px] text-[var(--text-muted)] font-light leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
 
         {/* MEMBER OF */}
-        <div className="bg-[#111] border border-[#1e1e1e] rounded-xl p-6">
-          <div className="text-[10px] font-bold tracking-widest uppercase text-[#444] mb-3">
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl p-6">
+          <div className="text-[10px] font-bold tracking-widest uppercase text-[var(--text-muted)] mb-3">
             Medzinárodná spolupráca
           </div>
-          <p className="text-[14px] text-[#888] font-light leading-relaxed">
+          <p className="text-[14px] text-[var(--text-secondary)] font-light leading-relaxed">
             ADHD Slovakia je v procese stávania sa členom{" "}
             <a href="https://adhdeurope.eu/" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:underline">
               ADHD Europe
@@ -90,11 +88,11 @@ export default function ONasPage() {
       </div>
 
       {/* FOOTER */}
-      <footer className="px-8 py-8 border-t border-[#1e1e1e] flex flex-col md:flex-row justify-between items-center gap-3">
-        <div className="font-display text-base font-extrabold text-[#333]">
+      <footer className="px-8 py-8 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="font-display text-base font-extrabold text-[var(--text-muted)]">
           ADHD<span className="text-green-400/30">.</span>Slovakia
         </div>
-        <div className="text-[12px] text-[#333]">© 2025 ADHD Slovakia</div>
+        <div className="text-[12px] text-[var(--text-muted)]">© 2025 ADHD Slovakia</div>
       </footer>
     </div>
   );

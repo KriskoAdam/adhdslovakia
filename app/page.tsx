@@ -4,7 +4,7 @@ import Nav from "./components/Nav";
 import AdBanner from "./AdBanner";
 import AnimatedStat from "./components/AnimatedStat";
 import DIVATestDesktop from "./components/DIVATestDesktop";
-import TypewriterHeading from "./components/TypewriterHeading"; // --- IMPORT NOVÉHO NADPISU ---
+import TypewriterHeading from "./components/TypewriterHeading";
 
 const awarenessCards = [
   {
@@ -35,21 +35,20 @@ export default function Home() {
   const listArticles = allArticles.slice(3, 7);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#f0ede6] font-sans">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans">
       <Nav />
 
       {/* HERO */}
-      <section className="px-8 pt-16 pb-12 border-b border-[#1e1e1e]">
+      <section className="px-8 pt-16 pb-12 border-b border-[var(--border-color)]">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_430px] gap-12 xl:gap-20 items-center">
           <div>
             <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5 animate-fade-up">
               Neurodiverzita · Osveta · Slovensko
             </div>
 
-            {/* --- ZMENA: Tu sa namiesto starého h1 renderuje píšuci stroj --- */}
             <TypewriterHeading />
 
-            <p className="text-[16px] text-[#888] max-w-md leading-relaxed font-light mb-8 animate-fade-up delay-200">
+            <p className="text-[16px] text-[var(--text-secondary)] max-w-md leading-relaxed font-light mb-8 animate-fade-up delay-200">
               Informácie, skúsenosti a veda o ADHD v slovenčine. Pre ľudí,
               ktorí hľadajú odpovede.
             </p>
@@ -64,7 +63,7 @@ export default function Home() {
 
               <a
                 href="/o-nas"
-                className="inline-block bg-transparent text-[#f0ede6] text-[13px] font-semibold px-5 py-2.5 rounded-md border border-[#2a2a2a] hover:border-[#444] transition-colors"
+                className="inline-block bg-transparent text-[var(--text-primary)] text-[13px] font-semibold px-5 py-2.5 rounded-md border border-[var(--border-color)] hover:border-green-400/40 transition-colors"
               >
                 O projekte
               </a>
@@ -77,14 +76,13 @@ export default function Home() {
         </div>
       </section>
 
-            {/* STATS */}
-      <div className="flex flex-wrap gap-10 px-8 py-7 border-b border-[#1e1e1e]">
+      {/* STATS */}
+      <div className="flex flex-wrap gap-10 px-8 py-7 border-b border-[var(--border-color)]">
         {[
           { num: "10+", label: "úspešných diagnóz cez komunitu" },
           { num: "4–5%", label: "ľudí má ADHD v Európe" },
           { num: "∞", label: "mýtov ktoré treba zbúrať" },
         ].map((s, i) => (
-          /* Obalíme AnimatedStat do divu, ktorý chráni iba samotné číslo pred prekladačom */
           <div key={s.label} className="contents [&_h2]:notranslate" data-translate-ignore>
             <AnimatedStat
               num={s.num}
@@ -96,12 +94,11 @@ export default function Home() {
         ))}
       </div>
 
-
       {/* FEATURED ARTICLES */}
       {featuredArticles.length > 0 && (
         <>
           <div className="flex items-center justify-between px-8 pt-6 pb-4 animate-fade-up">
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[#555]">
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--text-muted)]">
               Najnovšie články
             </span>
             <a
@@ -111,12 +108,12 @@ export default function Home() {
               Všetky články →
             </a>
           </div>
-          <div className="mx-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden animate-fade-up delay-100">
+          <div className="mx-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden animate-fade-up delay-100">
             {featuredArticles.map((a, i) => (
               <a
                 key={a.slug}
                 href={`/clanky/${a.slug}`}
-                className={`bg-[#111] flex flex-col gap-2.5 hover:bg-[#161616] transition-colors group ${
+                className={`bg-[var(--bg-secondary)] flex flex-col gap-2.5 hover:opacity-90 transition-opacity group ${
                   i === 0 ? "md:row-span-2 p-8" : "p-7"
                 }`}
               >
@@ -124,18 +121,18 @@ export default function Home() {
                   {a.category}
                 </span>
                 <h2
-                  className={`font-display font-bold leading-snug tracking-tight text-[#f0ede6] group-hover:text-white transition-colors ${
+                  className={`font-display font-bold leading-snug tracking-tight text-[var(--text-primary)] ${
                     i === 0 ? "text-3xl" : "text-xl"
                   }`}
                 >
                   {a.title}
                 </h2>
                 {a.excerpt && (
-                  <p className="text-[13px] text-[#666] leading-relaxed font-light">
+                  <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed font-light">
                     {a.excerpt}
                   </p>
                 )}
-                <div className="text-[11px] text-[#444] mt-auto pt-3 border-t border-[#1e1e1e]">
+                <div className="text-[11px] text-[var(--text-muted)] mt-auto pt-3 border-t border-[var(--border-color)]">
                   {a.readTime} · {a.date}
                 </div>
               </a>
@@ -152,22 +149,22 @@ export default function Home() {
       {/* AWARENESS SECTION */}
       <div className="mx-8 mb-8">
         <div className="flex items-center justify-between pt-2 pb-4">
-          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[#555]">
+          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--text-muted)]">
             ADHD Info & Awareness
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden mb-4">
           {awarenessCards.map((item, i) => (
             <div
               key={item.title}
-              className="bg-[#111] p-6 flex flex-col gap-2 animate-fade-up"
+              className="bg-[var(--bg-secondary)] p-6 flex flex-col gap-2 animate-fade-up"
               style={{ animationDelay: `${i * 0.1}s` }}
             >
               <span className="text-xl">{item.icon}</span>
-              <h3 className="font-display text-[14px] font-bold text-[#f0ede6]">
+              <h3 className="font-display text-[14px] font-bold text-[var(--text-primary)]">
                 {item.title}
               </h3>
-              <p className="text-[12px] text-[#555] font-light leading-relaxed">
+              <p className="text-[12px] text-[var(--text-muted)] font-light leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -177,13 +174,13 @@ export default function Home() {
           href="https://adhdeurope.eu/adhd-awareness-month/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between bg-[#111] border border-[#1e1e1e] rounded-xl px-6 py-4 hover:bg-[#161616] transition-colors group"
+          className="flex items-center justify-between bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-6 py-4 hover:opacity-90 transition-opacity group"
         >
           <div>
             <div className="text-[10px] font-bold tracking-widest uppercase text-green-400 mb-1">
               ADHD Europe · Október je ADHD Awareness Month
             </div>
-            <div className="font-display text-[15px] font-bold text-[#d0cdc6] group-hover:text-white transition-colors">
+            <div className="font-display text-[15px] font-bold text-[var(--text-primary)] opacity-90">
               2025 téma: The Many Faces of ADHD →
             </div>
           </div>
@@ -195,21 +192,21 @@ export default function Home() {
       {listArticles.length > 0 && (
         <>
           <div className="flex items-center justify-between px-8 pt-2 pb-4">
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[#555]">
+            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--text-muted)]">
               Ďalšie články
             </span>
           </div>
-          <div className="mx-8 flex flex-col gap-px bg-[#1e1e1e] border border-[#1e1e1e] rounded-xl overflow-hidden mb-8">
+          <div className="mx-8 flex flex-col gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden mb-8">
             {listArticles.map((a, i) => (
               <a
                 key={a.slug}
                 href={`/clanky/${a.slug}`}
-                className="flex items-center gap-5 bg-[#111] px-6 py-4 hover:bg-[#161616] transition-colors group"
+                className="flex items-center gap-5 bg-[var(--bg-secondary)] px-6 py-4 hover:opacity-90 transition-opacity group"
               >
-                <span className="font-display text-[13px] font-extrabold text-[#222] min-w-[28px]">
+                <span className="font-display text-[13px] font-extrabold text-[var(--text-muted)] min-w-[28px]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="font-display text-[14px] font-bold text-[#d0cdc6] flex-1 leading-snug group-hover:text-white transition-colors">
+                <span className="font-display text-[14px] font-bold text-[var(--text-primary)] flex-1 leading-snug">
                   {a.title}
                 </span>
                 <span className="text-[10px] font-semibold tracking-widest text-green-400 bg-green-400/10 px-2 py-1 rounded whitespace-nowrap">
@@ -222,7 +219,7 @@ export default function Home() {
       )}
 
       {/* FOOTER */}
-      <footer className="px-8 py-10 border-t border-[#1e1e1e] flex flex-col md:flex-row justify-between items-center gap-6">
+      <footer className="px-8 py-10 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-4">
           <Image
             src="/images/logo.png"
@@ -232,15 +229,15 @@ export default function Home() {
             className="object-contain opacity-80"
           />
           <div>
-            <div className="font-display text-base font-extrabold text-[#f0ede6]">
+            <div className="font-display text-base font-extrabold text-[var(--text-primary)]">
               ADHD<span className="text-green-400">.</span>Slovakia
             </div>
-            <div className="text-[11px] text-[#444] mt-0.5">
+            <div className="text-[11px] text-[var(--text-muted)] mt-0.5">
               Neurodiverzita · Osveta · Slovensko
             </div>
           </div>
         </div>
-        <div className="text-[12px] text-[#333]">
+        <div className="text-[12px] text-[var(--text-muted)]">
           © 2025 ADHD Slovakia · Všetky práva vyhradené
         </div>
       </footer>

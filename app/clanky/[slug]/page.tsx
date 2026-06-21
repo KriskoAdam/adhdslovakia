@@ -35,16 +35,13 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#f0ede6]">
-      
-      {/* POUŽITÝ GLOBÁLNY NAV KOMPONENT */}
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
 
-      {/* ARTICLE HEADER & CONTENT */}
       <article className="max-w-2xl mx-auto px-8 pt-14 pb-20">
         <a
           href="/clanky"
-          className="inline-flex items-center gap-2 text-[12px] text-[#555] hover:text-green-400 transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-[12px] text-[var(--text-muted)] hover:text-green-400 transition-colors mb-8"
         >
           ← Späť na články
         </a>
@@ -53,18 +50,18 @@ export default async function ArticlePage({ params }: Props) {
           {article.category}
         </div>
 
-        <h1 
+        <h1
           className="font-display text-2xl sm:text-2xl md:text-3xl font-extrabold leading-tight tracking-tight mb-5"
-          style={{ 
-            wordBreak: 'break-all', 
-            overflowWrap: 'anywhere', 
-            whiteSpace: 'normal' 
+          style={{
+            wordBreak: "break-all",
+            overflowWrap: "anywhere",
+            whiteSpace: "normal",
           }}
         >
           {article.title}
         </h1>
 
-        <div className="flex items-center gap-4 text-[12px] text-[#444] pb-8 border-b border-[#1e1e1e] mb-8">
+        <div className="flex items-center gap-4 text-[12px] text-[var(--text-muted)] pb-8 border-b border-[var(--border-color)] mb-8">
           <span>{article.readTime}</span>
           <span>·</span>
           <span>{article.date}</span>
@@ -83,7 +80,7 @@ export default async function ArticlePage({ params }: Props) {
         )}
 
         {/* AD SLOT top */}
-        <div className="bg-[#0f0f0f] border border-dashed border-[#2a2a2a] rounded-lg h-16 flex items-center justify-center text-[11px] text-[#333] tracking-widest uppercase mb-8">
+        <div className="bg-[var(--bg-tertiary)] border border-dashed border-[var(--border-color)] rounded-lg h-16 flex items-center justify-center text-[11px] text-[var(--text-muted)] tracking-widest uppercase mb-8">
           <AdBanner />
         </div>
 
@@ -94,14 +91,14 @@ export default async function ArticlePage({ params }: Props) {
         />
 
         {/* AD SLOT bottom */}
-        <div className="bg-[#0f0f0f] border border-dashed border-[#2a2a2a] rounded-lg h-16 flex items-center justify-center text-[11px] text-[#333] tracking-widest uppercase mt-12">
+        <div className="bg-[var(--bg-tertiary)] border border-dashed border-[var(--border-color)] rounded-lg h-16 flex items-center justify-center text-[11px] text-[var(--text-muted)] tracking-widest uppercase mt-12">
           <AdBanner />
         </div>
 
-        <div className="mt-12 pt-8 border-t border-[#1e1e1e]">
+        <div className="mt-12 pt-8 border-t border-[var(--border-color)]">
           <a
             href="/clanky"
-            className="inline-block bg-transparent text-[#f0ede6] text-[13px] font-semibold px-5 py-2.5 rounded-md border border-[#2a2a2a] hover:border-[#444] transition-colors"
+            className="inline-block bg-transparent text-[var(--text-primary)] text-[13px] font-semibold px-5 py-2.5 rounded-md border border-[var(--border-color)] hover:border-green-400/40 transition-colors"
           >
             ← Všetky články
           </a>
