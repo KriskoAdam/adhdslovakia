@@ -1,11 +1,10 @@
 "use client";
 
-
 export default function DIVATestDesktop() {
   return (
     <aside className="hidden xl:block justify-self-end w-[420px] flex-shrink-0 animate-fade-up">
-      <div className="relative overflow-hidden rounded-[28px] border border-[#1e1e1e] bg-[#111] shadow-2xl p-6 flex flex-col justify-between h-[320px]">
-        {/* Svetelný efekt v rohu */}
+      <div className="relative overflow-hidden rounded-[28px] border border-[var(--border-color)] bg-[var(--bg-secondary)] shadow-2xl p-6 flex flex-col justify-between h-[320px]">
+        {/* Svetelný efekt v rohu — v oboch režimoch dodá pekný moderný nádych */}
         <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-green-400/10 blur-3xl pointer-events-none" />
         
         {/* Horná časť */}
@@ -17,20 +16,20 @@ export default function DIVATestDesktop() {
             </span>
           </div>
           
-          <h2 className="font-display text-2xl font-extrabold text-[#f0ede6] tracking-tight mb-2">
+          <h2 className="font-display text-2xl font-extrabold text-[var(--text-primary)] tracking-tight mb-2">
             Orientačný ADHD test
           </h2>
           
-          <p className="text-[13px] text-[#888] leading-relaxed max-w-[320px]">
-            Zistite, či vaše symptómy nepozornosti, impulzivity alebo hyperaktivity zodpovedajú kritériám dospelých podľa klasifikácie <span className="text-[#f0ede6] font-medium">DSM-5</span>.
+          <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed max-w-[320px]">
+            Zistite, či vaše symptómy nepozornosti, impulzivity alebo hyperaktivity zodpovedajú kritériám dospelých podľa klasifikácie <span className="text-[var(--text-primary)] font-medium">DSM-5</span>.
           </p>
         </div>
 
         {/* Spodná časť s informáciami a tlačidlom */}
-        <div className="relative z-10 pt-4 border-t border-[#1e1e1e]/60 flex flex-col gap-3">
-          <div className="flex items-center justify-between text-[11px] text-[#555]">
+        <div className="relative z-10 pt-4 border-t border-[var(--border-color)] flex flex-col gap-3">
+          <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)]">
             <span className="flex items-center gap-1.5">
-              ⏱️ <span className="font-medium text-[#777]">Doba: cca 3 minúty</span>
+              ⏱️ <span className="font-medium text-[var(--text-secondary)]">Doba: cca 3 minúty</span>
             </span>
             <span>📊 18 otázok (DIVA-5)</span>
           </div>

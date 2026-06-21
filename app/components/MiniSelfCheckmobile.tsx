@@ -42,7 +42,7 @@ export default function DIVATestMobile() {
   const scoreB = useMemo(() => questions.filter((q) => q.category === "B").reduce((sum, q) => sum + (answers[q.id] || 0), 0), [answers]);
 
   const getResult = () => {
-    if (!isComplete) return { title: "Test nie je dokončený", text: `Odpovedané ${Object.keys(answers).length}/${questions.length}`, color: "text-[#777]" };
+    if (!isComplete) return { title: "Test nie je dokončený", text: `Odpovedané ${Object.keys(answers).length}/${questions.length}`, color: "text-[var(--text-muted)]" };
     const isPositiveA = scoreA >= 4;
     const isPositiveB = scoreB >= 4;
     if (isPositiveA || isPositiveB) {
@@ -66,7 +66,7 @@ export default function DIVATestMobile() {
 
   return (
     <div className="block xl:hidden w-full">
-      <div className="rounded-2xl border border-[#1e1e1e] bg-[#111] shadow-lg min-h-[420px]">
+      <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] shadow-lg min-h-[420px]">
         <div className="p-5 min-h-[420px] flex flex-col">
           {/* Header */}
           <div className="mb-4 flex-shrink-0">
@@ -75,32 +75,32 @@ export default function DIVATestMobile() {
               <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-green-400">ADHD Test</span>
             </div>
             <div className="flex justify-between items-end">
-              <h2 className="font-display text-lg font-extrabold text-[#f0ede6]">Test na ADHD</h2>
+              <h2 className="font-display text-lg font-extrabold text-[var(--text-primary)]">Test na ADHD</h2>
               <div className="text-right">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-[#555]">{isComplete ? "Hotovo" : `${step + 1}/${questions.length}`}</div>
-                <div className="text-[11px] text-[#777] font-mono">{Math.round((Object.keys(answers).length / questions.length) * 100)}%</div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">{isComplete ? "Hotovo" : `${step + 1}/${questions.length}`}</div>
+                <div className="text-[11px] text-[var(--text-muted)] font-mono">{Math.round((Object.keys(answers).length / questions.length) * 100)}%</div>
               </div>
             </div>
           </div>
 
           {/* Progress */}
-          <div className="mb-4 h-1.5 bg-[#1e1e1e] rounded-full overflow-hidden flex-shrink-0">
+          <div className="mb-4 h-1.5 bg-[var(--border-color)] rounded-full overflow-hidden flex-shrink-0">
             <div className="h-full bg-green-400 transition-all duration-500" style={{ width: `${(Object.keys(answers).length / questions.length) * 100}%` }} />
           </div>
 
           {/* Content */}
           <div className="flex-1 min-h-0">
             {!isComplete ? (
-              <div className="rounded-2xl border border-[#222] bg-[#0d0d0d] p-5 flex flex-col h-full">
+              <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 flex flex-col h-full">
                 <div className="mb-4">
                   <div className="flex items-center gap-2 mb-3">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${currentQuestion.category === "A" ? "bg-blue-400/10 text-blue-400" : "bg-purple-400/10 text-purple-400"}`}>
                       {currentQuestion.category}
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#555]">Príznak {currentQuestion.number}/9</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)]">Príznak {currentQuestion.number}/9</span>
                   </div>
-                  <h3 className="font-display text-base font-bold text-[#f0ede6] leading-snug">{currentQuestion.text}</h3>
-                  {currentQuestion.example && <p className="text-[11px] text-[#555] mt-2 italic">{currentQuestion.example}</p>}
+                  <h3 className="font-display text-base font-bold text-[var(--text-primary)] leading-snug">{currentQuestion.text}</h3>
+                  {currentQuestion.example && <p className="text-[11px] text-[var(--text-muted)] mt-2 italic">{currentQuestion.example}</p>}
                 </div>
 
                 <div className="space-y-2 mt-auto">
@@ -114,51 +114,51 @@ export default function DIVATestMobile() {
                       onClick={() => handleAnswer(opt.value as AnswerValue)}
                       className={`w-full rounded-xl border-2 p-4 text-left transition-all flex justify-between items-center ${
                         answers[currentQuestion.id] === opt.value
-                          ? "border-green-400 bg-green-400/5"
-                          : "border-[#222] bg-[#0a0a0a] hover:border-[#333]"
+                          ? "border-green-400 bg-green-400/10"
+                          : "border-[var(--border-color)] bg-[var(--bg-secondary)] hover:border-green-400/30"
                       }`}
                     >
                       <div>
-                        <div className={`font-semibold ${answers[currentQuestion.id] === opt.value ? "text-green-400" : "text-[#d0cdc6]"}`}>{opt.label}</div>
-                        <div className="text-[10px] text-[#555] mt-0.5">{opt.desc}</div>
+                        <div className={`font-semibold ${answers[currentQuestion.id] === opt.value ? "text-green-400" : "text-[var(--text-primary)]"}`}>{opt.label}</div>
+                        <div className="text-[10px] text-[var(--text-muted)] mt-0.5">{opt.desc}</div>
                       </div>
-                      <div className={`text-xl font-display font-extrabold ${answers[currentQuestion.id] === opt.value ? "text-green-400" : "text-[#444]"}`}>{opt.value}</div>
+                      <div className={`text-xl font-display font-extrabold ${answers[currentQuestion.id] === opt.value ? "text-green-400" : "text-[var(--text-muted)]"}`}>{opt.value}</div>
                     </button>
                   ))}
                 </div>
 
                 {step > 0 && (
-                  <button onClick={() => setStep((s) => s - 1)} className="mt-3 text-[11px] text-[#555] hover:text-[#f0ede6] text-left">← Späť</button>
+                  <button onClick={() => setStep((s) => s - 1)} className="mt-3 text-[11px] text-[var(--text-muted)] hover:text-[var(--text-primary)] text-left">← Späť</button>
                 )}
               </div>
             ) : (
-              <div className="rounded-2xl border border-[#222] bg-[#0d0d0d] p-5 h-full flex flex-col">
+              <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0 ${result.title.includes("Pozitívny") ? "bg-yellow-400/10 text-yellow-500" : "bg-green-400/10 text-green-400"}`}>
                     {result.title.includes("Pozitívny") ? "⚠️" : "✓"}
                   </div>
                   <div>
                     <h3 className={`font-display text-base font-extrabold ${result.color}`}>{result.title}</h3>
-                    <p className="text-[12px] text-[#d0cdc6] mt-0.5">{result.text}</p>
+                    <p className="text-[12px] text-[var(--text-secondary)] mt-0.5">{result.text}</p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
-                  <div className="rounded-xl border border-[#1e1e1e] bg-[#0a0a0a] p-3">
+                  <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3">
                     <div className="text-[10px] font-bold uppercase text-blue-400 mb-1">Nepozornosť</div>
-                    <div className="text-xl font-display font-extrabold text-[#f0ede6]">{scoreA}<span className="text-xs text-[#555]">/18</span></div>
+                    <div className="text-xl font-display font-extrabold text-[var(--text-primary)]">{scoreA}<span className="text-xs text-[var(--text-muted)]">/18</span></div>
                     <div className={`text-[10px] font-bold uppercase mt-1 ${scoreA >= 4 ? "text-yellow-500" : "text-green-400"}`}>{scoreA >= 4 ? "Pozitívne" : "Norma"}</div>
                   </div>
-                  <div className="rounded-xl border border-[#1e1e1e] bg-[#0a0a0a] p-3">
+                  <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3">
                     <div className="text-[10px] font-bold uppercase text-purple-400 mb-1">Impulzivita</div>
-                    <div className="text-xl font-display font-extrabold text-[#f0ede6]">{scoreB}<span className="text-xs text-[#555]">/18</span></div>
+                    <div className="text-xl font-display font-extrabold text-[var(--text-primary)]">{scoreB}<span className="text-xs text-[var(--text-muted)]">/18</span></div>
                     <div className={`text-[10px] font-bold uppercase mt-1 ${scoreB >= 4 ? "text-yellow-500" : "text-green-400"}`}>{scoreB >= 4 ? "Pozitívne" : "Norma"}</div>
                   </div>
                 </div>
 
                 <div className="flex gap-2 mt-auto">
                   <a href="/informacie-o-adhd" className="flex-1 rounded-xl bg-green-400 px-4 py-3 text-center text-[12px] font-bold text-[#0a0a0a] hover:bg-green-300">Zistiť viac →</a>
-                  <button onClick={handleReset} className="rounded-xl border border-[#2a2a2a] px-4 py-3 text-[12px] font-semibold text-[#f0ede6] hover:border-[#444]">Znova</button>
+                  <button onClick={handleReset} className="rounded-xl border border-[var(--border-color)] px-4 py-3 text-[12px] font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]">Znova</button>
                 </div>
               </div>
             )}
