@@ -48,11 +48,12 @@ export default function RootLayout({
           }}
         />
         <meta name="google-adsense-account" content="ca-pub-6150590591009223"></meta>
-        <Script
+        
+        {/* OPRAVA: Klasický HTML script tag namiesto Next.js komponentu pre AdSense v <head> */}
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6150590591009223"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
       </head>
       <body className={`${syne.variable} ${dmSans.variable}`}>
