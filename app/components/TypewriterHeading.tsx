@@ -12,7 +12,7 @@ const PHRASES: Record<string, Phrase[]> = {
     { part1: "ADHD má", part2: "veľa ", part3: "tvárí." },
     { part1: "Menej mýtov.", part2: "Viac ", part3: "pochopenia." },
     { part1: "Tvoj mozog.", part2: "Iná ", part3: "prevádzka." },
-    { part1: "Pochop ADHD.", part2: "Pochopíš ", part3: "viac." },
+    { part1: "Pochop ADHD.", part2: "Pochopíš ", part3: "víc." },
     { part1: "Celý život si vedel,", part2: "že si ", part3: "iný." },
     { part1: "ADHD má", part2: "cca 5 % ", part3: "detí." },
     { part1: "ADHD je", part2: "neurovývojová ", part3: "porucha." },
@@ -71,7 +71,7 @@ const PHRASES: Record<string, Phrase[]> = {
     { part1: "Genetik spielt", part2: "bei ADHD eine große ", part3: "Rolle." },
     { part1: "Die meisten Erwachsenen", part2: "bleiben ", part3: "undiagnostiziert." },
     { part1: "ADHD ist keine Frage des Willens,", part2: "sondern des ", part3: "Gehirns." },
-    { part1: "ADHD bleibt bestehen", part2: "bis ins ", part3: "Erwachsenenalter." },
+    { part1: "ADHD bleibt obestehen", part2: "bis ins ", part3: "Erwachsenenalter." },
   ],
   pl: [
     { part1: "ADHD to nie", part2: "tylko dla ", part3: "dzieci." },
@@ -111,7 +111,6 @@ const PHRASES: Record<string, Phrase[]> = {
 
 const SUPPORTED_LANGS = Object.keys(PHRASES);
 
-// Pomocný komponent na vykresľovanie textu po slovách bez toho, aby sa porušila celistvosť slova
 function RenderWordByWord({
   visibleStr,
   fullStr,
@@ -123,7 +122,6 @@ function RenderWordByWord({
   isCurrentTypingPart: boolean;
   extraClasses?: string;
 }) {
-  // Rozdelíme reťazec na slová a biele znaky (medzery zostanú zachované)
   const tokens = fullStr.split(/(\s+)/);
   let charCounter = 0;
   const visibleCount = visibleStr.length;
@@ -142,7 +140,6 @@ function RenderWordByWord({
         const visiblePart = token.slice(0, localVisibleLen);
         const transparentPart = token.slice(localVisibleLen);
 
-        // Presná logika pre zobrazenie kurzora iba na jednom správnom mieste v celom bloku
         const showCursorHere =
           isCurrentTypingPart &&
           ((visibleCount >= startIdx && visibleCount < startIdx + L) ||
@@ -160,7 +157,6 @@ function RenderWordByWord({
           );
         }
 
-        // Každé slovo obalíme do inline-block, čím zabránime jeho roztrhnutiu zalamovaním
         return (
           <span key={idx} className="inline-block whitespace-nowrap">
             <span className={extraClasses}>{visiblePart}</span>
@@ -182,11 +178,9 @@ export default function TypewriterHeading() {
   const [showBreak, setShowBreak] = useState(false);
   const [currentLang, setCurrentLang] = useState("sk");
   
-  // State na synchrónne prepojenie podkladového layoutu s bežiacim cyklom písania
   const [activePhraseIndex, setActivePhraseIndex] = useState(0);
   const phraseIndexRef = useRef(0);
 
-  // 1. SLEDOVANIE ZMENY JAZYKA
   useEffect(() => {
     const detectLanguage = () => {
       const htmlLang = document.documentElement.getAttribute("lang");
@@ -217,7 +211,6 @@ export default function TypewriterHeading() {
     return () => observer.disconnect();
   }, []);
 
-  // 2. PÍSACÍ STROJ S ROTÁCIOU VÝROKOV
   useEffect(() => {
     const phrases = PHRASES[currentLang] || PHRASES.sk;
     phraseIndexRef.current = 0;
@@ -288,8 +281,6 @@ export default function TypewriterHeading() {
           if (i === str1.length - 1) setShowBreak(false);
           activeTimeout = setTimeout(erase, 35);
         } else {
-          // Výrok je kompletne zmazaný. Okamžite prepíname index na nový,
-          // čím sa podkladový layout prekreslí počas 400ms pauzy, kedy je text neviditeľný.
           const nextIndex = (phraseIndexRef.current + 1) % phrases.length;
           phraseIndexRef.current = nextIndex;
           setActivePhraseIndex(nextIndex);
@@ -310,38 +301,50 @@ export default function TypewriterHeading() {
   }, [currentLang]);
 
   const phrases = PHRASES[currentLang] || PHRASES.sk;
-  const currentPhrase = phrases[activePhraseIndex] || { part1: "", part2: "", part3: "" };
 
   const isTypingPart1 = !showBreak;
-  const isTypingPart2 = showBreak && part2.length < currentPhrase.part2.length;
-  const isTypingPart3 = showBreak && part2.length === currentPhrase.part2.length;
+  const isTypingPart2 = showBreak && part2.length < (phrases[activePhraseIndex]?.part2.length || 0);
+  const isTypingPart3 = showBreak && part2.length === (phrases[activePhraseIndex]?.part2.length || 0);
 
   return (
     <h1
-      className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 max-w-full min-h-[140px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[170px] overflow-hidden"
+      className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 max-w-full grid grid-cols-1 grid-rows-1"
       translate="no"
       lang={currentLang}
     >
-      <span className="block">
-        <RenderWordByWord
-          visibleStr={part1}
-          fullStr={currentPhrase.part1}
-          isCurrentTypingPart={isTypingPart1}
-        />
-      </span>
-      <span className="block">
-        <RenderWordByWord
-          visibleStr={part2}
-          fullStr={currentPhrase.part2}
-          isCurrentTypingPart={isTypingPart2}
-        />
-        <RenderWordByWord
-          visibleStr={part3}
-          fullStr={currentPhrase.part3}
-          isCurrentTypingPart={isTypingPart3}
-          extraClasses="text-green-400"
-        />
-      </span>
+      {phrases.map((phrase, idx) => {
+        const isActive = idx === activePhraseIndex;
+
+        return (
+          <div
+            key={idx}
+            className={`col-start-1 row-start-1 ${
+              isActive ? "visible" : "invisible pointer-events-none"
+            }`}
+          >
+            <span className="block">
+              <RenderWordByWord
+                visibleStr={isActive ? part1 : phrase.part1}
+                fullStr={phrase.part1}
+                isCurrentTypingPart={isActive && isTypingPart1}
+              />
+            </span>
+            <span className="block">
+              <RenderWordByWord
+                visibleStr={isActive ? part2 : phrase.part2}
+                fullStr={phrase.part2}
+                isCurrentTypingPart={isActive && isTypingPart2}
+              />
+              <RenderWordByWord
+                visibleStr={isActive ? part3 : phrase.part3}
+                fullStr={phrase.part3}
+                isCurrentTypingPart={isActive && isTypingPart3}
+                extraClasses="text-green-400"
+              />
+            </span>
+          </div>
+        );
+      })}
     </h1>
   );
 }
