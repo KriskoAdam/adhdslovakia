@@ -112,8 +112,10 @@ export default function TestPage() {
                     
                     {/* Box s otázkou a tlačidlami hneď pod sebou */}
                     <div className="lg:col-span-8 min-w-0 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 sm:p-6 md:p-8 flex flex-col justify-between">
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-3 mb-4">
+                      
+                      {/* TENTO WRAPPER MÁ PEVNÚ MINIMÁLNU VÝŠKU, KTORÁ ZABRAŇUJE SKÁKANIU OBSAHU */}
+                      <div className="min-w-0 min-h-[220px] sm:min-h-[150px] lg:min-h-[140px] flex flex-col justify-start">
+                        <div className="flex items-center gap-3 mb-4 flex-shrink-0">
                           <div className="w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold bg-green-400/10 text-green-400 border border-green-400/25 flex-shrink-0">
                             {currentQuestion.category}
                           </div>
@@ -133,8 +135,8 @@ export default function TestPage() {
                         )}
                       </div>
 
-                      {/* PRESUNUTÉ TLAČIDLÁ ODPOVEDÍ (UX Fix pre mobilné zariadenia) */}
-                      <div className="mt-6 w-full">
+                      {/* TLAČIDLÁ ODPOVEDÍ */}
+                      <div className="mt-6 w-full flex-shrink-0">
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                           {[
                             { value: 0, label: "Nikdy / zriedka", sub: "0 bodov" },
@@ -165,7 +167,7 @@ export default function TestPage() {
                         </div>
                       </div>
                       
-                      {/* Spodná lišta vnútri boxu otázky */}
+                      {/* Spodná navigácia krokov */}
                       <div className="mt-6 pt-4 border-t border-[var(--border-color)] flex justify-between items-center gap-4 flex-shrink-0 w-full">
                         {step > 0 ? (
                           <button 
@@ -183,7 +185,7 @@ export default function TestPage() {
                       </div>
                     </div>
 
-                    {/* Bočný panel s priebežným skóre – na mobile sa teraz čistonovo zaradí až POD otázku a tlačidlá */}
+                    {/* Bočný panel s priebežným skóre */}
                     <div className="lg:col-span-4 min-w-0 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 sm:p-6 flex flex-col justify-between">
                       <div className="min-w-0">
                         <div className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-4 truncate">Aktuálny stav bodov</div>
