@@ -108,11 +108,11 @@ export default function TestPage() {
               {/* OBSAH: OTÁZKA ALEBO VÝSLEDOK */}
               <div className="flex-1 flex flex-col justify-center">
                 {!isComplete ? (
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch lg:h-[340px] w-full">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch w-full">
                     
-                    {/* Box s otázkou – Pevná výška vyriešila akýkoľvek pohyb komponentov */}
-                    <div className="lg:col-span-8 min-w-0 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 sm:p-6 md:p-8 flex flex-col justify-between h-[360px] xs:h-[320px] sm:h-[260px] lg:h-full">
-                      <div className="min-w-0 overflow-y-auto pr-0.5">
+                    {/* Box s otázkou a tlačidlami hneď pod sebou */}
+                    <div className="lg:col-span-8 min-w-0 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 sm:p-6 md:p-8 flex flex-col justify-between">
+                      <div className="min-w-0">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold bg-green-400/10 text-green-400 border border-green-400/25 flex-shrink-0">
                             {currentQuestion.category}
@@ -132,9 +132,41 @@ export default function TestPage() {
                           </p>
                         )}
                       </div>
+
+                      {/* PRESUNUTÉ TLAČIDLÁ ODPOVEDÍ (UX Fix pre mobilné zariadenia) */}
+                      <div className="mt-6 w-full">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          {[
+                            { value: 0, label: "Nikdy / zriedka", sub: "0 bodov" },
+                            { value: 1, label: "Niekedy / stredne", sub: "1 bod" },
+                            { value: 2, label: "Často / vážne", sub: "2 body" },
+                          ].map((opt) => (
+                            <button
+                              key={opt.value}
+                              onClick={() => handleAnswer(opt.value as AnswerValue)}
+                              className={`rounded-md border bg-[var(--bg-secondary)] p-3.5 sm:p-4 text-center transition-all flex flex-col items-center justify-center gap-0.5 group min-w-0 ${
+                                answers[currentQuestion.id] === opt.value 
+                                  ? "border-green-400 bg-green-400/10" 
+                                  : "border-[var(--border-color)] hover:border-green-400/40"
+                              }`}
+                            >
+                              <div className={`text-[13px] sm:text-xs font-bold uppercase tracking-wide break-words w-full ${
+                                answers[currentQuestion.id] === opt.value 
+                                  ? "text-green-400" 
+                                  : "text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]"
+                              }`}>{opt.label}</div>
+                              <div className={`text-[10px] font-mono ${
+                                answers[currentQuestion.id] === opt.value 
+                                  ? "text-green-400/70" 
+                                  : "text-[var(--text-muted)]"
+                              }`}>{opt.sub}</div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                       
                       {/* Spodná lišta vnútri boxu otázky */}
-                      <div className="mt-4 pt-4 border-t border-[var(--border-color)] flex justify-between items-center gap-4 flex-shrink-0 w-full">
+                      <div className="mt-6 pt-4 border-t border-[var(--border-color)] flex justify-between items-center gap-4 flex-shrink-0 w-full">
                         {step > 0 ? (
                           <button 
                             onClick={() => setStep((s) => s - 1)} 
@@ -151,7 +183,7 @@ export default function TestPage() {
                       </div>
                     </div>
 
-                    {/* Bočný panel s priebežným skóre */}
+                    {/* Bočný panel s priebežným skóre – na mobile sa teraz čistonovo zaradí až POD otázku a tlačidlá */}
                     <div className="lg:col-span-4 min-w-0 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 sm:p-6 flex flex-col justify-between">
                       <div className="min-w-0">
                         <div className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-4 truncate">Aktuálny stav bodov</div>
@@ -184,7 +216,7 @@ export default function TestPage() {
 
                   </div>
                 ) : (
-                  /* OBRAZOVKA KONEČNÝCH VÝSLEDKOV (Chyba úspešne odstránená) */
+                  /* OBRAZOVKA KONEČNÝCH VÝSLEDKOV */
                   <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] p-5 md:p-10 flex flex-col justify-between gap-8 max-w-4xl mx-auto w-full min-w-0">
                     <div className="flex flex-col sm:flex-row items-start gap-5 min-w-0">
                       <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-2xl sm:text-3xl flex-shrink-0 border border-[var(--border-color)] bg-[var(--bg-secondary)]`}>
@@ -218,40 +250,6 @@ export default function TestPage() {
               </div>
 
             </div>
-
-            {/* INTERAKTÍVNE TLAČIDLÁ */}
-            {!isComplete && (
-              <div className="p-4 sm:p-6 md:p-10 pt-4 sm:pt-6 border-t border-[var(--border-color)] bg-[var(--bg-secondary)] rounded-b-xl w-full">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {[
-                    { value: 0, label: "Nikdy / zriedka", sub: "0 bodov" },
-                    { value: 1, label: "Niekedy / stredne", sub: "1 bod" },
-                    { value: 2, label: "Často / vážne", sub: "2 body" },
-                  ].map((opt) => (
-                    <button
-                      key={opt.value}
-                      onClick={() => handleAnswer(opt.value as AnswerValue)}
-                      className={`rounded-md border bg-[var(--bg-primary)] p-3.5 sm:p-4 text-center transition-all flex flex-col items-center justify-center gap-0.5 group min-w-0 ${
-                        answers[currentQuestion.id] === opt.value 
-                          ? "border-green-400 bg-green-400/10" 
-                          : "border-[var(--border-color)] hover:border-green-400/40"
-                      }`}
-                    >
-                      <div className={`text-[13px] sm:text-xs font-bold uppercase tracking-wide break-words w-full ${
-                        answers[currentQuestion.id] === opt.value 
-                          ? "text-green-400" 
-                          : "text-[var(--text-secondary)] group-hover:text-[var(--text-primary)]"
-                      }`}>{opt.label}</div>
-                      <div className={`text-[10px] font-mono ${
-                        answers[currentQuestion.id] === opt.value 
-                          ? "text-green-400/70" 
-                          : "text-[var(--text-muted)]"
-                      }`}>{opt.sub}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
 
           </div>
 
