@@ -2,7 +2,6 @@ import { getArticleBySlug, getAllArticles } from "../../lib/articles";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import type { Metadata } from "next";
-import AdBanner from "../../AdBanner";
 import Nav from "../../components/Nav";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -75,7 +74,6 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* AD SLOT top */}
         <div className="bg-[var(--bg-tertiary)] border border-dashed border-[var(--border-color)] rounded-lg h-16 flex items-center justify-center text-[11px] text-[var(--text-muted)] tracking-widest uppercase mb-8">
-          <AdBanner />
         </div>
 
         {/* ARTICLE CONTENT */}
@@ -86,7 +84,6 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* AD SLOT bottom */}
         <div className="bg-[var(--bg-tertiary)] border border-dashed border-[var(--border-color)] rounded-lg h-16 flex items-center justify-center text-[11px] text-[var(--text-muted)] tracking-widest uppercase mt-12">
-          <AdBanner />
         </div>
 
         <div className="mt-12 pt-8 border-t border-[var(--border-color)]">

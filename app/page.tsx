@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { getAllArticles } from "./lib/articles";
 import Nav from "./components/Nav";
-import AdBanner from "./AdBanner";
 import AnimatedStat from "./components/AnimatedStat";
 import DIVATestDesktop from "./components/DIVATestDesktop";
 import TypewriterHeading from "./components/TypewriterHeading";
@@ -141,11 +140,7 @@ export default function Home() {
         </>
       )}
 
-      {/* AD SLOT */}
-      <div className="mx-8 my-6">
-        <AdBanner />
-      </div>
-
+      
       {/* AWARENESS SECTION */}
       <div className="mx-8 mb-8">
         <div className="flex items-center justify-between pt-2 pb-4">
