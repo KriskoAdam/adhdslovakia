@@ -86,8 +86,8 @@ export default function Home() {
             <AnimatedStat
               num={s.num}
               label={s.label}
-              delay={i * 180}
-              speed={65}
+              loopDelay={10000}
+              scanSpeed={300}
             />
           </div>
         ))}
