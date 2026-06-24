@@ -72,19 +72,14 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         )}
 
-        {/* AD SLOT top */}
-        <div className="bg-[var(--bg-tertiary)] border border-dashed border-[var(--border-color)] rounded-lg h-16 flex items-center justify-center text-[11px] text-[var(--text-muted)] tracking-widest uppercase mb-8">
-        </div>
-
+     
         {/* ARTICLE CONTENT */}
         <div
           className="prose-adhd"
           dangerouslySetInnerHTML={{ __html: article.contentHtml }}
         />
 
-        {/* AD SLOT bottom */}
-        <div className="bg-[var(--bg-tertiary)] border border-dashed border-[var(--border-color)] rounded-lg h-16 flex items-center justify-center text-[11px] text-[var(--text-muted)] tracking-widest uppercase mt-12">
-        </div>
+      
 
         <div className="mt-12 pt-8 border-t border-[var(--border-color)]">
           <a
