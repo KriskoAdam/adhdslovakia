@@ -1,102 +1,103 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 type AnimatedStatProps = {
   num: string;
   label: string;
-  delay?: number;
-  speed?: number;
+  loopDelay?: number;
+  scanSpeed?: number;
 };
 
-export default function AnimatedStat({
+export default function DataScannerStat({
   num,
   label,
-  delay = 0,
-  speed = 70,
+  loopDelay = 10000,
+  scanSpeed = 300,
 }: AnimatedStatProps) {
-  const [displayValue, setDisplayValue] = useState("");
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const [displayValue, setDisplayValue] = useState(num);
+  const [isScanning, setIsScanning] = useState(false);
+  const loopRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const chars = "0123456789%#@$";
+  const getRandomChar = () => chars[Math.floor(Math.random() * chars.length)];
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    let iteration = 0;
+    let interval: ReturnType<typeof setInterval>;
 
-    if (prefersReducedMotion) {
-      setDisplayValue(num);
-      return;
-    }
+    const startScan = () => {
+      setIsScanning(true);
+      iteration = 0;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true);
+      interval = setInterval(() => {
+        setDisplayValue(
+          num.split("").map((_, index) => {
+            if (index < iteration) return num[index];
+            return getRandomChar();
+          }).join("")
+        );
+
+        iteration += 0.5;
+
+        if (iteration >= num.length) {
+          clearInterval(interval);
+          setDisplayValue(num);
+          setIsScanning(false);
+          loopRef.current = setTimeout(startScan, loopDelay);
         }
-      },
-      { threshold: 0.3 }
-    );
+      }, scanSpeed);
+    };
 
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, [hasStarted, num]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
-    let timeoutId: ReturnType<typeof setTimeout>;
-    let index = 0;
-
-    timeoutId = setTimeout(() => {
-      const typeNext = () => {
-        index += 1;
-        setDisplayValue(num.slice(0, index));
-
-        if (index < num.length) {
-          timeoutId = setTimeout(typeNext, speed);
-        }
-      };
-
-      typeNext();
-    }, delay);
-
-    return () => clearTimeout(timeoutId);
-  }, [hasStarted, num, delay, speed]);
+    loopRef.current = setTimeout(startScan, 1000);
+    return () => {
+      if (loopRef.current) clearTimeout(loopRef.current);
+      clearInterval(interval);
+    };
+  }, [num, loopDelay, scanSpeed]);
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ${
-        hasStarted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-      }`}
-    >
-      {/* 
-        KĽÚČOVÁ ZMENA: Pridali sme 'notranslate' a 'translate="no"' priamo sem.
-        Google Translate si teraz toto číslo a jeho vnútorné spany vôbec nevšimne,
-        vďaka čomu animácia prebehne čisto až do konca (1.5–3.6%).
-      */}
-      <div 
-        className="notranslate relative inline-block font-display text-3xl font-extrabold text-green-400 tabular-nums"
-        translate="no"
+    <div className="relative flex flex-col p-2">
+      {/* Hlavný displej s pôvodným fontom a farbou */}
+      <motion.div 
+        animate={isScanning ? { x: [-1, 1, -1, 0] } : {}}
+        transition={{ duration: 0.1, repeat: isScanning ? Infinity : 0 }}
+        className={`relative inline-block font-display text-3xl font-extrabold tabular-nums transition-colors duration-300 ${
+          isScanning ? "text-white" : "text-green-400"
+        }`}
       >
-        {/* Neviditeľná hodnota drží šírku, aby layout neskákal */}
-        <span className="invisible">{num}</span>
+        {/* Glitch efekt (zelený odtieň) */}
+        {isScanning && (
+          <motion.span
+            className="absolute top-0 left-0 -z-10 text-green-500 opacity-50 blur-[1px]"
+            animate={{ x: [-2, 2, 0] }}
+          >
+            {displayValue}
+          </motion.span>
+        )}
+        
+        {displayValue}
 
-        {/* Animovaná hodnota */}
-        <span className="absolute left-0 top-0">
-          {displayValue}
-          {displayValue.length < num.length && hasStarted && (
-            <span className="ml-0.5 animate-pulse text-green-400/70">|</span>
-          )}
-        </span>
-      </div>
+        {/* Scan-line efekt */}
+        {isScanning && (
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-b from-transparent via-green-400/20 to-transparent"
+            initial={{ top: "-100%" }}
+            animate={{ top: "100%" }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+          />
+        )}
+      </motion.div>
 
-      {/* Tento popis zostáva bez triedy, takže ho Google Translate normálne preloží do maďarčiny/angličtiny */}
-      <div className="text-[12px] text-[#555] mt-0.5 font-light">
+      {/* Label - pôvodný štýl */}
+      <motion.div 
+        className="text-[12px] text-[#555] mt-0.5 font-light"
+        animate={{ opacity: isScanning ? [0.4, 0.8, 0.4] : 1 }}
+        transition={{ duration: 0.8, repeat: isScanning ? Infinity : 0 }}
+      >
         {label}
-      </div>
+      </motion.div>
     </div>
   );
 }
