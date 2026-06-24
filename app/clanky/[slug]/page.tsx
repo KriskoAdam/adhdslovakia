@@ -50,9 +50,10 @@ export default async function ArticlePage({ params }: Props) {
           {article.category}
         </div>
 
-<h1 className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight tracking-tight mb-5 break-words hyphens-auto">
-  {article.title}
-</h1>
+        {/* TU JE OPRAVA: hyphens-none zabráni lámaniu slov */}
+        <h1 className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold leading-tight tracking-tight mb-5 break-words hyphens-none">
+          {article.title}
+        </h1>
 
         <div className="flex items-center gap-4 text-[12px] text-[var(--text-muted)] pb-8 border-b border-[var(--border-color)] mb-8">
           <span>{article.readTime}</span>
