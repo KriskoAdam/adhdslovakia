@@ -5,6 +5,6 @@ export default function robots() {
       allow: "/",
       disallow: "/admin/",
     },
-    sitemap: "https://adhdslovakia.eu/sitemap.xml",
+    sitemap: "https://www.adhdslovakia.eu/sitemap.xml",
   };
 }
