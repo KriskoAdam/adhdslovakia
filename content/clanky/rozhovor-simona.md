@@ -4,7 +4,7 @@ date: 04.07.2026
 category: Rozhovory
 excerpt: Simona (39) roky maskovala svoje ADHD dokonalosťou a disciplínou. Diagnózu dostala až v dospelosti a s ňou aj odpoveď na otázku, prečo sa celý život cítila "pokazená".
 readTime: '14 min čítania'
-coverImage: /images/simona-adhd.jpg
+coverImage: /images/simona-adhd.png
 ---
 # Diagnóza po tridsiatke: Keď dokonalosť bola len maska
 
