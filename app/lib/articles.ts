@@ -17,6 +17,7 @@ export type ArticleMeta = {
   excerpt: string;
   readTime: string;
   coverImage?: string;
+  translationKey: string;
 };
 
 export type Article = ArticleMeta & {
@@ -71,6 +72,7 @@ export function getAllArticles(locale: Locale): ArticleMeta[] {
       excerpt: data.excerpt ?? "",
       readTime: data.readTime ?? "",
       coverImage: data.coverImage ?? "",
+      translationKey: data.translationKey ?? "",
     };
   });
 
@@ -106,6 +108,53 @@ export async function getArticleBySlug(
     excerpt: data.excerpt ?? "",
     readTime: data.readTime ?? "",
     coverImage: data.coverImage ?? "",
+    translationKey: data.translationKey ?? "",
     contentHtml,
   };
+}
+
+export function getTranslatedArticleSlug(
+  locale: Locale,
+  slug: string,
+  targetLocale: Locale
+): string | null {
+  const sourceDir = getArticlesDir(locale);
+  const sourcePath = path.join(sourceDir, `${slug}.md`);
+
+  if (!fs.existsSync(sourcePath)) return null;
+
+  const sourceContents = fs.readFileSync(sourcePath, "utf8");
+  const { data: sourceData } = matter(sourceContents);
+
+  const translationKey = sourceData.translationKey;
+
+  // Ak článok nemá translationKey, skúsime pôvodný slug.
+  if (!translationKey) {
+    const fallbackPath = path.join(
+      getArticlesDir(targetLocale),
+      `${slug}.md`
+    );
+
+    return fs.existsSync(fallbackPath) ? slug : null;
+  }
+
+  const targetDir = getArticlesDir(targetLocale);
+
+  if (!fs.existsSync(targetDir)) return null;
+
+  const targetFiles = fs
+    .readdirSync(targetDir)
+    .filter((filename) => filename.endsWith(".md"));
+
+  for (const filename of targetFiles) {
+    const targetPath = path.join(targetDir, filename);
+    const targetContents = fs.readFileSync(targetPath, "utf8");
+    const { data: targetData } = matter(targetContents);
+
+    if (targetData.translationKey === translationKey) {
+      return filename.replace(/\.md$/, "");
+    }
+  }
+
+  return null;
 }

@@ -40,12 +40,18 @@ export default function Nav() {
     };
   }, [testOpen]);
 
-  const changeLanguage = (langCode: "sk" | "en") => {
-    setLangOpen(false);
-    setMenuOpen(false);
+ const changeLanguage = (langCode: "sk" | "en") => {
+  setLangOpen(false);
+  setMenuOpen(false);
 
-    router.replace(pathname, { locale: langCode });
-  };
+  // Odstráni locale prefix, ak sa náhodou nachádza v pathname
+  const cleanPathname = pathname.replace(/^\/(sk|en)(?=\/|$)/, "");
+
+  // Zachová aktuálnu stránku a nastaví nový locale
+  router.replace(cleanPathname || "/", {
+    locale: langCode,
+  });
+};
 
   const openTest = () => {
     setMenuOpen(false);
@@ -99,33 +105,118 @@ export default function Nav() {
           <ThemeToggle />
 
           {/* Language selector */}
-          <div className="hidden lg:block relative shrink-0">
+          {/* Language selector */}
+<div className="hidden lg:block relative shrink-0">
+  <button
+    onClick={() => setLangOpen(!langOpen)}
+    aria-label={locale === "sk" ? "Zmeniť jazyk" : "Change language"}
+    aria-expanded={langOpen}
+    className={`
+      group flex items-center
+      h-9 w-[132px]
+      px-3
+      rounded-md
+      border border-[var(--border-color)]
+      bg-[var(--bg-secondary)]
+      transition-all duration-200
+      cursor-pointer
+      ${
+        langOpen
+          ? "border-green-400/50 bg-[var(--bg-tertiary)]"
+          : "hover:border-green-400/30 hover:bg-[var(--bg-tertiary)]"
+      }
+    `}
+  >
+    <span
+      className="w-4 shrink-0 text-[13px] text-[var(--text-muted)] group-hover:text-green-400 transition-colors"
+      aria-hidden="true"
+    >
+      ◉
+    </span>
+
+    <span className="ml-1.5 mr-2 whitespace-nowrap text-[11px] font-medium text-[var(--text-secondary)]">
+      {locale === "sk" ? "Jazyk" : "Language"}
+    </span>
+
+    <span className="ml-auto shrink-0 text-[11px] font-bold text-[var(--text-primary)]">
+      {locale === "sk" ? "SK" : "EN"}
+    </span>
+
+    <span
+      className={`
+        ml-1.5 shrink-0
+        text-[8px] leading-none
+        text-[var(--text-muted)]
+        transition-transform duration-200
+        ${langOpen ? "rotate-180" : ""}
+      `}
+      aria-hidden="true"
+    >
+      ▼
+    </span>
+  </button>
+
+  {langOpen && (
+    <div
+      className="
+        absolute top-[calc(100%+6px)] right-0
+        w-[132px]
+        overflow-hidden
+        rounded-md
+        border border-[var(--border-color)]
+        bg-[var(--bg-secondary)]
+        shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+        z-[100]
+      "
+    >
+      <div className="px-3 py-2 border-b border-[var(--border-color)]">
+        <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-[var(--text-muted)]">
+          {locale === "sk" ? "Jazyk" : "Language"}
+        </span>
+      </div>
+
+      <div className="p-1">
+        {languages.map((lang) => {
+          const isSelected = locale === lang.code;
+
+          return (
             <button
-              onClick={() => setLangOpen(!langOpen)}
-              className="bg-[var(--bg-secondary)] border border-[#4ade80] hover:border-green-300 rounded-[6px] py-2 px-3 text-[13px] font-medium text-[var(--text-secondary)] w-[135px] text-center transition-all cursor-pointer"
+              key={lang.code}
+              onClick={() => changeLanguage(lang.code)}
+              className={`
+                w-full flex items-center gap-2
+                px-2.5 py-2
+                rounded-[4px]
+                text-left
+                transition-colors duration-150
+                cursor-pointer
+                ${
+                  isSelected
+                    ? "bg-green-400/10 text-green-400"
+                    : "text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-primary)]"
+                }
+              `}
             >
-              {currentLanguage}
+              <span className="shrink-0 text-[15px] leading-none">
+                {lang.code === "sk" ? "🇸🇰" : "🇬🇧"}
+              </span>
+
+              <span className="min-w-0 flex-1 truncate text-[11px] font-medium">
+                {lang.label}
+              </span>
+
+              {isSelected && (
+                <span className="shrink-0 text-[11px] text-green-400">
+                  ✓
+                </span>
+              )}
             </button>
-
-            {langOpen && (
-              <div className="absolute top-full mt-1.5 right-0 w-[135px] bg-[var(--bg-secondary)] border border-[#4ade80] rounded-[6px] overflow-hidden z-[100] flex flex-col shadow-xl">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => changeLanguage(lang.code)}
-                    className={`w-full text-left px-4 py-2.5 text-[13px] transition-colors bg-transparent border-none cursor-pointer ${
-                      locale === lang.code
-                        ? "text-green-400"
-                        : "text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] hover:text-green-400"
-                    }`}
-                  >
-                    {lang.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
+          );
+        })}
+      </div>
+    </div>
+  )}
+</div>
           {/* Hamburger */}
           <button
             className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer select-none"

@@ -1,8 +1,7 @@
 ---
 title: A je to len ADHD, či AuDHD?
-translationKey: adhd-audhd
 date: 26.09.2026
-category: "diagnosis"
+category: Diagnóza
 excerpt: 'Prahnete po rutine, no zároveň vás nudí? Bývate preťažení z podnetov, ale zároveň hľadáte neustálu stimuláciu? Možno nejde len o ADHD. Objavte pojem AuDHD – kombináciu autizmu a ADHD, o ktorej sa dnes hovorí čoraz viac.'
 readTime: 9 min čítania
 coverImage: /images/IMG_3150.JPG
