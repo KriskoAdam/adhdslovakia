@@ -1,8 +1,8 @@
 ---
-title: A je to len ADHD či AuDHD?
+title: A je to len ADHD, či AuDHD?
 date: 26.09.2026
 category: Diagnóza
-excerpt: 'Prahnete po rutine, no zároveň vás nudí? Bývate preťažení z podnetov, ale hľadáte neustálu stimuláciu? Možno nejde len o ADHD. Objavte pojem AuDHD – kombináciu autizmu a ADHD, o ktorej sa dnes hovorí čoraz viac.'
+excerpt: 'Prahnete po rutine, no zároveň vás nudí? Bývate preťažení z podnetov, ale zároveň hľadáte neustálu stimuláciu? Možno nejde len o ADHD. Objavte pojem AuDHD – kombináciu autizmu a ADHD, o ktorej sa dnes hovorí čoraz viac.'
 readTime: 9 min čítania
 coverImage: /images/IMG_3150.JPG
 ---
@@ -11,105 +11,136 @@ Stalo sa vám, že ste po rokoch hľadania odpovedí konečne získali diagnózu
 
 Možno vám lieky na ADHD pomohli skrotiť vnútorný chaos a usporiadať myšlienky, no zrazu oveľa intenzívnejšie vnímate hluk okolia, spoločenské udalosti vás extrémne vyčerpávajú alebo bez pevnej dennej rutiny pociťujete úzkosť.
 
-Nejde o náhodu. Čoraz viac ľudí zisťuje, že k ich ADHD sa pridružuje aj autizmus. V komunitnom aj odbornom svete sa pre túto kombináciu zaužíval neoficiálny, no výstižný pojem AuDHD (Autism + ADHD).
+Nejde nevyhnutne o náhodu. Čoraz viac ľudí zisťuje, že sa u nich okrem ADHD prejavujú aj charakteristiky autizmu. V komunitnom aj odbornom prostredí sa pre túto kombináciu zaužíval neoficiálny, no výstižný pojem **AuDHD** (Autism + ADHD).
 
-V tomto článku sa pozrieme na to, čo hovoria vedecké výskumy, prečo bola táto kombinácia tak dlho prehliadaná, ako spoznať vnútorné rozpory AuDHD a čo urobiť, ak sa v tom spoznávate.
+V tomto článku sa pozrieme na to, čo hovoria vedecké výskumy, prečo bola táto kombinácia tak dlho prehliadaná, ako sa môžu prejavovať vnútorné rozpory pri AuDHD a čo môžete urobiť, ak sa v niektorých z týchto prejavov spoznávate.
 
-### Prečo sa o AuDHD nehovorilo skôr?
+## Prečo sa o AuDHD nehovorilo skôr?
 
-Ešte pred niekoľkými rokmi bolo z diagnostického hľadiska prakticky nemožné mať obidve diagnózy súčasne. Do roku 2013 platil medzinárodný diagnostický manuál (DSM-IV), ktorý lekárom výslovne zakazoval stanovovať diagnózu ADHD u ľudí, ktorým už bol diagnostikovaný autizmus.
+Ešte pred niekoľkými rokmi bolo z diagnostického hľadiska prakticky nemožné mať obidve diagnózy súčasne. Do roku 2013 platil diagnostický manuál **DSM-IV**, ktorý neumožňoval súčasne stanoviť diagnózu ADHD a autistickej poruchy.
 
-Považovalo sa za pravidlo, že prejavy nesústredenosti či hyperaktivity sú len vedľajším príznakom autizmu. Až s príchodom DSM-5 v roku 2013 (a neskôr ICD-11) veda oficiálne priznala, že ide o dve samostatné neurovývinové podmienky, ktoré sa môžu vyskytovať súčasne.
+Predpokladalo sa, že prejavy ako nesústredenosť či hyperaktivita môžu byť súčasťou autizmu a nemali by sa diagnostikovať ako samostatné ADHD. Až s príchodom **DSM-5 v roku 2013** bolo možné tieto dve diagnózy stanoviť súčasne. Neskôr túto možnosť priniesla aj **ICD-11**.
 
-### Čo ale hovoria štatistiky?
+Dnes sa preto ADHD a autizmus považujú za dve samostatné neurovývinové poruchy, ktoré sa môžu u jedného človeka vyskytovať súčasne.
 
-Moderné neuropsychiatrické štúdie ukazujú, že prekrytie medzi ADHD a autizmom nie je výnimkou, ale skôr pravidlom.
+## Čo hovoria štatistiky?
 
-&#x20;**Koľko autistických ľudí má aj ADHD?** 
+Výskumy ukazujú, že ADHD a autizmus sa u časti ľudí významne prekrývajú.
 
-Výskumy odhadujú, že približne 50% až  70\\% ľudí na autistickom spektre spĺňa aj kritériá pre ADHD.
+**Koľko autistických ľudí má aj ADHD?**
 
-&#x20;**Koľko ľudí s ADHD má aj autizmus?**
+Výskumy odhadujú, že približne **50–70 % ľudí s autizmom** môže zároveň spĺňať kritériá pre ADHD. Konkrétne čísla sa však medzi jednotlivými štúdiami líšia v závislosti od použitej metodiky a skúmanej populácie.
 
-U ľudí s primárnou diagnózou ADHD sa odhaduje, že približne 20% až 50% z nich vykazuje významné autistické črty alebo spĺňa kritériá pre autizmus.
+**Koľko ľudí s ADHD má aj autizmus?**
 
-Tieto čísla jasne dokazujú, že mozgove profily oboch skupín zdieľajú mnohé genetické a neurologické črty.
+U ľudí s ADHD sa odhady podielu súčasne prítomného autizmu pohybujú približne v rozmedzí **20–50 %**, pričom aj tieto čísla sa medzi štúdiami výrazne líšia.
 
-### Ako sa prejavuje AuDHD v praxi?
+Tieto údaje ukazujú, že ADHD a autizmus majú významný klinický aj genetický prekryv. Neznamená to však, že každý človek s ADHD má zároveň autizmus alebo naopak.
 
-Život s AuDHD prináša špecifické výzvy, pretože ADHD a autizmus majú často úplne protichodné potreby. Človek sa potom ocitá v neustálom vnútornom objatí dvoch odlišných síl:
+## Ako sa môže AuDHD prejavovať v praxi?
 
-#### 1. Túžba po novosti vs. Potreba rutiny
+Život s kombináciou ADHD a autizmu môže prinášať špecifické výzvy. ADHD a autizmus totiž môžu vytvárať rozdielne, niekedy až protichodné potreby.
 
-&#x20;**ADHD časť:** Potrebuje neustálu zmenu, spontánnosť, nové podnety a dopamín. Rýchlo sa nudí.
+Človek sa tak môže ocitnúť v neustálom napätí medzi dvoma odlišnými tendenciami.
 
-&#x20;**Autistická časť:** Vyžaduje predvídateľnosť, pevný systém, rovnaké postupy a bezpečie v známych veciach.
+### 1. Túžba po novosti verzus potreba rutiny
 
-&#x20;**Výsledok:** Vytvoríte si dennú rutinu na upokojenie, no o tri dni ju vaša ADHD stránka zničí, lebo je "nudná". Následne sa dostaví úzkosť zo straty kontroly.
+**ADHD stránka:**  
+Môže vyhľadávať zmenu, spontánnosť, nové podnety a stimuláciu. Rutina môže po čase pôsobiť nudne.
 
-#### 2. Vyhľadávanie podnetov vs. Senzorické preťaženie
+**Autistická stránka:**  
+Môže vyhľadávať predvídateľnosť, stabilitu, pevný systém a známe postupy.
 
-&#x20;**ADHD časť:** Vyhľadáva vzrušenie, chodí na rušné miesta, počúva hlasnú hudbu.
+**Výsledok:**  
+Vytvoríte si dennú rutinu, ktorá vám prináša pocit stability, no po niekoľkých dňoch vás začne nudiť a ADHD potreba novosti vás vedie k jej narušeniu. Následne môžete pociťovať stres alebo úzkosť zo straty kontroly a predvídateľnosti.
 
-&#x20;**Autistická část:** Je veľmi citlivá na svetlo, zvuky, pachy či textúry oblečenia a rýchlo sa zmyslovo preťaží.
+### 2. Vyhľadávanie podnetov verzus senzorické preťaženie
 
-&#x20;**Výsledok:** Vyrazíte na párty za zážitkami, no po 30 minútach musíte utiecť, lebo vás hluk a svetlá úplne vyčerpali.
+**ADHD stránka:**  
+Môže vyhľadávať vzrušenie, intenzívne zážitky, rušné prostredie alebo hlasnú hudbu.
 
-#### 3. Sociálny kontakt vs. Sociálne vyčerpanie
+**Autistická stránka:**  
+Môže byť výrazne citlivá na svetlo, zvuky, pachy, dotyky či textúry oblečenia a rýchlo sa zmyslovo preťažiť.
 
-**ADHD časť:** Je výrečná, impulzívna, chce sa rozprávať s ľuďmi a ľahko sa nadchne.
+**Výsledok:**  
+Vyrazíte na párty, pretože chcete zažiť niečo nové a zábavné, no po krátkom čase vás hluk, svetlá a množstvo ľudí začnú preťažovať a potrebujete odísť.
 
-**Autistická časť:** Má problém s čítaním neformálnych sociálnych signálov, neprimerane ju vyčerpáva "maskovanie" (predstieranie neurotypického správania) a potrebuje veľa času osamote na dobijanie energie.
+### 3. Sociálny kontakt verzus sociálne vyčerpanie
 
-### Ako spoznať, že môže ísť o AuDHD?
+**ADHD stránka:**  
+Môže byť výrečná, impulzívna, spoločenská a ľahko sa nadchnúť pre rozhovor či nových ľudí.
 
-Mnohí dospelí si AuDHD všimnú až po tom, čo začnú liečiť svoje ADHD. Kým ADHD vytváralo v živote chaos a nepokoj, maskovalo jemnejšie autistické vlastnosti.
+**Autistická stránka:**  
+Môže prinášať ťažkosti s interpretáciou niektorých sociálnych signálov, zvýšenú náročnosť sociálnych situácií a potrebu času osamote na regeneráciu.
 
-Medzi typické signály AuDHD patria:
+Pri snahe prispôsobiť svoje správanie očakávaniam okolia môže navyše dochádzať k tzv. **maskovaniu** – vedomému alebo automatickému potláčaniu či kompenzovaniu autistických prejavov.
 
-* &#x20;Zintenzívnenie senzorickej citlivosti po tom, čo lieky na ADHD stíšili vnútorný hluk.
-* &#x20;Hlboké, dlhoročné a špeciálne záujmy (typické pre autizmus), ktoré sa striedajú s krátkodobými "posadnutosťami" (typickými pre ADHD).
-* &#x20;Extrémne sociálne vyčerpanie (tzv. autistický burnout) aj pri činnostiach, ktoré vás bavili.
-* &#x20;Silný pocit, že nezapadáte ani do komunít ľudí s čistým ADHD, ani medzi autistických ľudí.
+## Ako spoznať, že môže ísť o AuDHD?
 
-### Diagnostika u odborníka
+Mnohí dospelí začnú o autizme uvažovať až po tom, čo dostanú diagnózu ADHD. ADHD môže totiž prekryť alebo sťažiť rozpoznanie niektorých autistických charakteristík.
 
-I keď internetové testy, samodiagnostika a dotazníky môžu slúžiť ako prvý užitočný orientačný krok, 100 % istotu a oficiálnu diagnózu vám dokáže dať len komplexné vyšetrenie u odborníka.
+Medzi možné signály patria napríklad:
 
-Na Slovensku sa diagnostike porúch autistického spektra (PAS) a ADHD v dospelosti venujú špecializovaní klinickí psychológovia a psychiatri.
+- **Výrazná senzorická citlivosť**, ktorú si začnete viac uvedomovať napríklad po zlepšení pozornosti či znížení vnútorného chaosu.
+- **Dlhodobé intenzívne záujmy**, ktoré môžu byť typické pre autizmus, v kombinácii s krátkodobými intenzívnymi záujmami alebo „hyperfixáciami“, ktoré sa často spájajú s ADHD.
+- **Výrazné sociálne vyčerpanie**, a to aj po aktivitách, ktoré vás zároveň bavia.
+- **Pocit odlišnosti alebo nezapadania**, ktorý pretrváva napriek tomu, že rozumiete prejavom ADHD a autizmu.
+- **Potreba rutiny a predvídateľnosti**, ktorá však zároveň naráža na potrebu novosti a stimulácie typickú pre ADHD.
+- **Časté striedanie hyperfokusu, intenzívnej stimulácie a následného vyčerpania.**
 
-Ako prebieha profesionálny diagnostický proces?
+Samotná prítomnosť týchto prejavov však neznamená, že človek má AuDHD. Podobné skúsenosti môžu mať aj ľudia s ADHD, úzkostnými poruchami, depresiou alebo inými ťažkosťami.
 
-1**. Podrobný anamnestický rozhovor (Vývinová anamnéza):**
+## Diagnostika u odborníka
 
-Autizmus je neurovývinová podmienka prítomná od narodenia. Odborník sa preto bude pýtať na vaše detstvo, raný vývin reči, tvorbu vzťahov v škole či špecifické detské návyky. Ak je to možné, pri diagnostike v dospelosti sa často využíva aj rozhovor s rodičom alebo s človekom, ktorý vás poznal v detstve (napr. prostredníctvom dotazníka ADI-R – Autism Diagnostic Interview-Revised).
+Internetové testy, samodiagnostika a skríningové dotazníky môžu slúžiť ako orientačný prvý krok. Samy osebe však nemôžu potvrdiť diagnózu.
 
-**2. Štandardizované diagnostické metódy:**
+Diagnostika ADHD a autizmu by mala vychádzať z komplexného klinického posúdenia odborníkom, ktorý zohľadní vývinovú anamnézu, aktuálne prejavy, fungovanie v rôznych oblastiach života a možné alternatívne vysvetlenia.
 
-Využívajú sa svetovo uznávané klinické nástroje na posúdenie sociálno-komunikačných schopností a správania, ako je napríklad ADOS-2 (Autism Diagnostic Observation Schedule), prispôsobený pre dospelých a vysoko funkčných jedincov.
+### 1. Podrobný anamnestický rozhovor a vývinová anamnéza
 
-**3. Diferenciálna diagnostika:**
+Autizmus je neurovývinová porucha, ktorej prejavy sú prítomné už od raného vývinu. Odborník sa preto môže pýtať na detstvo, vývin reči, sociálne vzťahy, hru, školské fungovanie, záujmy, opakujúce sa správanie či reakcie na zmyslové podnety.
 
-Toto je najdôležitejšia úloha špecialistu. Odborník presne rozlíši, ktoré vaše prejavy patria pod ADHD, ktoré vyplývajú z autizmu a čo je prípadne dôsledkom sekundárnych úzkostí, sociálnej fóbie či traumy z dlhodobého nepochopenia.
+Pri diagnostike dospelých môže byť užitočný aj rozhovor s rodičom alebo inou osobou, ktorá človeka poznala v detstve. V niektorých prípadoch sa využívajú štandardizované nástroje, ako napríklad **ADI-R (Autism Diagnostic Interview-Revised)**.
 
-**4. Klinické zhodnotenie a záverečná správa:**
+### 2. Štandardizované diagnostické metódy
 
-100 % potvrdenie neznamená len "zaškrtnutie políčok" v teste, ale odborné klinické posúdenie celého vášho životného príbehu, správania a spracovávania podnetov. Výsledkom je oficiálna správu s presným popisom vášho neurodivergentného profilu.
+Odborníci môžu používať štandardizované nástroje na posúdenie sociálnej komunikácie a ďalších charakteristík autizmu, napríklad **ADOS-2 (Autism Diagnostic Observation Schedule, Second Edition)**.
 
-### Čo robiť, ak sa v tom spoznávate?
+Výsledok jedného testu však sám osebe diagnózu neurčuje. Nástroje sú súčasťou širšieho klinického posúdenia.
 
-Ak pri čítaní týchto riadkov pociťujete úľavu a veci do seba začínajú zapadať, tu je niekoľko odporúčaných krokov:
+### 3. Diferenciálna diagnostika
 
-1\. **Netlačte na seba a spoznávajte svoje potreby:** Pochopenie, že vo vás zápasia dve rôzne neurodivergentné vlastnosti, je prvým krokom k sebaakceptácii. Nemusíte sa nútiť do systémov, ktoré fungujú len pre čisté ADHD alebo len pre autizmus.
+Dôležitou súčasťou vyšetrenia je rozlíšenie toho, ktoré prejavy súvisia s ADHD, ktoré s autizmom a ktoré môžu mať inú príčinu.
 
-2\. **Upravte svoje stratégie:** Ak potrebujete rutinu pre autistickú časť, vytvorte si ju flexibilnú, aby uspokojila aj ADHD (napr. striedajte 3 rôzne typy Ranných rutín namiesto jednej prísnej).
+Odborník môže zvažovať napríklad úzkostné poruchy, sociálnu úzkosť, depresiu, traumu alebo iné psychické či neurovývinové ťažkosti.
 
-3\. **Chráňte svoje zmysly:** Používajte slúchadlá s potlačením hluku (ANC), upravte osvetlenie a rešpektujte svoje hranice pri zmyslovom preťažení.
+### 4. Klinické zhodnotenie a záverečná správa
 
-4\. **Zvážte odborné zhodnotenie:** Vyhľadajte psychológa alebo psychiatra, ktorý sa špecializuje na diagnostiku dospelých a rozumie prekrytiu ADHD a autizmu.
+Diagnostika neznamená iba „zaškrtnutie políčok“ v dotazníku. Ide o komplexné klinické posúdenie vývinovej histórie, aktuálneho fungovania, správania, sociálnej komunikácie a spôsobu spracovania podnetov.
 
-5\. **Vyhľadajte komunitu:** Rozhovor s ľuďmi, ktorí prežívajú rovnaký vnútorný svet, je často tým najlepším liekom na pocit osamelosti.
+Výsledkom môže byť odborná správa s popisom zistení a prípadnými odporúčaniami pre ďalšiu podporu alebo liečbu.
 
-Prijatie možnosti, že máte okrem ADHD aj autizmus, nie je návratom na začiatok. Je to krok k lepšiemu pochopeniu vlastného mozgu a k vytvoreniu života, ktorý rešpektuje vaše skutočné limity a potreby.
+## Čo robiť, ak sa v tom spoznávate?
 
-V ADHD Slovakia veríme, že osveta o témach ako AuDHD pomôže budovať chápavejšie prostredie pre všetkých neurodivergentných ľudí na Slovensku.
+Ak pri čítaní týchto riadkov pociťujete úľavu a niektoré veci do seba začínajú zapadať, môžete skúsiť niekoľko praktických krokov:
+
+1. **Spoznávajte svoje potreby:**  
+   Ak máte ADHD a zároveň u seba pozorujete autistické charakteristiky, môže byť užitočné sledovať, čo vám pomáha a čo vás naopak preťažuje. Nemusíte sa nútiť do systému, ktorý funguje iba pre jeden typ potrieb.
+
+2. **Upravte svoje stratégie:**  
+   Ak vám vyhovuje rutina, skúste ju nastaviť dostatočne flexibilne. Namiesto jednej striktnej rannej rutiny môžete mať napríklad tri alternatívy, medzi ktorými si vyberiete podľa aktuálnej energie a situácie.
+
+3. **Chráňte svoje zmysly:**  
+   Ak vás ľahko preťažuje hluk, svetlo alebo množstvo ľudí, môže pomôcť upraviť prostredie podľa vašich potrieb. Vhodné môžu byť napríklad slúchadlá s aktívnym potlačením hluku (ANC), tlmenejšie osvetlenie alebo pravidelné prestávky od podnetov.
+
+4. **Zvážte odborné vyšetrenie:**  
+   Ak máte dlhodobý pocit, že samotné vysvetlenie ADHD nepokrýva vaše skúsenosti, môžete vyhľadať psychológa alebo psychiatra, ktorý má skúsenosti s diagnostikou ADHD a autizmu u dospelých.
+
+5. **Hľadajte porozumenie a podporu:**  
+   Kontakt s ľuďmi, ktorí majú podobné skúsenosti, môže pomôcť lepšie porozumieť vlastnému fungovaniu a znížiť pocit, že ste so svojimi skúsenosťami sami. Komunita však nemôže nahradiť odbornú diagnostiku.
+
+---
+
+Prijatie možnosti, že okrem ADHD môžete mať aj autistické charakteristiky, nemusí znamenať návrat na začiatok. Pre niektorých ľudí môže byť novým spôsobom, ako lepšie porozumieť vlastnému fungovaniu a prispôsobiť svoje prostredie svojim potrebám.
+
+V **ADHD Slovakia** veríme, že osveta o témach, ako je AuDHD, môže prispieť k lepšiemu porozumeniu neurodivergentných ľudí a ich potrieb na Slovensku.
