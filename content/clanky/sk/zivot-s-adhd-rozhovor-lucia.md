@@ -5,6 +5,8 @@ category: "interviews"
 excerpt: Lucia bola diagnostikovaná s ADHD až v dospelosti. Aké kroky podnikla a ako sa zmenil jej život po diagnóze?
 readTime: '7 min čítania'
 coverImage: /images/IMG_4198.JPG
+translationKey: "living-with-adhd-lucia"
+
 ---
 # Život s ADHD: Keď sa dieliky skladačky spoja až v dospelosti
 

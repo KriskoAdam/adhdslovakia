@@ -5,6 +5,8 @@ category: "research"
 excerpt: Ľudia s ADHD a Autizmom majú viac spoločné ako si myslíme.
 readTime: 4 min čítania
 coverImage: /images/C1.jpg
+translationKey: "adhd-autism-same-wavelength"
+
 ---
 
 Predstavte si, že celý život počúvate rádio, v ktorom je neustály šum. Moderátorom poriadne nerozumiete, hudba hrá v zvláštnom rytme a vy sa musíte neskutočne sústrediť, aby ste vôbec zachytili pointu. A zrazu stretnete niekoho, kto prepne na vašu frekvenciu. Šum zmizne. Zrazu všetko dáva zmysel.

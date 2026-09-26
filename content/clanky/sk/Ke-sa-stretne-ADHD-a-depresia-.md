@@ -5,6 +5,8 @@ category: "science"
 excerpt: Spojenie ADHD a depresie
 readTime: '7 min čítania'
 coverImage: /images/IMG_4187.jpeg
+translationKey: "adhd-and-depression"
+
 ---
 
 Máte niekedy pocit, že vaša hlava funguje ako 47 otvorených okien v prehliadači, v jednom hrá hudba, ktorú neviete vypnúť, v troch niečo nakupujete a do toho vám systém hlási kritickú chybu? Vitajte vo svete ADHD.

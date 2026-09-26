@@ -9,14 +9,344 @@
   "Home": {
     "latestArticles": "Latest articles",
     "allArticles": "All articles",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "badge": "Neurodiversity · Awareness · Slovakia",
+    "description": "Information, experiences and science about ADHD in Slovak. For people looking for answers.",
+    "readArticles": "Read articles",
+    "aboutProject": "About the project",
+    "stats": {
+      "diagnoses": "successful diagnoses through the community",
+      "europeAdhd": "of people have ADHD in Europe",
+      "myths": "myths that need to be challenged"
+    },
+    "sections": {
+      "latestArticles": "Latest articles",
+      "allArticles": "All articles",
+      "awareness": "ADHD Info & Awareness",
+      "moreArticles": "More articles"
+    },
+    "awareness": {
+      "whatIsAdhd": {
+        "title": "What is ADHD?",
+        "desc": "ADHD is a neurodevelopmental disorder that persists into adulthood. It is not simply disobedience or laziness – it involves a differently functioning brain."
+      },
+      "adults": {
+        "title": "ADHD in adults",
+        "desc": "An estimated 4–5% of people in Europe have ADHD. Most of them have never received a diagnosis and do not know why certain things in their lives are difficult."
+      },
+      "diagnosis": {
+        "title": "Diagnosis & treatment",
+        "desc": "The right diagnosis can change a life. In Slovakia, getting a diagnosis can be difficult, but it is possible. We can help you navigate the process."
+      },
+      "myths": {
+        "title": "ADHD myths",
+        "desc": "It only affects children. You just need to try harder. It is just an excuse. These myths are harmful – and we challenge them one by one."
+      },
+      "month": "ADHD Europe · October is ADHD Awareness Month",
+      "theme": "2025 theme: The Many Faces of ADHD →"
+    },
+    "footer": {
+      "tagline": "Neurodiversity · Awareness · Slovakia",
+      "copyright": "© 2026 ADHD Slovakia · All rights reserved"
+    }
   },
   "Articles": {
-    "title": "ADHD Articles",
+    "title": "Articles about ADHD",
     "label": "All articles",
-    "description": "Science, experiences and practical information about ADHD.",
+    "description": "Science, experiences and practical information in English.",
     "empty": "No articles yet. Coming soon!",
     "back": "Back to articles",
-    "all": "All articles"
+    "all": "All articles",
+    "badge": "All articles",
+    "footer": "© 2026 ADHD Slovakia"
+  },
+  "AdhdInfo": {
+    "badge": "Information",
+    "title": "Information about ADHD",
+    "description": "All the information in one place",
+    "guideTitle": "ADHD guide",
+    "guideDescription": "Choose a topic that interests you and click to view more detailed information.",
+    "footer": "© 2026 ADHD Slovakia"
+  },
+  "Contact": {
+    "badge": "Contact",
+    "title": "Get in touch",
+    "description": "Have a question, want to share your story or collaborate? Get in touch – every message matters.",
+    "email": {
+      "desc": "For general questions and collaboration"
+    },
+    "instagram": {
+      "desc": "Follow us for daily content"
+    },
+    "facebook": {
+      "desc": "Follow us on our Facebook page"
+    },
+    "tiktok": {
+      "desc": "Follow us on TikTok"
+    },
+    "note": "If you are looking for help with diagnosis or need advice on where to turn, write to us. We will try to help or direct you to the right professional.",
+    "footer": "© 2026 ADHD Slovakia"
+  },
+  "About": {
+    "badge": "About the project",
+    "title": "Why",
+    "titleHighlight": "ADHD Slovakia was created",
+    "paragraphs": {
+      "one": "I spent my whole life looking for answers. Something was not right, I knew it, but nobody could tell me what it was. Not school, not doctors, not the system. I eventually found an answer through international content creators who openly talked about ADHD in adults. It was a turning point.",
+      "two": "That's when I realised: this kind of content simply did not exist in Slovakia. Adults with ADHD had nowhere to look for information in Slovak, there were few specialists, and the myth that “ADHD only affects children” was still alive – even among healthcare professionals.",
+      "three": "I founded ADHD Slovakia to help people find answers sooner than I did. I write articles based on scientific sources, help people navigate the system and advocate for the rights of adults with ADHD in Slovakia.",
+      "four": "Thanks to this community, more than 10 adults have already successfully received a diagnosis confirmed by a professional. Each of them experienced a similar moment to mine – finally getting an answer."
+    },
+    "missionTitle": "What we do",
+    "mission": {
+      "content": {
+        "title": "Content & articles",
+        "desc": "We write about ADHD using scientific and medical sources in Slovak, in an understandable way."
+      },
+      "myths": {
+        "title": "Challenging myths",
+        "desc": "We challenge outdated ideas about ADHD, such as the belief that it is only a childhood diagnosis or an excuse."
+      },
+      "diagnosis": {
+        "title": "Diagnosis support",
+        "desc": "We help people understand where to look for a specialist, what to expect and how to prepare."
+      },
+      "advocacy": {
+        "title": "Advocacy",
+        "desc": "We advocate for the rights of adult patients, including reimbursement of medication by health insurance companies."
+      }
+    },
+    "international": "International cooperation",
+    "internationalText": "ADHD Slovakia is in the process of becoming a member of ADHD Europe – the umbrella organisation for ADHD organisations across Europe. We are also preparing official registration as a non-profit organisation.",
+    "footer": "© 2026 ADHD Slovakia"
+  },
+  "AdhdInfo": {
+  "badge": "Information",
+  "title": "ADHD Information",
+  "description": "All the information in one place",
+  "guideTitle": "ADHD Guide",
+  "guideDescription": "Choose a topic that interests you and click to view more detailed information.",
+  "footer": "© 2026 ADHD Slovakia"
+}, 
+"Contact": {
+  "badge": "Contact",
+  "title": "Get in touch",
+  "description": "Contact us — ADHD Slovakia.",
+  "intro": "Have a question, want to share your story or collaborate with us? Get in touch — every message matters.",
+  "items": {
+    "email": {
+      "label": "Email",
+      "desc": "For general questions and collaboration"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "desc": "Follow us for daily content"
+    },
+    "facebook": {
+      "label": "Facebook",
+      "desc": "Follow us on our Facebook page"
+    },
+    "tiktok": {
+      "label": "TikTok",
+      "desc": "Follow us on TikTok"
+    }
+  },
+  "helpText": "If you are looking for help with a diagnosis or need advice on where to turn, contact us. We will try to help or point you towards the right professional.",
+  "footer": "© 2026 ADHD Slovakia"
+}, 
+"About": {
+  "badge": "About the project",
+  "title": "About us",
+  "description": "Who is behind ADHD Slovakia and why the project was created.",
+  "headingBefore": "Why",
+  "story": {
+    "p1": "I spent my whole life looking for answers. Something was not right, I knew it, but nobody could tell me what. Not school, not doctors, not the system. I eventually found the answer through international content creators who openly talked about ADHD in adults. It was a turning point.",
+    "p2": "That is when I realised: this kind of content simply did not exist in Slovakia. Adults with ADHD had very few places to find information in Slovak, there were few specialists, and the myth that “ADHD is only for children” was still alive, including among healthcare professionals.",
+    "p3": "I created ADHD Slovakia to help people find answers sooner than I did. I write articles based on scientific sources, help people navigate the system, and advocate for the rights of adults with ADHD in Slovakia.",
+    "p4": "Thanks to this community, more than 10 adults have already successfully received an ADHD diagnosis confirmed by a professional. Each of them experienced a similar moment to mine — finally getting an answer."
+  },
+  "whatWeDo": "What we do",
+  "cards": {
+    "content": {
+      "title": "Content & articles",
+      "desc": "We write about ADHD using scientific and medical sources, making the information understandable and accessible."
+    },
+    "myths": {
+      "title": "Challenging myths",
+      "desc": "We challenge outdated ideas about ADHD, such as the belief that it is only a childhood condition or an excuse."
+    },
+    "diagnosis": {
+      "title": "Help with diagnosis",
+      "desc": "We help people understand where to look for a specialist, what to expect and how to prepare."
+    },
+    "advocacy": {
+      "title": "Advocacy",
+      "desc": "We advocate for the rights of adults with ADHD, including access to medication reimbursement through health insurance."
+    }
+  },
+  "international": {
+    "title": "International cooperation",
+    "beforeLink": "ADHD Slovakia is in the process of becoming a member of",
+    "afterLink": "— the umbrella organisation for ADHD organisations across Europe. We are also preparing official registration as a non-profit organisation."
+  },
+  "footer": "© 2026 ADHD Slovakia"
+}, 
+"Test": {
+  "badge": "DIVA symptom measure (Indicative screening)",
+  "title": "ADHD Symptom Test for Adults",
+  "completed": "Completed",
+  "questionProgress": "Question {current} of {total}",
+  "done": "done",
+  "section": "Section",
+  "previous": "Previous question",
+  "scale": "Scale: 0 (Never) to 2 (Severe)",
+  "currentScore": "Current score",
+  "pointsShort": "pts.",
+  "threshold": "The threshold for clinical suspicion is",
+  "thresholdEnd": "in either section.",
+  "resultSectionA": "Section A: Inattention",
+  "resultSectionB": "Section B: Impulsivity / Hyperactivity",
+  "diagnosisLink": "What to do about diagnosis?",
+  "reset": "Reset and start again",
+  "categories": {
+    "inattention": "Inattention",
+    "hyperactivity": "Impulsivity / Hyperactivity",
+    "inattentionLower": "inattention",
+    "hyperactivityLower": "impulsivity/hyperactivity"
+  },
+  "answers": {
+    "never": "Never / rarely",
+    "sometimes": "Sometimes / moderately",
+    "often": "Often / severely",
+    "zero": "0 points",
+    "one": "1 point",
+    "two": "2 points"
+  },
+  "resultScores": {
+    "inattentionPositive": "Score indicates signs of inattention",
+    "hyperactivityPositive": "Score indicates signs of hyperactivity",
+    "normalRange": "Within the normative range"
+  },
+  "results": {
+    "incomplete": {
+      "title": "Test is not complete",
+      "text": "Answered {answered}/{total}"
+    },
+    "positive": {
+      "title": "Positive screening",
+      "text": "You scored above the threshold in the {categories} category. This is intended solely as an indicative screening tool. We recommend discussing the results with a clinical psychologist or psychiatrist."
+    },
+    "negative": {
+      "title": "Negative screening",
+      "text": "Your current score is below the threshold for an indicative suspicion of ADHD in adults."
+    }
+  },
+  "questions": {
+    "A1": "Do you have difficulty maintaining attention on tasks that require prolonged concentration?",
+    "A2": "Do you often forget everyday essentials (keys, wallet, phone)?",
+    "A3": "When someone is talking to you, do you often find your thoughts elsewhere and miss part of the sentence?",
+    "A4": "Do you have problems organizing tasks and managing time — often missing deadlines?",
+    "A5": "Do you avoid tasks that require prolonged mental effort?",
+    "A6": "Do you lose things needed for activities (tools, documents, phone)?",
+    "A7": "Are you often distracted by external stimuli that pull you away from a task?",
+    "A8": "Do you forget scheduled appointments or deadlines?",
+    "A9": "Do you have problems finishing details — starting many things but completing few?",
+    "B1": "Do you often move your hands/feet or have difficulty sitting still?",
+    "B2": "Do you feel uncomfortable when you have to sit in one place for a long time?",
+    "B3": "Do you often start answering before someone has finished their question?",
+    "B4": "Do you have difficulty waiting your turn — for example in a queue or during a conversation?",
+    "B5": "Do you often interrupt others or intrude into other people's conversations?",
+    "B6": "Do you do things impulsively without thinking about the consequences?",
+    "B7": "Do you feel that your mind is like a “motor that never stops”?",
+    "B8": "Do you often talk too much or very quickly?",
+    "B9": "Do you seek intense stimulation (extreme sports, games) because ordinary things bore you?"
+  },
+  "examples": {
+    "A1": "e.g. reading documents, filling out forms",
+    "B2": "e.g. during meetings, at the cinema, while travelling",
+    "B6": "sudden spending, risky driving"
+  },
+  "footer": "© 2026 ADHD Slovakia · Indicative screening"
+}, 
+"DivaTest": {
+  "badge": "ADHD test online",
+  "title": "Indicative ADHD test",
+  "description": "Find out whether your symptoms of inattention, impulsivity or hyperactivity correspond to the criteria for adults according to the",
+  "duration": "Time: approx. 3 minutes",
+  "questions": "18 questions (DIVA-5)",
+  "button": "Start ADHD test"
+} , 
+"AdhdInfoGrid": {
+  "sections": {
+    "whatIsAdhd": {
+      "title": "What is ADHD?",
+      "content": "ADHD, or attention-deficit/hyperactivity disorder, is a neurodevelopmental disorder characterized by persistent patterns of inattention, hyperactivity and impulsivity that interfere with everyday functioning. These symptoms usually appear in childhood and may persist into adulthood.\n\nIt is not an excuse or the result of poor parenting — it reflects differences in how the brain functions, with measurable neurological differences."
+    },
+    "symptoms": {
+      "title": "ADHD symptoms",
+      "content": "ADHD symptoms are divided into two main categories:\n\nInattention:\n• Difficulty concentrating on tasks\n• Time blindness — difficulty estimating time\n• Chronic procrastination\n• Reduced working memory\n• Hyperfocus on interesting topics\n\nHyperactivity and impulsivity:\n• Inner restlessness and difficulty staying still\n• Interrupting others and making hasty decisions\n• Emotional dysregulation — rapid and intense emotions"
+    },
+    "children": {
+      "title": "ADHD in children",
+      "content": "In children, ADHD is often most visible externally — in behaviour, motor activity and social interactions. It is not a sign of poor upbringing or low intelligence.\n\nTypical signs in children:\n• Constant movement and difficulty sitting still\n• Impulsive behaviour without considering consequences\n• Forgetting school supplies and responsibilities\n• Difficulties in groups due to emotional reactions\n\nThe key is understanding and a firm, supportive structure — not punishment."
+    },
+    "adults": {
+      "title": "ADHD in adults",
+      "content": "ADHD does not simply disappear after adolescence. Many adults are diagnosed only after they begin experiencing problems at work, in relationships or with managing everyday life.\n\nIn adults, hyperactivity often becomes more internal restlessness. Common difficulties include:\n• Chronic lateness and missed deadlines\n• Difficulty maintaining work or relationships\n• A lifelong feeling that something is not right\n• Low self-esteem after years of difficulties"
+    },
+    "causes": {
+      "title": "Causes of ADHD",
+      "content": "ADHD has a strong genetic component — heritability estimates are above 70%. It is not caused by poor parenting, sugar or screens.\n\nBiological factors:\n• Genetics — having a parent with ADHD substantially increases the child's risk\n• Differences in dopamine and noradrenaline signalling in the brain\n• Differences in the development of the prefrontal cortex\n\nRisk factors:\n• Smoking or alcohol exposure during pregnancy\n• Low birth weight and premature birth\n• Exposure to heavy metals in early childhood"
+    },
+    "diagnosis": {
+      "title": "ADHD diagnosis",
+      "content": "ADHD diagnosis is a comprehensive process — there is no single test or blood test that can diagnose it. It is based on a detailed clinical and psychological assessment.\n\nDiagnosis may include:\n• Detailed developmental history from childhood\n• Standardized questionnaires and rating scales\n• Psychological testing of cognitive functions\n• Ruling out other possible causes (anxiety, depression, trauma)\n\nIn Slovakia, diagnosis is carried out by a psychiatrist or clinical psychologist. The path to diagnosis can be long because there are relatively few specialists."
+    },
+    "treatment": {
+      "title": "Treatment and therapy",
+      "content": "The most effective approach often combines several components:\n\nMedication (prescribed by a psychiatrist):\n• Stimulants (methylphenidate, lisdexamfetamine) — affect dopamine and noradrenaline signalling\n• Non-stimulant medication (atomoxetine) — an option when stimulants are unsuitable or ineffective\n\nTherapy:\n• Cognitive behavioural therapy (CBT)\n• ADHD-focused coaching\n• Training in executive functioning skills\n\nLifestyle:\n• Regular physical activity, sleep hygiene and a structured routine"
+    },
+    "school": {
+      "title": "ADHD at school",
+      "content": "The school environment can be a major challenge for children with ADHD — it requires exactly the skills that may be most difficult for them.\n\nCommon difficulties:\n• Difficulty filtering out distracting stimuli\n• Forgetting school supplies and homework\n• Impulsive behaviour in groups\n\nWhat can help:\n• Sitting near the front and away from windows\n• Breaking tasks into smaller steps\n• Allowing appropriate movement breaks\n• Praising effort, not only results"
+    },
+    "work": {
+      "title": "ADHD at work",
+      "content": "Adults with ADHD can be highly productive when they are in an environment that suits their needs.\n\nChallenges:\n• Procrastination on uninteresting tasks\n• Forgetting verbal agreements\n• Difficulties with open-office environments\n• Impulsive reactions to criticism\n\nPotential strengths:\n• Hyperfocus on interesting projects\n• Creativity and unconventional solutions\n• Performing well in crisis situations\n\nHelpful strategies may include flexible schedules, remote work, digital planners and noise-cancelling headphones."
+    },
+    "relationships": {
+      "title": "Relationships and ADHD",
+      "content": "ADHD can affect close relationships — romantic, family and friendships.\n\nCommon difficulties:\n• Forgetting promises and agreements\n• Appearing not to listen during conversations\n• Emotional intensity and sensitivity to criticism (RSD)\n• Uneven distribution of responsibilities at home\n\nWhat can help:\n• Written agreements instead of relying only on verbal agreements\n• Shared digital calendars\n• Understanding that forgetfulness does not necessarily mean a lack of interest\n• Couples therapy with a professional familiar with ADHD"
+    },
+    "lifestyle": {
+      "title": "Lifestyle",
+      "content": "A healthy lifestyle can help manage some ADHD symptoms.\n\nPhysical activity:\n• May support mood and attention regulation\n• May help reduce restlessness and improve concentration\n• Consistency and individual tolerance are important\n\nSleep:\n• Insufficient sleep can worsen symptoms\n• A consistent sleep schedule can help, including on weekends\n• Limiting screens before bedtime may be useful\n\nDiet:\n• A balanced diet with sufficient protein and fibre\n• Limiting excessive intake of simple sugars\n• A varied diet containing sources of omega-3 fatty acids\n\nRoutine:\n• A structured daily routine can reduce cognitive load\n• Visual planners and reminders can help"
+    },
+    "faq": {
+      "title": "FAQ",
+      "content": "Frequently asked questions about ADHD:\n\nIs ADHD a real diagnosis?\nYes. ADHD is a scientifically recognized neurodevelopmental disorder.\n\nCan ADHD be cured?\nADHD is a neurodevelopmental disorder that can persist into adulthood. Treatment and support can significantly improve functioning and quality of life.\n\nCan adults have ADHD?\nYes. Many people are diagnosed only in adulthood.\n\nIs ADHD caused by poor parenting?\nNo. ADHD has a substantial genetic and neurobiological component.\n\nCan medication help?\nFor many people, yes. A doctor decides whether medication is appropriate based on an individual assessment."
+    }
+  },
+  "cta": {
+    "question": "Didn't find the answer to your question?",
+    "button": "Ask a question"
   }
+}, "categories": {
+  "science": "Science",
+  "diagnosis": "Diagnosis",
+  "research": "Research",
+  "interviews": "Interviews",
+  "medications": "Medications"
+}, 
+"Categories": {
+  "diagnosis": "Diagnosis",
+  "myths": "Myths",
+  "medications": "Medications",
+  "research": "Research",
+  "personal-story": "Personal Story",
+  "science": "Science",
+  "lifestyle": "Lifestyle",
+  "interviews": "Interviews",
+  "sources": "Sources"
+}
 }

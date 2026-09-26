@@ -5,6 +5,8 @@ category: "diagnosis"
 excerpt: "Odborníkov je málo, mýty sú silné a systém nie je nastavený na dospelých pacientov."
 readTime: "5 min čítania"
 coverImage: "/images/young-conceptual-image-large-stone-shape-human-brain-conceptual-image-large-stone-shape-110748113.webp"
+translationKey: "adhd-diagnosis-adults-slovakia"
+
 ---
 
 ## Úvod

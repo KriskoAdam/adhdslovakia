@@ -5,6 +5,8 @@ category: "science"
 excerpt: 'ADHD nie je len rozptýlenosť. Pre tisíce ľudí na Slovensku je to celoživotný boj so školou, s prácou, so sebou samým. Článok, ktorý otvorene hovorí o depresii, beznádeji a zvýšenom riziku samovraždy u ľudí s ADHD a o tom, prečo nás systémová mlčanlivosť na Slovensku stojí viac, než si pripúšťame.'
 readTime: 9 min čítania
 coverImage: /images/IMG_4207.jpeg
+translationKey: "dark-side-of-adhd"
+
 ---
 
 ## Škola: prvé rany

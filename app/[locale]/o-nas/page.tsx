@@ -1,12 +1,56 @@
 import type { Metadata } from "next";
 import Nav from "../../components/Nav";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "O nás – ADHD Slovakia",
-  description: "Kto stojí za projektom ADHD Slovakia a prečo vznikol.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: "sk" | "en" }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
 
-export default function ONasPage() {
+  const t = await getTranslations({
+    locale,
+    namespace: "About",
+  });
+
+  return {
+    title: `${t("title")} – ADHD Slovakia`,
+    description: t("description"),
+  };
+}
+
+export default async function ONasPage({
+  params,
+}: {
+  params: Promise<{ locale: "sk" | "en" }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations("About");
+
+  const cards = [
+    {
+      icon: "📰",
+      title: t("cards.content.title"),
+      desc: t("cards.content.desc"),
+    },
+    {
+      icon: "🔬",
+      title: t("cards.myths.title"),
+      desc: t("cards.myths.desc"),
+    },
+    {
+      icon: "🤝",
+      title: t("cards.diagnosis.title"),
+      desc: t("cards.diagnosis.desc"),
+    },
+    {
+      icon: "⚖️",
+      title: t("cards.advocacy.title"),
+      desc: t("cards.advocacy.desc"),
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
@@ -14,85 +58,81 @@ export default function ONasPage() {
       <div className="max-w-2xl mx-auto px-8 pt-14 pb-20">
 
         <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5 animate-fade-up">
-          O projekte
+          {t("badge")}
         </div>
 
         <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-8 animate-fade-up delay-100">
-          Prečo vzniklo<br />
-          <span className="text-green-400 animate-fade-up delay-200">ADHD Slovakia</span>
+          {t("headingBefore")}
+          <br />
+          <span className="text-green-400 animate-fade-up delay-200">
+            ADHD Slovakia
+          </span>
         </h1>
 
         <div className="space-y-6 text-[15px] text-[var(--text-secondary)] font-light leading-relaxed animate-fade-up delay-300">
-          <p>
-            Celý život som hľadal odpovede. Niečo nebolo v poriadku, vedel som to
-            ale nikto mi nevedel povedať čo. Nie škola, nie lekári, nie systém.
-            Odpoveď som nakoniec našiel vďaka zahraničným tvorcom obsahu, ktorí
-            otvorene hovorili o ADHD u dospelých. Bol to zlom.
-          </p>
-          <p>
-            Vtedy mi došlo: na Slovensku takýto obsah jednoducho neexistuje.
-            Dospelí s ADHD tu nemajú kde hľadať informácie v slovenčine,
-            odborníkov je málo, a mýtus že „ADHD majú len deti" je stále živý
-            a to aj medzi zdravotníkmi.
-          </p>
-          <p>
-            ADHD Slovakia som založil preto, aby som pomohol ľuďom nájsť odpovede
-            skôr ako ja. Píšem články založené na vedeckých zdrojoch, pomáham
-            ľuďom zorientovať sa v systéme, a bojujem za práva dospelých pacientov
-            s ADHD na Slovensku.
-          </p>
-          <p>
-            Vďaka tejto komunite sa už podarilo úspešne diagnostikovať viac ako
-            10 dospelých pacientov, ktorým diagnózu potvrdil odborník. Každý
-            z nich prežil podobný moment ako ja konečne dostali odpoveď.
-          </p>
+          <p>{t("story.p1")}</p>
+
+          <p>{t("story.p2")}</p>
+
+          <p>{t("story.p3")}</p>
+
+          <p>{t("story.p4")}</p>
         </div>
 
-        {/* DIVIDER */}
         <div className="border-t border-[var(--border-color)] my-12" />
 
-        {/* MISSION */}
         <h2 className="font-display text-2xl font-extrabold tracking-tight mb-6 animate-fade-up delay-400">
-          Čo robíme
+          {t("whatWeDo")}
         </h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden mb-12 animate-fade-up delay-500">
-          {[
-            { icon: "📰", title: "Obsah a články", desc: "Píšeme o ADHD na základe vedeckých a medicínskych zdrojov v slovenčine, zrozumiteľne." },
-            { icon: "🔬", title: "Búranie mýtov", desc: "Bojujeme proti zastaraným predstavám o ADHD, že je to len detská diagnóza, alebo výhovorka." },
-            { icon: "🤝", title: "Pomoc s diagnózou", desc: "Pomáhame ľuďom zorientovať sa kde hľadať odborníka, čo očakávať, ako sa pripraviť." },
-            { icon: "⚖️", title: "Advokácia", desc: "Presadzujeme práva dospelých pacientov vrátane preplácania liekov zdravotnými poisťovňami." },
-          ].map((item) => (
-            <div key={item.title} className="bg-[var(--bg-secondary)] p-6 flex flex-col gap-2 animate-fade-up delay-600">
+          {cards.map((item) => (
+            <div
+              key={item.title}
+              className="bg-[var(--bg-secondary)] p-6 flex flex-col gap-2 animate-fade-up delay-600"
+            >
               <span className="text-2xl">{item.icon}</span>
-              <h3 className="font-display text-[15px] font-bold text-[var(--text-primary)]">{item.title}</h3>
-              <p className="text-[13px] text-[var(--text-muted)] font-light leading-relaxed">{item.desc}</p>
+
+              <h3 className="font-display text-[15px] font-bold text-[var(--text-primary)]">
+                {item.title}
+              </h3>
+
+              <p className="text-[13px] text-[var(--text-muted)] font-light leading-relaxed">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* MEMBER OF */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl p-6">
           <div className="text-[10px] font-bold tracking-widest uppercase text-[var(--text-muted)] mb-3">
-            Medzinárodná spolupráca
+            {t("international.title")}
           </div>
+
           <p className="text-[14px] text-[var(--text-secondary)] font-light leading-relaxed">
-            ADHD Slovakia je v procese stávania sa členom{" "}
-            <a href="https://adhdeurope.eu/" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:underline">
+            {t("international.beforeLink")}{" "}
+            <a
+              href="https://adhdeurope.eu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-400 hover:underline"
+            >
               ADHD Europe
-            </a>
-            {" "}— strešnej organizácie pre všetky ADHD organizácie v Európe.
-            Zároveň pripravujeme oficiálnu registráciu ako nezisková organizácia.
+            </a>{" "}
+            {t("international.afterLink")}
           </p>
         </div>
 
       </div>
 
-      {/* FOOTER */}
       <footer className="px-8 py-8 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-3">
         <div className="font-display text-base font-extrabold text-[var(--text-muted)]">
           ADHD<span className="text-green-400/30">.</span>Slovakia
         </div>
-        <div className="text-[12px] text-[var(--text-muted)]">© 2025 ADHD Slovakia</div>
+
+        <div className="text-[12px] text-[var(--text-muted)]">
+          {t("footer")}
+        </div>
       </footer>
     </div>
   );

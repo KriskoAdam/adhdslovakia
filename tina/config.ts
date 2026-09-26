@@ -95,6 +95,15 @@ export default defineConfig({
 
           {
             type: "string",
+            name: "translationKey",
+            label: "Translation Key",
+            description:
+              "Jedinečný kľúč, ktorý musí byť rovnaký pre slovenskú a anglickú verziu článku. Napr. adhd-audhd.",
+            required: true,
+          },
+
+          {
+            type: "string",
             name: "excerpt",
             label: "Perex (krátky popis)",
             ui: {

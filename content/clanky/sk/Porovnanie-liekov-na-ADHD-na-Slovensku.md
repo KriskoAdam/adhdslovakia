@@ -5,6 +5,8 @@ category: "medications"
 excerpt: 'Concerta, Strattera, Intuniv či nový Livizux. Pozreli sme sa na to, ako fungujú najčastejšie predpisované lieky na ADHD na Slovensku, aké sú ich výhody, riziká a pre koho sú určené.'
 readTime: 9 min čítania
 coverImage: /images/pexels-ron-lach-9902277.jpg
+translationKey: "adhd-medications-slovakia"
+
 ---
 
 # Lieky na ADHD na Slovensku: Ako fungujú Concerta, Strattera, Intuniv a nový Livizux?

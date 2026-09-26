@@ -5,6 +5,8 @@ category: "science"
 excerpt: 'Krátke videá nedokážu vrodené ADHD vytvoriť, no podľa neurologických štúdií parazitujú na dopamínovom systéme a dramaticky zhoršujú jeho prejavy. Pre neurotypických ľudí zasa algoritmy znamenajú riziko získanej poruchy pozornosti.'
 readTime: 10 min čítania
 coverImage: /images/Snímka-obrazovky-2026-07-03-o-0.02.47.png
+translationKey: "short-videos-adhd-brain"
+
 ---
 
 Sedíte na gauči. Možno na záchode. Možno v posteli o jedenástej v noci, hoci ste si o deviatej povedali, že „ešte päť minút.” Palec sa pohybuje smerom nahor takmer sám od seba, bez vášho vedomého príkazu. Pätnásťsekundový recept na cestoviny, ktorý nikdy neuvaríte. Strih. Chlap, čo vysvetľuje geopolitiku spôsobom, pri ktorom vám stúpa tlak. Strih. Roztomilé mačiatko padá z poličky. Strih. Influencerka, ktorá vás z nejakého dôvodu nesmierne irituje, a napriek tomu jej video pozeráte až do konca.

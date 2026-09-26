@@ -4,29 +4,7 @@ import Nav from "../components/Nav";
 import AnimatedStat from "../components/AnimatedStat";
 import DIVATestDesktop from "../components/DIVATestDesktop";
 import TypewriterHeading from "../components/TypewriterHeading";
-
-const awarenessCards = [
-  {
-    icon: "🧠",
-    title: "Čo je ADHD?",
-    desc: "ADHD je neurovývojová porucha ktorá pretrváva do dospelosti. Nie je to len neposlušnosť alebo lenivosť ide o rozdielne fungujúci mozog.",
-  },
-  {
-    icon: "👤",
-    title: "ADHD u dospelých",
-    desc: "Odhaduje sa že 4–5% ľudí v Európe má ADHD. Väčšina z nich nikdy nedostala diagnózu a nevie prečo im niektoré veci v ich živote nejdú.",
-  },
-  {
-    icon: "🔍",
-    title: "Diagnóza & liečba",
-    desc: "Správna diagnóza môže zmeniť život. Na Slovensku je cesta k diagnóze náročná, ale možná. Pomôžeme ti zorientovať sa.",
-  },
-  {
-    icon: "💬",
-    title: "Mýty o ADHD",
-    desc: "Majú to len deti. Stačí sa viac snažiť. To je len výhovorka. Tieto mýty škodia — a my ich búrame jeden po druhom.",
-  },
-];
+import { getTranslations } from "next-intl/server";
 
 export default async function Home({
   params,
@@ -34,9 +12,36 @@ export default async function Home({
   params: Promise<{ locale: "sk" | "en" }>;
 }) {
   const { locale } = await params;
+
+  const t = await getTranslations("Home");
+  const tCategories = await getTranslations("Categories");
+
   const allArticles = getAllArticles(locale);
   const featuredArticles = allArticles.slice(0, 3);
   const listArticles = allArticles.slice(3, 7);
+
+  const awarenessCards = [
+    {
+      icon: "🧠",
+      title: t("awareness.whatIsAdhd.title"),
+      desc: t("awareness.whatIsAdhd.desc"),
+    },
+    {
+      icon: "👤",
+      title: t("awareness.adults.title"),
+      desc: t("awareness.adults.desc"),
+    },
+    {
+      icon: "🔍",
+      title: t("awareness.diagnosis.title"),
+      desc: t("awareness.diagnosis.desc"),
+    },
+    {
+      icon: "💬",
+      title: t("awareness.myths.title"),
+      desc: t("awareness.myths.desc"),
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans">
@@ -47,14 +52,13 @@ export default async function Home({
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_430px] gap-12 xl:gap-20 items-center">
           <div>
             <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5 animate-fade-up">
-              Neurodiverzita · Osveta · Slovensko
+              {t("badge")}
             </div>
 
             <TypewriterHeading />
 
             <p className="text-[16px] text-[var(--text-secondary)] max-w-md leading-relaxed font-light mb-8 animate-fade-up delay-200">
-              Informácie, skúsenosti a veda o ADHD v slovenčine. Pre ľudí,
-              ktorí hľadajú odpovede.
+              {t("description")}
             </p>
 
             <div className="flex gap-3 flex-wrap animate-fade-up delay-300">
@@ -62,14 +66,14 @@ export default async function Home({
                 href={`/${locale}/clanky`}
                 className="inline-block bg-green-400 text-[#0a0a0a] text-[13px] font-semibold px-5 py-2.5 rounded-md hover:bg-green-300 transition-colors"
               >
-                Čítať články
+                {t("readArticles")}
               </a>
 
               <a
                 href={`/${locale}/o-nas`}
                 className="inline-block bg-transparent text-[var(--text-primary)] text-[13px] font-semibold px-5 py-2.5 rounded-md border border-[var(--border-color)] hover:border-green-400/40 transition-colors"
               >
-                O projekte
+                {t("aboutProject")}
               </a>
             </div>
           </div>
@@ -83,11 +87,24 @@ export default async function Home({
       {/* STATS */}
       <div className="flex flex-wrap gap-10 px-8 py-7 border-b border-[var(--border-color)]">
         {[
-          { num: "10+", label: "úspešných diagnóz cez komunitu" },
-          { num: "4–5%", label: "ľudí má ADHD v Európe" },
-          { num: "∞", label: "mýtov ktoré treba zbúrať" },
-        ].map((s, i) => (
-          <div key={s.label} className="contents [&_h2]:notranslate" data-translate-ignore>
+          {
+            num: "10+",
+            label: t("stats.diagnoses"),
+          },
+          {
+            num: "4–5%",
+            label: t("stats.europeAdhd"),
+          },
+          {
+            num: "∞",
+            label: t("stats.myths"),
+          },
+        ].map((s) => (
+          <div
+            key={s.label}
+            className="contents [&_h2]:notranslate"
+            data-translate-ignore
+          >
             <AnimatedStat
               num={s.num}
               label={s.label}
@@ -103,15 +120,17 @@ export default async function Home({
         <>
           <div className="flex items-center justify-between px-8 pt-6 pb-4 animate-fade-up">
             <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--text-muted)]">
-              Najnovšie články
+              {t("sections.latestArticles")}
             </span>
+
             <a
               href={`/${locale}/clanky`}
               className="text-[12px] text-green-400 hover:underline animate-fade-up delay-100"
             >
-              Všetky články →
+              {t("sections.allArticles")} →
             </a>
           </div>
+
           <div className="mx-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden animate-fade-up delay-100">
             {featuredArticles.map((a, i) => (
               <a
@@ -122,8 +141,20 @@ export default async function Home({
                 }`}
               >
                 <span className="text-[10px] font-bold tracking-[0.14em] uppercase text-green-400">
-                  {a.category}
+                  {tCategories(
+                    a.category as
+                      | "diagnosis"
+                      | "myths"
+                      | "medications"
+                      | "research"
+                      | "personal-story"
+                      | "science"
+                      | "lifestyle"
+                      | "interviews"
+                      | "sources",
+                  )}
                 </span>
+
                 <h2
                   className={`font-display font-bold leading-snug tracking-tight text-[var(--text-primary)] ${
                     i === 0 ? "text-3xl" : "text-xl"
@@ -131,11 +162,13 @@ export default async function Home({
                 >
                   {a.title}
                 </h2>
+
                 {a.excerpt && (
                   <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed font-light">
                     {a.excerpt}
                   </p>
                 )}
+
                 <div className="text-[11px] text-[var(--text-muted)] mt-auto pt-3 border-t border-[var(--border-color)]">
                   {a.readTime} · {a.date}
                 </div>
@@ -145,14 +178,14 @@ export default async function Home({
         </>
       )}
 
-      
       {/* AWARENESS SECTION */}
       <div className="mx-8 mb-8">
         <div className="flex items-center justify-between pt-2 pb-4">
           <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--text-muted)]">
-            ADHD Info & Awareness
+            {t("sections.awareness")}
           </span>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden mb-4">
           {awarenessCards.map((item, i) => (
             <div
@@ -161,15 +194,18 @@ export default async function Home({
               style={{ animationDelay: `${i * 0.1}s` }}
             >
               <span className="text-xl">{item.icon}</span>
+
               <h3 className="font-display text-[14px] font-bold text-[var(--text-primary)]">
                 {item.title}
               </h3>
+
               <p className="text-[12px] text-[var(--text-muted)] font-light leading-relaxed">
                 {item.desc}
               </p>
             </div>
           ))}
         </div>
+
         <a
           href="https://adhdeurope.eu/adhd-awareness-month/"
           target="_blank"
@@ -178,12 +214,14 @@ export default async function Home({
         >
           <div>
             <div className="text-[10px] font-bold tracking-widest uppercase text-green-400 mb-1">
-              ADHD Europe · Október je ADHD Awareness Month
+              {t("awareness.month")}
             </div>
+
             <div className="font-display text-[15px] font-bold text-[var(--text-primary)] opacity-90">
-              2025 téma: The Many Faces of ADHD →
+              {t("awareness.theme")}
             </div>
           </div>
+
           <span className="text-green-400 text-xl">🌍</span>
         </a>
       </div>
@@ -193,9 +231,10 @@ export default async function Home({
         <>
           <div className="flex items-center justify-between px-8 pt-2 pb-4">
             <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--text-muted)]">
-              Ďalšie články
+              {t("sections.moreArticles")}
             </span>
           </div>
+
           <div className="mx-8 flex flex-col gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden mb-8">
             {listArticles.map((a, i) => (
               <a
@@ -206,11 +245,24 @@ export default async function Home({
                 <span className="font-display text-[13px] font-extrabold text-[var(--text-muted)] min-w-[28px]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
+
                 <span className="font-display text-[14px] font-bold text-[var(--text-primary)] flex-1 leading-snug">
                   {a.title}
                 </span>
+
                 <span className="text-[10px] font-semibold tracking-widest text-green-400 bg-green-400/10 px-2 py-1 rounded whitespace-nowrap">
-                  {a.category}
+                  {tCategories(
+                    a.category as
+                      | "diagnosis"
+                      | "myths"
+                      | "medications"
+                      | "research"
+                      | "personal-story"
+                      | "science"
+                      | "lifestyle"
+                      | "interviews"
+                      | "sources",
+                  )}
                 </span>
               </a>
             ))}
@@ -228,17 +280,20 @@ export default async function Home({
             height={48}
             className="object-contain opacity-80"
           />
+
           <div>
             <div className="font-display text-base font-extrabold text-[var(--text-primary)]">
               ADHD<span className="text-green-400">.</span>Slovakia
             </div>
+
             <div className="text-[11px] text-[var(--text-muted)] mt-0.5">
-              Neurodiverzita · Osveta · Slovensko
+              {t("footer.tagline")}
             </div>
           </div>
         </div>
+
         <div className="text-[12px] text-[var(--text-muted)]">
-          © 2025 ADHD Slovakia · Všetky práva vyhradené
+          {t("footer.copyright")}
         </div>
       </footer>
     </div>

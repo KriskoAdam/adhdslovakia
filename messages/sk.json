@@ -6,17 +6,402 @@
     "about": "O nás",
     "contact": "Kontakt"
   },
+
   "Home": {
+    "badge": "Neurodiverzita · Osveta · Slovensko",
+    "description": "Informácie, skúsenosti a veda o ADHD v slovenčine. Pre ľudí, ktorí hľadajú odpovede.",
+    "readArticles": "Čítať články",
+    "aboutProject": "O projekte",
     "latestArticles": "Najnovšie články",
     "allArticles": "Všetky články",
-    "readMore": "Čítať ďalej"
+    "readMore": "Čítať ďalej",
+
+    "stats": {
+      "diagnoses": "úspešných diagnóz cez komunitu",
+      "europeAdhd": "ľudí má ADHD v Európe",
+      "myths": "mýtov, ktoré treba zbúrať"
+    },
+    "sections": {
+      "latestArticles": "Najnovšie články",
+      "allArticles": "Všetky články",
+      "awareness": "ADHD Info & Awareness",
+      "moreArticles": "Ďalšie články"
+    },
+    "awareness": {
+      "whatIsAdhd": {
+        "title": "Čo je ADHD?",
+        "desc": "ADHD je neurovývojová porucha, ktorá pretrváva do dospelosti. Nie je to len neposlušnosť alebo lenivosť – ide o rozdielne fungujúci mozog."
+      },
+      "adults": {
+        "title": "ADHD u dospelých",
+        "desc": "Odhaduje sa, že 4–5 % ľudí v Európe má ADHD. Väčšina z nich nikdy nedostala diagnózu a nevie, prečo im niektoré veci v ich živote nejdú."
+      },
+      "diagnosis": {
+        "title": "Diagnóza & liečba",
+        "desc": "Správna diagnóza môže zmeniť život. Na Slovensku je cesta k diagnóze náročná, ale možná. Pomôžeme ti zorientovať sa."
+      },
+      "myths": {
+        "title": "Mýty o ADHD",
+        "desc": "Majú to len deti. Stačí sa viac snažiť. To je len výhovorka. Tieto mýty škodia – a my ich búrame jeden po druhom."
+      },
+      "month": "ADHD Europe · Október je ADHD Awareness Month",
+      "theme": "2025 téma: The Many Faces of ADHD →"
+    },
+    "footer": {
+      "tagline": "Neurodiverzita · Osveta · Slovensko",
+      "copyright": "© 2026 ADHD Slovakia · Všetky práva vyhradené"
+    }
   },
+
   "Articles": {
+    "badge": "Všetky články",
     "title": "Články o ADHD",
-    "label": "Všetky články",
     "description": "Veda, skúsenosti a praktické informácie v slovenčine.",
     "empty": "Zatiaľ žiadne články. Čoskoro!",
+    "footer": "© 2026 ADHD Slovakia",
+    "label": "Všetky články",
     "back": "Späť na články",
     "all": "Všetky články"
+  },
+
+  "AdhdInfo": {
+    "badge": "Informácie",
+    "title": "Informácie o ADHD",
+    "description": "Všetky informácie na jednom mieste",
+    "guideTitle": "Sprievodca ADHD",
+    "guideDescription": "Vyberte si tému, ktorá vás zaujíma, a kliknutím zobrazte podrobnejšie informácie.",
+    "footer": "© 2026 ADHD Slovakia"
+  },
+
+  "Contact": {
+    "badge": "Kontakt",
+    "title": "Napíšte nám",
+    "description": "Máte otázku, chcete zdieľať svoj príbeh alebo spolupracovať? Ozvite sa – každá správa sa počíta.",
+    "email": {
+      "desc": "Pre všeobecné otázky a spoluprácu"
+    },
+    "instagram": {
+      "desc": "Sledujte nás pre každodenný obsah"
+    },
+    "facebook": {
+      "desc": "Sledujte nás na našej Facebook stránke"
+    },
+    "tiktok": {
+      "desc": "Sledujte nás na TikToku"
+    },
+    "note": "Ak hľadáte pomoc s diagnózou alebo potrebujete poradiť, kde sa obrátiť, napíšte nám. Pokúsime sa pomôcť alebo vás nasmerovať na správneho odborníka.",
+    "footer": "© 2026 ADHD Slovakia"
+  },
+
+  "About": {
+    "badge": "O projekte",
+    "title": "Prečo vzniklo",
+    "titleHighlight": "ADHD Slovakia",
+    "paragraphs": {
+      "one": "Celý život som hľadal odpovede. Niečo nebolo v poriadku, vedel som to, ale nikto mi nevedel povedať čo. Nie škola, nie lekári, nie systém. Odpoveď som nakoniec našiel vďaka zahraničným tvorcom obsahu, ktorí otvorene hovorili o ADHD u dospelých. Bol to zlom.",
+      "two": "Vtedy mi došlo: na Slovensku takýto obsah jednoducho neexistuje. Dospelí s ADHD tu nemajú kde hľadať informácie v slovenčine, odborníkov je málo a mýtus, že „ADHD majú len deti“, je stále živý – a to aj medzi zdravotníkmi.",
+      "three": "ADHD Slovakia som založil preto, aby som pomohol ľuďom nájsť odpovede skôr ako ja. Píšem články založené na vedeckých zdrojoch, pomáham ľuďom zorientovať sa v systéme a bojujem za práva dospelých pacientov s ADHD na Slovensku.",
+      "four": "Vďaka tejto komunite sa už podarilo úspešne diagnostikovať viac ako 10 dospelých pacientov, ktorým diagnózu potvrdil odborník. Každý z nich prežil podobný moment ako ja – konečne dostali odpoveď."
+    },
+    "missionTitle": "Čo robíme",
+    "mission": {
+      "content": {
+        "title": "Obsah a články",
+        "desc": "Píšeme o ADHD na základe vedeckých a medicínskych zdrojov v slovenčine, zrozumiteľne."
+      },
+      "myths": {
+        "title": "Búranie mýtov",
+        "desc": "Bojujeme proti zastaraným predstavám o ADHD, že je to len detská diagnóza alebo výhovorka."
+      },
+      "diagnosis": {
+        "title": "Pomoc s diagnózou",
+        "desc": "Pomáhame ľuďom zorientovať sa, kde hľadať odborníka, čo očakávať a ako sa pripraviť."
+      },
+      "advocacy": {
+        "title": "Advokácia",
+        "desc": "Presadzujeme práva dospelých pacientov vrátane preplácania liekov zdravotnými poisťovňami."
+      }
+    },
+    "international": "Medzinárodná spolupráca",
+    "internationalText": "ADHD Slovakia je v procese stávania sa členom ADHD Europe – strešnej organizácie pre všetky ADHD organizácie v Európe. Zároveň pripravujeme oficiálnu registráciu ako nezisková organizácia.",
+    "footer": "© 2026 ADHD Slovakia"
+  },
+
+  "Test": {
+    "badge": "Diagnostická metrika DIVA (Indikatívny screening)",
+    "title": "Test symptómov ADHD u dospelých",
+    "completed": "Dokončené",
+    "question": "Otázka {current} z {total}",
+    "done": "{percent}% hotovo",
+    "section": "Sekcia: {category}",
+    "inattention": "Nepozornosť",
+    "hyperactivity": "Hyperaktivita",
+    "previous": "← Predchádzajúca otázka",
+    "scale": "Stupnica: 0 (Nikdy) až 2 (Vážne)",
+    "currentScore": "Aktuálny stav bodov",
+    "points": "{score} / 18 b.",
+    "threshold": "Hranica klinického podozrenia je dosiahnutie ≥ 4 bodov v ktorejkoľvek sekcii.",
+    "answers": {
+      "never": {
+        "label": "Nikdy / zriedka",
+        "sub": "0 bodov"
+      },
+      "sometimes": {
+        "label": "Niekedy / stredne",
+        "sub": "1 bod"
+      },
+      "often": {
+        "label": "Často / vážne",
+        "sub": "2 body"
+      }
+    },
+    "result": {
+      "incomplete": "Test nie je dokončený",
+      "answered": "Odpovedané {answered}/{total}",
+      "positive": "Pozitívny screening",
+      "positiveText": "Dosiahli ste vyššie skóre v kategórii {categories}. Toto slúži výhradne ako indikatívne vodítko. Odporúčame výsledky konzultovať s klinickým psychológom alebo psychiatrom.",
+      "negative": "Negatívny screening",
+      "negativeText": "Vaše skóre je momentálne pod prahom pre indikatívne podozrenie na ADHD u dospelých.",
+      "sectionA": "Sekcia A: Nepozornosť",
+      "sectionB": "Sekcia B: Impulzivita / Hyperaktivita",
+      "inattentionPositive": "Skóre indikuje prejavy nepozornosti",
+      "hyperactivityPositive": "Skóre indikuje prejavy hyperaktivity",
+      "normal": "V normatívnom rozmedzí",
+      "diagnosis": "Ako postupovať pri diagnostike? →",
+      "reset": "Resetovať a spustiť znova"
+    },
+    "footer": "© 2026 ADHD Slovakia · Orientačný screening"
+  },
+  "AdhdInfo": {
+  "badge": "Informácie",
+  "title": "Informácie o ADHD",
+  "description": "Všetky informácie na jednom mieste",
+  "guideTitle": "Sprievodca ADHD",
+  "guideDescription": "Vyberte si tému, ktorá vás zaujíma, a kliknutím zobrazte podrobnejšie informácie.",
+  "footer": "© 2026 ADHD Slovakia"
+}, 
+"Contact": {
+  "badge": "Kontakt",
+  "title": "Napíšte nám",
+  "description": "Kontaktujte nás — ADHD Slovakia.",
+  "intro": "Máte otázku, chcete zdieľať svoj príbeh alebo spolupracovať? Ozvite sa — každá správa sa počíta.",
+  "items": {
+    "email": {
+      "label": "Email",
+      "desc": "Pre všeobecné otázky a spoluprácu"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "desc": "Sledujte nás pre každodenný obsah"
+    },
+    "facebook": {
+      "label": "Facebook",
+      "desc": "Sledujte nás na našej Facebook stránke"
+    },
+    "tiktok": {
+      "label": "TikTok",
+      "desc": "Sledujte nás na TikToku"
+    }
+  },
+  "helpText": "Ak hľadáte pomoc s diagnózou alebo potrebujete poradiť, kde sa obrátiť, napíšte nám. Pokúsime sa pomôcť alebo vás nasmerovať na správneho odborníka.",
+  "footer": "© 2026 ADHD Slovakia"
+}, 
+"About": {
+  "badge": "O projekte",
+  "title": "O nás",
+  "description": "Kto stojí za projektom ADHD Slovakia a prečo vznikol.",
+  "headingBefore": "Prečo vzniklo",
+  "story": {
+    "p1": "Celý život som hľadal odpovede. Niečo nebolo v poriadku, vedel som to, ale nikto mi nevedel povedať čo. Nie škola, nie lekári, nie systém. Odpoveď som nakoniec našiel vďaka zahraničným tvorcom obsahu, ktorí otvorene hovorili o ADHD u dospelých. Bol to zlom.",
+    "p2": "Vtedy mi došlo: na Slovensku takýto obsah jednoducho neexistuje. Dospelí s ADHD tu nemajú kde hľadať informácie v slovenčine, odborníkov je málo a mýtus, že „ADHD majú len deti“, je stále živý, a to aj medzi zdravotníkmi.",
+    "p3": "ADHD Slovakia som založil preto, aby som pomohol ľuďom nájsť odpovede skôr ako ja. Píšem články založené na vedeckých zdrojoch, pomáham ľuďom zorientovať sa v systéme a bojujem za práva dospelých pacientov s ADHD na Slovensku.",
+    "p4": "Vďaka tejto komunite sa už podarilo úspešne diagnostikovať viac ako 10 dospelých pacientov, ktorým diagnózu potvrdil odborník. Každý z nich prežil podobný moment ako ja – konečne dostali odpoveď."
+  },
+  "whatWeDo": "Čo robíme",
+  "cards": {
+    "content": {
+      "title": "Obsah a články",
+      "desc": "Píšeme o ADHD na základe vedeckých a medicínskych zdrojov v slovenčine, zrozumiteľne."
+    },
+    "myths": {
+      "title": "Búranie mýtov",
+      "desc": "Bojujeme proti zastaraným predstavám o ADHD, že je to len detská diagnóza alebo výhovorka."
+    },
+    "diagnosis": {
+      "title": "Pomoc s diagnózou",
+      "desc": "Pomáhame ľuďom zorientovať sa, kde hľadať odborníka, čo očakávať a ako sa pripraviť."
+    },
+    "advocacy": {
+      "title": "Advokácia",
+      "desc": "Presadzujeme práva dospelých pacientov vrátane preplácania liekov zdravotnými poisťovňami."
+    }
+  },
+  "international": {
+    "title": "Medzinárodná spolupráca",
+    "beforeLink": "ADHD Slovakia je v procese stávania sa členom",
+    "afterLink": "— strešnej organizácie pre všetky ADHD organizácie v Európe. Zároveň pripravujeme oficiálnu registráciu ako nezisková organizácia."
+  },
+  "footer": "© 2026 ADHD Slovakia"
+}, 
+"Test": {
+  "badge": "Diagnostická metrika DIVA (Indikatívny screening)",
+  "title": "Test symptómov ADHD u dospelých",
+  "completed": "Dokončené",
+  "questionProgress": "Otázka {current} z {total}",
+  "done": "hotovo",
+  "section": "Sekcia",
+  "previous": "Predchádzajúca otázka",
+  "scale": "Stupnica: 0 (Nikdy) až 2 (Vážne)",
+  "currentScore": "Aktuálny stav bodov",
+  "pointsShort": "b.",
+  "threshold": "Hranica klinického podozrenia je dosiahnutie",
+  "thresholdEnd": "v ktorejkoľvek sekcii.",
+  "resultSectionA": "Sekcia A: Nepozornosť",
+  "resultSectionB": "Sekcia B: Impulzivita / Hyperaktivita",
+  "diagnosisLink": "Ako postupovať pri diagnostike?",
+  "reset": "Resetovať a spustiť znova",
+  "categories": {
+    "inattention": "Nepozornosť",
+    "hyperactivity": "Impulzivita / Hyperaktivita",
+    "inattentionLower": "nepozornosť",
+    "hyperactivityLower": "impulzivita/hyperaktivita"
+  },
+  "answers": {
+    "never": "Nikdy / zriedka",
+    "sometimes": "Niekedy / stredne",
+    "often": "Často / vážne",
+    "zero": "0 bodov",
+    "one": "1 bod",
+    "two": "2 body"
+  },
+  "resultScores": {
+    "inattentionPositive": "Skóre indikuje prejavy nepozornosti",
+    "hyperactivityPositive": "Skóre indikuje prejavy hyperaktivity",
+    "normalRange": "V normatívnom rozmedzí"
+  },
+  "results": {
+    "incomplete": {
+      "title": "Test nie je dokončený",
+      "text": "Odpovedané {answered}/{total}"
+    },
+    "positive": {
+      "title": "Pozitívny screening",
+      "text": "Dosiahli ste vyššie skóre v kategórii {categories}. Toto slúži výhradne ako indikatívne vodítko. Odporúčame výsledky konzultovať s klinickým psychológom alebo psychiatrom."
+    },
+    "negative": {
+      "title": "Negatívny screening",
+      "text": "Vaše skóre je momentálne pod prahom pre indikatívne podozrenie na ADHD u dospelých."
+    }
+  },
+  "questions": {
+    "A1": "Nedokážete udržať pozornosť na úlohy, ktoré vyžadujú dlhú koncentráciu?",
+    "A2": "Často zabúdate na denne potrebné veci (kľúče, peňaženku, telefón)?",
+    "A3": "Keď niekto s vami hovorí, často ste myšlienkami inde a nepočujete celú vetu?",
+    "A4": "Máte problémy s organizáciou úloh a časom — často nestíhate termíny?",
+    "A5": "Vyhýbate sa úlohám, ktoré vyžadujú dlhú mentálnu námahu?",
+    "A6": "Strácate veci potrebné pre činnosti (náradie, dokumenty, telefón)?",
+    "A7": "Bývate rušení vonkajšími podnetmi, ktoré vás odvádzajú od úlohy?",
+    "A8": "Zabúdate na dohodnuté schôdzky alebo termíny?",
+    "A9": "Máte problémy s dokončením detailov — začnete veľa vecí, ale dokončíte málo?",
+    "B1": "Často hýbete rukami/nohami alebo neposedíte pokojne?",
+    "B2": "Cítite nepohodu, keď musíte sedieť dlhší čas na jednom mieste?",
+    "B3": "Často začnete odpovedať predtým, než niekto dokončí otázku?",
+    "B4": "Máte problémy s čakaním na rad — napríklad v rade alebo pri rozhovore?",
+    "B5": "Často prerušujete iných alebo sa vnášate do cudzích rozhovorov?",
+    "B6": "Robíte veci impulzívne, bez premýšľania o dôsledkoch?",
+    "B7": "Máte pocit, že vaša myseľ je ako „motor, ktorý nikdy nezastaví“?",
+    "B8": "Často hovoríte príliš veľa alebo veľmi rýchlo?",
+    "B9": "Hľadáte silné podnety (extrémne športy, hry), pretože bežné veci vás nudia?"
+  },
+  "examples": {
+    "A1": "napr. čítanie dokumentov, vyplňovanie formulárov",
+    "B2": "napr. na poradách, v kine, v doprave",
+    "B6": "náhle výdavky, riskantné jazdenie"
+  },
+  "footer": "© 2026 ADHD Slovakia · Orientačný screening"
+}, 
+"DivaTest": {
+  "badge": "ADHD test online",
+  "title": "Orientačný ADHD test",
+  "description": "Zistite, či vaše symptómy nepozornosti, impulzivity alebo hyperaktivity zodpovedajú kritériám pre dospelých podľa klasifikácie",
+  "duration": "Doba: cca 3 minúty",
+  "questions": "18 otázok (DIVA-5)",
+  "button": "Spustiť ADHD test"
+}, 
+
+"AdhdInfoGrid": {
+  "sections": {
+    "whatIsAdhd": {
+      "title": "Čo je ADHD?",
+      "content": "ADHD, alebo porucha pozornosti s hyperaktivitou, je neurovývojová porucha charakterizovaná pretrvávajúcimi vzorcami nepozornosti, hyperaktivity a impulzivity, ktoré narúšajú každodenné fungovanie. Tieto symptómy sa zvyčajne objavujú v detstve a môžu pretrvávať do dospelosti.\n\nNejde o výhovorku ani o výsledok zlej výchovy — je to rozdielne fungujúci mozog s preukázateľnými neurologickými rozdielmi."
+    },
+    "symptoms": {
+      "title": "Príznaky ADHD",
+      "content": "Príznaky ADHD sa delia do dvoch hlavných kategórií:\n\nNepozornosť:\n• Ťažkosti so sústredením na úlohy\n• Časová slepota — neschopnosť odhadnúť čas\n• Chronická prokrastinácia\n• Oslabená pracovná pamäť\n• Hyperfokus na zaujímavé témy\n\nHyperaktivita a impulzívnosť:\n• Vnútorný nepokoj a neschopnosť vydržať v pokoji\n• Skákanie do reči, unáhlené rozhodnutia\n• Emocionálna dysregulácia — rýchle a intenzívne emócie"
+    },
+    "children": {
+      "title": "ADHD u detí",
+      "content": "U detí je ADHD najviditeľnejšie navonok — v správaní, motorike a sociálnych interakciách. Nie je to prejav nevychovanosti ani nízkej inteligencie.\n\nTypické prejavy u detí:\n• Neustály pohyb, neschopnosť vydržať sedieť\n• Impulzívne konanie bez domyslenia následkov\n• Zabúdanie na pomôcky, povinnosti\n• Ťažkosti v kolektíve kvôli emocionálnym reakciám\n\nKľúčom je pochopenie a pevná, láskyplná štruktúra — nie trestanie."
+    },
+    "adults": {
+      "title": "ADHD u dospelých",
+      "content": "ADHD nezmizne po dospievaní. Mnohí dospelí sú diagnostikovaní až keď začnú narážať na problémy v práci, vzťahoch alebo organizácii života.\n\nU dospelých sa hyperaktivita často transformuje do vnútorného nepokoja. Typické problémy:\n• Chronické meškanie a nedodržiavanie termínov\n• Ťažkosti s udržaním práce alebo vzťahov\n• Pocit, že „niečo nie je v poriadku“ celý život\n• Nízke sebavedomie po rokoch neúspechov"
+    },
+    "causes": {
+      "title": "Príčiny ADHD",
+      "content": "ADHD má prevažne genetický základ — miera dedičnosti je viac ako 70%. Nie je spôsobené zlou výchovou, cukrom ani obrazovkami.\n\nBiologické príčiny:\n• Genetika — ak má ADHD rodič, riziko u dieťaťa výrazne stúpa\n• Odlišná dostupnosť dopamínu a noradrenalínu v mozgu\n• Oneskorené dozrievanie prefrontálnej kôry\n\nRizikové faktory:\n• Fajčenie alebo alkohol počas tehotenstva\n• Nízka pôrodná hmotnosť, predčasný pôrod\n• Vystavenie ťažkým kovom v ranom detstve"
+    },
+    "diagnosis": {
+      "title": "Diagnostika ADHD",
+      "content": "Diagnostika ADHD je komplexný proces — neexistuje jeden test ani odber krvi. Je postavená na dôkladnom klinickom a psychologickom posúdení.\n\nČo diagnostika zahŕňa:\n• Podrobná anamnéza od detstva\n• Štandardizované dotazníky a hodnotiace škály\n• Psychologické testovanie kognitívnych funkcií\n• Vylúčenie iných príčin (úzkosť, depresia, trauma)\n\nNa Slovensku diagnostiku vykonáva psychiater alebo klinický psychológ. Cesta k diagnóze môže byť dlhá — odborníkov je málo."
+    },
+    "treatment": {
+      "title": "Liečba a terapia",
+      "content": "Najefektívnejší prístup kombinuje niekoľko zložiek:\n\nLieky (predpisuje psychiater):\n• Stimulanty (metylfenidát, lisdexamfetamín) — zvyšujú dostupnosť dopamínu\n• Nestimulačné lieky (atomoxetín) — v prípadoch, keď stimulanty nezaberajú\n\nTerapia:\n• Kognitívno-behaviorálna terapia (KBT)\n• Koučing zameraný na ADHD\n• Nácvik exekutívnych zručností\n\nŽivotný štýl:\n• Pravidelný pohyb, spánková hygiena, štruktúrovaná rutina"
+    },
+    "school": {
+      "title": "ADHD v škole",
+      "content": "Školské prostredie je pre deti s ADHD veľkou výzvou — vyžaduje presne tie zručnosti, ktoré sú pre ne najťažšie.\n\nČasté problémy:\n• Neschopnosť filtrovať rušivé podnety\n• Zabúdanie pomôcok a domácich úloh\n• Impulzívne správanie v kolektíve\n\nČo pomáha:\n• Sedenie vpredu, ďalej od okien\n• Delenie úloh na menšie kroky\n• Povolenie pohybu (vstať, zotrieť tabuľu)\n• Ocenenie úsilia, nie len výsledku"
+    },
+    "work": {
+      "title": "ADHD v práci",
+      "content": "Dospelí s ADHD môžu byť mimoriadne produktívni — ak sa ocitnú v správnom prostredí.\n\nVýzvy:\n• Prokrastinácia pri nezaujímavých úlohách\n• Zabúdanie na ústne dohody\n• Ťažkosti s open-office prostredím\n• Impulzívne reakcie na kritiku\n\nSilné stránky:\n• Hyperfokus pri zaujímavých projektoch\n• Kreativita a nekonvenčné riešenia\n• Výkon v krízových situáciách\n\nPomáha: flexibilný čas, home office, digitálne plánovače, slúchadlá s ANC."
+    },
+    "relationships": {
+      "title": "Vzťahy a ADHD",
+      "content": "ADHD ovplyvňuje aj najbližšie vzťahy — partnerské, rodinné, priateľské.\n\nČasté problémy:\n• Zabúdanie na sľuby a dohody\n• Zdanlivé nepočúvanie počas rozhovoru\n• Emocionálna intenzita a citlivosť na kritiku (RSD)\n• Nerovnomerné rozdelenie zodpovednosti v domácnosti\n\nČo pomáha:\n• Písomné dohody namiesto ústnych\n• Zdieľané digitálne kalendáre\n• Pochopenie — zabúdanie nie je nezáujem\n• Párová terapia s odborníkom na ADHD"
+    },
+    "lifestyle": {
+      "title": "Životný štýl",
+      "content": "Správny životný štýl môže pomôcť zmierniť niektoré prejavy ADHD.\n\nPohyb:\n• Môže podporovať reguláciu nálady a pozornosti\n• Môže pomôcť znížiť nepokoj a zlepšiť koncentráciu\n• Dôležitá je pravidelnosť a individuálna tolerancia\n\nSpánok:\n• Nedostatok spánku môže zhoršovať symptómy\n• Pomáha pravidelný čas spánku aj cez víkendy\n• Užitočné môže byť obmedzenie obrazoviek pred spaním\n\nStrava:\n• Vyvážená strava s dostatkom bielkovín a vlákniny\n• Obmedzenie nadmerného príjmu jednoduchých cukrov\n• Pestrá strava s dostatkom omega-3 mastných kyselín\n\nRutina:\n• Pevná štruktúra dňa môže znižovať kognitívnu záťaž\n• Pomáhajú vizuálne plánovače a pripomienky"
+    },
+    "faq": {
+      "title": "FAQ",
+      "content": "Najčastejšie otázky o ADHD:\n\nJe ADHD skutočná diagnóza?\nÁno. ADHD je vedecky uznaná neurovývinová porucha.\n\nDá sa ADHD vyliečiť?\nADHD je neurovývinová porucha, ktorá môže pretrvávať do dospelosti. Liečba a podpora môžu výrazne zlepšiť fungovanie a kvalitu života.\n\nMôže mať ADHD aj dospelý?\nÁno. Mnoho ľudí je diagnostikovaných až v dospelosti.\n\nJe ADHD spôsobené zlou výchovou?\nNie. ADHD má významnú genetickú a neurobiologickú zložku.\n\nMôžu lieky pomôcť?\nU mnohých ľudí áno. O vhodnosti liečby rozhoduje lekár na základe individuálneho posúdenia."
+    }
+  },
+  "cta": {
+    "question": "Nenašli ste odpoveď na svoju otázku?",
+    "button": "Položiť otázku"
   }
+  } ,
+  "categories": {
+  "science": "Veda",
+  "diagnosis": "Diagnostika",
+  "research": "Výskum",
+  "interviews": "Rozhovory",
+  "medications": "Lieky"
+}, 
+"Categories": {
+  "diagnosis": "Diagnóza",
+  "myths": "Mýty",
+  "medications": "Lieky",
+  "research": "Výskum",
+  "personal-story": "Osobný príbeh",
+  "science": "Veda",
+  "lifestyle": "Životný štýl",
+  "interviews": "Rozhovory",
+  "sources": "Zdroje"
+}
+
 }

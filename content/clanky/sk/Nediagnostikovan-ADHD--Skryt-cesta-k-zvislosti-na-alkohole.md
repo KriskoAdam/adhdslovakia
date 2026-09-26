@@ -5,6 +5,8 @@ category: "research"
 excerpt: Skryté prepojenie medzi nediagnostikovaným ADHD a rozvojom závislosti na alkohole v dospelosti. Ako chronický vnútorný nepokoj a nedostatok dopamínu v neurodivergentnom mozgu vedú k nebezpečnému fenoménu "samoliečby".
 readTime: ' 5 min čítania'
 coverImage: /images/IMG_4463.webp
+translationKey: "undiagnosed-adhd-alcohol-addiction"
+
 ---
 
 Predstava o ADHD (porucha pozornosti s hyperaktivitou) sa v spoločnosti často obmedzuje na stereotyp neposedného dieťaťa v školskej lavici. Realita je však oveľa komplexnejšia. Mnoho ľudí s touto formou neurodiverzity prejde do dospelosti bez toho, aby vôbec tušili, že ich mozog funguje inak.
