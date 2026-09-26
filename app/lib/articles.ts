@@ -5,7 +5,9 @@ import { remark } from "remark";
 import html from "remark-html";
 import remarkGfm from "remark-gfm";
 
-const articlesDir = path.join(process.cwd(), "content/clanky");
+export type Locale = "sk" | "en";
+
+const articlesBaseDir = path.join(process.cwd(), "content/clanky");
 
 export type ArticleMeta = {
   slug: string;
@@ -24,36 +26,43 @@ export type Article = ArticleMeta & {
 function parseArticleDate(dateStr: string): number {
   if (!dateStr) return 0;
 
-  // Formát YYYY-MM-DD
   if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
     return new Date(dateStr).getTime();
   }
 
-  // Formát DD-MM-YYYY
   if (/^\d{2}-\d{2}-\d{4}$/.test(dateStr)) {
     const [day, month, year] = dateStr.split("-").map(Number);
     return new Date(year, month - 1, day).getTime();
   }
 
-  // Formát DD.MM.YYYY
   if (/^\d{1,2}\.\d{1,2}\.\d{4}$/.test(dateStr)) {
     const [day, month, year] = dateStr.split(".").map(Number);
     return new Date(year, month - 1, day).getTime();
   }
 
-  // Fallback - skús natívny parser
   const fallback = new Date(dateStr).getTime();
   return isNaN(fallback) ? 0 : fallback;
 }
 
-export function getAllArticles(): ArticleMeta[] {
+function getArticlesDir(locale: Locale) {
+  return path.join(articlesBaseDir, locale);
+}
+
+export function getAllArticles(locale: Locale): ArticleMeta[] {
+  const articlesDir = getArticlesDir(locale);
+
   if (!fs.existsSync(articlesDir)) return [];
-  const files = fs.readdirSync(articlesDir).filter((f) => f.endsWith(".md"));
+
+  const files = fs
+    .readdirSync(articlesDir)
+    .filter((f) => f.endsWith(".md"));
+
   const articles = files.map((filename) => {
     const slug = filename.replace(/\.md$/, "");
     const fullPath = path.join(articlesDir, filename);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data } = matter(fileContents);
+
     return {
       slug,
       title: data.title ?? "",
@@ -70,12 +79,23 @@ export function getAllArticles(): ArticleMeta[] {
   );
 }
 
-export async function getArticleBySlug(slug: string): Promise<Article | null> {
+export async function getArticleBySlug(
+  locale: Locale,
+  slug: string
+): Promise<Article | null> {
+  const articlesDir = getArticlesDir(locale);
   const fullPath = path.join(articlesDir, `${slug}.md`);
+
   if (!fs.existsSync(fullPath)) return null;
+
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
-  const processed = await remark().use(remarkGfm).use(html, { sanitize: false }).process(content);
+
+  const processed = await remark()
+    .use(remarkGfm)
+    .use(html, { sanitize: false })
+    .process(content);
+
   const contentHtml = processed.toString();
 
   return {

@@ -1,0 +1,22 @@
+{
+  "Navigation": {
+    "home": "Domov",
+    "articles": "Články",
+    "adhdInfo": "Informácie o ADHD",
+    "about": "O nás",
+    "contact": "Kontakt"
+  },
+  "Home": {
+    "latestArticles": "Najnovšie články",
+    "allArticles": "Všetky články",
+    "readMore": "Čítať ďalej"
+  },
+  "Articles": {
+    "title": "Články o ADHD",
+    "label": "Všetky články",
+    "description": "Veda, skúsenosti a praktické informácie v slovenčine.",
+    "empty": "Zatiaľ žiadne články. Čoskoro!",
+    "back": "Späť na články",
+    "all": "Všetky články"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "articles": "Articles",
+    "adhdInfo": "ADHD Information",
+    "about": "About us",
+    "contact": "Contact"
+  },
+  "Home": {
+    "latestArticles": "Latest articles",
+    "allArticles": "All articles",
+    "readMore": "Read more"
+  },
+  "Articles": {
+    "title": "ADHD Articles",
+    "label": "All articles",
+    "description": "Science, experiences and practical information about ADHD.",
+    "empty": "No articles yet. Coming soon!",
+    "back": "Back to articles",
+    "all": "All articles"
+  }
+}

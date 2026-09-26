@@ -1,94 +1,50 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname, useRouter } from "../../i18n/navigation";
 import MiniSelfCheckMobile from "./MiniSelfCheckmobile";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { label: "Domov", href: "/" },
-  { label: "Články", href: "/clanky" },
-  { label: "Informácie o ADHD", href: "/informacie-o-adhd" },
-  { label: "O nás", href: "/o-nas" },
-  { label: "Kontakt", href: "/kontakt" },
-];
+  { key: "home", href: "/" },
+  { key: "articles", href: "/clanky" },
+  { key: "adhdInfo", href: "/informacie-o-adhd" },
+  { key: "about", href: "/o-nas" },
+  { key: "contact", href: "/kontakt" },
+] as const;
 
 const languages = [
-  { label: "Slovenčina", code: "sk" },
-  { label: "English", code: "en" },
-  { label: "Čeština", code: "cs" },
-  { label: "Maďarčina", code: "hu" },
-  { label: "Nemčina", code: "de" },
-  { label: "Poľština", code: "pl" },
+  { label: "Slovenčina", code: "sk" as const },
+  { label: "English", code: "en" as const },
 ];
 
 export default function Nav() {
+  const t = useTranslations("Navigation");
+  const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [testOpen, setTestOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("Vyberte jazyk");
+
+  const currentLanguage =
+    languages.find((lang) => lang.code === locale)?.label ?? "Slovenčina";
 
   useEffect(() => {
-    const getCookie = (name: string) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop()?.split(";").shift();
-    };
+    document.body.style.overflow = testOpen ? "hidden" : "unset";
 
-    const googtrans = getCookie("googtrans");
-    if (googtrans) {
-      const langCode = googtrans.split("/").pop();
-      const foundLang = languages.find((l) => l.code === langCode);
-      if (foundLang) {
-        setCurrentLang(foundLang.label);
-        return;
-      }
-    }
-    setCurrentLang("Vyberte jazyk");
-  }, []);
-
-  useEffect(() => {
-    const updateLangFromHtml = () => {
-      const htmlLang = document.documentElement.getAttribute("lang") || "sk";
-      const code = htmlLang.split("-")[0];
-      const foundLang = languages.find((l) => l.code === code);
-      if (foundLang) {
-        setCurrentLang(foundLang.label);
-      }
-    };
-
-    const observer = new MutationObserver(updateLangFromHtml);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["lang"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (testOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [testOpen]);
 
-  const changeLanguage = (langCode: string) => {
-    if (langCode === "sk") {
-      const hostname = window.location.hostname;
-      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + hostname;
-      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + hostname;
-    } else {
-      document.cookie = `googtrans=/sk/${langCode}; path=/;`;
-      document.cookie = `googtrans=/sk/${langCode}; path=/; domain=${window.location.hostname};`;
-    }
-    window.location.reload();
+  const changeLanguage = (langCode: "sk" | "en") => {
+    setLangOpen(false);
+    setMenuOpen(false);
+
+    router.replace(pathname, { locale: langCode });
   };
 
   const openTest = () => {
@@ -103,21 +59,26 @@ export default function Nav() {
   return (
     <>
       <nav className="sticky top-0 z-50 flex items-center justify-between px-4 lg:px-8 py-4 border-b border-[var(--border-color)] bg-[var(--bg-primary)]/92 backdrop-blur-md w-full">
+
         {/* Logo */}
-        <a
+        <Link
           href="/"
           className="font-display text-xl font-extrabold tracking-tight shrink-0 text-[var(--text-primary)]"
         >
           ADHD<span className="text-green-400">.</span>Slovakia
-        </a>
+        </Link>
 
-        {/* Hlavné menu pre PC */}
+        {/* Desktop menu */}
         <div className="hidden lg:flex gap-6 xl:gap-8 text-[13px]">
           {navLinks.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(item.href);
+
             return (
-              <a
-                key={item.label}
+              <Link
+                key={item.key}
                 href={item.href}
                 className={`transition-colors duration-200 font-semibold whitespace-nowrap ${
                   isActive
@@ -125,39 +86,38 @@ export default function Nav() {
                     : "text-[var(--text-secondary)] hover:text-green-400"
                 }`}
               >
-                {item.label}
-              </a>
+                {t(item.key)}
+              </Link>
             );
           })}
         </div>
 
-        {/* Pravá strana: Theme + Jazyk (iba PC) + Hamburger (mobil/tablet) */}
+        {/* Right side */}
         <div className="flex items-center gap-3 shrink-0">
 
-          {/* THEME TOGGLE — viditeľný vždy */}
+          {/* Theme */}
           <ThemeToggle />
 
-          {/* DESKTOP DIZAJN JAZYKOV */}
+          {/* Language selector */}
           <div className="hidden lg:block relative shrink-0">
             <button
               onClick={() => setLangOpen(!langOpen)}
               className="bg-[var(--bg-secondary)] border border-[#4ade80] hover:border-green-300 rounded-[6px] py-2 px-3 text-[13px] font-medium text-[var(--text-secondary)] w-[135px] text-center transition-all cursor-pointer"
             >
-              {currentLang}
+              {currentLanguage}
             </button>
-
-            <div id="google_translate_element" className="hidden" />
 
             {langOpen && (
               <div className="absolute top-full mt-1.5 right-0 w-[135px] bg-[var(--bg-secondary)] border border-[#4ade80] rounded-[6px] overflow-hidden z-[100] flex flex-col shadow-xl">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
-                    onClick={() => {
-                      changeLanguage(lang.code);
-                      setLangOpen(false);
-                    }}
-                    className="w-full text-left px-4 py-2.5 text-[13px] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] hover:text-[#4ade80] transition-colors bg-transparent border-none cursor-pointer"
+                    onClick={() => changeLanguage(lang.code)}
+                    className={`w-full text-left px-4 py-2.5 text-[13px] transition-colors bg-transparent border-none cursor-pointer ${
+                      locale === lang.code
+                        ? "text-green-400"
+                        : "text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] hover:text-green-400"
+                    }`}
                   >
                     {lang.label}
                   </button>
@@ -166,7 +126,7 @@ export default function Nav() {
             )}
           </div>
 
-          {/* Hamburger tlačidlo */}
+          {/* Hamburger */}
           <button
             className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer select-none"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -177,11 +137,13 @@ export default function Nav() {
                 menuOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
+
             <span
               className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${
                 menuOpen ? "opacity-0" : ""
               }`}
             />
+
             <span
               className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${
                 menuOpen ? "-rotate-45 -translate-y-2" : ""
@@ -190,17 +152,21 @@ export default function Nav() {
           </button>
         </div>
 
-        {/* Mobilné a tabletové rozbaľovacie Menu */}
+        {/* Mobile menu */}
         <div
           className={`absolute top-full left-0 right-0 bg-[var(--bg-primary)] border-b border-[var(--border-color)] flex-col lg:hidden max-h-[85vh] overflow-y-auto ${
             menuOpen ? "flex" : "hidden"
           }`}
         >
           {navLinks.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(item.href);
+
             return (
-              <a
-                key={item.label}
+              <Link
+                key={item.key}
                 href={item.href}
                 className={`px-6 py-4 text-[14px] font-semibold border-t border-[var(--border-color)] transition-colors ${
                   isActive
@@ -209,31 +175,39 @@ export default function Nav() {
                 }`}
                 onClick={() => setMenuOpen(false)}
               >
-                {item.label}
-              </a>
+                {t(item.key)}
+              </Link>
             );
           })}
 
-          {/* ADHD Test v menu */}
+          {/* ADHD test */}
           <button
             onClick={openTest}
             className="px-6 py-4 text-[14px] font-semibold text-green-400 hover:text-green-300 border-t border-[var(--border-color)] transition-colors flex items-center gap-3 text-left cursor-pointer"
           >
             <span className="text-xl">🧠</span>
-            <span>Urobiť si ADHD test</span>
+
+            <span>
+              {locale === "sk"
+                ? "Urobiť si ADHD test"
+                : "Take the ADHD test"}
+            </span>
+
             <span className="ml-auto text-xs bg-green-400/10 px-2.5 py-1 rounded text-green-400 font-medium">
-              NOVÉ
+              {locale === "sk" ? "NOVÉ" : "NEW"}
             </span>
           </button>
 
-          {/* MOBILNÝ VÝBER JAZYKOV */}
+          {/* Mobile language selector */}
           <div className="px-6 py-5 border-t border-[var(--border-color)] bg-[var(--bg-tertiary)] flex flex-col gap-2.5">
             <span className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
-              Zmeniť jazyk / Language
+              {locale === "sk" ? "Zmeniť jazyk" : "Change language"}
             </span>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+
+            <div className="grid grid-cols-2 gap-2">
               {languages.map((lang) => {
-                const isSelected = currentLang === lang.label || (currentLang === "Vyberte jazyk" && lang.code === "sk");
+                const isSelected = locale === lang.code;
+
                 return (
                   <button
                     key={lang.code}
@@ -253,19 +227,25 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Fullscreen Modal pre mobilný/tabletový test */}
+      {/* ADHD test modal */}
       {testOpen && (
         <div className="fixed inset-0 z-[100] bg-[var(--bg-primary)] overflow-y-auto">
           <div className="min-h-screen p-4 pb-20">
+
             <div className="sticky top-0 z-10 bg-[var(--bg-primary)]/95 backdrop-blur-md border-b border-[var(--border-color)] -mx-4 px-4 py-4 flex items-center justify-between">
+
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🧠</span>
+
                 <div>
                   <h2 className="font-display text-lg font-bold text-[var(--text-primary)]">
                     ADHD Test
                   </h2>
+
                   <p className="text-[11px] text-[var(--text-muted)]">
-                    Orientácia podľa DSM-5
+                    {locale === "sk"
+                      ? "Orientácia podľa DSM-5"
+                      : "Screening based on DSM-5"}
                   </p>
                 </div>
               </div>
@@ -284,26 +264,6 @@ export default function Nav() {
           </div>
         </div>
       )}
-
-      {/* VYČISTENÉ GLOBÁLNE ŠTÝLY */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        .goog-te-banner-frame.skiptranslate, 
-        .goog-te-banner-frame, 
-        #goog-gt-tt,
-        .goog-te-banner,
-        .skiptranslate.goog-te-gadget {
-          display: none !important;
-          visibility: hidden !important;
-        }
-        body {
-          top: 0 !important;
-          position: static !important;
-        }
-      `,
-        }}
-      />
     </>
   );
 }

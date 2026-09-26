@@ -3,7 +3,7 @@ import { getAllArticles } from "./lib/articles";
 
 // Používame async, aby mal Next.js čas správne vygenerovať endpoint
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const articles = getAllArticles();
+  const articles = getAllArticles("sk");
 
   const articleUrls = articles.map((a) => {
     let finalDate = new Date(); // Fallback na dnešný dátum, ak by niečo zlyhalo

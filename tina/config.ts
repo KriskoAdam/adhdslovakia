@@ -8,6 +8,7 @@ const branch =
 
 export default defineConfig({
   branch,
+
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
 
@@ -30,6 +31,7 @@ export default defineConfig({
         label: "Články",
         path: "content/clanky",
         format: "md",
+
         fields: [
           {
             type: "string",
@@ -38,28 +40,59 @@ export default defineConfig({
             isTitle: true,
             required: true,
           },
+
           {
             type: "string",
             name: "date",
             label: "Dátum (napr. 5. júna 2025)",
             required: true,
           },
+
           {
             type: "string",
             name: "category",
             label: "Kategória",
             options: [
-              "Diagnóza",
-              "Mýty",
-              "Lieky",
-              "Výskum",
-              "Osobný príbeh",
-              "Veda",
-              "Životný štýl",
-              "Zdroje",
+              {
+                value: "diagnosis",
+                label: "Diagnóza / Diagnosis",
+              },
+              {
+                value: "myths",
+                label: "Mýty / Myths",
+              },
+              {
+                value: "medications",
+                label: "Lieky / Medications",
+              },
+              {
+                value: "research",
+                label: "Výskum / Research",
+              },
+              {
+                value: "personal-story",
+                label: "Osobný príbeh / Personal story",
+              },
+              {
+                value: "science",
+                label: "Veda / Science",
+              },
+              {
+                value: "lifestyle",
+                label: "Životný štýl / Lifestyle",
+              },
+              {
+                value: "interviews",
+                label: "Rozhovory / Interviews",
+              },
+              {
+                value: "sources",
+                label: "Zdroje / Sources",
+              },
             ],
             required: true,
           },
+
           {
             type: "string",
             name: "excerpt",
@@ -68,16 +101,19 @@ export default defineConfig({
               component: "textarea",
             },
           },
+
           {
             type: "string",
             name: "readTime",
             label: "Čas čítania (napr. 4 min čítania)",
           },
+
           {
             type: "image",
             name: "coverImage",
             label: "Titulný obrázok",
           },
+
           {
             type: "rich-text",
             name: "body",
@@ -85,8 +121,20 @@ export default defineConfig({
             isBody: true,
           },
         ],
+
         ui: {
-          router: ({ document }) => `/clanky/${document._sys.filename}`,
+          router: ({ document }) => {
+            const breadcrumbs = document._sys.breadcrumbs;
+
+            const locale = breadcrumbs[0];
+            const slug = document._sys.filename;
+
+            if (locale === "sk" || locale === "en") {
+              return `/${locale}/clanky/${slug}`;
+            }
+
+            return `/clanky/${slug}`;
+          },
         },
       },
     ],
