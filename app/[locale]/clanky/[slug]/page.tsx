@@ -134,7 +134,7 @@ if (!article) {
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
 
-          <Comments locale={locale} translationKey={article.translationKey} />
+          <Comments locale={locale} />
 
           <div className="mt-12 pt-8 border-t border-[var(--border-color)]">
             <a

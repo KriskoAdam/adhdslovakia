@@ -1,8 +1,0 @@
-{
-  "origins": [
-    "https://adhdslovakia.eu"
-  ],
-  "originsRegex": [
-    "http://localhost:[0-9]+"
-  ]
-}
