@@ -49,7 +49,7 @@ export default function KontaktPage() {
             {
               label: "TikTok",
               value: "@adhdslovakia",
-              href: "https://www.tiktok.com/@iny_mozog?_r=1&_t=ZN-96wOVFy7krW",
+              href: "https://www.tiktok.com/@adhd_slovakia",
               desc: "Sledujte nás na TikToku",
             },
           ].map((item) => (
