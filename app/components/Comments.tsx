@@ -21,7 +21,7 @@ export default function Comments({ locale }: Props) {
         emitMetadata="0"
         inputPosition="bottom"
         theme="preferred_color_scheme"
-        lang={locale}
+        lang="en"
       />
     </div>
   );
