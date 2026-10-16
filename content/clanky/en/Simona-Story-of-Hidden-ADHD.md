@@ -18,7 +18,7 @@ translationKey: "simona-hidden-adhd"
 
 **Looking back at your childhood, were there already traits or behaviours that you now clearly attribute to ADHD?**
 
->Definitely, yes. But because my ADHD is predominantly inattentive, it was not particularly noticeable when I was very young, and when it did show, it was mostly because I was dreamy. Once I started school, I struggled to focus on things that did not interest me or that moved very slowly for everyone else. On top of that, I was messy at home, very sensitive, disorganized, impatient and extremely picky with food — something that has stayed with me to this day and that I have never really managed to change 🙂 Even then, though, I was able to mask it at school through excessive perfectionism, which unfortunately clashed quite badly with actually getting tasks finished. I had many interests, but they all stopped being interesting to me the moment I realized they required a lot of time and energy. During puberty, impulsivity, a dislike of authority, rebelliousness and behaviour that was a little "over the top" were added to the mix. My parents would probably have called it cheekiness and arrogance 🙂 On top of that, nobody really talked about ADHD when I was growing up, so it never occurred to anyone, even when I was struggling.
+>Definitely, yes. But because my ADHD is predominantly inattentive, it was not particularly noticeable when I was very young, and when it did show, it was mostly because I was dreamy. Once I started school, I struggled to focus on things that did not interest me or that moved very slowly for everyone else. On top of that, I was messy at home, very sensitive, disorganized, impatient and extremely picky with food — something that has stayed with me to this day and that I have never really managed to change Even then, though, I was able to mask it at school through excessive perfectionism, which unfortunately clashed quite badly with actually getting tasks finished. I had many interests, but they all stopped being interesting to me the moment I realized they required a lot of time and energy. During puberty, impulsivity, a dislike of authority, rebelliousness and behaviour that was a little "over the top" were added to the mix. My parents would probably have called it cheekiness and arrogance On top of that, nobody really talked about ADHD when I was growing up, so it never occurred to anyone, even when I was struggling.
 
 **How did you function at school?**
 
@@ -26,7 +26,7 @@ translationKey: "simona-hidden-adhd"
 
 **Did you feel that you fit in with your classmates as a child?**
 
->It depended. As a child, I sensed that I was somehow different from other children, but not particularly strongly, and I certainly could not put it into words. I also had many friends, and that was crucial for me as a child. Gradually, however, this feeling of "not belonging" became stronger. It was not until university that I fully accepted it, and as part of my rebellious nature, I did not fit into groups all that well — but I did not mind. Being outspoken, lacking tact and having an undiplomatic way of expressing myself did not exactly help with my popularity 🙂
+>It depended. As a child, I sensed that I was somehow different from other children, but not particularly strongly, and I certainly could not put it into words. I also had many friends, and that was crucial for me as a child. Gradually, however, this feeling of "not belonging" became stronger. It was not until university that I fully accepted it, and as part of my rebellious nature, I did not fit into groups all that well — but I did not mind. Being outspoken, lacking tact and having an undiplomatic way of expressing myself did not exactly help with my popularity
 
 **What was your favourite subject at school, and which one did you dislike?**
 
@@ -44,7 +44,7 @@ translationKey: "simona-hidden-adhd"
 
 **What was that realization like? Did you feel fear, denial, or relief that everything suddenly made sense?**
 
->I felt incredibly curious. I went into what is known as hyperfocus — people with ADHD know exactly what I mean 🙂 — and started reading and watching absolutely everything I could find. Quite quickly, I discussed it with my psychiatrist and I was already on my way towards an official diagnosis. At the same time, besides curiosity, I felt something like hope. Hope that maybe I was not simply lazy, disorganized or emotionally dysregulated, but that there was something behind it that was not my fault.
+>I felt incredibly curious. I went into what is known as hyperfocus — people with ADHD know exactly what I mean — and started reading and watching absolutely everything I could find. Quite quickly, I discussed it with my psychiatrist and I was already on my way towards an official diagnosis. At the same time, besides curiosity, I felt something like hope. Hope that maybe I was not simply lazy, disorganized or emotionally dysregulated, but that there was something behind it that was not my fault.
 
 **What were your main sources of information about ADHD at the time?**
 
@@ -60,11 +60,11 @@ translationKey: "simona-hidden-adhd"
 
 **How difficult was it to get the correct diagnosis? Did you encounter prejudice, dismissal, or perhaps incorrect diagnoses such as depression or anxiety before ADHD was identified?**
 
->I am not sure whether I was incorrectly diagnosed. I suffered from anxiety before my diagnosis, and I still do, although to a much lesser extent. For me, it was not a case of ADHD medication magically making all my symptoms disappear. I wish it had, but it didn't 🙂 I did not encounter prejudice or dismissal, at least not within the professional psychiatric or psychological community. I know that I was lucky, because there are people who have had a completely different experience from mine. And unfortunately, a much worse one.
+>I am not sure whether I was incorrectly diagnosed. I suffered from anxiety before my diagnosis, and I still do, although to a much lesser extent. For me, it was not a case of ADHD medication magically making all my symptoms disappear. I wish it had, but it didn't I did not encounter prejudice or dismissal, at least not within the professional psychiatric or psychological community. I know that I was lucky, because there are people who have had a completely different experience from mine. And unfortunately, a much worse one.
 
 **What did the entire ADHD diagnostic process look like for you?**
 
->As I mentioned, I have a great psychiatrist, and she referred me to a psychological diagnostic centre where she had already sent other people and had good experiences, so I did not have to worry about figuring everything out myself. Logistically, it was also easy. The centre was only a few minutes from where I lived, so I was lucky even in that respect. The first session was a fairly long interview about my medical and personal history. I was given several questionnaires to complete, and one or two were also given to my parents. The second session involved concentration and memory testing, and I think there was something else as well, but I can no longer remember 🙂 The final session was about evaluating the questionnaires and tests, where we went through the individual results together.
+>As I mentioned, I have a great psychiatrist, and she referred me to a psychological diagnostic centre where she had already sent other people and had good experiences, so I did not have to worry about figuring everything out myself. Logistically, it was also easy. The centre was only a few minutes from where I lived, so I was lucky even in that respect. The first session was a fairly long interview about my medical and personal history. I was given several questionnaires to complete, and one or two were also given to my parents. The second session involved concentration and memory testing, and I think there was something else as well, but I can no longer remember The final session was about evaluating the questionnaires and tests, where we went through the individual results together.
 
 **Did you encounter any problems during the diagnosis or when choosing medication? For example, problems with access to treatment?**
 
@@ -82,7 +82,7 @@ translationKey: "simona-hidden-adhd"
 
 **What changed for the better after starting treatment?**
 
->I am kinder to myself and I no longer constantly criticize myself internally for things that go wrong or that I struggle with. I also have much more respect for both people close to me and strangers who are dealing with similar things, and I am more empathetic. While taking medication, I experienced what it is like to have more energy, to have the capacity to finish things, to stop putting off things I do not enjoy and, I suppose you could say, to function more like a neurotypical person 🙂 It is a shame that I cannot maintain that state because of the medication's side effects. Not everyone experiences them as strongly as I do, but there is not much I can do about that.
+>I am kinder to myself and I no longer constantly criticize myself internally for things that go wrong or that I struggle with. I also have much more respect for both people close to me and strangers who are dealing with similar things, and I am more empathetic. While taking medication, I experienced what it is like to have more energy, to have the capacity to finish things, to stop putting off things I do not enjoy and, I suppose you could say, to function more like a neurotypical person It is a shame that I cannot maintain that state because of the medication's side effects. Not everyone experiences them as strongly as I do, but there is not much I can do about that.
 
 **What tools or routines help you maintain balance the most today?**
 
@@ -90,7 +90,7 @@ translationKey: "simona-hidden-adhd"
 
 **Many people with ADHD also experience sleep disorders. Is that the case for you? Did this change after starting treatment?**
 
->Paradoxically, I do not really have problems with sleep itself. Unless we count the fact that I am a night owl, go to bed late and then struggle to get up in the morning 🙂 But I do not have problems falling asleep or waking up during the night, apart from when I was taking Livizux, which made it difficult for me to fall asleep. That is no longer an issue.
+>Paradoxically, I do not really have problems with sleep itself. Unless we count the fact that I am a night owl, go to bed late and then struggle to get up in the morning But I do not have problems falling asleep or waking up during the night, apart from when I was taking Livizux, which made it difficult for me to fall asleep. That is no longer an issue.
 
 ## Part 4: Prejudice and Change
 
@@ -104,7 +104,7 @@ translationKey: "simona-hidden-adhd"
 
 **What is the difference between your life before and after your diagnosis? What are the biggest changes you notice?**
 
->I see myself differently, I like myself more, I have more compassion for myself and I do not push myself so hard. I am trying to forgive myself. Before my diagnosis, my life was a constant, exhausting battle against myself. Feeling broken, lazy or incapable takes an incredible amount of energy. I would constantly blame myself for every failure or unfinished project. I lived under permanent stress, worrying that someone would "discover" that I could not keep up or handle things the way everyone else seemed to. But I still have to live in a world designed for neurotypical people. No diagnosis will change that. Nevertheless, we can choose environments that suit us and even jobs — although this certainly does not apply one hundred percent of the time — where we can avoid neurotypical demands such as accounting or routinely filling out spreadsheets 🙂
+>I see myself differently, I like myself more, I have more compassion for myself and I do not push myself so hard. I am trying to forgive myself. Before my diagnosis, my life was a constant, exhausting battle against myself. Feeling broken, lazy or incapable takes an incredible amount of energy. I would constantly blame myself for every failure or unfinished project. I lived under permanent stress, worrying that someone would "discover" that I could not keep up or handle things the way everyone else seemed to. But I still have to live in a world designed for neurotypical people. No diagnosis will change that. Nevertheless, we can choose environments that suit us and even jobs — although this certainly does not apply one hundred percent of the time — where we can avoid neurotypical demands such as accounting or routinely filling out spreadsheets
 
 ## Part 5: A Message to Others
 
@@ -114,7 +114,7 @@ translationKey: "simona-hidden-adhd"
 
 **There are still many half-truths and myths about ADHD around the world. How would you describe people's awareness of ADHD today?**
 
->Awareness of ADHD has improved significantly in recent years, especially thanks to social media and a more open dialogue about mental health, but we are still only halfway there. One disadvantage, however, may be that there is almost "too much information" in some circles, if that is even the right way to put it. Many people think they have ADHD because they see one-minute videos on social media listing various symptoms. This probably applies more to younger generations, who are more present on social media and therefore more influenced by its content. It regularly happens that people ten, fifteen or even twenty years younger than me tell me that they also have ADHD. When I ask whether they have an official diagnosis, I always get the same answer — "I saw it on Instagram, TikTok, etc." 🙂 Another thing that often surprises me is the glorification of the disorder and the way people talk about it as a "superpower". That is another extreme. And as I mentioned, older generations often have their own ideas that do not correspond to reality. I have retired teachers in my close family who do not recognize ADHD and claim that it is simply something made up so that stupid and lazy children do not have to study.
+>Awareness of ADHD has improved significantly in recent years, especially thanks to social media and a more open dialogue about mental health, but we are still only halfway there. One disadvantage, however, may be that there is almost "too much information" in some circles, if that is even the right way to put it. Many people think they have ADHD because they see one-minute videos on social media listing various symptoms. This probably applies more to younger generations, who are more present on social media and therefore more influenced by its content. It regularly happens that people ten, fifteen or even twenty years younger than me tell me that they also have ADHD. When I ask whether they have an official diagnosis, I always get the same answer — "I saw it on Instagram, TikTok, etc." Another thing that often surprises me is the glorification of the disorder and the way people talk about it as a "superpower". That is another extreme. And as I mentioned, older generations often have their own ideas that do not correspond to reality. I have retired teachers in my close family who do not recognize ADHD and claim that it is simply something made up so that stupid and lazy children do not have to study.
 
 **If you could tell your younger self one thing, what would it be?**
 

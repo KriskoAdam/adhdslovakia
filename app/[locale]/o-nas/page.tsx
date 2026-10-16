@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "../../components/Nav";
 import { getTranslations } from "next-intl/server";
+import SiteIcon, { type SiteIconName } from "../../components/SiteIcon";
 
 export async function generateMetadata({
   params,
@@ -15,8 +16,9 @@ export async function generateMetadata({
   });
 
   return {
-    title: `${t("title")} – ADHD Slovakia`,
+    title: t("title"),
     description: t("description"),
+    alternates: { canonical: `/${locale}/o-nas`, languages: { sk: "/sk/o-nas", en: "/en/o-nas" } },
   };
 }
 
@@ -25,27 +27,27 @@ export default async function ONasPage({
 }: {
   params: Promise<{ locale: "sk" | "en" }>;
 }) {
-  const { locale } = await params;
+  await params;
   const t = await getTranslations("About");
 
   const cards = [
     {
-      icon: "📰",
+      icon: "article",
       title: t("cards.content.title"),
       desc: t("cards.content.desc"),
     },
     {
-      icon: "🔬",
+      icon: "research",
       title: t("cards.myths.title"),
       desc: t("cards.myths.desc"),
     },
     {
-      icon: "🤝",
+      icon: "handshake",
       title: t("cards.diagnosis.title"),
       desc: t("cards.diagnosis.desc"),
     },
     {
-      icon: "⚖️",
+      icon: "scales",
       title: t("cards.advocacy.title"),
       desc: t("cards.advocacy.desc"),
     },
@@ -55,6 +57,7 @@ export default async function ONasPage({
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
 
+      <main id="main-content" tabIndex={-1} className="outline-none">
       <div className="max-w-2xl mx-auto px-8 pt-14 pb-20">
 
         <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5 animate-fade-up">
@@ -91,7 +94,7 @@ export default async function ONasPage({
               key={item.title}
               className="bg-[var(--bg-secondary)] p-6 flex flex-col gap-2 animate-fade-up delay-600"
             >
-              <span className="text-2xl">{item.icon}</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)]"><SiteIcon name={item.icon as SiteIconName} className="h-5 w-5" /></span>
 
               <h3 className="font-display text-[15px] font-bold text-[var(--text-primary)]">
                 {item.title}
@@ -124,6 +127,8 @@ export default async function ONasPage({
         </div>
 
       </div>
+
+      </main>
 
       <footer className="px-8 py-8 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-3">
         <div className="font-display text-base font-extrabold text-[var(--text-muted)]">

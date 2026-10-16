@@ -18,7 +18,7 @@ translationKey: "simona-hidden-adhd"
 
 **Keď sa pozrieš spätne na tvoje detstvo, boli tam už vtedy nejaké črty alebo správanie, ktoré dnes už jasne pripisuješ ADHD?**
 
->Určite áno, ale keďže môj typ ADHD je prevažne nepozorný typ, tak v útlom detstve sa to až tak neprejavovalo a ak sa to prejavovalo, tak len tým, že som bola zasnívaná. Keď som začala chodiť do školy, nesústredila som sa na veci, ktoré ma nebavili, alebo ostatným išli veľmi pomaly. Plus som bola doma neporiadna, veľmi citlivá, dezorganizovaná, netrpezlivá, veľmi vyberavá v jedle, čo mi ostalo doteraz a nijak to neviem zmeniť 🙂 Už vtedy som to ale v škole vedela maskovať až prehnaným perfekcionizmom, ktorý sa ale dosť bil s doťahovaním úloh do konca. Mala som veľa záujmov, ale všetky ma prestali baviť hneď v momente, keď som zistila, že do nich treba investovať veľa času a energie. V puberte sa k tomu pridala impulzívnosť, odpor k autoritám, rebelovanie a správanie, ktoré bolo trochu "cez". Naši by to nazvali drzosťou a aroganciou 🙂 V časoch, keď som vyrastala, navyše nikto nijaké ADHD neriešil, takže nikomu to ani pri akýchkoľvek problémoch nenapadlo.
+>Určite áno, ale keďže môj typ ADHD je prevažne nepozorný typ, tak v útlom detstve sa to až tak neprejavovalo a ak sa to prejavovalo, tak len tým, že som bola zasnívaná. Keď som začala chodiť do školy, nesústredila som sa na veci, ktoré ma nebavili, alebo ostatným išli veľmi pomaly. Plus som bola doma neporiadna, veľmi citlivá, dezorganizovaná, netrpezlivá, veľmi vyberavá v jedle, čo mi ostalo doteraz a nijak to neviem zmeniť Už vtedy som to ale v škole vedela maskovať až prehnaným perfekcionizmom, ktorý sa ale dosť bil s doťahovaním úloh do konca. Mala som veľa záujmov, ale všetky ma prestali baviť hneď v momente, keď som zistila, že do nich treba investovať veľa času a energie. V puberte sa k tomu pridala impulzívnosť, odpor k autoritám, rebelovanie a správanie, ktoré bolo trochu "cez". Naši by to nazvali drzosťou a aroganciou V časoch, keď som vyrastala, navyše nikto nijaké ADHD neriešil, takže nikomu to ani pri akýchkoľvek problémoch nenapadlo.
 
 **Ako sa ti fungovalo v škole?**
 
@@ -26,7 +26,7 @@ translationKey: "simona-hidden-adhd"
 
 **Máš pocit, že si ako dieťa zapadalo do kolektívu medzi spolužiakmi?**
 
->Ako kedy. Keď som bola dieťa, vnímala som istú inakosť oproti iným deťom, ale nie nejako výrazne a nevedela som to určite ani pomenovať. Mala som aj veľa kamarátov a to bolo pre mňa ako dieťa kľúčové. Postupne sa ale tento pocit "nepatrenia" prehlboval, ale až na vysokej škole som to naplno prijala a v rámci svojej rebélie som do kolektívu až tak nezapadala, ale nevadilo mi to. Prostorekosť, chýbajúci takt a nediplomatické vystupovanie mi veľmi nepomohli k obľúbenosti 🙂
+>Ako kedy. Keď som bola dieťa, vnímala som istú inakosť oproti iným deťom, ale nie nejako výrazne a nevedela som to určite ani pomenovať. Mala som aj veľa kamarátov a to bolo pre mňa ako dieťa kľúčové. Postupne sa ale tento pocit "nepatrenia" prehlboval, ale až na vysokej škole som to naplno prijala a v rámci svojej rebélie som do kolektívu až tak nezapadala, ale nevadilo mi to. Prostorekosť, chýbajúci takt a nediplomatické vystupovanie mi veľmi nepomohli k obľúbenosti
 
 **Čo bol tvoj obľúbený predmet v škole a čo naopak si nemala rada?**
 
@@ -44,7 +44,7 @@ translationKey: "simona-hidden-adhd"
 
 **Aké bolo to zistenie? Cítila si skôr strach, popieranie, alebo úľavu, že to teraz všetko dáva zmysel?**
 
->Cítila som veľkú zvedavosť, chytila som tzv. hyperfocus - ľudia s ADHD presne vedia, o čo ide 🙂 a čítala a pozerala som všetko možné, na čo som narazila. Dosť rýchlo na to som to prebrala so svojou psychiatričkou a už som bola na ceste k oficiálnej diagnóze. Zároveň som okrem zvedavosti pociťovala niečo ako nádej. Nádej v to, že možno nie som lenivá, dezorganizovaná, emočne dysregulovaná, ale je to niečo, za čo nemôžem.
+>Cítila som veľkú zvedavosť, chytila som tzv. hyperfocus - ľudia s ADHD presne vedia, o čo ide a čítala a pozerala som všetko možné, na čo som narazila. Dosť rýchlo na to som to prebrala so svojou psychiatričkou a už som bola na ceste k oficiálnej diagnóze. Zároveň som okrem zvedavosti pociťovala niečo ako nádej. Nádej v to, že možno nie som lenivá, dezorganizovaná, emočne dysregulovaná, ale je to niečo, za čo nemôžem.
 
 **Čo bol tvoj zdroj informácii o ADHD v tom čase?**
 
@@ -60,11 +60,11 @@ translationKey: "simona-hidden-adhd"
 
 **Ako náročné bolo získať správnu diagnózu? Stretla si sa s predsudkami, zľahčovaním, alebo nebodaj s nesprávnymi diagnózami (ako napr. depresia či úzkosť) predtým, než sa prišlo na ADHD?**
 
->Nie som si istá, či som bola nesprávne diagnostikovaná. Úzkosťami som trpela aj pred diagnózou, stále nimi trpím, aj keď v oveľa menšej miere. U mňa to nebolo tak, že nasadením medikamentóznej liečby ADHD mi zázračne zmizli všetky symptómy. Kiež by, ale nestalo sa 🙂 S predsudkami alebo zľahčovaním som sa nestretla, minimálne nie v odbornej psychiatrickej alebo psychologickej obci. Čo viem, že mám šťastie, lebo existujú ľudia, ktorí to mali úplne inak ako ja. A žiaľ, oveľa horšie.
+>Nie som si istá, či som bola nesprávne diagnostikovaná. Úzkosťami som trpela aj pred diagnózou, stále nimi trpím, aj keď v oveľa menšej miere. U mňa to nebolo tak, že nasadením medikamentóznej liečby ADHD mi zázračne zmizli všetky symptómy. Kiež by, ale nestalo sa S predsudkami alebo zľahčovaním som sa nestretla, minimálne nie v odbornej psychiatrickej alebo psychologickej obci. Čo viem, že mám šťastie, lebo existujú ľudia, ktorí to mali úplne inak ako ja. A žiaľ, oveľa horšie.
 
 **Ako prebiehal celý proces diagnostikovania ADHD u teba?**
 
->Ako som spomínala, mám skvelú psychiatričku a nasmerovala ma na psychologicko-diagnostické centrum, kam už posielala aj iných ľudí a mala dobré skúsenosti, takže som nemusela nad ničím premýšľať. Aj čo sa týka logistiky, bolo to jednoduché. Dané centrum je dokonca iba pár minut cesty od môjho bydliska, takže ešte aj v tomto som mala šťastie. Prvé sedenie bol pomerne dlhý rozhovor o mojej anamnéze, dostala som viaceré dotazníky na vyplnenie a zároveň jeden alebo dva dostali moji rodičia. Druhé sedenie bolo testovanie koncentrácie a pamäte a myslím, že ešte niečoho, ale na to si už nespomeniem 🙂 A posledné sedenie bolo vyhodnotenie dotazníkov a testov, kde sme si prechádzali jednotlivé výsledky.
+>Ako som spomínala, mám skvelú psychiatričku a nasmerovala ma na psychologicko-diagnostické centrum, kam už posielala aj iných ľudí a mala dobré skúsenosti, takže som nemusela nad ničím premýšľať. Aj čo sa týka logistiky, bolo to jednoduché. Dané centrum je dokonca iba pár minut cesty od môjho bydliska, takže ešte aj v tomto som mala šťastie. Prvé sedenie bol pomerne dlhý rozhovor o mojej anamnéze, dostala som viaceré dotazníky na vyplnenie a zároveň jeden alebo dva dostali moji rodičia. Druhé sedenie bolo testovanie koncentrácie a pamäte a myslím, že ešte niečoho, ale na to si už nespomeniem A posledné sedenie bolo vyhodnotenie dotazníkov a testov, kde sme si prechádzali jednotlivé výsledky.
 
 **Stretla si sa s nejakými problémami buď pri diagnostike alebo pri výbere liekov? (Napríklad nedostupnosť liečby a pod.)**
 
@@ -82,7 +82,7 @@ translationKey: "simona-hidden-adhd"
 
 **Čo sa ti po nasadení liečby zmenilo k lepšiemu?**
 
->Som k sebe láskavejšia a menej si v duchu nadávam za veci, ktoré sa mi nevydaria, nejdú mi atď. Mám aj oveľa väčší rešpekt či už k blízkym alebo aj cudzím ľuďom, ktorí sa potýkajú s niečim podobným, som empatickejšia. Počas užívania liekov som zažila, aké to je mať viac energie, vládať doťahovať veci do konca, neodsúvať záležitosti, ktoré ma nebavia a asi by sa dalo povedať, že fungovať ako neurotypický človek 🙂 Škoda, že to u mňa nejde stále kvôli vedľajším účinkom liekov. Nemá ich každý také výrazné, ako mám ja, ale s tým sa nedá nič robiť.
+>Som k sebe láskavejšia a menej si v duchu nadávam za veci, ktoré sa mi nevydaria, nejdú mi atď. Mám aj oveľa väčší rešpekt či už k blízkym alebo aj cudzím ľuďom, ktorí sa potýkajú s niečim podobným, som empatickejšia. Počas užívania liekov som zažila, aké to je mať viac energie, vládať doťahovať veci do konca, neodsúvať záležitosti, ktoré ma nebavia a asi by sa dalo povedať, že fungovať ako neurotypický človek Škoda, že to u mňa nejde stále kvôli vedľajším účinkom liekov. Nemá ich každý také výrazné, ako mám ja, ale s tým sa nedá nič robiť.
 
 **Aké nástroje alebo rutiny ti dnes najviac pomáhajú udržiavať sa v rovnováhe?**
 
@@ -90,7 +90,7 @@ translationKey: "simona-hidden-adhd"
 
 **Mnoho ľudí s ADHD má taktiež aj poruchy spánku. Týka sa to aj teba? Zmenilo sa to po nasadení liečby?**
 
->Paradoxne so spánkom ako takým problémy nemám. Teda ak nerátame to, že som nočná sova, chodím spať neskoro a potom ráno nevládzem vstať 🙂 Ale so zaspávaním alebo budením sa v noci problém nemám, ak si odmyslím to, že pri uživaní Livizuxu sa mi ťažko zaspávalo, ale to už nie je aktuálne.
+>Paradoxne so spánkom ako takým problémy nemám. Teda ak nerátame to, že som nočná sova, chodím spať neskoro a potom ráno nevládzem vstať Ale so zaspávaním alebo budením sa v noci problém nemám, ak si odmyslím to, že pri uživaní Livizuxu sa mi ťažko zaspávalo, ale to už nie je aktuálne.
 
 ## Časť 4: O predsudkoch a zmene
 
@@ -104,7 +104,7 @@ translationKey: "simona-hidden-adhd"
 
 **Aký je rozdiel medzi tvojim životom pred diagnózou a po diagnóze? Čo sú tie najväčšie zmeny, čo vnímaš?**
 
->Vnímam sa inak, mám sa radšej, mám so sebou väčší súcit a netlačím na pílu. Snažím sa odpúšťať si. Pred diagnózou bol môj život neustály, vyčerpávajúci boj samej so sebou. Pocit, že je človek pokazený, lenivý alebo neschopný, stojí neuveriteľné množstvo energie. Každé zlyhanie alebo nedokončený projekt som si vnútorne strašne vyčítala. Žila som v permanentnom strese z toho, kedy niekto "odhalí", že nestíham alebo nezvládam veci tak ako ostatní. Musím ale naďalej žiť vo svete, ktorý je nadizajnovaný pre neurotypických ľudí. Toto žiadna diagnóza nezmení. Napriek tomu si ale vieme vybrať prostredie, ktoré nám vyhovuje a aj prácu (aj keď toto určite neplatí stopercentne), kde sa vyhneme neurotypickým záležitostiam ako je účtovníctvo alebo rutinné vypĺňanie tabuliek 🙂
+>Vnímam sa inak, mám sa radšej, mám so sebou väčší súcit a netlačím na pílu. Snažím sa odpúšťať si. Pred diagnózou bol môj život neustály, vyčerpávajúci boj samej so sebou. Pocit, že je človek pokazený, lenivý alebo neschopný, stojí neuveriteľné množstvo energie. Každé zlyhanie alebo nedokončený projekt som si vnútorne strašne vyčítala. Žila som v permanentnom strese z toho, kedy niekto "odhalí", že nestíham alebo nezvládam veci tak ako ostatní. Musím ale naďalej žiť vo svete, ktorý je nadizajnovaný pre neurotypických ľudí. Toto žiadna diagnóza nezmení. Napriek tomu si ale vieme vybrať prostredie, ktoré nám vyhovuje a aj prácu (aj keď toto určite neplatí stopercentne), kde sa vyhneme neurotypickým záležitostiam ako je účtovníctvo alebo rutinné vypĺňanie tabuliek
 
 ## Časť 5: Odkaz pre ostatných
 
@@ -114,7 +114,7 @@ translationKey: "simona-hidden-adhd"
 
 **Vo svete stále panujú rôzne polopravdy a mýty o ADHD. Ako hodnotíš ty informovanosť ľudí ohľadom ADHD v súčasnosti?**
 
->Informovanosť o ADHD sa v posledných rokoch výrazne zlepšila, najmä vďaka sociálnym sieťam a otvorenejšiemu dialógu o duševnom zdraví, no stále sme len na polceste. Čo je ale nevýhoda, je možno existuje až "preinformovanosť" v niektorých kruhoch, ak sa to tak dá povedať. Veľa ľudí si myslí, že má ADHD, lebo vidia na sociálnej sieti minútové videá, kde zvyknú byť vymenované nejaké symptómy. Zrejme sa to ale skôr vzťahuje na mladšiu generáciu, ktorá je viac prítomná na sociálnych sieťach a tým pádom je viac ovplyvnená ich obsahom. Pravidelne sa mi stáva, že ľudia mladší odo mňa o 10, 15 alebo aj 20 rokov mi hovoria, že tiež majú ADHD a keď sa ich pýtam, či majú potvrdenú diagnózu, tak vždy dostanem rovnakú odpoveď - videl/a som to na insta, tiktoku atď 🙂 Čo mňa ešte zvykne zarážať, je až glorifikácia tejto poruchy a hovorenie o nej ako o superpower. To je ďalší extrém. A ako som spomínala, staršia generácia má častokrát svoje predstavy, ktoré nekorešpondujú s realitou. Sama mám v blízkej rodine učiteľky na dôchodku, ktoré ADHD neuznávajú, tvrdia, že je to iba výmysel, aby sa nemuseli hlúpe a lenivé deti učiť.
+>Informovanosť o ADHD sa v posledných rokoch výrazne zlepšila, najmä vďaka sociálnym sieťam a otvorenejšiemu dialógu o duševnom zdraví, no stále sme len na polceste. Čo je ale nevýhoda, je možno existuje až "preinformovanosť" v niektorých kruhoch, ak sa to tak dá povedať. Veľa ľudí si myslí, že má ADHD, lebo vidia na sociálnej sieti minútové videá, kde zvyknú byť vymenované nejaké symptómy. Zrejme sa to ale skôr vzťahuje na mladšiu generáciu, ktorá je viac prítomná na sociálnych sieťach a tým pádom je viac ovplyvnená ich obsahom. Pravidelne sa mi stáva, že ľudia mladší odo mňa o 10, 15 alebo aj 20 rokov mi hovoria, že tiež majú ADHD a keď sa ich pýtam, či majú potvrdenú diagnózu, tak vždy dostanem rovnakú odpoveď - videl/a som to na insta, tiktoku atď Čo mňa ešte zvykne zarážať, je až glorifikácia tejto poruchy a hovorenie o nej ako o superpower. To je ďalší extrém. A ako som spomínala, staršia generácia má častokrát svoje predstavy, ktoré nekorešpondujú s realitou. Sama mám v blízkej rodine učiteľky na dôchodku, ktoré ADHD neuznávajú, tvrdia, že je to iba výmysel, aby sa nemuseli hlúpe a lenivé deti učiť.
 
 **Ak by si mohla odkázať jednu vec svojmu mladšiemu ja, čo by to bolo?**
 

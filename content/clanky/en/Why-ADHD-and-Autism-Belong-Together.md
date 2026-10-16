@@ -92,4 +92,4 @@ There are only a few of us in the group so far, but we firmly believe it will gr
 
 [Facebook Group](https://www.facebook.com/share/g/1Edr73fHGL/?mibextid=wwXIfr)
 
-![Image description](/images/C1.jpg)
+![Portrait of a woman with the Slovak headline “Na rovnakej vlne: Prečo by mali ADHD a autizmus držať spolu” (On the same wavelength: Why ADHD and autism belong together).](/images/C1.jpg)

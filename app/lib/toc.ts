@@ -26,7 +26,7 @@ export function addHeadingIds(html: string): { html: string; toc: TocItem[] } {
     (_match, levelStr: string, attrs: string, inner: string) => {
       const level = Number(levelStr);
       const text = inner.replace(/<[^>]+>/g, "").trim();
-      let slug = slugify(text) || `section-${toc.length + 1}`;
+      const slug = slugify(text) || `section-${toc.length + 1}`;
 
       const count = usedSlugs.get(slug) ?? 0;
       usedSlugs.set(slug, count + 1);

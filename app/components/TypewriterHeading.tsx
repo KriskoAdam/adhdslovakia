@@ -131,7 +131,6 @@ function RenderWordByWord({
   extraClasses?: string;
 }) {
   const tokens = fullStr.split(/(\s+)/);
-  let charCounter = 0;
   const visibleCount = visibleStr.length;
 
   return (
@@ -140,8 +139,7 @@ function RenderWordByWord({
         if (!token) return null;
 
         const length = token.length;
-        const startIdx = charCounter;
-        charCounter += length;
+        const startIdx = tokens.slice(0, idx).reduce((count, previous) => count + previous.length, 0);
 
         const isWhitespace = /^\s+$/.test(token);
 
@@ -181,7 +179,7 @@ function RenderWordByWord({
         return (
           <span
             key={idx}
-            className="inline-block whitespace-nowrap"
+            className="inline"
           >
             <span className={extraClasses}>
               {visiblePart}
@@ -222,15 +220,7 @@ export default function TypewriterHeading() {
 
   useEffect(() => {
     const phrases = PHRASES[currentLang] || PHRASES.sk;
-
-    phraseIndexRef.current = 0;
-    setActivePhraseIndex(0);
-
-    setPart1("");
-    setPart2("");
-    setPart3("");
-    setShowBreak(false);
-
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let isCancelled = false;
     let activeTimeout: ReturnType<typeof setTimeout>;
 
@@ -324,7 +314,25 @@ export default function TypewriterHeading() {
       erase();
     }
 
-    activeTimeout = setTimeout(typePhrase, 400);
+    activeTimeout = setTimeout(() => {
+      if (isCancelled) return;
+      phraseIndexRef.current = 0;
+      setActivePhraseIndex(0);
+      setPart1("");
+      setPart2("");
+      setPart3("");
+      setShowBreak(false);
+
+      if (prefersReducedMotion) {
+        const phrase = phrases[0];
+        setPart1(phrase.part1);
+        setPart2(phrase.part2);
+        setPart3(phrase.part3);
+        setShowBreak(true);
+      } else {
+        activeTimeout = setTimeout(typePhrase, 400);
+      }
+    }, 0);
 
     return () => {
       isCancelled = true;
@@ -348,9 +356,13 @@ export default function TypewriterHeading() {
 
   return (
     <h1
-      className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 max-w-full grid grid-cols-1 grid-rows-1"
+      className="notranslate font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-[-1px] sm:tracking-[-2px] mb-5 w-full min-w-0 max-w-full grid grid-cols-1 grid-rows-1"
+      style={{ overflowWrap: "anywhere" }}
       translate="no"
       lang={currentLang}
+      aria-label={currentLang === "en"
+        ? "ADHD Slovakia — information, support and stories"
+        : "ADHD Slovakia — informácie, podpora a príbehy"}
     >
       {phrases.map((phrase, idx) => {
         const isActive = idx === activePhraseIndex;

@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useLocale } from "next-intl";
+import SiteIcon from "./SiteIcon";
 
 type Props = {
   title: string;
+  url: string;
   orientation?: "vertical" | "horizontal";
 };
 
-export default function ShareButtons({ title, orientation = "vertical" }: Props) {
-  const [url, setUrl] = useState("");
+export default function ShareButtons({ title, url, orientation = "vertical" }: Props) {
+  const locale = useLocale();
+  const isEnglish = locale === "en";
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    setUrl(window.location.href);
-  }, []);
 
   const handleCopy = async () => {
     try {
@@ -44,13 +44,11 @@ export default function ShareButtons({ title, orientation = "vertical" }: Props)
   ];
 
   const iconClass =
-    "w-9 h-9 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-muted)] hover:text-green-400 hover:border-green-400/40 transition-colors text-[12px] font-semibold";
+    "min-h-11 min-w-11 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-green-400 hover:border-green-400/40 transition-colors text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
 
   return (
     <div
-      className={`flex items-center gap-3 ${
-        orientation === "vertical" ? "flex-col" : "flex-row"
-      }`}
+      className={`flex items-center ${orientation === "vertical" ? "flex-col gap-3" : "flex-row gap-2"}`}
     >
       {links.map((link) => (
         <a
@@ -58,7 +56,9 @@ export default function ShareButtons({ title, orientation = "vertical" }: Props)
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Zdieľať na ${link.label === "in" ? "LinkedIn" : link.label === "f" ? "Facebook" : "X"}`}
+          aria-label={isEnglish
+            ? `Share on ${link.label === "in" ? "LinkedIn" : link.label === "f" ? "Facebook" : "X"} (opens in a new tab)`
+            : `Zdieľať na ${link.label === "in" ? "LinkedIn" : link.label === "f" ? "Facebook" : "X"} (otvorí sa na novej karte)`}
           className={iconClass}
         >
           {link.label}
@@ -67,11 +67,14 @@ export default function ShareButtons({ title, orientation = "vertical" }: Props)
       <button
         type="button"
         onClick={handleCopy}
-        aria-label="Kopírovať odkaz na článok"
+        aria-label={isEnglish ? "Copy article link" : "Kopírovať odkaz na článok"}
         className={iconClass}
       >
-        {copied ? "✓" : "🔗"}
+        <SiteIcon name={copied ? "check" : "link"} className="h-4 w-4" />
       </button>
+      <span className="sr-only" aria-live="polite">
+        {copied ? (isEnglish ? "Link copied" : "Odkaz bol skopírovaný") : ""}
+      </span>
     </div>
   );
 }

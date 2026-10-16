@@ -16,8 +16,9 @@ export async function generateMetadata({
   });
 
   return {
-    title: `${t("title")} – ADHD Slovakia`,
+    title: t("title"),
     description: t("description"),
+    alternates: { canonical: `/${locale}/informacie-o-adhd`, languages: { sk: "/sk/informacie-o-adhd", en: "/en/informacie-o-adhd" } },
   };
 }
 
@@ -26,13 +27,14 @@ export default async function InformacieOAdhdPage({
 }: {
   params: Promise<{ locale: "sk" | "en" }>;
 }) {
-  const { locale } = await params;
+  await params;
   const t = await getTranslations("AdhdInfo");
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
 
+      <main id="main-content" tabIndex={-1} className="outline-none">
       <section className="px-8 pt-14 pb-10 border-b border-[var(--border-color)]">
         <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-4 animate-fade-up">
           {t("badge")}
@@ -62,6 +64,8 @@ export default async function InformacieOAdhdPage({
           <ADHDInfoGrid />
         </div>
       </section>
+
+      </main>
 
       <footer className="px-8 py-8 border-t border-[var(--border-color)] mt-8 flex flex-col md:flex-row justify-between items-center gap-3">
         <div className="font-display text-base font-extrabold text-[var(--text-muted)]">

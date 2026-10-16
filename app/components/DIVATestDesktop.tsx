@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import SiteIcon from "./SiteIcon";
 
 export default function DIVATestDesktop() {
   const locale = useLocale();
@@ -15,7 +16,7 @@ export default function DIVATestDesktop() {
         {/* Horná časť */}
         <div className="relative z-10">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-green-400/20 bg-green-400/10 px-3 py-1">
-            <span className="text-xs">🧠</span>
+            <SiteIcon name="brain" className="h-4 w-4" />
 
             <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-green-400">
               {t("badge")}
@@ -39,13 +40,13 @@ export default function DIVATestDesktop() {
         <div className="relative z-10 pt-4 border-t border-[var(--border-color)] flex flex-col gap-3">
           <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)]">
             <span className="flex items-center gap-1.5">
-              ⏱️{" "}
+              <SiteIcon name="clock" className="h-3.5 w-3.5" />{" "}
               <span className="font-medium text-[var(--text-secondary)]">
                 {t("duration")}
               </span>
             </span>
 
-            <span>📊 {t("questions")}</span>
+            <span className="inline-flex items-center gap-1.5"><SiteIcon name="chart" className="h-3.5 w-3.5" />{t("questions")}</span>
           </div>
 
           <a

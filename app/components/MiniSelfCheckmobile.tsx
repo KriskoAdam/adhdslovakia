@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Nav from "../components/Nav";
+import SiteIcon from "./SiteIcon";
 
 type AnswerValue = 0 | 1 | 2;
 
@@ -244,7 +245,7 @@ export default function TestPage() {
                 <div className="min-w-0">
                   <div className="mb-2 inline-flex items-center gap-2 rounded border border-green-400/25 bg-green-400/10 px-3 py-1 max-w-full">
                     <span className="flex-shrink-0 text-sm">
-                      🧠
+                      <SiteIcon name="brain" className="h-4 w-4" />
                     </span>
 
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-green-400 truncate">
@@ -351,7 +352,8 @@ export default function TestPage() {
                                   option.value as AnswerValue
                                 )
                               }
-                              className={`rounded-md border bg-[var(--bg-secondary)] p-3.5 sm:p-4 text-center transition-all flex flex-col items-center justify-center gap-0.5 group min-w-0 ${
+                              aria-pressed={answers[currentQuestion.id] === option.value}
+                              className={`min-h-11 rounded-md border bg-[var(--bg-secondary)] p-3.5 sm:p-4 text-center transition-all flex flex-col items-center justify-center gap-0.5 group min-w-0 ${
                                 answers[currentQuestion.id] ===
                                 option.value
                                   ? "border-green-400 bg-green-400/10"
@@ -481,8 +483,8 @@ export default function TestPage() {
                       <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-2xl sm:text-3xl flex-shrink-0 border border-[var(--border-color)] bg-[var(--bg-secondary)]">
                         {result.title ===
                         t("results.positive.title")
-                          ? "⚠️"
-                          : "✓"}
+                          ? <SiteIcon name="alert" className="h-7 w-7 text-amber-500" />
+                          : <SiteIcon name="check" className="h-7 w-7 text-green-500" />}
                       </div>
 
                       <div className="min-w-0">

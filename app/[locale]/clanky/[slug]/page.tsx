@@ -10,9 +10,16 @@ import Nav from "../../../components/Nav";
 import ArticleToc from "../../../components/ArticleToc";
 import ShareButtons from "../../../components/ShareButtons";
 import LikeButton from "../../../components/LikeButton";
+import ViewCounter from "../../../components/ViewCounter";
 import Comments from "../../../components/Comments";
 import { addHeadingIds } from "../../../lib/toc";
 import { getTranslations } from "next-intl/server";
+
+function toIsoDate(value: string) {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+  const match = value.match(/^(\d{1,2})[.-](\d{1,2})[.-](\d{4})$/);
+  return match ? `${match[3]}-${match[2].padStart(2, "0")}-${match[1].padStart(2, "0")}` : undefined;
+}
 
 type Props = {
   params: Promise<{
@@ -38,16 +45,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!article) return {};
 
+  const otherLocale = locale === "sk" ? "en" : "sk";
+  const translatedSlug = getTranslatedArticleSlug(locale, slug, otherLocale);
+  const languageAlternates: Record<string, string> = { [locale]: `/${locale}/clanky/${slug}` };
+  if (translatedSlug) languageAlternates[otherLocale] = `/${otherLocale}/clanky/${translatedSlug}`;
+
   return {
-    title: `${article.title} – ADHD Slovakia`,
+    title: article.title,
     description: article.excerpt,
+    authors: [{ name: "ADHD Slovakia", url: `https://www.adhdslovakia.eu/${locale}/o-nas` }],
+    alternates: {
+      canonical: `/${locale}/clanky/${slug}`,
+      languages: { ...languageAlternates, "x-default": `/${locale}/clanky/${slug}` },
+    },
     openGraph: {
       title: article.title,
       description: article.excerpt,
       images: article.coverImage ? [article.coverImage] : [],
       type: "article",
+      url: `https://www.adhdslovakia.eu/${locale}/clanky/${slug}`,
       locale: locale === "sk" ? "sk_SK" : "en_US",
     },
+    twitter: { card: "summary_large_image", title: article.title, description: article.excerpt, images: article.coverImage ? [article.coverImage] : [] },
   };
 }
 
@@ -56,7 +75,7 @@ export default async function ArticlePage({ params }: Props) {
 
   const tCategories = await getTranslations("Categories");
 
-  let article = await getArticleBySlug(locale, slug);
+  const article = await getArticleBySlug(locale, slug);
 
   if (!article) {
     const sourceLocale = locale === "sk" ? "en" : "sk";
@@ -79,7 +98,8 @@ export default async function ArticlePage({ params }: Props) {
 
   const tocLabel = locale === "sk" ? "Obsah" : "Contents";
 
-  const sharedKey = article.translationKey ?? slug;
+  const sharedKey = article.translationKey || slug;
+  const articleUrl = `https://www.adhdslovakia.eu/${locale}/clanky/${slug}`;
 
   const translatedCategory = tCategories(
     article.category as
@@ -98,6 +118,7 @@ export default async function ArticlePage({ params }: Props) {
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
 
+      <main id="main-content" tabIndex={-1} className="outline-none">
       <div className="max-w-7xl mx-auto px-6 xl:px-10 pt-14 pb-20 xl:grid xl:grid-cols-[200px_minmax(0,42rem)_200px] xl:gap-10">
         {/* Ľavý sticky panel: obsah článku */}
         <aside className="hidden xl:block order-1">
@@ -105,6 +126,18 @@ export default async function ArticlePage({ params }: Props) {
         </aside>
 
         <article className="max-w-2xl mx-auto xl:max-w-none xl:mx-0 order-2 min-w-0">
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.excerpt,
+            ...(toIsoDate(article.date) ? { datePublished: toIsoDate(article.date) } : {}),
+            inLanguage: locale,
+            mainEntityOfPage: `https://www.adhdslovakia.eu/${locale}/clanky/${slug}`,
+            author: { "@type": "Organization", name: "ADHD Slovakia", url: `https://www.adhdslovakia.eu/${locale}/o-nas` },
+            publisher: { "@type": "Organization", name: "ADHD Slovakia", url: "https://www.adhdslovakia.eu", logo: { "@type": "ImageObject", url: "https://www.adhdslovakia.eu/images/logo.png" } },
+            ...(article.coverImage ? { image: article.coverImage.startsWith("http") ? article.coverImage : `https://www.adhdslovakia.eu${article.coverImage}` } : {}),
+          }).replace(/</g, "\\u003c") }} />
           {/* Meta blok */}
           <div className="flex flex-col items-start gap-6 mb-10">
             <a
@@ -124,16 +157,21 @@ export default async function ArticlePage({ params }: Props) {
             {article.title}
           </h1>
 
-          <div className="flex items-center gap-4 text-[12px] text-[var(--text-muted)] pb-8 border-b border-[var(--border-color)] mb-8">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px] text-[var(--text-secondary)] pb-8 border-b border-[var(--border-color)] mb-8">
             <span>{article.readTime}</span>
             <span>·</span>
-            <span>{article.date}</span>
+            <time dateTime={toIsoDate(article.date)}>{article.date}</time>
+            <span aria-hidden="true">·</span>
+            <span>{locale === "sk" ? "Autor: ADHD Slovakia" : "By ADHD Slovakia"}</span>
+            <span aria-hidden="true">·</span>
+            <ViewCounter slug={sharedKey} locale={locale} />
           </div>
 
           {/* Zdieľanie + like pre mobil/tablet */}
-          <div className="xl:hidden mb-8 flex items-center gap-4">
+          <div className="xl:hidden mb-8 flex flex-wrap items-start gap-3">
             <ShareButtons
               title={article.title}
+              url={articleUrl}
               orientation="horizontal"
             />
 
@@ -146,7 +184,7 @@ export default async function ArticlePage({ params }: Props) {
             <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden mb-8">
               <Image
                 src={article.coverImage}
-                alt={article.title}
+                alt=""
                 fill
                 className="object-cover"
                 priority
@@ -158,6 +196,12 @@ export default async function ArticlePage({ params }: Props) {
             className="prose-adhd"
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
+
+          <p className="mt-8 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-3 text-sm leading-relaxed text-[var(--text-secondary)]">
+            {locale === "sk"
+              ? "Obsah článku má vzdelávací charakter a nenahrádza individuálne posúdenie zdravotníckym odborníkom."
+              : "This article is for educational purposes and does not replace an individual assessment by a healthcare professional."}
+          </p>
 
           <Comments
             locale={locale}
@@ -180,6 +224,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="sticky top-24 flex flex-col items-center gap-6">
             <ShareButtons
               title={article.title}
+              url={articleUrl}
               orientation="vertical"
             />
 
@@ -189,6 +234,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </aside>
       </div>
+      </main>
     </div>
   );
 }

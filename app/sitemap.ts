@@ -1,68 +1,30 @@
-import { MetadataRoute } from 'next';
-import { getAllArticles } from "./lib/articles";
+import type { MetadataRoute } from "next";
+import { getAllArticles, getTranslatedArticleSlug } from "./lib/articles";
 
-// Používame async, aby mal Next.js čas správne vygenerovať endpoint
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const articles = getAllArticles("sk");
+const site = "https://www.adhdslovakia.eu";
+const locales = ["sk", "en"] as const;
+const staticRoutes = ["", "clanky", "informacie-o-adhd", "o-nas", "kontakt", "test", "ochrana-sukromia"];
 
-  const articleUrls = articles.map((a) => {
-    let finalDate = new Date(); // Fallback na dnešný dátum, ak by niečo zlyhalo
-
-    if (a.date) {
-      let dateString = a.date.trim();
-
-      // Ak dátum obsahuje bodky (DD.MM.YYYY), prerobíme ho na ISO formát (YYYY-MM-DD)
-      if (dateString.includes('.')) {
-        const parts = dateString.split('.');
-        if (parts.length === 3) {
-          const day = parts[0].trim().padStart(2, '0');
-          const month = parts[1].trim().padStart(2, '0');
-          const year = parts[2].trim();
-          dateString = `${year}-${month}-${day}`;
-        }
-      }
-
-      const parsedDate = new Date(dateString);
-      
-      // Ak je dátum po úprave platný, použijeme ho
-      if (!isNaN(parsedDate.getTime())) {
-        finalDate = parsedDate;
-      }
+export default function sitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+  for (const locale of locales) {
+    for (const route of staticRoutes) {
+      const urlPath = `/${locale}${route ? `/${route}` : ""}`;
+      const languages = Object.fromEntries(locales.map((language) => [language, `${site}/${language}${route ? `/${route}` : ""}`]));
+      entries.push({ url: `${site}${urlPath}`, alternates: { languages }, changeFrequency: route === "" || route === "clanky" ? "weekly" : "monthly", priority: route === "" ? 1 : route === "clanky" || route === "test" ? 0.8 : 0.6 });
     }
-
-    return {
-      url: `https://adhdslovakia.eu/clanky/${a.slug}`,
-      lastModified: finalDate,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    };
-  });
-
-  return [
-    {
-      url: "https://adhdslovakia.eu",
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 1,
-    },
-    {
-      url: "https://adhdslovakia.eu/clanky",
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    },
-    {
-      url: "https://adhdslovakia.eu/test", 
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      url: "https://adhdslovakia.eu/o-nas",
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    },
-    ...articleUrls,
-  ];
+    for (const article of getAllArticles(locale)) {
+      const otherLocale = locale === "sk" ? "en" : "sk";
+      const translatedSlug = getTranslatedArticleSlug(locale, article.slug, otherLocale);
+      const languageUrls: Record<string, string> = { [locale]: `${site}/${locale}/clanky/${article.slug}` };
+      if (translatedSlug) languageUrls[otherLocale] = `${site}/${otherLocale}/clanky/${translatedSlug}`;
+      entries.push({
+        url: `${site}/${locale}/clanky/${article.slug}`,
+        changeFrequency: "monthly",
+        priority: 0.8,
+        alternates: { languages: languageUrls },
+      });
+    }
+  }
+  return entries;
 }

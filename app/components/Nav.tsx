@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "../../i18n/navigation";
 import MiniSelfCheckMobile from "./MiniSelfCheckmobile";
 import ThemeToggle from "./ThemeToggle";
+import SiteIcon from "./SiteIcon";
 
 const navLinks = [
   { key: "home", href: "/" },
@@ -29,14 +30,15 @@ export default function Nav() {
   const [testOpen, setTestOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
-  const currentLanguage =
-    languages.find((lang) => lang.code === locale)?.label ?? "Slovenčina";
-
   useEffect(() => {
-    document.body.style.overflow = testOpen ? "hidden" : "unset";
+    if (testOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.removeProperty("overflow");
+    }
 
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.removeProperty("overflow");
     };
   }, [testOpen]);
 
@@ -64,7 +66,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-4 lg:px-8 py-4 border-b border-[var(--border-color)] bg-[var(--bg-primary)]/92 backdrop-blur-md w-full">
+      <nav aria-label={locale === "sk" ? "Hlavná navigácia" : "Main navigation"} className="sticky top-0 z-50 flex items-center justify-between px-4 lg:px-8 py-4 border-b border-[var(--border-color)] bg-[var(--bg-primary)]/92 backdrop-blur-md w-full">
 
         {/* Logo */}
         <Link
@@ -86,6 +88,7 @@ export default function Nav() {
               <Link
                 key={item.key}
                 href={item.href}
+                aria-current={isActive ? "page" : undefined}
                 className={`transition-colors duration-200 font-semibold whitespace-nowrap ${
                   isActive
                     ? "text-green-400"
@@ -183,6 +186,7 @@ export default function Nav() {
             <button
               key={lang.code}
               onClick={() => changeLanguage(lang.code)}
+              aria-pressed={isSelected}
               className={`
                 w-full flex items-center gap-2
                 px-2.5 py-2
@@ -198,7 +202,7 @@ export default function Nav() {
               `}
             >
               <span className="shrink-0 text-[15px] leading-none">
-                {lang.code === "sk" ? "🇸🇰" : "🇬🇧"}
+                {lang.code === "sk" ? "SK" : "EN"}
               </span>
 
               <span className="min-w-0 flex-1 truncate text-[11px] font-medium">
@@ -206,9 +210,7 @@ export default function Nav() {
               </span>
 
               {isSelected && (
-                <span className="shrink-0 text-[11px] text-green-400">
-                  ✓
-                </span>
+                <SiteIcon name="check" className="h-4 w-4 shrink-0 text-green-400" />
               )}
             </button>
           );
@@ -221,7 +223,9 @@ export default function Nav() {
           <button
             className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer select-none"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
+            aria-label={locale === "sk" ? (menuOpen ? "Zavrieť menu" : "Otvoriť menu") : (menuOpen ? "Close menu" : "Open menu")}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
           >
             <span
               className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${
@@ -245,6 +249,7 @@ export default function Nav() {
 
         {/* Mobile menu */}
         <div
+          id="mobile-navigation"
           className={`absolute top-full left-0 right-0 bg-[var(--bg-primary)] border-b border-[var(--border-color)] flex-col lg:hidden max-h-[85vh] overflow-y-auto ${
             menuOpen ? "flex" : "hidden"
           }`}
@@ -259,6 +264,7 @@ export default function Nav() {
               <Link
                 key={item.key}
                 href={item.href}
+                aria-current={isActive ? "page" : undefined}
                 className={`px-6 py-4 text-[14px] font-semibold border-t border-[var(--border-color)] transition-colors ${
                   isActive
                     ? "text-green-400"
@@ -276,7 +282,7 @@ export default function Nav() {
             onClick={openTest}
             className="px-6 py-4 text-[14px] font-semibold text-green-400 hover:text-green-300 border-t border-[var(--border-color)] transition-colors flex items-center gap-3 text-left cursor-pointer"
           >
-            <span className="text-xl">🧠</span>
+            <SiteIcon name="brain" className="h-5 w-5" />
 
             <span>
               {locale === "sk"
@@ -303,6 +309,7 @@ export default function Nav() {
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
+                    aria-pressed={isSelected}
                     className={`px-3 py-2.5 text-[12px] font-semibold rounded-[6px] text-center transition-all cursor-pointer ${
                       isSelected
                         ? "bg-green-400/10 border border-green-400 text-green-400"
@@ -326,7 +333,7 @@ export default function Nav() {
             <div className="sticky top-0 z-10 bg-[var(--bg-primary)]/95 backdrop-blur-md border-b border-[var(--border-color)] -mx-4 px-4 py-4 flex items-center justify-between">
 
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🧠</span>
+                <SiteIcon name="brain" className="h-6 w-6 text-[var(--accent)]" />
 
                 <div>
                   <h2 className="font-display text-lg font-bold text-[var(--text-primary)]">
@@ -343,9 +350,10 @@ export default function Nav() {
 
               <button
                 onClick={closeTest}
-                className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-2xl leading-none px-3 py-1 cursor-pointer"
+                aria-label={locale === "sk" ? "Zavrieť ADHD test" : "Close ADHD test"}
+                className="min-h-11 min-w-11 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-2xl leading-none px-3 py-1 cursor-pointer"
               >
-                ✕
+                <SiteIcon name="close" className="mx-auto h-5 w-5" />
               </button>
             </div>
 

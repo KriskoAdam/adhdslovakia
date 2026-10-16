@@ -80,4 +80,4 @@ Zatiaľ je nás v skupine pár ale pevne veríme, že to bude rásť a vy môže
 
 [Skupina na Facebooku](https://www.facebook.com/share/g/1Edr73fHGL/?mibextid=wwXIfr)
 
-![Popis obrázka](/images/C1.jpg)
+![Portrét ženy s titulkom „Na rovnakej vlne: Prečo by mali ADHD a autizmus držať spolu“.](/images/C1.jpg)

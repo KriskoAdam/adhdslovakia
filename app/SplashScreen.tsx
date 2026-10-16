@@ -9,32 +9,26 @@ export default function SplashScreen() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Zobrazíme splash iba pri PRVEJ návšteve v rámci tejto session (tab).
-    // Pri ďalšej navigácii v rámci webu (cez Next.js Link routing, čiže
-    // bez plného reloadu) sa už neukáže, lebo by to bolo otravné.
-    const alreadyShown = sessionStorage.getItem("splashShown");
-    if (alreadyShown) {
-      return;
-    }
+    let cancelled = false;
+    let fadeTimer: ReturnType<typeof setTimeout> | undefined;
+    let removeTimer: ReturnType<typeof setTimeout> | undefined;
 
-    setMounted(true);
-    setVisible(true);
-    sessionStorage.setItem("splashShown", "1");
+    queueMicrotask(() => {
+      if (cancelled || sessionStorage.getItem("splashShown")) return;
 
-    // Po 1.3s spustíme fade-out (visible = false spustí CSS transition).
-    const fadeTimer = setTimeout(() => {
-      setVisible(false);
-    }, 1300);
+      setMounted(true);
+      setVisible(true);
+      sessionStorage.setItem("splashShown", "1");
 
-    // Po doznení fade-out animácie (300ms) komponent úplne odstránime
-    // z DOMu, aby neprekážal žiadnym kliknutiam pod sebou.
-    const removeTimer = setTimeout(() => {
-      setMounted(false);
-    }, 1600);
+      // Start the fade-out after the short intro and remove the overlay after it finishes.
+      fadeTimer = setTimeout(() => setVisible(false), 1300);
+      removeTimer = setTimeout(() => setMounted(false), 1600);
+    });
 
     return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
+      cancelled = true;
+      if (fadeTimer) clearTimeout(fadeTimer);
+      if (removeTimer) clearTimeout(removeTimer);
     };
   }, []);
 

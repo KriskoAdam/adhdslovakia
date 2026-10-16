@@ -2,20 +2,21 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import SiteIcon, { type SiteIconName } from "./SiteIcon";
 
 const sections = [
-  { icon: "🧠", key: "whatIsAdhd" },
-  { icon: "⚡", key: "symptoms" },
-  { icon: "👶", key: "children" },
-  { icon: "👤", key: "adults" },
-  { icon: "🧬", key: "causes" },
-  { icon: "🔍", key: "diagnosis" },
-  { icon: "💊", key: "treatment" },
-  { icon: "🎓", key: "school" },
-  { icon: "💼", key: "work" },
-  { icon: "❤️", key: "relationships" },
-  { icon: "🍎", key: "lifestyle" },
-  { icon: "❓", key: "faq" },
+  { icon: "brain", key: "whatIsAdhd" },
+  { icon: "lightning", key: "symptoms" },
+  { icon: "child", key: "children" },
+  { icon: "user", key: "adults" },
+  { icon: "dna", key: "causes" },
+  { icon: "search", key: "diagnosis" },
+  { icon: "pill", key: "treatment" },
+  { icon: "school", key: "school" },
+  { icon: "work", key: "work" },
+  { icon: "heart", key: "relationships" },
+  { icon: "apple", key: "lifestyle" },
+  { icon: "help", key: "faq" },
 ] as const;
 
 export default function ADHDInfoGrid() {
@@ -45,9 +46,11 @@ export default function ADHDInfoGrid() {
               onClick={() => toggle(i)}
               className="w-full flex items-center justify-between px-5 py-4 text-left"
               aria-expanded={isOpen}
+              aria-controls={`adhd-info-panel-${i}`}
+              id={`adhd-info-trigger-${i}`}
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl">{item.icon}</span>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--accent-soft)] text-[var(--accent)]"><SiteIcon name={item.icon as SiteIconName} className="h-[18px] w-[18px]" /></span>
 
                 <span className="font-display font-bold text-[15px] text-[var(--text-primary)]">
                   {t(`sections.${item.key}.title`)}
@@ -64,13 +67,11 @@ export default function ADHDInfoGrid() {
             </button>
 
             {/* CONTENT */}
-            {isOpen && (
-              <div className="px-5 pb-6 border-t border-[var(--border-color)]">
-                <div className="pt-4 text-[14px] text-[var(--text-secondary)] leading-7 font-light whitespace-pre-line">
-                  {t(`sections.${item.key}.content`)}
-                </div>
+            <div id={`adhd-info-panel-${i}`} aria-labelledby={`adhd-info-trigger-${i}`} hidden={!isOpen} className="px-5 pb-6 border-t border-[var(--border-color)]">
+              <div className="pt-4 text-[14px] text-[var(--text-secondary)] leading-7 font-light whitespace-pre-line">
+                {t(`sections.${item.key}.content`)}
               </div>
-            )}
+            </div>
           </div>
         );
       })}

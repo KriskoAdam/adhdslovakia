@@ -15,8 +15,9 @@ export async function generateMetadata({
   });
 
   return {
-    title: `${t("title")} – ADHD Slovakia`,
+    title: t("title"),
     description: t("description"),
+    alternates: { canonical: `/${locale}/kontakt`, languages: { sk: "/sk/kontakt", en: "/en/kontakt" } },
   };
 }
 
@@ -25,7 +26,7 @@ export default async function KontaktPage({
 }: {
   params: Promise<{ locale: "sk" | "en" }>;
 }) {
-  const { locale } = await params;
+  await params;
   const t = await getTranslations("Contact");
 
   const contactItems = [
@@ -59,6 +60,7 @@ export default async function KontaktPage({
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
 
+      <main id="main-content" tabIndex={-1} className="outline-none">
       <div className="max-w-xl mx-auto px-8 pt-14 pb-20">
 
         <div className="inline-block bg-green-400/10 text-green-400 text-[11px] font-semibold tracking-widest uppercase px-3 py-1 rounded border border-green-400/25 mb-5 animate-fade-up">
@@ -110,6 +112,8 @@ export default async function KontaktPage({
         </div>
 
       </div>
+
+      </main>
 
       <footer className="px-8 py-8 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-3">
         <div className="font-display text-base font-extrabold text-[var(--text-muted)]">
