@@ -44,7 +44,7 @@ export default function ShareButtons({ title, url, orientation = "vertical" }: P
   ];
 
   const iconClass =
-    "min-h-11 min-w-11 flex items-center justify-center rounded-full text-[var(--text-secondary)] transition-colors text-sm font-semibold hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
+    `flex shrink-0 items-center justify-center rounded-full text-[var(--text-secondary)] transition-colors font-semibold hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${orientation === "horizontal" ? "h-[52px] w-[52px] bg-[var(--bg-secondary)] text-base" : "min-h-11 min-w-11 text-sm"}`;
 
   return (
     <div
@@ -70,7 +70,7 @@ export default function ShareButtons({ title, url, orientation = "vertical" }: P
         aria-label={isEnglish ? "Copy article link" : "Kopírovať odkaz na článok"}
         className={iconClass}
       >
-        <SiteIcon name={copied ? "check" : "link"} className="h-4 w-4" />
+        <SiteIcon name={copied ? "check" : "link"} className={orientation === "horizontal" ? "h-5 w-5" : "h-4 w-4"} />
       </button>
       <span className="sr-only" aria-live="polite">
         {copied ? (isEnglish ? "Link copied" : "Odkaz bol skopírovaný") : ""}
