@@ -168,14 +168,14 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* Zdieľanie + like pre mobil/tablet */}
-          <div className="xl:hidden mb-8 flex flex-wrap items-start gap-3">
+          <div className="xl:hidden mb-8 flex flex-wrap items-center gap-4">
             <ShareButtons
               title={article.title}
               url={articleUrl}
               orientation="horizontal"
             />
 
-            <div className="w-px h-6 bg-[var(--border-color)]" />
+            <div className="w-px h-8 bg-[var(--border-color)]" aria-hidden="true" />
 
             <LikeButton likeKey={sharedKey} />
           </div>

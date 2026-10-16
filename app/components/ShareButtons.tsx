@@ -48,7 +48,7 @@ export default function ShareButtons({ title, url, orientation = "vertical" }: P
 
   return (
     <div
-      className={`flex items-center ${orientation === "vertical" ? "flex-col gap-3" : "flex-row gap-2"}`}
+      className={`flex items-center ${orientation === "vertical" ? "flex-col gap-3" : "flex-row flex-wrap gap-3"}`}
     >
       {links.map((link) => (
         <a
