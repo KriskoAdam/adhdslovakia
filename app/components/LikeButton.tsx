@@ -49,10 +49,10 @@ export default function LikeButton({ likeKey }: Props) {
         aria-label={liked
           ? (isEnglish ? "You liked this article" : "Tento článok sa vám páči")
           : (isEnglish ? "Like this article" : "Páči sa mi tento článok")}
-        className={`min-h-11 min-w-11 flex items-center justify-center rounded-full border transition-colors text-[14px] flex items-center justify-center rounded-full border transition-colors text-[14px] ${
+        className={`min-h-11 min-w-11 flex items-center justify-center rounded-full transition-colors text-[14px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${
           liked
-            ? "border-green-400/50 text-green-400 bg-green-400/10"
-            : "border-[var(--border-color)] text-[var(--text-muted)] hover:text-green-400 hover:border-green-400/40"
+            ? "text-green-400 bg-green-400/10"
+            : "text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent)]"
         }`}
       >
         <SiteIcon name="heart" className="h-4 w-4 fill-current" />

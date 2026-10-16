@@ -44,7 +44,7 @@ export default function ShareButtons({ title, url, orientation = "vertical" }: P
   ];
 
   const iconClass =
-    "min-h-11 min-w-11 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-green-400 hover:border-green-400/40 transition-colors text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
+    "min-h-11 min-w-11 flex items-center justify-center rounded-full text-[var(--text-secondary)] transition-colors text-sm font-semibold hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
 
   return (
     <div

@@ -40,7 +40,7 @@ export default function ThemeToggle() {
         ? (theme === "dark" ? "Switch to light theme" : "Switch to dark theme")
         : (theme === "dark" ? "Prepnúť na svetlý režim" : "Prepnúť na tmavý režim")}
       aria-pressed={theme === "dark"}
-      className="relative min-h-11 min-w-11 rounded-lg border border-[var(--border-color)] flex items-center justify-center hover:border-green-400/40 transition-colors shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+      className="relative min-h-11 min-w-11 rounded-lg flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent)] shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
     >
       {/*
         Tento malý kúsok CSS zariadi, že prehliadač okamžite vie, ktorú ikonu schovať.
