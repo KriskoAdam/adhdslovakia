@@ -1,3 +1,5 @@
+import type { MetadataRoute } from "next";
+
 export type AppListing = {
   id: string;
   name: string;
@@ -9,6 +11,25 @@ export type AppListing = {
   details: { sk: string; en: string };
   tags: { sk: string[]; en: string[] };
 };
+
+export type AppLocale = "sk" | "en";
+
+export function createAppManifest(app: AppListing, locale: AppLocale, startUrl: string): MetadataRoute.Manifest {
+  const english = locale === "en";
+  return {
+    id: startUrl,
+    name: `${app.name} by ADHD Slovakia`,
+    short_name: app.name,
+    description: app.description[locale],
+    start_url: startUrl,
+    scope: `/${locale}/`,
+    display: "standalone",
+    background_color: "#f2f5f1",
+    theme_color: "#f2f5f1",
+    lang: english ? "en" : "sk",
+    icons: app.pwaIcons.map(({ src, sizes, type }) => ({ src, sizes, type, purpose: "any" })),
+  };
+}
 
 // Add future ADHD Slovakia tools here; the app catalogue renders each entry as a card.
 export const appListings: AppListing[] = [
