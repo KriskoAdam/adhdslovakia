@@ -12,3 +12,4 @@ Toto je krátky test automatického prekladu. Článok hovorí, že prestávka m
 Tento riadok overuje, že Action spracuje nový článok.
 Tretí testovací riadok.
 Štvrtý testovací riadok.
+Piaty riadok pre nový izolovaný beh.
