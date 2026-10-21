@@ -22,11 +22,16 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Prepare isolated test event
+        if: github.ref != 'refs/heads/main'
+        run: |
+          printf '{"commits":[{"added":["content/clanky/sk/translation-smoke-test.md"]}]}' > "$RUNNER_TEMP/translation-event.json"
+
       - name: Generate missing English translations
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.8-flash
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          GITHUB_EVENT_PATH: ${{ github.ref == 'refs/heads/main' && github.event_path || format('{0}/translation-event.json', runner.temp) }}
         run: node scripts/translate-articles.mjs
 
       - name: Open translation review pull request
