@@ -10,6 +10,7 @@ import SiteIcon from "./SiteIcon";
 const navLinks = [
   { key: "home", href: "/" },
   { key: "articles", href: "/clanky" },
+  { key: "apps", href: "/appky" },
   { key: "adhdInfo", href: "/informacie-o-adhd" },
   { key: "about", href: "/o-nas" },
   { key: "contact", href: "/kontakt" },
@@ -83,6 +84,7 @@ export default function Nav() {
               item.href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(item.href);
+            const isApps = item.key === "apps";
 
             return (
               <Link
@@ -96,6 +98,7 @@ export default function Nav() {
                 }`}
               >
                 {t(item.key)}
+                {isApps && <span className="ml-1.5 rounded bg-green-400/10 px-1.5 py-0.5 text-[9px] font-bold tracking-wide text-green-400">{locale === "sk" ? "NOVÉ" : "NEW"}</span>}
               </Link>
             );
           })}
@@ -259,13 +262,14 @@ export default function Nav() {
               item.href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(item.href);
+            const isApps = item.key === "apps";
 
             return (
               <Link
                 key={item.key}
                 href={item.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`px-6 py-4 text-[14px] font-semibold border-t border-[var(--border-color)] transition-colors ${
+                className={`px-6 py-4 text-[14px] font-semibold border-t border-[var(--border-color)] transition-colors flex items-center gap-2 ${
                   isActive
                     ? "text-green-400"
                     : "text-[var(--text-secondary)] hover:text-green-400"
@@ -273,6 +277,7 @@ export default function Nav() {
                 onClick={() => setMenuOpen(false)}
               >
                 {t(item.key)}
+                {isApps && <span className="ml-auto rounded bg-green-400/10 px-2.5 py-1 text-xs font-medium text-green-400">{locale === "sk" ? "NOVÉ" : "NEW"}</span>}
               </Link>
             );
           })}
@@ -290,9 +295,6 @@ export default function Nav() {
                 : "Take the ADHD test"}
             </span>
 
-            <span className="ml-auto text-xs bg-green-400/10 px-2.5 py-1 rounded text-green-400 font-medium">
-              {locale === "sk" ? "NOVÉ" : "NEW"}
-            </span>
           </button>
 
           {/* Mobile language selector */}

@@ -111,7 +111,19 @@ export default async function RootLayout({
         </NextIntlClientProvider>
 
         <footer className="border-t border-[var(--border-color)] px-5 py-5 text-center text-xs text-[var(--text-muted)]">
-          <a className="underline underline-offset-2 hover:text-green-500" href={`/${locale}/ochrana-sukromia`}>{locale === "en" ? "Privacy and cookies policy" : "Ochrana súkromia a cookies"}</a>
+          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-2">
+            <a className="underline underline-offset-2 hover:text-green-500" href={`/${locale}/ochrana-sukromia`}>
+              {locale === "en" ? "Privacy and cookies policy" : "Ochrana súkromia a cookies"}
+            </a>
+            <span aria-hidden="true">·</span>
+            <a
+              className="underline underline-offset-2 decoration-[var(--border-color)] hover:text-[var(--text-secondary)]"
+              href={`mailto:info@adhdslovakia.eu?subject=${encodeURIComponent(locale === "en" ? "Supporting ADHD Slovakia" : "Podpora ADHD Slovakia")}`}
+              title={locale === "en" ? "We are preparing a way to contribute" : "Pripravujeme spôsob príspevku"}
+            >
+              {locale === "en" ? "Support the project" : "Podporiť projekt"}
+            </a>
+          </div>
         </footer>
         <CookieConsent locale={locale === "en" ? "en" : "sk"} />
       </body>
