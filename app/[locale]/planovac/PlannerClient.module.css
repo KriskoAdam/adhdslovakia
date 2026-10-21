@@ -22,6 +22,7 @@
 }
 
 .shell { width: min(100%, 1050px); margin: 0 auto; }
+.icon { width: 16px; height: 16px; flex: 0 0 auto; }
 .header {
   height: 76px;
   display: flex;
@@ -90,7 +91,8 @@
 .welcomeDecoration { position: relative; width: 210px; height: 175px; flex: 0 0 auto; margin-right: 2rem; }
 .orbitOne, .orbitTwo { position: absolute; inset: 13px 15px; border: 1px solid rgba(116, 151, 113, .32); border-radius: 50%; transform: rotate(-25deg); }
 .orbitTwo { inset: 29px -4px; transform: rotate(32deg); border-color: rgba(116, 151, 113, .22); }
-.sun { position: absolute; top: 29px; left: 77px; width: 65px; height: 65px; display: grid; place-items: center; border-radius: 50%; background: #dcebd5; color: #54875d; font-size: 2.1rem; }
+.sun { position: absolute; top: 29px; left: 77px; width: 65px; height: 65px; display: grid; place-items: center; border-radius: 50%; background: #dcebd5; color: #54875d; }
+.sun svg { width: 30px; height: 30px; }
 .decorLabel { position: absolute; right: 8px; bottom: 23px; color: #81917e; font-size: .64rem; font-weight: 700; letter-spacing: .07em; line-height: 1.5; text-align: right; text-transform: uppercase; }
 
 .weekSection { padding: 1.8rem 1.75rem 1.7rem; border-bottom: 1px solid var(--planner-line); animation: planner-rise .5s .08s cubic-bezier(.2,.8,.2,1) both; }
@@ -123,7 +125,7 @@
 
 .addForm { padding: .72rem; border: 1px solid #e3e9e0; border-radius: 13px; background: #fbfcf9; }
 .addInputRow { display: flex; align-items: center; gap: .55rem; }
-.plusIcon { width: 26px; height: 26px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 8px; background: #e7f0e3; color: #49734f; font-size: 1.15rem; }
+.plusIcon { width: 26px; height: 26px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 8px; background: #e7f0e3; color: #49734f; }
 .addInputRow input { width: 100%; min-width: 0; height: 38px; border: 0; outline: 0; background: transparent; color: var(--planner-ink); font: inherit; font-size: .84rem; }
 .addInputRow input::placeholder { color: #99a39a; }
 .addInputRow button { flex: 0 0 auto; min-height: 35px; border: 0; border-radius: 9px; padding: .45rem .75rem; background: #3a744a; color: white; font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer; transition: background .15s ease; }
@@ -137,7 +139,8 @@
 .prioritySelect select { max-width: 100px; }
 
 .emptyState { min-height: 290px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem .7rem; color: #849084; text-align: center; }
-.emptyIllustration { position: relative; width: 64px; height: 64px; display: grid; place-items: center; margin-bottom: .9rem; border-radius: 22px; background: #eff4ec; color: #66946b; font-size: 1.8rem; }
+.emptyIllustration { position: relative; width: 64px; height: 64px; display: grid; place-items: center; margin-bottom: .9rem; border-radius: 22px; background: #eff4ec; color: #66946b; }
+.emptyIllustration > svg { width: 28px; height: 28px; }
 .emptyIllustration i { position: absolute; right: 8px; bottom: 8px; width: 9px; height: 9px; border: 2px solid #eff4ec; border-radius: 50%; background: #a9c795; }
 .emptyState p { max-width: 275px; margin: .2rem 0; font-size: .81rem; line-height: 1.55; }
 .emptyState .emptyTitle { color: #485b4b; font-size: .91rem; font-weight: 700; }
@@ -164,22 +167,24 @@
 .progressHeading { display: flex; align-items: center; justify-content: space-between; }
 .progressCount { margin: .25rem 0 0; color: #324a37; font-family: var(--font-display), sans-serif; font-size: 1.75rem; font-weight: 800; letter-spacing: -.06em; }
 .progressCount span { color: #a5aea3; font-family: var(--font-sans), sans-serif; font-size: .82rem; font-weight: 500; letter-spacing: 0; }
-.progressFlower { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: #edf4e9; color: #7da37a; font-size: 1.3rem; }
+.progressFlower { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: #edf4e9; color: #7da37a; }
+.progressFlower svg { width: 20px; height: 20px; }
 .progressTrack { height: 6px; overflow: hidden; margin-top: .85rem; border-radius: 20px; background: #ebf0e8; }
 .progressTrack span { height: 100%; display: block; border-radius: inherit; background: #75a274; transition: width .3s ease; }
 .progressCaption { min-height: 1.2em; margin: .48rem 0 0; color: #7e8b7e; font-size: .68rem; }
 .focusCard { position: relative; overflow: hidden; padding: 1.2rem; background: #edf3e9; }
 .focusCard::after { position: absolute; right: -32px; bottom: -53px; width: 130px; height: 130px; border: 1px solid rgba(104, 146, 101, .18); border-radius: 50%; content: ""; box-shadow: 0 0 0 15px rgba(104, 146, 101, .05), 0 0 0 31px rgba(104, 146, 101, .035); }
-.focusIcon { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid #cdddc7; border-radius: 10px; color: #5e8a62; font-size: .82rem; }
+.focusIcon { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid #cdddc7; border-radius: 10px; color: #5e8a62; }
+.focusIcon svg { width: 17px; height: 17px; }
 .focusEyebrow { margin: .78rem 0 .15rem; color: #738a70; font-size: .65rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 .focusCard h2 { margin: 0; color: #304936; font-family: var(--font-display), sans-serif; font-size: 2.35rem; font-weight: 750; letter-spacing: -.055em; line-height: 1.16; font-variant-numeric: tabular-nums; }
 .focusHint { margin: .25rem 0 .8rem; color: #71816f; font-size: .73rem; }
 .timerControls { position: relative; z-index: 1; display: flex; gap: .4rem; }
 .timerMain { min-height: 34px; border: 0; border-radius: 9px; padding: .45rem .75rem; background: #47774e; color: white; font: inherit; font-size: .7rem; font-weight: 700; cursor: pointer; }
 .timerMain:hover { background: #3a6742; }
-.timerReset { width: 34px; height: 34px; border: 1px solid #ceddc8; border-radius: 9px; background: rgba(255, 255, 255, .42); color: #668267; font-size: 1rem; cursor: pointer; }
+.timerReset { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid #ceddc8; border-radius: 9px; background: rgba(255, 255, 255, .42); color: #668267; cursor: pointer; }
 .privacyNote { display: flex; align-items: flex-start; gap: .5rem; margin: .2rem .2rem; color: #89958a; font-size: .67rem; line-height: 1.5; }
-.privacyNote span { color: #79927b; font-size: .84rem; }
+.privacyNote svg { color: #79927b; }
 .sideColumn { animation: planner-rise .55s .2s cubic-bezier(.2,.8,.2,1) both; }
 .footer { display: flex; align-items: center; justify-content: center; gap: .55rem; padding: 1.8rem .5rem .2rem; color: #94a094; font-size: .65rem; }
 .footer span:first-child { font-weight: 700; }

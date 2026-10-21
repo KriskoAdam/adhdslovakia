@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Nav from "../../../components/Nav";
+import SiteIcon from "../../../components/SiteIcon";
 import AppsClient from "../AppsClient";
 import { appListings, getAppListing } from "../../../lib/apps";
 import styles from "./AppDetailPage.module.css";
@@ -49,6 +50,12 @@ export async function generateMetadata({
     twitter: { card: "summary_large_image", title, description, images: [image] },
     robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
     manifest: `/${language}/appky/${app.id}/manifest.webmanifest`,
+    icons: {
+      icon: app.pwaIcons.map(({ src, sizes, type }) => ({ url: src, sizes, type })),
+      apple: app.pwaIcons
+        .filter((icon) => icon.type === "image/png" && icon.sizes === "192x192")
+        .map(({ src, sizes, type }) => ({ url: src, sizes, type })),
+    },
     appleWebApp: { capable: true, title: app.name, statusBarStyle: "default" },
   };
 }
@@ -115,7 +122,7 @@ export default async function AppDetailPage({
         <div className={styles.shell}>
           <header className={styles.header}>
             <a className={styles.backLink} href={`/${locale}/appky`}>
-              <span aria-hidden="true">←</span> {english ? "Back to all apps" : "Späť na všetky appky"}
+              <SiteIcon name="arrowLeft" className={styles.actionIcon} /> {english ? "Back to all apps" : "Späť na všetky appky"}
             </a>
           </header>
 
@@ -134,7 +141,7 @@ export default async function AppDetailPage({
           </div>
           <div className={styles.actions}>
             <a className={styles.openButton} href={`/${locale}${app.href}`}>
-              {english ? "Open app" : "Otvoriť appku"}<span aria-hidden="true">↗</span>
+              {english ? "Open app" : "Otvoriť appku"}<SiteIcon name="arrowUpRight" className={styles.actionIcon} />
             </a>
             <AppsClient locale={locale} appName={app.name} />
           </div>

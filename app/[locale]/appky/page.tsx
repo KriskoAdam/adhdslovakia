@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Nav from "../../components/Nav";
+import SiteIcon from "../../components/SiteIcon";
 import { appListings } from "../../lib/apps";
 import styles from "./AppsPage.module.css";
 
@@ -116,10 +117,10 @@ export default async function AppsPage({
                 </div>
                 <div className={styles.actions}>
                   <a className={styles.openButton} href={`/${locale}${app.href}`}>
-                    {english ? "Open app" : "Otvoriť appku"}<span aria-hidden="true">↗</span>
+                    {english ? "Open app" : "Otvoriť appku"}<SiteIcon name="arrowUpRight" className={styles.actionIcon} />
                   </a>
                   <a className={styles.installButton} href={`/${locale}${app.detailsHref}`}>
-                    <span aria-hidden="true">↓</span>{english ? "How to install" : "Ako nainštalovať"}
+                    <SiteIcon name="arrowDown" className={styles.actionIcon} />{english ? "How to install" : "Ako nainštalovať"}
                   </a>
                 </div>
               </article>

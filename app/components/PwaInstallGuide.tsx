@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import SiteIcon from "./SiteIcon";
 import styles from "./PwaInstallGuide.module.css";
 
 export type InstallPlatform = "ios" | "android" | "desktop";
@@ -25,22 +26,22 @@ export default function PwaInstallGuide({ locale, platform, onClose, appName = "
       title: english ? "Install on iPhone or iPad" : "Inštalácia na iPhone alebo iPade",
       note: english ? "This needs to be done in Safari." : "Tento postup funguje v prehliadači Safari.",
       steps: english
-        ? ["Open this page in Safari (if it opened in another app, use Share → Open in Safari).", "Tap the Share button — the square with an arrow pointing up.", "Scroll down and tap “Add to Home Screen”.", "Tap “Add” in the top-right corner. The app icon will appear on your Home Screen."]
+        ? ["Open this page in Safari. If it opened in another app, use Share, then choose Open in Safari.", "Tap the Share button — the square with an arrow pointing up.", "Scroll down and tap “Add to Home Screen”.", "Tap “Add” in the top-right corner. The app icon will appear on your Home Screen."]
         : ["Otvor túto stránku v Safari (ak sa otvorila v inej aplikácii, cez Zdieľať ju otvor v Safari).", "Ťukni na tlačidlo Zdieľať — štvorec so šípkou nahor.", "Posuň ponuku nižšie a vyber „Pridať na plochu“.", "Vpravo hore ťukni na „Pridať“. Ikonu nájdeš na ploche."]
     },
     android: {
       title: english ? "Install on Android" : "Inštalácia na Androide",
       note: english ? "Chrome gives the simplest installation." : "Najjednoduchšie to pôjde v prehliadači Chrome.",
       steps: english
-        ? ["Open this page in Chrome.", "Tap the three dots ⋮ in the top-right corner.", "Choose “Install app” or “Add to Home screen”.", "Confirm with “Install” or “Add”. The icon will appear with your other apps."]
-        : ["Otvor túto stránku v prehliadači Chrome.", "Vpravo hore ťukni na tri bodky ⋮.", "Vyber „Inštalovať aplikáciu“ alebo „Pridať na plochu“.", "Potvrď „Inštalovať“ alebo „Pridať“. Ikonu potom nájdeš medzi aplikáciami."]
+        ? ["Open this page in Chrome.", "Open the three-dot menu in the top-right corner.", "Choose “Install app” or “Add to Home screen”.", "Confirm with “Install” or “Add”. The icon will appear with your other apps."]
+        : ["Otvor túto stránku v prehliadači Chrome.", "Vpravo hore otvor menu s tromi bodkami.", "Vyber „Inštalovať aplikáciu“ alebo „Pridať na plochu“.", "Potvrď „Inštalovať“ alebo „Pridať“. Ikonu potom nájdeš medzi aplikáciami."]
     },
     desktop: {
       title: english ? "Install on your computer" : "Inštalácia v počítači",
       note: english ? "Use a current version of Chrome or Edge." : "Použi aktuálny Chrome alebo Edge.",
       steps: english
-        ? ["Open this page in Chrome or Edge.", "Look for the install icon in the address bar, or open the browser menu ⋮.", `Choose “Install ${appName}” or “Install app”.`, "Confirm the installation. You can then open the app from your desktop or app launcher."]
-        : ["Otvor túto stránku v prehliadači Chrome alebo Edge.", "V adresnom riadku nájdi ikonu inštalácie alebo otvor menu prehliadača ⋮.", `Vyber „Inštalovať ${appName}“ alebo „Inštalovať aplikáciu“.`, "Potvrď inštaláciu. Potom appku otvoríš z plochy alebo zo zoznamu aplikácií."]
+        ? ["Open this page in Chrome or Edge.", "Look for the install icon in the address bar, or open the browser menu.", `Choose “Install ${appName}” or “Install app”.`, "Confirm the installation. You can then open the app from your desktop or app launcher."]
+        : ["Otvor túto stránku v prehliadači Chrome alebo Edge.", "V adresnom riadku nájdi ikonu inštalácie alebo otvor menu prehliadača.", `Vyber „Inštalovať ${appName}“ alebo „Inštalovať aplikáciu“.`, "Potvrď inštaláciu. Potom appku otvoríš z plochy alebo zo zoznamu aplikácií."]
     }
   }[platform];
 
@@ -48,8 +49,8 @@ export default function PwaInstallGuide({ locale, platform, onClose, appName = "
     <div className={styles.overlay} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
       <section className={styles.dialog} role="dialog" aria-modal="true" aria-labelledby="install-guide-title">
         <div className={styles.dialogTop}>
-          <span className={styles.guideIcon} aria-hidden="true">↓</span>
-          <button autoFocus type="button" className={styles.closeButton} onClick={onClose} aria-label={english ? "Close installation guide" : "Zavrieť návod na inštaláciu"}>×</button>
+          <span className={styles.guideIcon} aria-hidden="true"><SiteIcon name="arrowDown" /></span>
+          <button autoFocus type="button" className={styles.closeButton} onClick={onClose} aria-label={english ? "Close installation guide" : "Zavrieť návod na inštaláciu"}><SiteIcon name="close" /></button>
         </div>
         <p className={styles.eyebrow}>{english ? "A QUICK SETUP" : "RÝCHLE NASTAVENIE"}</p>
         <h2 id="install-guide-title">{content.title}</h2>

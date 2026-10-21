@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import PwaInstallGuide, { detectInstallPlatform, type InstallPlatform } from "../../components/PwaInstallGuide";
+import SiteIcon from "../../components/SiteIcon";
 import styles from "./AppsPage.module.css";
 
 type InstallPromptEvent = Event & {
@@ -50,7 +51,7 @@ export default function AppsClient({ locale, appName }: { locale: "sk" | "en"; a
   return (
     <div className={styles.installWrap}>
       <button className={styles.installButton} type="button" onClick={install}>
-        <span aria-hidden="true">↓</span>{english ? "Install" : "Nainštalovať"}
+        <SiteIcon name="arrowDown" className={styles.actionIcon} />{english ? "Install" : "Nainštalovať"}
       </button>
       {message && <p className={styles.installMessage} role="status">{message}</p>}
       {guideOpen && <PwaInstallGuide locale={locale} platform={platform} appName={appName} onClose={() => setGuideOpen(false)} />}

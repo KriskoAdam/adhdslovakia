@@ -46,7 +46,7 @@
 .openButton, .installButton { min-height: 39px; display: inline-flex; align-items: center; justify-content: center; gap: .55rem; border-radius: 10px; padding: .55rem .78rem; font: inherit; font-size: .72rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: background .16s ease, transform .16s ease; }
 .openButton { background: #38764c; color: white; }
 .openButton:hover { background: #2e633e; transform: translateY(-1px); }
-.openButton span { font-size: .9rem; }
+.actionIcon { width: 15px; height: 15px; flex: 0 0 auto; }
 .installButton { border: 1px solid #d8e2d5; background: #fffefa; color: #46694b; }
 .installButton:hover { background: #f0f5ed; }
 .installButton span { font-size: .95rem; }

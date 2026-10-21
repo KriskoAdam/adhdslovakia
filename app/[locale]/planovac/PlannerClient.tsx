@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import PwaInstallGuide, { detectInstallPlatform, type InstallPlatform } from "../../components/PwaInstallGuide";
+import SiteIcon from "../../components/SiteIcon";
 import styles from "./PlannerClient.module.css";
 
 type Locale = "sk" | "en";
@@ -215,9 +216,9 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
           <a className={styles.brand} href={`/${locale}`} aria-label={t.back}>
             <span className={styles.brandText}>ADHD<span>.</span>Slovakia</span>
           </a>
-          <a className={styles.appsLink} href={`/${locale}/appky`}>{t.apps}<span aria-hidden="true">↗</span></a>
+          <a className={styles.appsLink} href={`/${locale}/appky`}>{t.apps}<SiteIcon name="arrowUpRight" className={styles.icon} /></a>
           <button className={styles.installButton} onClick={install} type="button">
-            <span aria-hidden="true">↥</span> {t.install}
+            <SiteIcon name="arrowDown" className={styles.icon} /> {t.install}
           </button>
         </header>
 
@@ -232,7 +233,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
           <div className={styles.welcomeDecoration} aria-hidden="true">
             <span className={styles.orbitOne} />
             <span className={styles.orbitTwo} />
-            <span className={styles.sun}>✳</span>
+            <span className={styles.sun}><SiteIcon name="sparkles" /></span>
             <span className={styles.decorLabel}>one thing<br />at a time</span>
           </div>
         </section>
@@ -244,8 +245,8 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
               <h2>{weekStart ? formatDate(weekStart, locale, { month: "long", year: "numeric" }) : ""}</h2>
             </div>
             <div className={styles.weekControls}>
-              <button type="button" onClick={() => setSelectedDate((date) => addDays(date, -7))} aria-label={t.previous}>‹</button>
-              <button type="button" onClick={() => setSelectedDate((date) => addDays(date, 7))} aria-label={t.next}>›</button>
+              <button type="button" onClick={() => setSelectedDate((date) => addDays(date, -7))} aria-label={t.previous}><SiteIcon name="arrowLeft" className={styles.icon} /></button>
+              <button type="button" onClick={() => setSelectedDate((date) => addDays(date, 7))} aria-label={t.next}><SiteIcon name="arrowRight" className={styles.icon} /></button>
               {selectedDate !== todayKey && <button type="button" className={styles.todayButton} onClick={() => setSelectedDate(todayKey)}>{t.todayButton}</button>}
             </div>
           </div>
@@ -286,7 +287,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
             <form className={styles.addForm} onSubmit={addTask}>
               <label className={styles.srOnly} htmlFor="new-task">{t.addTitle}</label>
               <div className={styles.addInputRow}>
-                <span className={styles.plusIcon} aria-hidden="true">+</span>
+                <span className={styles.plusIcon} aria-hidden="true"><SiteIcon name="plus" className={styles.icon} /></span>
                 <input
                   id="new-task"
                   value={title}
@@ -301,14 +302,14 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                 <label className={styles.selectWrap}>
                   <span className={styles.srOnly}>{t.tasks}</span>
                   <select value={category} onChange={(event) => setCategory(event.target.value as Category)}>
-                    <option value="everyday">◌ {t.everyday}</option>
-                    <option value="work">▧ {t.work}</option>
-                    <option value="health">♡ {t.health}</option>
-                    <option value="rest">☼ {t.rest}</option>
+                    <option value="everyday">{t.everyday}</option>
+                    <option value="work">{t.work}</option>
+                    <option value="health">{t.health}</option>
+                    <option value="rest">{t.rest}</option>
                   </select>
                 </label>
                 <label className={styles.timeInput}>
-                  <span aria-hidden="true">◷</span>
+                  <SiteIcon name="clock" className={styles.icon} />
                   <span className={styles.srOnly}>{t.time}</span>
                   <input type="time" value={time} onChange={(event) => setTime(event.target.value)} aria-label={t.time} />
                 </label>
@@ -324,7 +325,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
 
             {dayTasks.length === 0 ? (
               <div className={styles.emptyState}>
-                <div className={styles.emptyIllustration} aria-hidden="true"><span>✳</span><i /></div>
+                <div className={styles.emptyIllustration} aria-hidden="true"><SiteIcon name="sparkles" /><i /></div>
                 <p className={styles.emptyTitle}>{t.noTasks}</p>
                 <p>{t.noTasksHint}</p>
               </div>
@@ -339,7 +340,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                       aria-label={`${task.done ? (locale === "sk" ? "Označiť ako nesplnené" : "Mark as not done") : (locale === "sk" ? "Označiť ako splnené" : "Mark as done")}: ${task.title}`}
                       aria-pressed={task.done}
                     >
-                      {task.done && <span aria-hidden="true">✓</span>}
+                      {task.done && <SiteIcon name="check" className={styles.icon} />}
                     </button>
                     <div className={styles.taskBody}>
                       <span className={styles.taskTitle}>{task.title}</span>
@@ -349,7 +350,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                         {task.priority === "important" && <span className={styles.importantChip}>{t.important}</span>}
                       </span>
                     </div>
-                    <button className={styles.deleteButton} type="button" onClick={() => deleteTask(task.id)} aria-label={`${t.delete}: ${task.title}`}>×</button>
+                    <button className={styles.deleteButton} type="button" onClick={() => deleteTask(task.id)} aria-label={`${t.delete}: ${task.title}`}><SiteIcon name="close" className={styles.icon} /></button>
                   </li>
                 ))}
               </ul>
@@ -363,7 +364,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                   <p className={styles.sectionEyebrow}>{t.progress}</p>
                   <p className={styles.progressCount}>{completedCount}<span> / {dayTasks.length}</span></p>
                 </div>
-                <div className={styles.progressFlower} aria-hidden="true">✳</div>
+                <div className={styles.progressFlower} aria-hidden="true"><SiteIcon name="sparkles" /></div>
               </div>
               <div className={styles.progressTrack} role="progressbar" aria-label={t.progress} aria-valuemin={0} aria-valuemax={dayTasks.length || 1} aria-valuenow={completedCount}>
                 <span style={{ width: `${dayTasks.length ? (completedCount / dayTasks.length) * 100 : 0}%` }} />
@@ -372,7 +373,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
             </section>
 
             <section className={styles.focusCard}>
-              <div className={styles.focusIcon} aria-hidden="true"><span>◉</span></div>
+              <div className={styles.focusIcon} aria-hidden="true"><SiteIcon name="target" /></div>
               <p className={styles.focusEyebrow}>{t.focus}</p>
               <h2>{formatTimer}</h2>
               <p className={styles.focusHint}>{t.focusHint}</p>
@@ -380,11 +381,11 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                 <button type="button" className={styles.timerMain} onClick={() => setTimerRunning((running) => !running)}>
                   {timerRunning ? t.pause : secondsLeft === 25 * 60 ? t.start : t.resume}
                 </button>
-                <button type="button" className={styles.timerReset} onClick={() => { setTimerRunning(false); setSecondsLeft(25 * 60); }} aria-label={t.reset}>↻</button>
+                <button type="button" className={styles.timerReset} onClick={() => { setTimerRunning(false); setSecondsLeft(25 * 60); }} aria-label={t.reset}><SiteIcon name="rotate" className={styles.icon} /></button>
               </div>
             </section>
 
-            <p className={styles.privacyNote}><span aria-hidden="true">⌂</span>{t.local}</p>
+            <p className={styles.privacyNote}><SiteIcon name="home" className={styles.icon} />{t.local}</p>
           </aside>
         </div>
 
