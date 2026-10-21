@@ -1,9 +1,8 @@
 import { defineConfig } from "tinacms";
 
 const branch =
-  process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.GITHUB_BRANCH ||
-  (process.env.VERCEL_ENV === "preview" ? "main" : process.env.VERCEL_GIT_COMMIT_REF) ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   "main";
 
