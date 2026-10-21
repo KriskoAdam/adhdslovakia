@@ -33,8 +33,12 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.8-flash
-          GITHUB_EVENT_PATH: ${{ github.ref == 'refs/heads/main' && github.event_path || format('{0}/translation-event.json', runner.temp) }}
-        run: node scripts/translate-articles.mjs
+        run: |
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            export GITHUB_EVENT_PATH="$RUNNER_TEMP/translation-event.json"
+          fi
+          echo "Using event file: $GITHUB_EVENT_PATH"
+          node scripts/translate-articles.mjs
 
       - name: Open translation review pull request
         if: github.ref == 'refs/heads/main'
