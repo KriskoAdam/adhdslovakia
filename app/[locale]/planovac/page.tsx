@@ -31,6 +31,13 @@ export async function generateMetadata({
     },
     robots: { index: true, follow: true },
     manifest: `/${locale}/planovac/manifest.webmanifest`,
+    icons: {
+      icon: [
+        { url: "/apps/adhd-flow-icon-192.png", sizes: "192x192", type: "image/png" },
+        { url: "/apps/adhd-flow-icon-512.png", sizes: "512x512", type: "image/png" },
+      ],
+      apple: [{ url: "/apps/adhd-flow-icon-192.png", sizes: "192x192", type: "image/png" }],
+    },
     appleWebApp: {
       capable: true,
       title: "ADHD Flow",
