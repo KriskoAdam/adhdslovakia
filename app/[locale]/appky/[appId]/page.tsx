@@ -26,6 +26,8 @@ export async function generateMetadata({
   return {
     title,
     description,
+    applicationName: app.name,
+    category: language === "en" ? "Productivity" : "Produktivita",
     alternates: {
       canonical: `/${language}/appky/${app.id}`,
       languages: {
@@ -73,6 +75,26 @@ export default async function AppDetailPage({
         url: pageUrl,
         inLanguage: locale,
         isPartOf: { "@id": "https://www.adhdslovakia.eu/#website" },
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${pageUrl}#application`,
+        name: app.name,
+        description: app.description[locale],
+        url: pageUrl,
+        image: `https://www.adhdslovakia.eu${app.icon}`,
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: english ? "Any device with a modern web browser" : "Zariadenie s moderným webovým prehliadačom",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+          url: pageUrl,
+        },
+        featureList: english
+          ? ["Progressive web app", "Works offline", "No account required", "Tasks stay on your device"]
+          : ["Progresívna webová aplikácia", "Funguje offline", "Bez potreby účtu", "Úlohy zostávajú v zariadení"],
+        publisher: { "@id": "https://www.adhdslovakia.eu/#organization" },
       },
       {
         "@type": "BreadcrumbList",
