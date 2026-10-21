@@ -13,3 +13,4 @@ Tento riadok overuje, že Action spracuje nový článok.
 Tretí testovací riadok.
 Štvrtý testovací riadok.
 Piaty riadok pre nový izolovaný beh.
+Šiesty riadok pre test bezplatného modelu.

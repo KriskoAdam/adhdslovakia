@@ -32,7 +32,7 @@ jobs:
       - name: Generate missing English translations
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-3.8-flash
+          GEMINI_MODEL: gemini-3.1-flash-lite
         run: |
           if [ "$GITHUB_REF" != "refs/heads/main" ]; then
             export GITHUB_EVENT_PATH="$RUNNER_TEMP/translation-event.json"
