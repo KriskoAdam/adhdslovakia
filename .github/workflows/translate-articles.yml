@@ -26,6 +26,8 @@ jobs:
         if: github.ref != 'refs/heads/main'
         run: |
           printf '{"commits":[{"added":["content/clanky/sk/translation-smoke-test.md"]}]}' > "$RUNNER_TEMP/translation-event.json"
+          cat "$RUNNER_TEMP/translation-event.json"
+          ls -l content/clanky/sk/translation-smoke-test.md
 
       - name: Generate missing English translations
         env:

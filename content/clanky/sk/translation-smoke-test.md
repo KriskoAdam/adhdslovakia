@@ -10,3 +10,4 @@ translationKey: "translation-smoke-test-2026"
 Toto je krátky test automatického prekladu. Článok hovorí, že prestávka môže pomôcť človeku znovu sa sústrediť. Tento text je iba testovací a neobsahuje zdravotné odporúčania.
 
 Tento riadok overuje, že Action spracuje nový článok.
+Tretí testovací riadok.
