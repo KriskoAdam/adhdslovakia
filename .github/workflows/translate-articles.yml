@@ -3,7 +3,7 @@ name: Prepare English article translations
 on:
   push:
     branches:
-      - main
+      - setup/automatic-article-translations
     paths:
       - "content/clanky/sk/*.md"
 
@@ -30,6 +30,7 @@ jobs:
         run: node scripts/translate-articles.mjs
 
       - name: Open translation review pull request
+        if: github.ref == 'refs/heads/main'
         uses: peter-evans/create-pull-request@v7
         with:
           branch: automation/english-article-translations
@@ -40,4 +41,26 @@ jobs:
             Gemini prepared English drafts for new Slovak articles.
 
             Please review the translation, especially medical statements, links, sources, and wording, before merging. Merging publishes the English articles.
+
+      - name: Display isolated translation smoke test
+        if: github.ref != 'refs/heads/main'
+        run: |
+          node --input-type=module <<'NODE'
+          import { readdir, readFile } from "node:fs/promises";
+          import path from "node:path";
+
+          const directory = "content/clanky/en";
+          const files = await readdir(directory);
+          const result = [];
+          for (const file of files) {
+            const content = await readFile(path.join(directory, file), "utf8");
+            if (content.includes('translationKey: "translation-smoke-test-2026"')) {
+              result.push({ file, content });
+            }
+          }
+          if (result.length !== 1) {
+            throw new Error(`Expected one isolated translation, found ${result.length}.`);
+          }
+          console.log(`Generated ${result[0].file}:\n${result[0].content}`);
+          NODE
 
