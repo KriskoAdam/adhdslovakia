@@ -66,12 +66,6 @@ export function playComplete(combo = 1) {
   tone(1046.5 * shift, 0.21, 0.35, { type: "triangle", gain: 0.12 });
 }
 
-/** Náhodný bonus („kritický zásah“). */
-export function playCrit() {
-  [1046.5, 1318.5, 1568, 2093].forEach((f, i) => tone(f, i * 0.06, 0.3, { type: "triangle", gain: 0.13 }));
-  tone(523.25, 0, 0.5, { gain: 0.1 });
-}
-
 /** Celý deň hotový / nový level. */
 export function playFanfare() {
   [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((f, i) => tone(f, i * 0.11, 0.3, { type: "triangle", gain: 0.15 }));

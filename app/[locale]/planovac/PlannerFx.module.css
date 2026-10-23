@@ -10,7 +10,7 @@
 .root::before,
 .root::after {
   position: fixed;
-  inset: -20vmax;
+  inset: 0;
   z-index: -1;
   content: "";
   pointer-events: none;
@@ -22,6 +22,8 @@
     radial-gradient(40vmax 34vmax at 78% 82%, rgba(50, 173, 230, 0.2), transparent 70%),
     radial-gradient(36vmax 30vmax at 18% 88%, rgba(255, 45, 85, 0.12), transparent 70%);
   filter: blur(40px) saturate(130%);
+  background-size: 120% 120%;
+  background-position: 0% 0%;
   animation: ambientDrift 28s ease-in-out infinite alternate;
 }
 /* subtle noise for a "real" glass feel */
@@ -33,14 +35,14 @@
 }
 
 :global(html[data-theme="dark"]) .root {
-  background-color: #000 !important;
+  background-color: #090d16 !important;
 }
 :global(html[data-theme="dark"]) .root::before {
   background:
-    radial-gradient(38vmax 32vmax at 12% 8%, rgba(10, 132, 255, 0.32), transparent 70%),
-    radial-gradient(34vmax 30vmax at 88% 14%, rgba(191, 90, 242, 0.24), transparent 70%),
-    radial-gradient(40vmax 34vmax at 78% 82%, rgba(100, 210, 255, 0.18), transparent 70%),
-    radial-gradient(36vmax 30vmax at 18% 88%, rgba(255, 55, 95, 0.16), transparent 70%);
+    radial-gradient(38vmax 32vmax at 12% 8%, rgba(10, 132, 255, 0.26), transparent 70%),
+    radial-gradient(34vmax 30vmax at 88% 14%, rgba(191, 90, 242, 0.2), transparent 70%),
+    radial-gradient(40vmax 34vmax at 78% 82%, rgba(100, 210, 255, 0.16), transparent 70%),
+    radial-gradient(36vmax 30vmax at 18% 88%, rgba(255, 55, 95, 0.1), transparent 70%);
 }
 :global(html[data-theme="dark"]) .root::after {
   opacity: 0.06;
@@ -48,13 +50,13 @@
 
 @keyframes ambientDrift {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    background-position: 0% 0%;
   }
   50% {
-    transform: translate3d(2vmax, -1.5vmax, 0) rotate(4deg);
+    background-position: 100% 45%;
   }
   100% {
-    transform: translate3d(-2vmax, 1vmax, 0) rotate(-3deg);
+    background-position: 35% 100%;
   }
 }
 
