@@ -12,6 +12,7 @@
   color: var(--planner-ink);
   font-family: var(--font-sans), Arial, sans-serif;
   padding: 0 1.25rem 2rem;
+  transition: background-color .25s ease, color .25s ease;
 }
 
 .loading {
@@ -21,7 +22,7 @@
   background: #f4f6f1;
 }
 
-.shell { width: min(100%, 1050px); margin: 0 auto; }
+.shell { width: min(100%, 1120px); margin: 0 auto; }
 .icon { width: 16px; height: 16px; flex: 0 0 auto; }
 .header {
   height: 76px;
@@ -41,8 +42,6 @@
   letter-spacing: -.055em;
 }
 .brandText span { color: #4d9a62; }
-.appsLink { display: inline-flex; flex: 0 0 auto; align-items: center; gap: .4rem; border: 1px solid #d8e2d5; border-radius: 999px; padding: .48rem .72rem; color: #58735b; font-size: .7rem; font-weight: 650; text-decoration: none; white-space: nowrap; transition: border-color .16s ease, background .16s ease, transform .16s ease; }
-.appsLink:hover { transform: translateY(-1px); border-color: #a9c5a4; background: #fffefa; }
 .installButton {
   min-height: 38px;
   display: inline-flex;
@@ -61,6 +60,7 @@
 }
 .installButton:hover { border-color: #9cb69b; background: white; transform: translateY(-1px); }
 .installButton span { font-size: 1rem; }
+.installedBadge { display: inline-flex; min-height: 38px; align-items: center; gap: .45rem; border: 1px solid #b7d6bd; border-radius: 999px; padding: .45rem .78rem; background: #eaf5ec; color: #397349; font-size: .72rem; font-weight: 700; white-space: nowrap; }
 .installHelp { margin: .75rem 0 0 auto; max-width: 28rem; text-align: right; color: var(--planner-muted); font-size: .78rem; }
 
 .welcome {
@@ -190,6 +190,76 @@
 .footer span:first-child { font-weight: 700; }
 .srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
 
+/* Planner surfaces use local tokens so the shared site theme works inside the PWA too. */
+:global(html[data-theme="dark"]) .app {
+  --planner-ink: #edf3ed;
+  --planner-muted: #a5b2a7;
+  --planner-line: #303d33;
+  --planner-paper: #19231c;
+  --planner-green: #91c99a;
+  --planner-pale: #25352a;
+  color-scheme: dark;
+  background: radial-gradient(ellipse at 12% 8%, rgba(66, 111, 72, .2), transparent 32rem), #101812;
+  color: var(--planner-ink);
+}
+:global(html[data-theme="dark"]) .loading { background: #101812; color: #edf3ed; }
+:global(html[data-theme="dark"]) .header { border-color: #303d33; }
+:global(html[data-theme="dark"]) .installButton { border-color: #39483b; background: #1a261d; color: #c2d6c5; }
+:global(html[data-theme="dark"]) .installButton:hover { border-color: #658c6c; background: #233228; }
+:global(html[data-theme="dark"]) .installedBadge { border-color: #355a3d; background: #1c3322; color: #a8dbb0; }
+:global(html[data-theme="dark"]) .eyebrow,
+:global(html[data-theme="dark"]) .sectionEyebrow { color: #9ab69c; }
+:global(html[data-theme="dark"]) .intro,
+:global(html[data-theme="dark"]) .dateLabel,
+:global(html[data-theme="dark"]) .emptyState,
+:global(html[data-theme="dark"]) .progressCaption,
+:global(html[data-theme="dark"]) .privacyNote { color: #a5b2a7; }
+:global(html[data-theme="dark"]) .weekControls button { background: #1b281e; color: #c1d5c3; }
+:global(html[data-theme="dark"]) .weekControls button:hover { background: #26372a; }
+:global(html[data-theme="dark"]) .dayButton { color: #aebcaf; }
+:global(html[data-theme="dark"]) .dayButton:hover { background: #1b281e; }
+:global(html[data-theme="dark"]) .dayNumber,
+:global(html[data-theme="dark"]) .tasksHeading h2,
+:global(html[data-theme="dark"]) .taskTitle { color: #e5eee6; }
+:global(html[data-theme="dark"]) .daySelected { border-color: #82b68b; background: #315e3e; }
+:global(html[data-theme="dark"]) .tasksPanel,
+:global(html[data-theme="dark"]) .progressCard,
+:global(html[data-theme="dark"]) .focusCard { border-color: #303d33; background-color: #19231c; box-shadow: 0 12px 35px rgba(0, 0, 0, .16); }
+:global(html[data-theme="dark"]) .addForm { border-color: #303d33; background: #141d17; }
+:global(html[data-theme="dark"]) .plusIcon,
+:global(html[data-theme="dark"]) .progressFlower,
+:global(html[data-theme="dark"]) .emptyIllustration { background: #25372a; color: #9ac69e; }
+:global(html[data-theme="dark"]) .addInputRow input { color: #edf3ed; }
+:global(html[data-theme="dark"]) .addInputRow input::placeholder { color: #859487; }
+:global(html[data-theme="dark"]) .formOptions select,
+:global(html[data-theme="dark"]) .timeInput { border-color: #354238; background: #1b281e; color: #c2d0c4; }
+:global(html[data-theme="dark"]) .timeInput input { color: #c2d0c4; color-scheme: dark; }
+:global(html[data-theme="dark"]) .taskRow { border-color: #2b382e; }
+:global(html[data-theme="dark"]) .checkButton { border-color: #536858; background: #17221a; }
+:global(html[data-theme="dark"]) .taskDone .taskTitle { color: #879589; }
+:global(html[data-theme="dark"]) .categoryChip { background: #26332a; color: #b4c1b5; }
+:global(html[data-theme="dark"]) .importantChip { background: #392d1e; color: #e3bd84; }
+:global(html[data-theme="dark"]) .deleteButton:hover { background: #392626; }
+:global(html[data-theme="dark"]) .progressCount { color: #d9eadb; }
+:global(html[data-theme="dark"]) .progressTrack { background: #29372c; }
+:global(html[data-theme="dark"]) .focusCard { background: linear-gradient(145deg, #213628, #19251d); }
+:global(html[data-theme="dark"]) .focusIcon { border-color: #49634b; color: #a1caa2; }
+:global(html[data-theme="dark"]) .focusEyebrow,
+:global(html[data-theme="dark"]) .focusHint { color: #aec4ae; }
+:global(html[data-theme="dark"]) .focusCard h2 { color: #e7f2e8; }
+:global(html[data-theme="dark"]) .timerReset { border-color: #49634b; background: #26382a; color: #c1d9c1; }
+:global(html[data-theme="dark"]) .footer { color: #829084; }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .sun { animation: sun-breathe 5s ease-in-out infinite; }
+  .focusCard { transition: transform .22s ease, box-shadow .22s ease; }
+  .focusCard:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(55, 91, 59, .12); }
+  .tasksPanel, .progressCard { transition: border-color .2s ease, box-shadow .2s ease; }
+  .tasksPanel:hover, .progressCard:hover { border-color: #c4d5c1; box-shadow: 0 12px 34px rgba(40, 60, 40, .08); }
+}
+
+@keyframes sun-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
 @keyframes planner-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes task-in { from { opacity: 0; transform: translateX(-5px); } to { opacity: 1; transform: translateX(0); } }
 
@@ -213,8 +283,7 @@
 @media (max-width: 430px) {
   .brand { gap: .48rem; font-size: .78rem; }
   .brandText { font-size: 1.05rem; }
-  .appsLink { min-height: 34px; padding: .4rem .55rem; font-size: .66rem; }
-  .installButton { min-height: 34px; padding: .4rem .68rem; font-size: .68rem; }
+  .installButton, .installedBadge { min-height: 34px; padding: .4rem .58rem; font-size: .64rem; }
   .welcome { min-height: 195px; }
   .welcomeDecoration { width: 85px; margin-left: -.5rem; opacity: .78; transform: scale(.7); }
   .welcome h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
@@ -241,5 +310,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .installButton, .dayButton, .progressTrack span { transition: none; }
-  .welcome, .weekSection, .contentGrid, .sideColumn, .taskRow { animation: none; }
+  .welcome, .weekSection, .contentGrid, .sideColumn, .taskRow, .sun { animation: none; }
 }

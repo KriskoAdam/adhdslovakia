@@ -1,0 +1,69 @@
+.featured { width: 100%; animation: videos-in .6s .12s both; }
+.heading, .carouselHeading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.eyebrow { margin: 0; color: var(--text-muted); font-size: .62rem; font-weight: 750; letter-spacing: .13em; }
+.heading h2, .carouselHeading h2 { margin: .3rem 0 0; color: var(--text-primary); font-family: var(--font-display), sans-serif; font-size: 1.15rem; font-weight: 750; letter-spacing: -.04em; }
+.headingIcon { width: 31px; height: 31px; padding: .45rem; flex: 0 0 auto; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+.featuredGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: .9rem; }
+.card { min-width: 0; width: min(78vw, 310px); overflow: hidden; border: 1px solid var(--border-color); border-radius: 15px; background: var(--bg-secondary); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--border-color)); box-shadow: 0 12px 26px rgba(0, 0, 0, .09); }
+.compactCard { width: auto; border-radius: 12px; }
+.player { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: #152018; }
+.preview { position: absolute; inset: 0; display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; border: 0; background-color: #26352b; background-position: center; background-size: cover; color: #fff; cursor: pointer; }
+.preview::after { position: absolute; inset: 0; background: rgba(0, 0, 0, .08); content: ""; transition: background .2s ease; }
+.preview:hover::after, .preview:focus-visible::after { background: rgba(0, 0, 0, .22); }
+.playButton, .previewLabel { position: relative; z-index: 1; }
+.playButton { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; background: rgba(23, 44, 29, .78); box-shadow: 0 4px 15px rgba(0, 0, 0, .22); transition: transform .18s ease, background .18s ease; }
+.preview:hover .playButton { transform: scale(1.08); background: var(--accent); }
+.playIcon { width: 15px; height: 15px; margin-left: 2px; }
+.previewLabel { font-size: .63rem; font-weight: 650; text-shadow: 0 1px 5px rgba(0,0,0,.7); }
+.iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cardCopy { min-height: 88px; padding: .75rem .85rem .8rem; }
+.compactCard .cardCopy { min-height: 74px; padding: .55rem .65rem .65rem; }
+.topic { display: inline-block; color: var(--accent); font-size: .55rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.cardCopy h3 { display: -webkit-box; overflow: hidden; margin: .28rem 0 0; color: var(--text-primary); font-family: var(--font-display), sans-serif; font-size: .85rem; font-weight: 700; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.compactCard .cardCopy h3 { margin-top: .18rem; font-size: .69rem; }
+.cardCopy p { margin: .32rem 0 0; color: var(--text-muted); font-size: .61rem; }
+.compactCard .cardCopy p { margin-top: .18rem; font-size: .55rem; }
+.allVideos { display: inline-flex; align-items: center; gap: .45rem; margin-top: .8rem; color: var(--accent); font-size: .7rem; font-weight: 700; text-decoration: none; }
+.allVideos:hover { text-decoration: underline; text-underline-offset: 3px; }
+.arrowIcon { width: 15px; height: 15px; transition: transform .16s ease; }
+.allVideos:hover .arrowIcon { transform: translateX(3px); }
+.carouselSection { overflow: hidden; padding: 2.2rem 0 2.45rem; border-top: 1px solid var(--border-color); }
+.carouselHeading { align-items: end; padding: 0 2rem 1.1rem; }
+.carouselHeading h2 { font-size: clamp(1.15rem, 2vw, 1.5rem); }
+.sectionIntro { max-width: 38rem; margin: .4rem 0 0; color: var(--text-secondary); font-size: .79rem; line-height: 1.55; }
+.filters { display: flex; flex: 0 1 auto; flex-wrap: wrap; align-items: center; justify-content: center; gap: .45rem; }
+.filterLegend { margin-right: .1rem; color: var(--text-muted); font-size: .66rem; font-weight: 700; }
+.filterOption { min-height: 34px; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid var(--border-color); border-radius: 999px; background: var(--bg-secondary); padding: .35rem .65rem; color: var(--text-secondary); font-size: .66rem; font-weight: 650; cursor: pointer; transition: border-color .16s ease, background .16s ease, color .16s ease; }
+.filterOption:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--text-primary); }
+.filterOption input { width: 13px; height: 13px; margin: 0; accent-color: var(--accent); }
+.emptyFilter { margin: 0 2rem .8rem; color: var(--text-secondary); font-size: .8rem; }
+.controls { display: flex; flex: 0 0 auto; gap: .45rem; }
+.controls button { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--border-color); border-radius: 50%; background: var(--bg-secondary); color: var(--text-primary); cursor: pointer; transition: border-color .18s ease, background .18s ease; }
+.controls button:hover { border-color: var(--accent); background: var(--accent-soft); }
+.controls svg { width: 17px; height: 17px; }
+.rail { display: flex; gap: .85rem; overflow-x: auto; overscroll-behavior-inline: contain; padding: .15rem 2rem 1rem; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: var(--border-color) transparent; scrollbar-width: thin; }
+.rail > * { flex: 0 0 min(30vw, 295px); scroll-snap-align: start; }
+.disclaimer { margin: .25rem 2rem 0; color: var(--text-muted); font-size: .65rem; }
+
+@keyframes videos-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 767px) {
+  .featured { display: none; }
+  .carouselSection { margin-inline: -.25rem; padding: 1.8rem 0 2rem; }
+  .carouselHeading { padding-inline: 1rem; }
+  .carouselHeading { align-items: flex-start; flex-wrap: wrap; }
+  .filters { flex: 1 1 100%; justify-content: flex-start; }
+  .filterOption { min-height: 32px; }
+  .rail { gap: .7rem; padding-inline: 1rem; }
+  .rail > * { flex-basis: min(78vw, 310px); }
+  .disclaimer { margin-inline: 1rem; line-height: 1.5; }
+  .emptyFilter { margin-inline: 1rem; }
+  .controls button { width: 33px; height: 33px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured { animation: none; }
+  .card, .playButton, .arrowIcon { transition: none; }
+  .rail { scroll-behavior: auto; }
+}

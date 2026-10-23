@@ -5,7 +5,7 @@ export type SiteIconName =
   | "handshake" | "scales" | "lightning" | "child" | "dna" | "pill"
   | "school" | "work" | "heart" | "apple" | "help" | "clock" | "chart"
   | "alert" | "check" | "link" | "close" | "arrowUpRight" | "arrowDown"
-  | "arrowLeft" | "arrowRight" | "sparkles" | "target" | "rotate" | "home" | "plus";
+  | "arrowLeft" | "arrowRight" | "sparkles" | "target" | "rotate" | "home" | "plus" | "play";
 
 type Props = SVGProps<SVGSVGElement> & { name: SiteIconName };
 
@@ -42,6 +42,7 @@ const paths: Record<SiteIconName, ReactNode> = {
   rotate: <><path d="M20 7v5h-5"/><path d="M19 12a7 7 0 1 1-2-5l3 5"/></>,
   home: <><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-6h6v6"/></>,
   plus: <path d="M12 5v14M5 12h14"/>,
+  play: <path d="m9 6 10 6-10 6V6Z" fill="currentColor" stroke="none"/>,
 };
 
 export default function SiteIcon({ name, ...props }: Props) {

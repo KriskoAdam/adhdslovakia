@@ -2,11 +2,13 @@ import Image from "next/image";
 import { getAllArticles } from "../lib/articles";
 import Nav from "../components/Nav";
 import AnimatedStat from "../components/AnimatedStat";
-import DIVATestDesktop from "../components/DIVATestDesktop";
 import TypewriterHeading from "../components/TypewriterHeading";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import SiteIcon, { type SiteIconName } from "../components/SiteIcon";
+import { FeaturedVideos, VideoCarousel } from "../components/RecommendedVideos";
+import { VideoLanguageFilterProvider } from "../components/VideoLanguageFilter";
+import { recommendedVideos } from "../lib/recommended-videos";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: "sk" | "en" }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -64,7 +66,8 @@ export default async function Home({
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans">
       <Nav />
 
-      <main id="main-content" tabIndex={-1} className="outline-none">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-[1320px] outline-none">
+      <VideoLanguageFilterProvider>
       {/* HERO */}
       <section className="px-8 pt-16 pb-12 border-b border-[var(--border-color)]">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_430px] gap-12 xl:gap-20 items-center">
@@ -86,11 +89,14 @@ export default async function Home({
               <a href={`/${locale}/o-nas`} className="inline-flex min-h-11 items-center rounded-lg border border-[var(--border-color)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-tertiary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none">
                 {t("aboutProject")}
               </a>
+              <a href={`/${locale}/test`} className="hidden min-h-11 items-center rounded-lg border border-[var(--border-color)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--bg-tertiary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none md:inline-flex">
+                {t("takeTest")}
+              </a>
             </div>
           </div>
 
-          <div className="animate-scale delay-400 hidden xl:block">
-            <DIVATestDesktop />
+          <div className="hidden lg:block">
+            <FeaturedVideos videos={recommendedVideos} locale={locale} />
           </div>
         </div>
       </section>
@@ -231,6 +237,10 @@ export default async function Home({
 
       </div>
 
+      <div className="px-4 sm:px-8">
+        <VideoCarousel videos={recommendedVideos} locale={locale} />
+      </div>
+
       {/* MORE ARTICLES */}
       {listArticles.length > 0 && (
         <>
@@ -275,10 +285,11 @@ export default async function Home({
         </>
       )}
 
+      </VideoLanguageFilterProvider>
       </main>
 
       {/* FOOTER */}
-      <footer className="px-8 py-10 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-6">
+      <footer className="mx-auto w-full max-w-[1320px] px-8 py-10 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-4">
           <Image
             src="/images/logo.png"

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import PwaInstallGuide, { detectInstallPlatform, type InstallPlatform } from "../../components/PwaInstallGuide";
 import SiteIcon from "../../components/SiteIcon";
+import ThemeToggle from "../../components/ThemeToggle";
 import styles from "./PlannerClient.module.css";
 
 type Locale = "sk" | "en";
@@ -41,7 +42,7 @@ const COPY = {
     health: "Zdravie", rest: "Oddych", time: "Čas (nepovinné)", priority: "Ako veľmi to ponáhľa?",
     focus: "Krátke sústredenie", focusHint: "Jeden krok. Potom prestávka.", start: "Začať 25 min",
     pause: "Pozastaviť", resume: "Pokračovať", reset: "Vynulovať", delete: "Odstrániť úlohu",
-    progress: "Dnešný postup", completed: "splnené", install: "Inštalovať",
+    progress: "Dnešný postup", completed: "splnené", install: "Inštalovať", installed: "Nainštalované",
     local: "Úlohy sa ukladajú iba v tomto zariadení.", previous: "Predchádzajúci týždeň",
     next: "Nasledujúci týždeň", todayButton: "Prejsť na dnes", date: "Dátum",
   },
@@ -56,7 +57,7 @@ const COPY = {
     health: "Health", rest: "Rest", time: "Time (optional)", priority: "How urgent is it?",
     focus: "A little focus time", focusHint: "One step. Then a break.", start: "Start 25 min",
     pause: "Pause", resume: "Continue", reset: "Reset", delete: "Delete task",
-    progress: "Today’s progress", completed: "done", install: "Install",
+    progress: "Today’s progress", completed: "done", install: "Install", installed: "Installed",
     local: "Your tasks are stored only on this device.", previous: "Previous week",
     next: "Next week", todayButton: "Go to today", date: "Date",
   },
@@ -105,6 +106,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
   const [secondsLeft, setSecondsLeft] = useState(25 * 60);
   const [timerRunning, setTimerRunning] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
+  const [isInstalled, setIsInstalled] = useState(false);
   const [showInstallHelp, setShowInstallHelp] = useState(false);
   const [installPlatform, setInstallPlatform] = useState<InstallPlatform>("desktop");
 
@@ -130,8 +132,23 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
       event.preventDefault();
       setInstallPrompt(event as InstallPromptEvent);
     };
+    const isStandalone = () => window.matchMedia("(display-mode: standalone)").matches
+      || (navigator as Navigator & { standalone?: boolean }).standalone === true;
+    const handleInstalled = () => {
+      setIsInstalled(true);
+      setInstallPrompt(null);
+    };
+    setIsInstalled(isStandalone());
+    const standaloneQuery = window.matchMedia("(display-mode: standalone)");
+    const handleDisplayModeChange = () => setIsInstalled(isStandalone());
     window.addEventListener("beforeinstallprompt", handleInstall);
-    return () => window.removeEventListener("beforeinstallprompt", handleInstall);
+    window.addEventListener("appinstalled", handleInstalled);
+    standaloneQuery.addEventListener("change", handleDisplayModeChange);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handleInstall);
+      window.removeEventListener("appinstalled", handleInstalled);
+      standaloneQuery.removeEventListener("change", handleDisplayModeChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -216,10 +233,14 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
           <a className={styles.brand} href={`/${locale}`} aria-label={t.back}>
             <span className={styles.brandText}>ADHD<span>.</span>Slovakia</span>
           </a>
-          <a className={styles.appsLink} href={`/${locale}/appky`}>{t.apps}<SiteIcon name="arrowUpRight" className={styles.icon} /></a>
-          <button className={styles.installButton} onClick={install} type="button">
-            <SiteIcon name="arrowDown" className={styles.icon} /> {t.install}
-          </button>
+          <ThemeToggle />
+          {isInstalled ? (
+            <span className={styles.installedBadge}><SiteIcon name="check" className={styles.icon} />{t.installed}</span>
+          ) : (
+            <button className={styles.installButton} onClick={install} type="button">
+              <SiteIcon name="arrowDown" className={styles.icon} /> {t.install}
+            </button>
+          )}
         </header>
 
         {showInstallHelp && <PwaInstallGuide locale={locale} platform={installPlatform} onClose={() => setShowInstallHelp(false)} />}

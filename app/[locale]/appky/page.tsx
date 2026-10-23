@@ -76,16 +76,21 @@ export default async function AppsPage({
           </header>
 
         <section className={styles.hero}>
-          <p className={styles.eyebrow}>{english ? "THE ADHD SLOVAKIA APP COLLECTION" : "KOLEKCIA APLIKÁCIÍ ADHD SLOVAKIA"}</p>
-          <h1>{english ? "Apps for your everyday." : "Appky pre každý deň."}</h1>
-          <p className={styles.intro}>
-            {english
-              ? "Thoughtful little tools to make everyday life with ADHD feel a bit easier."
-              : "Premyslené malé nástroje, ktoré spríjemnia každodennosť s ADHD."}
-          </p>
-          <div className={styles.collectionCount}>
-            <span className={styles.countDot} />
-            {english ? `${appListings.length} app${appListings.length === 1 ? "" : "s"} available` : `${appListings.length} ${appListings.length === 1 ? "aplikácia" : "appiek"} k dispozícii`}
+          <div className={styles.heroContent}>
+            <p className={styles.eyebrow}>{english ? "THE ADHD SLOVAKIA APP COLLECTION" : "KOLEKCIA APLIKÁCIÍ ADHD SLOVAKIA"}</p>
+            <h1>{english ? "Apps for your everyday." : "Appky pre každý deň."}</h1>
+            <p className={styles.intro}>
+              {english
+                ? "Thoughtful little tools to make everyday life with ADHD feel a bit easier."
+                : "Premyslené malé nástroje, ktoré spríjemnia každodennosť s ADHD."}
+            </p>
+            <div className={styles.heroMeta}>
+              <div className={styles.collectionCount}>
+                <span className={styles.countDot} />
+                {english ? `${appListings.length} app${appListings.length === 1 ? "" : "s"} available` : `${appListings.length} ${appListings.length === 1 ? "aplikácia" : "appiek"} k dispozícii`}
+              </div>
+              <span className={styles.freeLabel}>{english ? "Free · No account required" : "Bezplatné · Bez registrácie"}</span>
+            </div>
           </div>
         </section>
 
