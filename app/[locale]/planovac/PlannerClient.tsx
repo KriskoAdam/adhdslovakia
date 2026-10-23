@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent as ReactMouseEvent } from "react";
 import PwaInstallGuide, { detectInstallPlatform, type InstallPlatform } from "../../components/PwaInstallGuide";
 import SiteIcon from "../../components/SiteIcon";
 import ThemeToggle from "../../components/ThemeToggle";
 import styles from "./PlannerClient.module.css";
+import fx from "./PlannerFx.module.css";
+import * as sfx from "./PlannerFx";
 
 type Locale = "sk" | "en";
 type Category = "everyday" | "work" | "health" | "rest";
@@ -18,6 +20,8 @@ type Task = {
   priority: Priority;
   done: boolean;
   createdAt: number;
+  doneOn?: string; // kedy bola úloha splnená (pre sériu dní)
+  bonus?: number; // náhodný bonus XP („kritický zásah“)
 };
 
 type InstallPromptEvent = Event & {
@@ -25,7 +29,11 @@ type InstallPromptEvent = Event & {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 };
 
+type Toast = { id: number; text: string; special: boolean };
+
 const STORAGE_KEY = "adhdslovakia-planner-v1";
+const FX_KEY = "adhdslovakia-planner-fx";
+const TIMER_SECONDS = 25 * 60;
 const WEEKDAYS: Record<Locale, string[]> = {
   sk: ["Po", "Ut", "St", "Št", "Pi", "So", "Ne"],
   en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -63,6 +71,32 @@ const COPY = {
   },
 } satisfies Record<Locale, Record<string, string>>;
 
+// Texty pre odmeny, level a zvuky (oddelené od COPY, lebo obsahujú polia a funkcie)
+const FX_COPY = {
+  sk: {
+    cheers: ["Skvelé! 🎉", "Ďalšia hotová! ⭐", "Ideš na to! 🚀", "Bomba! 💥", "Mozog dostáva dopamín 💜", "Tak toto je šampión! 🏆"],
+    crit: "Kritický zásah! ✨",
+    levelUp: (level: number) => `Level ${level}! 🎊`,
+    dayDone: "Celý deň hotový! 🏆",
+    levelTitles: ["Štartér", "Iskra", "Plamienok", "Raketa", "Hviezda", "Legenda"],
+    level: "Level", streak: "Séria dní (jeden vynechaný deň ti nevadí)",
+    toNext: (n: number) => `${n} XP do ďalšieho levelu`,
+    soundOn: "Vypnúť zvuky a vibrácie", soundOff: "Zapnúť zvuky a vibrácie",
+    timerDoneTitle: "Čas vypršal!", timerDoneText: "Skvelá práca. Dopraj si prestávku.", timerDoneButton: "Super, idem na pauzu",
+  },
+  en: {
+    cheers: ["Nice! 🎉", "Another one done! ⭐", "You’re rolling! 🚀", "Boom! 💥", "Dopamine unlocked 💜", "Absolute champion! 🏆"],
+    crit: "Critical hit! ✨",
+    levelUp: (level: number) => `Level ${level}! 🎊`,
+    dayDone: "Whole day done! 🏆",
+    levelTitles: ["Starter", "Spark", "Flame", "Rocket", "Star", "Legend"],
+    level: "Level", streak: "Day streak (one missed day is forgiven)",
+    toNext: (n: number) => `${n} XP to next level`,
+    soundOn: "Turn sounds and vibration off", soundOff: "Turn sounds and vibration on",
+    timerDoneTitle: "Time’s up!", timerDoneText: "Great work. Take a break.", timerDoneButton: "Great, break time",
+  },
+};
+
 function dateKey(date: Date) {
   const local = new Date(date.getFullYear(), date.getMonth(), date.getDate());
   return `${local.getFullYear()}-${String(local.getMonth() + 1).padStart(2, "0")}-${String(local.getDate()).padStart(2, "0")}`;
@@ -94,8 +128,33 @@ function makeId() {
   return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
+// ---------- XP, level, séria ----------
+const basePoints = (task: Task) => (task.priority === "important" ? 20 : 10);
+const xpOf = (list: Task[]) => list.reduce((sum, task) => (task.done ? sum + basePoints(task) + (task.bonus ?? 0) : sum), 0);
+const levelOf = (xp: number) => Math.floor(Math.sqrt(xp / 40)) + 1;
+const levelFloor = (level: number) => 40 * (level - 1) * (level - 1);
+
+function daysBetween(a: string, b: string) {
+  return Math.round((fromDateKey(a).getTime() - fromDateKey(b).getTime()) / 86400000);
+}
+
+// Séria dní: jeden vynechaný deň sa odpúšťa, aby jedna chyba nezničila motiváciu.
+function streakOf(list: Task[], today: string) {
+  const days = Array.from(new Set(list.filter((task) => task.done && task.doneOn).map((task) => task.doneOn as string)))
+    .sort()
+    .reverse();
+  if (!days.length || daysBetween(today, days[0]) > 2) return 0;
+  let streak = 1;
+  for (let i = 1; i < days.length; i++) {
+    if (daysBetween(days[i - 1], days[i]) <= 2) streak++;
+    else break;
+  }
+  return streak;
+}
+
 export default function PlannerClient({ locale }: { locale: Locale }) {
   const t = COPY[locale];
+  const f = FX_COPY[locale];
   const [ready, setReady] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedDate, setSelectedDate] = useState(() => dateKey(new Date()));
@@ -103,12 +162,19 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
   const [time, setTime] = useState("");
   const [category, setCategory] = useState<Category>("everyday");
   const [priority, setPriority] = useState<Priority>("gentle");
-  const [secondsLeft, setSecondsLeft] = useState(25 * 60);
+  const [secondsLeft, setSecondsLeft] = useState(TIMER_SECONDS);
   const [timerRunning, setTimerRunning] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [isInstalled, setIsInstalled] = useState(false);
   const [showInstallHelp, setShowInstallHelp] = useState(false);
   const [installPlatform, setInstallPlatform] = useState<InstallPlatform>("desktop");
+  const [soundOn, setSoundOn] = useState(true);
+  const [toast, setToast] = useState<Toast | null>(null);
+  const [justAddedId, setJustAddedId] = useState<string | null>(null);
+  const [removingId, setRemovingId] = useState<string | null>(null);
+  const comboRef = useRef({ count: 0, at: 0 });
+
+  const timerDone = secondsLeft === 0 && !timerRunning;
 
   useEffect(() => {
     try {
@@ -122,6 +188,12 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
     } catch {
       try { localStorage.removeItem(STORAGE_KEY); } catch { /* Storage may be disabled by the browser. */ }
     }
+    try {
+      if (localStorage.getItem(FX_KEY) === "off") {
+        setSoundOn(false);
+        sfx.setSoundEnabled(false);
+      }
+    } catch { /* Storage may be disabled by the browser. */ }
     setReady(true);
 
     if ("serviceWorker" in navigator) {
@@ -171,6 +243,26 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
     return () => window.clearInterval(timer);
   }, [timerRunning]);
 
+  // Koniec časovača: zvonček, vibrácie, konfety a opakovanie každých 10 s, kým to neodklikneš.
+  useEffect(() => {
+    if (!timerDone) return;
+    sfx.playBell();
+    sfx.haptic([200, 100, 200, 100, 400]);
+    sfx.confetti(window.innerWidth / 2, window.innerHeight / 3, 60, 1.5);
+    const repeat = window.setInterval(() => {
+      sfx.playBell();
+      sfx.haptic([200, 100, 200]);
+    }, 10000);
+    return () => window.clearInterval(repeat);
+  }, [timerDone]);
+
+  // Toast sa po chvíli sám schová.
+  useEffect(() => {
+    if (!toast) return;
+    const id = window.setTimeout(() => setToast(null), 2000);
+    return () => window.clearTimeout(id);
+  }, [toast]);
+
   const todayKey = ready ? dateKey(new Date()) : "";
   const weekStart = selectedDate ? mondayOf(selectedDate) : "";
   const weekDays = useMemo(
@@ -183,24 +275,118 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
   const completedCount = dayTasks.filter((task) => task.done).length;
   const activeCount = dayTasks.length - completedCount;
 
+  const xp = xpOf(tasks);
+  const level = levelOf(xp);
+  const levelStart = levelFloor(level);
+  const levelEnd = levelFloor(level + 1);
+  const levelPct = Math.round(((xp - levelStart) / (levelEnd - levelStart)) * 100);
+  const streak = ready ? streakOf(tasks, dateKey(new Date())) : 0;
+
+  const showToast = (text: string, special = false) => setToast({ id: Date.now(), text, special });
+
   const addTask = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const cleanedTitle = title.trim();
     if (!cleanedTitle || !selectedDate) return;
-    setTasks((previous) => [...previous, {
+    const submit = event.currentTarget.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const rect = submit?.getBoundingClientRect();
+    const newTask: Task = {
       id: makeId(), title: cleanedTitle, date: selectedDate, time, category, priority, done: false, createdAt: Date.now(),
-    }]);
+    };
+    setTasks((previous) => [...previous, newTask]);
+    setJustAddedId(newTask.id);
+    window.setTimeout(() => setJustAddedId(null), 600);
+    sfx.playAdd();
+    sfx.haptic(15);
+    if (rect) sfx.confetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 10, 0.5);
     setTitle("");
     setTime("");
     setCategory("everyday");
     setPriority("gentle");
   };
 
-  const toggleTask = (id: string) => {
-    setTasks((previous) => previous.map((task) => task.id === id ? { ...task, done: !task.done } : task));
+  const toggleTask = (task: Task, event: ReactMouseEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const completing = !task.done;
+
+    // Náhodný bonus sa hádže len raz za úlohu (20 % šanca na dvojnásobok XP).
+    const bonus = task.bonus ?? (completing && Math.random() < 0.2 ? basePoints(task) : undefined);
+    const crit = completing && task.bonus === undefined && bonus !== undefined;
+    const updated: Task = { ...task, done: completing, doneOn: completing ? dateKey(new Date()) : undefined, bonus };
+    const next = tasks.map((item) => (item.id === task.id ? updated : item));
+    setTasks(next);
+
+    if (!completing) {
+      comboRef.current = { count: 0, at: 0 };
+      sfx.playUncomplete();
+      sfx.haptic(10);
+      return;
+    }
+
+    const now = Date.now();
+    const combo = now - comboRef.current.at < 120000 ? comboRef.current.count + 1 : 1;
+    comboRef.current = { count: combo, at: now };
+
+    const gained = basePoints(task) + (bonus ?? 0);
+    const dayFinished = next.filter((item) => item.date === task.date).every((item) => item.done);
+    const leveledUp = levelOf(xpOf(next)) > levelOf(xpOf(tasks));
+
+    sfx.confetti(x, y, crit ? 50 : 24, crit ? 1.4 : 1);
+    if (crit) sfx.playCrit(); else sfx.playComplete(combo);
+    sfx.haptic(crit ? [20, 40, 20] : 25);
+
+    if (dayFinished || leveledUp) {
+      window.setTimeout(() => {
+        sfx.playFanfare();
+        sfx.haptic([40, 60, 40, 60, 120]);
+        sfx.confetti(window.innerWidth / 2, window.innerHeight / 3, 90, 2);
+      }, 350);
+    }
+
+    const comboText = combo >= 3 ? ` · 🔥 x${combo}` : "";
+    if (leveledUp) showToast(`${f.levelUp(levelOf(xpOf(next)))} +${gained} XP`, true);
+    else if (dayFinished) showToast(`${f.dayDone} +${gained} XP`, true);
+    else if (crit) showToast(`${f.crit} +${gained} XP${comboText}`, true);
+    else showToast(`${f.cheers[Math.floor(Math.random() * f.cheers.length)]} +${gained} XP${comboText}`);
   };
 
-  const deleteTask = (id: string) => setTasks((previous) => previous.filter((task) => task.id !== id));
+  const deleteTask = (id: string) => {
+    sfx.playRemove();
+    sfx.haptic(12);
+    setRemovingId(id);
+    window.setTimeout(() => {
+      setTasks((previous) => previous.filter((task) => task.id !== id));
+      setRemovingId(null);
+    }, 220);
+  };
+
+  const toggleTimer = () => {
+    if (timerRunning) sfx.playTick(); else sfx.playStart();
+    sfx.haptic(15);
+    setTimerRunning((running) => !running);
+  };
+
+  const dismissTimer = () => setSecondsLeft(TIMER_SECONDS);
+
+  const toggleSound = () => {
+    const next = !soundOn;
+    setSoundOn(next);
+    sfx.setSoundEnabled(next);
+    try { localStorage.setItem(FX_KEY, next ? "on" : "off"); } catch { /* Storage may be disabled. */ }
+    if (next) sfx.playTick();
+  };
+
+  // Jemné kliknutie na každé bežné tlačidlo; tlačidlá s vlastným zvukom majú data-fx="own".
+  const handleFxClick = (event: ReactMouseEvent<HTMLElement>) => {
+    sfx.unlockAudio();
+    const button = (event.target as HTMLElement).closest("button");
+    if (button && !button.hasAttribute("data-fx")) {
+      sfx.playTick();
+      sfx.haptic(8);
+    }
+  };
 
   const install = async () => {
     if (!installPrompt) {
@@ -227,12 +413,41 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
   }
 
   return (
-    <main className={styles.app}>
+    <main className={`${styles.app} ${fx.root}`} onClickCapture={handleFxClick}>
+      {toast && (
+        <div key={toast.id} className={`${fx.toast} ${toast.special ? fx.toastSpecial : ""}`} role="status" aria-live="polite">
+          {toast.text}
+        </div>
+      )}
+
+      {timerDone && (
+        <div className={fx.overlay} role="alertdialog" aria-modal="true" aria-label={f.timerDoneTitle}>
+          <div className={fx.overlayCard}>
+            <span className={fx.overlayEmoji} aria-hidden="true">⏰</span>
+            <h2>{f.timerDoneTitle}</h2>
+            <p>{f.timerDoneText}</p>
+            <button type="button" data-fx="own" className={fx.overlayButton} onClick={dismissTimer} autoFocus>
+              {f.timerDoneButton}
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className={styles.shell}>
         <header className={styles.header}>
           <a className={styles.brand} href={`/${locale}`} aria-label={t.back}>
             <span className={styles.brandText}>ADHD<span>.</span>Slovakia</span>
           </a>
+          <button
+            type="button"
+            data-fx="own"
+            className={fx.soundToggle}
+            onClick={toggleSound}
+            aria-pressed={soundOn}
+            aria-label={soundOn ? f.soundOn : f.soundOff}
+          >
+            {soundOn ? "🔊" : "🔇"}
+          </button>
           <ThemeToggle />
           {isInstalled ? (
             <span className={styles.installedBadge}><SiteIcon name="check" className={styles.icon} />{t.installed}</span>
@@ -317,12 +532,12 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                   maxLength={120}
                   required
                 />
-                <button type="submit" disabled={!title.trim()}>{t.add}</button>
+                <button type="submit" data-fx="own" disabled={!title.trim()}>{t.add}</button>
               </div>
               <div className={styles.formOptions}>
                 <label className={styles.selectWrap}>
                   <span className={styles.srOnly}>{t.tasks}</span>
-                  <select value={category} onChange={(event) => setCategory(event.target.value as Category)}>
+                  <select value={category} onChange={(event) => { sfx.playTick(); setCategory(event.target.value as Category); }}>
                     <option value="everyday">{t.everyday}</option>
                     <option value="work">{t.work}</option>
                     <option value="health">{t.health}</option>
@@ -336,7 +551,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                 </label>
                 <label className={styles.prioritySelect}>
                   <span className={styles.srOnly}>{t.priority}</span>
-                  <select value={priority} onChange={(event) => setPriority(event.target.value as Priority)}>
+                  <select value={priority} onChange={(event) => { sfx.playTick(); setPriority(event.target.value as Priority); }}>
                     <option value="gentle">{t.gentle}</option>
                     <option value="important">{t.important}</option>
                   </select>
@@ -353,11 +568,21 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
             ) : (
               <ul className={styles.taskList}>
                 {dayTasks.map((task) => (
-                  <li key={task.id} className={`${styles.taskRow} ${task.done ? styles.taskDone : ""}`}>
+                  <li
+                    key={task.id}
+                    className={[
+                      styles.taskRow,
+                      task.done ? styles.taskDone : "",
+                      fx[`cat_${task.category}`],
+                      task.id === justAddedId ? fx.pop : "",
+                      task.id === removingId ? fx.out : "",
+                    ].join(" ")}
+                  >
                     <button
-                      className={styles.checkButton}
+                      className={`${styles.checkButton} ${task.done ? fx.checkDone : ""}`}
                       type="button"
-                      onClick={() => toggleTask(task.id)}
+                      data-fx="own"
+                      onClick={(event) => toggleTask(task, event)}
                       aria-label={`${task.done ? (locale === "sk" ? "Označiť ako nesplnené" : "Mark as not done") : (locale === "sk" ? "Označiť ako splnené" : "Mark as done")}: ${task.title}`}
                       aria-pressed={task.done}
                     >
@@ -367,11 +592,11 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                       <span className={styles.taskTitle}>{task.title}</span>
                       <span className={styles.taskMeta}>
                         {task.time && <span>{task.time}</span>}
-                        <span className={styles.categoryChip}>{categoryLabel(task.category)}</span>
+                        <span className={`${styles.categoryChip} ${fx[`chip_${task.category}`]}`}>{categoryLabel(task.category)}</span>
                         {task.priority === "important" && <span className={styles.importantChip}>{t.important}</span>}
                       </span>
                     </div>
-                    <button className={styles.deleteButton} type="button" onClick={() => deleteTask(task.id)} aria-label={`${t.delete}: ${task.title}`}><SiteIcon name="close" className={styles.icon} /></button>
+                    <button className={styles.deleteButton} type="button" data-fx="own" onClick={() => deleteTask(task.id)} aria-label={`${t.delete}: ${task.title}`}><SiteIcon name="close" className={styles.icon} /></button>
                   </li>
                 ))}
               </ul>
@@ -379,6 +604,21 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
           </section>
 
           <aside className={styles.sideColumn}>
+            <section className={fx.xpCard} aria-label={f.level}>
+              <div className={fx.xpTop}>
+                <span className={fx.levelBadge} aria-hidden="true">{level}</span>
+                <div className={fx.xpInfo}>
+                  <p className={fx.xpTitle}>{f.level} {level} · {f.levelTitles[Math.min(level - 1, f.levelTitles.length - 1)]}</p>
+                  <p className={fx.xpSub}>{xp} XP</p>
+                </div>
+                <span className={fx.streak} title={f.streak} aria-label={`${f.streak}: ${streak}`}>🔥 {streak}</span>
+              </div>
+              <div className={fx.xpTrack} role="progressbar" aria-label={f.level} aria-valuemin={0} aria-valuemax={100} aria-valuenow={levelPct}>
+                <span style={{ width: `${levelPct}%` }} />
+              </div>
+              <p className={fx.xpSub}>{f.toNext(levelEnd - xp)}</p>
+            </section>
+
             <section className={styles.progressCard} aria-label={t.progress}>
               <div className={styles.progressHeading}>
                 <div>
@@ -388,7 +628,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                 <div className={styles.progressFlower} aria-hidden="true"><SiteIcon name="sparkles" /></div>
               </div>
               <div className={styles.progressTrack} role="progressbar" aria-label={t.progress} aria-valuemin={0} aria-valuemax={dayTasks.length || 1} aria-valuenow={completedCount}>
-                <span style={{ width: `${dayTasks.length ? (completedCount / dayTasks.length) * 100 : 0}%` }} />
+                <span className={fx.progressFill} style={{ width: `${dayTasks.length ? (completedCount / dayTasks.length) * 100 : 0}%` }} />
               </div>
               <p className={styles.progressCaption}>{dayTasks.length && completedCount === dayTasks.length ? t.allDone : `${completedCount} ${t.completed}`}</p>
             </section>
@@ -399,10 +639,10 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
               <h2>{formatTimer}</h2>
               <p className={styles.focusHint}>{t.focusHint}</p>
               <div className={styles.timerControls}>
-                <button type="button" className={styles.timerMain} onClick={() => setTimerRunning((running) => !running)}>
-                  {timerRunning ? t.pause : secondsLeft === 25 * 60 ? t.start : t.resume}
+                <button type="button" data-fx="own" className={styles.timerMain} onClick={toggleTimer}>
+                  {timerRunning ? t.pause : secondsLeft === TIMER_SECONDS ? t.start : t.resume}
                 </button>
-                <button type="button" className={styles.timerReset} onClick={() => { setTimerRunning(false); setSecondsLeft(25 * 60); }} aria-label={t.reset}><SiteIcon name="rotate" className={styles.icon} /></button>
+                <button type="button" className={styles.timerReset} onClick={() => { setTimerRunning(false); setSecondsLeft(TIMER_SECONDS); }} aria-label={t.reset}><SiteIcon name="rotate" className={styles.icon} /></button>
               </div>
             </section>
 

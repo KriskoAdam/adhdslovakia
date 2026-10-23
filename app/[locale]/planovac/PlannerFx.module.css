@@ -1,0 +1,205 @@
+/* PlannerFx.module.css – farby, animácie a odmeny pre ADHD Flow */
+
+/* Farebné pozadie (priesvitné, funguje v svetlom aj tmavom režime) */
+.root {
+  background-image:
+    radial-gradient(600px 420px at 0% 0%, rgba(255, 92, 138, 0.14), transparent 60%),
+    radial-gradient(520px 420px at 100% 8%, rgba(76, 201, 240, 0.16), transparent 60%),
+    radial-gradient(520px 520px at 50% 100%, rgba(155, 93, 229, 0.12), transparent 60%) !important;
+  background-attachment: fixed !important;
+}
+
+/* Fyzická odozva každého tlačidla */
+.root button:not(:disabled):active {
+  transform: scale(0.93);
+}
+
+/* Prepínač zvukov */
+.soundToggle {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.16);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Farby kategórií: ľavý pásik na riadku + farebný štítok */
+.cat_everyday { border-left: 5px solid #4cc9f0 !important; }
+.cat_work     { border-left: 5px solid #9b5de5 !important; }
+.cat_health   { border-left: 5px solid #06d6a0 !important; }
+.cat_rest     { border-left: 5px solid #ffb703 !important; }
+
+.chip_everyday { background: rgba(76, 201, 240, 0.22) !important; font-weight: 700; }
+.chip_work     { background: rgba(155, 93, 229, 0.22) !important; font-weight: 700; }
+.chip_health   { background: rgba(6, 214, 160, 0.22) !important; font-weight: 700; }
+.chip_rest     { background: rgba(255, 183, 3, 0.26) !important; font-weight: 700; }
+
+/* Animácie riadku úlohy */
+.pop { animation: rowPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.out { animation: rowOut 0.22s ease forwards; }
+
+@keyframes rowPop {
+  0% { transform: scale(0.85) translateY(-8px); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes rowOut {
+  to { transform: translateX(40px); opacity: 0; }
+}
+
+/* Odškrtnuté políčko */
+.checkDone {
+  background: linear-gradient(135deg, #06d6a0, #4cc9f0) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  animation: checkBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes checkBounce {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Farebný ukazovateľ dnešného postupu */
+.progressFill {
+  background: linear-gradient(90deg, #ff5c8a, #ffb703, #06d6a0) !important;
+  border-radius: inherit;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* Toast s odmenou */
+.toast {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 14px);
+  left: 50%;
+  z-index: 10000;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff5c8a, #ffb703);
+  color: #1b1230;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(255, 92, 138, 0.35);
+  animation: toastIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), toastOut 0.3s ease 1.7s forwards;
+  transform: translateX(-50%);
+}
+.toastSpecial {
+  background: linear-gradient(135deg, #9b5de5, #4cc9f0);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(155, 93, 229, 0.4);
+}
+@keyframes toastIn {
+  from { transform: translate(-50%, -30px) scale(0.8); opacity: 0; }
+  to { transform: translate(-50%, 0) scale(1); opacity: 1; }
+}
+@keyframes toastOut {
+  to { transform: translate(-50%, -20px); opacity: 0; }
+}
+
+/* Karta s levelom, XP a sériou */
+.xpCard {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(155, 93, 229, 0.12);
+  border: 1px solid rgba(155, 93, 229, 0.32);
+}
+.xpTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.levelBadge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff5c8a, #9b5de5);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  box-shadow: 0 6px 16px rgba(155, 93, 229, 0.4);
+}
+.xpInfo { flex: 1; min-width: 0; }
+.xpTitle { margin: 0; font-weight: 800; }
+.xpSub { margin: 2px 0 0; font-size: 0.85rem; opacity: 0.75; }
+.streak {
+  flex: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 123, 0, 0.18);
+  font-weight: 800;
+}
+.xpTrack {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.22);
+  overflow: hidden;
+}
+.xpTrack span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff5c8a, #ffb703, #06d6a0);
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Koniec časovača */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(20, 10, 40, 0.62);
+  backdrop-filter: blur(6px);
+}
+.overlayCard {
+  width: min(100%, 360px);
+  padding: 28px 24px;
+  border-radius: 28px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(145deg, #9b5de5, #ff5c8a);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  animation: toastPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.overlayCard h2 { margin: 8px 0; font-size: 1.6rem; }
+.overlayCard p { margin: 0 0 20px; opacity: 0.92; }
+.overlayEmoji {
+  font-size: 56px;
+  display: inline-block;
+  animation: ring 0.8s ease-in-out infinite;
+}
+.overlayButton {
+  width: 100%;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #5b21b6;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+@keyframes toastPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes ring {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-14deg); }
+  60% { transform: rotate(10deg); }
+  80% { transform: rotate(-10deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop, .out, .checkDone, .toast, .overlayCard, .overlayEmoji { animation: none !important; }
+  .progressFill, .xpTrack span { transition: none !important; }
+}
