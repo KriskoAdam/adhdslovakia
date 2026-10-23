@@ -7,6 +7,12 @@ import ThemeToggle from "../../components/ThemeToggle";
 import styles from "./PlannerClient.module.css";
 import fx from "./PlannerFx.module.css";
 import * as sfx from "./PlannerFx";
+import {
+  IconPlus, IconCheck, IconTrash, IconChevronLeft, IconChevronRight,
+  IconFlame, IconTrophy, IconSparkles, IconBell, IconPlay, IconPause,
+  IconReset, IconSpeaker, IconSpeakerOff, IconDownload, IconCheckCircle,
+  IconLeaf, IconLock, IconTimer, IconSun, IconClock, IconChecklist,
+} from "./Icons";
 
 type Locale = "sk" | "en";
 type Category = "everyday" | "work" | "health" | "rest";
@@ -71,7 +77,6 @@ const COPY = {
   },
 } satisfies Record<Locale, Record<string, string>>;
 
-// Texty pre odmeny, level a zvuky (oddelené od COPY, lebo obsahujú polia a funkcie)
 const FX_COPY = {
   sk: {
     cheers: ["Skvelé! 🎉", "Ďalšia hotová! ⭐", "Ideš na to! 🚀", "Bomba! 💥", "Mozog dostáva dopamín 💜", "Tak toto je šampión! 🏆"],
@@ -446,7 +451,19 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
             aria-pressed={soundOn}
             aria-label={soundOn ? f.soundOn : f.soundOff}
           >
-            {soundOn ? "🔊" : "🔇"}
+              {soundOn ? (
+              <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+            ) : (
+              <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            )}
           </button>
           <ThemeToggle />
           {isInstalled ? (
@@ -611,7 +628,7 @@ export default function PlannerClient({ locale }: { locale: Locale }) {
                   <p className={fx.xpTitle}>{f.level} {level} · {f.levelTitles[Math.min(level - 1, f.levelTitles.length - 1)]}</p>
                   <p className={fx.xpSub}>{xp} XP</p>
                 </div>
-                <span className={fx.streak} title={f.streak} aria-label={`${f.streak}: ${streak}`}>🔥 {streak}</span>
+                <span className={fx.streak} title={f.streak} aria-label={`${f.streak}: ${streak}`}> {streak}</span>
               </div>
               <div className={fx.xpTrack} role="progressbar" aria-label={f.level} aria-valuemin={0} aria-valuemax={100} aria-valuenow={levelPct}>
                 <span style={{ width: `${levelPct}%` }} />
