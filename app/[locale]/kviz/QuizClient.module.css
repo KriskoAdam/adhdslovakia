@@ -97,7 +97,7 @@
 .questionMeta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--quiz-muted); font-size: 11px; font-weight: 750; letter-spacing: .04em; }
 .streak { color: #cf8b21; }
 .questionNumber { position: absolute; top: 30px; right: clamp(22px, 5vw, 42px); color: rgba(113,87,232,.12); font-family: var(--font-display), sans-serif; font-size: 55px; font-weight: 800; line-height: 1; }
-.questionCard h2 { position: relative; max-width: 690px; margin: 28px 50px 20px 0; color: var(--quiz-ink); font-family: var(--font-display), sans-serif; font-size: clamp(21px, 3.2vw, 32px); line-height: 1.27; letter-spacing: -.04em; }
+.questionCard h2 { position: relative; max-width: 690px; min-height: 3.81em; margin: 28px 50px 20px 0; color: var(--quiz-ink); font-family: var(--font-display), sans-serif; font-size: clamp(21px, 3.2vw, 32px); line-height: 1.27; letter-spacing: -.04em; }
 .chooseHint { margin: 0 0 12px; color: var(--quiz-muted); font-size: 11px; }
 .answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .answer { min-height: 59px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--quiz-line); border-radius: 16px; padding: 11px 14px; background: rgba(255,255,255,.52); color: var(--quiz-ink); font-size: 13px; font-weight: 650; line-height: 1.4; text-align: left; cursor: pointer; transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease; }
@@ -109,12 +109,13 @@
 .answerWrong { border-color: rgba(216,93,119,.4); background: rgba(216,93,119,.08); }
 .answerWrong .answerLetter { border-color: transparent; background: var(--quiz-red); color: white; }
 .answerDim { opacity: .58; }
-.feedback { display: flex; gap: 13px; margin: 18px 0 0; padding: 15px 16px; border: 1px solid var(--quiz-line); border-radius: 17px; background: rgba(255,255,255,.48); animation: rise-in .3s both; }
-.feedbackIcon { flex: 0 0 auto; font-size: 23px; }
-.feedback strong { display: block; color: var(--quiz-ink); font-size: 13px; }
-.rightAnswer { display: block; margin-top: 4px; color: var(--quiz-purple); font-size: 11px; font-weight: 700; }
-.feedback p { margin: 5px 0 0; color: var(--quiz-muted); font-size: 12px; line-height: 1.55; }
-.nextButton { min-height: 45px; display: flex; margin: 17px 0 0 auto; padding: 0 17px; font-size: 12px; }
+.feedbackOverlay { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; overflow-y: auto; padding: max(18px, env(safe-area-inset-top)) 16px max(18px, env(safe-area-inset-bottom)); background: rgba(22,19,39,.48); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); animation: fade-in .2s ease both; }
+.feedbackModal { width: min(100%, 440px); max-height: min(80dvh, 620px); overflow-y: auto; padding: clamp(24px, 7vw, 36px); border: 1px solid var(--quiz-edge); border-radius: 28px; background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(246,243,255,.94)); box-shadow: 0 28px 90px rgba(19,15,43,.25), inset 0 1px 0 rgba(255,255,255,.9); text-align: center; animation: rise-in .28s cubic-bezier(.2,.8,.2,1) both; }
+.feedbackIcon { display: grid; width: 58px; height: 58px; place-items: center; margin: 0 auto 14px; border: 1px solid var(--quiz-line); border-radius: 19px; background: var(--quiz-purple-soft); font-size: 28px; }
+.feedbackEyebrow { margin: 0 0 9px; color: var(--quiz-purple); font-size: 13px; font-weight: 800; }
+.feedbackModal h2 { margin: 0; color: var(--quiz-ink); font-family: var(--font-display), sans-serif; font-size: clamp(21px, 5vw, 27px); line-height: 1.25; letter-spacing: -.03em; }
+.feedbackDescription { margin: 13px 0 22px; color: var(--quiz-muted); font-size: 14px; line-height: 1.6; }
+.feedbackModal .primaryButton { width: 100%; }
 .gameFooter { display: flex; justify-content: space-between; gap: 12px; margin: 14px 7px 0; color: var(--quiz-muted); font-size: 10px; }
 .gameFooter > span:last-child { color: var(--quiz-purple); font-weight: 750; white-space: nowrap; }
 .resultCard { width: min(100%, 590px); margin: 28px auto; padding: clamp(28px, 6vw, 54px); text-align: center; animation: rise-in .5s both; }
@@ -138,7 +139,7 @@
 :global(html[data-theme="dark"]) .questionCard, :global(html[data-theme="dark"]) .resultCard { background: linear-gradient(145deg, rgba(43,40,63,.88), rgba(34,32,51,.7)); }
 :global(html[data-theme="dark"]) .answer { background: rgba(51,47,73,.64); }
 :global(html[data-theme="dark"]) .answer:not(:disabled):hover { background: rgba(67,61,96,.78); }
-:global(html[data-theme="dark"]) .feedback { background: rgba(28,26,43,.5); }
+:global(html[data-theme="dark"]) .feedbackModal { background: linear-gradient(145deg, rgba(43,40,63,.98), rgba(34,32,51,.97)); }
 :global(html[data-theme="dark"]) .scoreRing > div { background: #232137; }
 :global(html[data-theme="dark"]) .questionNumber { color: rgba(172,154,255,.18); }
 
@@ -182,7 +183,7 @@
   .levelStep small { display: none; }
   .questionCard { padding: 22px 16px 18px; border-radius: 24px; }
   .questionNumber { top: 23px; right: 17px; font-size: 39px; }
-  .questionCard h2 { max-width: none; margin: 25px 43px 18px 0; font-size: clamp(19px, 5.5vw, 26px); overflow-wrap: break-word; hyphens: auto; }
+  .questionCard h2 { max-width: none; min-height: 6.35em; margin: 25px 43px 18px 0; font-size: clamp(19px, 5.5vw, 26px); overflow-wrap: break-word; hyphens: auto; }
   .answers { grid-template-columns: 1fr; gap: 8px; }
   .answer { min-height: 53px; border-radius: 14px; padding: 9px 11px; font-size: 12px; }
   .gameFooter { font-size: 9px; }
@@ -195,7 +196,7 @@
   .gameTop h1 { font-size: 18px; }
   .questionCard { padding-inline: 13px; }
   .questionNumber { right: 14px; font-size: 34px; }
-  .questionCard h2 { margin-right: 37px; font-size: 19px; }
+  .questionCard h2 { min-height: 6.35em; margin-right: 37px; font-size: 19px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

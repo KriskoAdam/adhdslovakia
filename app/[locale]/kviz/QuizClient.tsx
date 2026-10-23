@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import PwaInstallGuide, { detectInstallPlatform, type InstallPlatform } from "../../components/PwaInstallGuide";
 import SiteIcon from "../../components/SiteIcon";
 import ThemeToggle from "../../components/ThemeToggle";
@@ -134,13 +134,19 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
     }));
   };
 
-  const advance = () => {
+  const advance = useCallback(() => {
     setProgress((previous) => {
       if (previous.question < 19) return { ...previous, question: previous.question + 1, selected: null };
       if (previous.level < 4) return { ...previous, level: previous.level + 1, question: 0, selected: null };
       return { ...previous, finished: true };
     });
-  };
+  }, []);
+
+  useEffect(() => {
+    if (progress.selected === null || !correct) return;
+    const timeout = window.setTimeout(advance, 750);
+    return () => window.clearTimeout(timeout);
+  }, [progress.selected, correct, advance]);
 
   const startQuiz = () => setProgress((previous) => ({ ...previous, started: true }));
   const restart = () => setProgress({ ...initialProgress, started: true });
@@ -230,14 +236,21 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
                   </button>;
                 })}
               </div>
-              {progress.selected !== null && <div className={styles.feedback} role="status"><span className={styles.feedbackIcon}>{correct ? "✨" : "💡"}</span><div><strong>{correct ? copy.correct : copy.incorrect}</strong>{!correct && <span className={styles.rightAnswer}>{copy.correctAnswer} {answerOptions[currentQuestion.correct]}.</span>}<p>{currentQuestion.explanation[locale]}</p></div></div>}
-              {progress.selected !== null && <button className={styles.nextButton} type="button" onClick={advance}>{progress.question < 19 ? copy.next : progress.level < 4 ? copy.nextLevel : copy.finish}<span aria-hidden="true">→</span></button>}
             </article>
             <div className={styles.gameFooter}><span>{copy.keepGoing}</span><span>✦ {formatPoints(progress.score, locale)}</span></div>
             <p className={styles.disclaimer}>{copy.share}</p>
           </section>
         )}
       </div>
+      {progress.started && progress.selected !== null && !correct && <div className={styles.feedbackOverlay}>
+        <section className={styles.feedbackModal} role="dialog" aria-modal="true" aria-labelledby="answer-feedback-title" aria-describedby="answer-feedback-description">
+          <span className={styles.feedbackIcon} aria-hidden="true">💡</span>
+          <p className={styles.feedbackEyebrow}>{copy.incorrect}</p>
+          <h2 id="answer-feedback-title">{copy.correctAnswer} {answerOptions[currentQuestion.correct]}.</h2>
+          <p id="answer-feedback-description" className={styles.feedbackDescription}>{currentQuestion.explanation[locale]}</p>
+          <button className={styles.primaryButton} type="button" onClick={advance} autoFocus>{progress.question < 19 ? copy.next : progress.level < 4 ? copy.nextLevel : copy.finish}<span aria-hidden="true">→</span></button>
+        </section>
+      </div>}
       {guideOpen && <PwaInstallGuide locale={locale} platform={platform} appName={copy.appName} onClose={() => setGuideOpen(false)} />}
     </main>
   );
