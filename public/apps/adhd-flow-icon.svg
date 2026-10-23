@@ -1,20 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
   <defs>
-    <linearGradient id="bg" x1="60" y1="30" x2="454" y2="492" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#315f3d"/>
-      <stop offset="1" stop-color="#1c4029"/>
+    <linearGradient id="background" x1="56" y1="22" x2="451" y2="496" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8EDBFF"/>
+      <stop offset=".48" stop-color="#657BFF"/>
+      <stop offset="1" stop-color="#A85BEB"/>
     </linearGradient>
-    <linearGradient id="flow" x1="155" y1="142" x2="349" y2="371" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#f2f6e9"/>
-      <stop offset="1" stop-color="#c9e2bd"/>
+    <linearGradient id="glass" x1="94" y1="72" x2="418" y2="445" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".08"/>
     </linearGradient>
+    <linearGradient id="mark" x1="161" y1="140" x2="357" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#E5F8FF"/>
+    </linearGradient>
+    <filter id="shadow" x="76" y="63" width="360" height="399" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
   </defs>
-  <rect width="512" height="512" fill="url(#bg)"/>
-  <circle cx="256" cy="256" r="166" fill="#ffffff" fill-opacity=".055"/>
-  <circle cx="256" cy="256" r="135" fill="#315f3d" stroke="#d7e8cf" stroke-opacity=".18" stroke-width="2"/>
-  <path d="M174 147h168v51H229v51h99v49h-99v68h-55V147Z" fill="url(#flow)"/>
-  <path d="M353 319c-18 31-49 51-84 58" fill="none" stroke="#a9d99a" stroke-linecap="round" stroke-width="12"/>
-  <path d="m269 378 17-23 12 25" fill="none" stroke="#a9d99a" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
-  <circle cx="359" cy="153" r="17" fill="#a9d99a"/>
-  <path d="M359 124v-13m0 84v-13m29-29h13m-84 0h13m49-20 9-9m-59 59-9 9m59 0 9 9m-59-59-9-9" stroke="#d9edcd" stroke-linecap="round" stroke-width="6"/>
+  <rect width="512" height="512" rx="124" fill="url(#background)"/>
+  <circle cx="135" cy="96" r="93" fill="#fff" fill-opacity=".14" filter="url(#shadow)"/>
+  <rect x="47" y="39" width="418" height="434" rx="112" fill="url(#glass)" stroke="#fff" stroke-opacity=".48" stroke-width="3"/>
+  <path d="M159 350V177c0-17 14-31 31-31h158" stroke="url(#mark)" stroke-linecap="round" stroke-linejoin="round" stroke-width="38"/>
+  <path d="M160 240h126" stroke="url(#mark)" stroke-linecap="round" stroke-width="36"/>
+  <path d="M191 352c37 0 63-15 82-46 12-20 28-31 53-34" stroke="#C8F7FF" stroke-linecap="round" stroke-width="17"/>
+  <path d="m307 250 25 22-27 20" stroke="#C8F7FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="15"/>
+  <path d="m359 105 9 24 25 9-25 9-9 25-9-25-25-9 25-9 9-24Z" fill="#fff" fill-opacity=".96"/>
+  <circle cx="130" cy="363" r="9" fill="#fff" fill-opacity=".85"/>
 </svg>

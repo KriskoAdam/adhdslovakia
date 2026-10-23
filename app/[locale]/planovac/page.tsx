@@ -27,16 +27,16 @@ export async function generateMetadata({
       title,
       description,
       url: `https://www.adhdslovakia.eu${appPath}`,
-      images: [{ url: "/apps/adhd-flow-icon-512.png", width: 512, height: 512, alt: "ADHD Flow app icon" }],
+      images: [{ url: "/apps/adhd-flow-icon-512.png?v=2", width: 512, height: 512, alt: "ADHD Flow app icon" }],
     },
     robots: { index: true, follow: true },
     manifest: `/${locale}/planovac/manifest.webmanifest`,
     icons: {
       icon: [
-        { url: "/apps/adhd-flow-icon-192.png", sizes: "192x192", type: "image/png" },
-        { url: "/apps/adhd-flow-icon-512.png", sizes: "512x512", type: "image/png" },
+        { url: "/apps/adhd-flow-icon-192.png?v=2", sizes: "192x192", type: "image/png" },
+        { url: "/apps/adhd-flow-icon-512.png?v=2", sizes: "512x512", type: "image/png" },
       ],
-      apple: [{ url: "/apps/adhd-flow-icon-192.png", sizes: "192x192", type: "image/png" }],
+      apple: [{ url: "/apps/adhd-flow-icon-192.png?v=2", sizes: "192x192", type: "image/png" }],
     },
     appleWebApp: {
       capable: true,
