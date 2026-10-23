@@ -22,7 +22,7 @@ const text = {
     brand: "ADHD Slovakia", appName: "ADHD Quiz", back: "Späť na web", soundOn: "Vypnúť zvuky", soundOff: "Zapnúť zvuky",
     install: "Inštalovať", installed: "Nainštalované", eyebrow: "VEDOMOSTI BEZ SÚDENIA", title: "ADHD bez mýtov.", subtitle: "100 otázok. 5 levelov. Viac porozumenia — bez stopiek a bez tlaku.", start: "Poďme na to", continue: "Pokračovať v kvíze", tagline: "Každý mozog funguje trochu inak. Tu sa učíme, nie skúšame.",
     level: "LEVEL", of: "z", question: "Otázka", streak: "séria", choose: "Vyber najpresnejšiu odpoveď", correct: "Presne tak!", incorrect: "Dobrá snaha!", correctAnswer: "Správna odpoveď:", next: "Ďalšia otázka", nextLevel: "Dokončiť level", finish: "Pozrieť výsledok", levelDone: "Level dokončený!", keepGoing: "Každá odpoveď je ďalší kúsok skladačky.",
-    finalEyebrow: "TVOJA CESTA K POROZUMENIU", finalTitle: "Dokázal/a si to!", result: "Tvoje skóre", outOf: "zo 100", restart: "Zahrať si znova", site: "Späť na ADHD Slovakia", share: "Toto je vzdelávací kvíz, nie diagnostický test.",
+    finalEyebrow: "TVOJA CESTA K POROZUMENIU", finalTitle: "Dokázal/a si to!", result: "Tvoje skóre", outOf: "zo 100", restart: "Začať odznova", site: "Späť na ADHD Slovakia", share: "Toto je vzdelávací kvíz, nie diagnostický test.",
     ranks: ["Začiatok zvedavosti", "Lovec mýtov", "Objaviteľ ADHD", "Mozog v obraze", "ADHD sprievodca"],
     feedback: ["Každá nová informácia sa počíta. Skús ďalšiu!", "Už máš dobrý základ. Ideš ďalej!", "Pekná práca — tvoj prehľad rastie!", "Výborne! Mýty ti už len tak neprejdú.", "Skvelé skóre. Šíriš viac porozumenia!"],
     installMessage: "Kvíz je pripravený v tvojom zariadení.", soundLabel: "Zvukové efekty",
@@ -31,7 +31,7 @@ const text = {
     brand: "ADHD Slovakia", appName: "ADHD Quiz", back: "Back to website", soundOn: "Turn sounds off", soundOff: "Turn sounds on",
     install: "Install", installed: "Installed", eyebrow: "LEARN WITHOUT JUDGEMENT", title: "ADHD, beyond the myths.", subtitle: "100 questions. 5 levels. More understanding — no timer, no pressure.", start: "Let's play", continue: "Continue quiz", tagline: "Every brain works a little differently. This is about learning, not testing.",
     level: "LEVEL", of: "of", question: "Question", streak: "streak", choose: "Choose the most accurate answer", correct: "Exactly right!", incorrect: "Nice try!", correctAnswer: "The best answer:", next: "Next question", nextLevel: "Complete level", finish: "See your result", levelDone: "Level complete!", keepGoing: "Every answer is another piece of the puzzle.",
-    finalEyebrow: "YOUR JOURNEY TO UNDERSTANDING", finalTitle: "You did it!", result: "Your score", outOf: "out of 100", restart: "Play again", site: "Back to ADHD Slovakia", share: "This is an educational quiz, not a diagnostic test.",
+    finalEyebrow: "YOUR JOURNEY TO UNDERSTANDING", finalTitle: "You did it!", result: "Your score", outOf: "out of 100", restart: "Start over", site: "Back to ADHD Slovakia", share: "This is an educational quiz, not a diagnostic test.",
     ranks: ["Curious beginner", "Myth buster", "ADHD explorer", "Brain-wise", "ADHD guide"],
     feedback: ["Every new fact counts. Try the next one!", "You have a good foundation. Keep going!", "Nice work — your understanding is growing!", "Brilliant! Myths won't fool you easily.", "Fantastic score. You're spreading understanding!"],
     installMessage: "The quiz is ready on your device.", soundLabel: "Sound effects",
@@ -216,12 +216,15 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
           <section className={styles.game}>
             <div className={styles.gameTop}>
               <div><p className={styles.levelEyebrow}>{copy.level} {progress.level + 1} {copy.of} 5 <span>·</span> {currentLevel.title[locale]}</p><h1>{currentLevel.subtitle[locale]}</h1></div>
-              <div className={styles.scorePill}><span aria-hidden="true">✦</span>{formatPoints(progress.score, locale)}</div>
+              <div className={styles.gameTopActions}>
+                <div className={styles.scorePill}><span aria-hidden="true">✦</span>{formatPoints(progress.score, locale)}</div>
+                <button className={styles.restartButton} type="button" onClick={restart} aria-label={copy.restart}><span aria-hidden="true">↻</span><span>{copy.restart}</span></button>
+              </div>
             </div>
             <div className={styles.progressTrack} role="progressbar" aria-label={locale === "en" ? "Quiz progress" : "Postup kvízom"} aria-valuemin={0} aria-valuemax={100} aria-valuenow={totalAnswered}><span style={{ width: `${totalAnswered}%` }} /></div>
             <div className={styles.levelTrack} aria-label={locale === "en" ? "Levels" : "Levely"}>{quizLevels.map((level, index) => <div key={level.title.sk} className={`${styles.levelStep} ${index < progress.level ? styles.levelComplete : ""} ${index === progress.level ? styles.levelCurrent : ""}`}><span>{index < progress.level ? "✓" : index + 1}</span><small>{level.title[locale]}</small></div>)}</div>
 
-            <article className={`${styles.questionCard} ${progress.selected !== null ? (correct ? styles.correctCard : styles.incorrectCard) : ""}`} key={`${progress.level}-${progress.question}`}>
+            <article className={`${styles.questionCard} ${progress.selected !== null ? (correct ? styles.correctCard : styles.incorrectCard) : ""}`}>
               <div className={styles.questionMeta}><span>{copy.question} {progress.question + 1} {copy.of} 20</span>{progress.streak > 1 && <span className={styles.streak}>🔥 {progress.streak} {copy.streak}</span>}</div>
               <div className={styles.questionNumber}>{String(progress.question + 1).padStart(2, "0")}</div>
               <h2>{currentQuestion.statement[locale]}</h2>
