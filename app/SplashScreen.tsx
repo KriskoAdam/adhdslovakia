@@ -14,7 +14,11 @@ export default function SplashScreen() {
     let removeTimer: ReturnType<typeof setTimeout> | undefined;
 
     queueMicrotask(() => {
-      if (cancelled || sessionStorage.getItem("splashShown")) return;
+      const isStandalone =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        (navigator as Navigator & { standalone?: boolean }).standalone === true;
+
+      if (cancelled || isStandalone || sessionStorage.getItem("splashShown")) return;
 
       setMounted(true);
       setVisible(true);
