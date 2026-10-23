@@ -29,6 +29,7 @@ export async function generateMetadata({
       url: `https://www.adhdslovakia.eu${appPath}`,
       images: [{ url: "/apps/adhd-flow-icon-512.png?v=2", width: 512, height: 512, alt: "ADHD Flow app icon" }],
     },
+    twitter: { card: "summary_large_image", title, description, images: ["/apps/adhd-flow-icon-512.png?v=2"] },
     robots: { index: true, follow: true },
     manifest: `/${locale}/planovac/manifest.webmanifest`,
     icons: {

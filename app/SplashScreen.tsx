@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function SplashScreen() {
+  const pathname = usePathname();
   // Zobrazené = stále vidno na obrazovke (kým nezmizne fade-out)
   const [visible, setVisible] = useState(false);
   // Mounted = vôbec renderujeme komponent do DOMu (po fade-out ho úplne odstránime)
@@ -18,7 +20,7 @@ export default function SplashScreen() {
         window.matchMedia("(display-mode: standalone)").matches ||
         (navigator as Navigator & { standalone?: boolean }).standalone === true;
 
-      if (cancelled || isStandalone || sessionStorage.getItem("splashShown")) return;
+      if (cancelled || pathname.includes("/kviz") || isStandalone || sessionStorage.getItem("splashShown")) return;
 
       setMounted(true);
       setVisible(true);
@@ -34,7 +36,7 @@ export default function SplashScreen() {
       if (fadeTimer) clearTimeout(fadeTimer);
       if (removeTimer) clearTimeout(removeTimer);
     };
-  }, []);
+  }, [pathname]);
 
   if (!mounted) return null;
 

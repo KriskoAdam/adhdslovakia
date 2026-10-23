@@ -16,6 +16,7 @@ export type AppLocale = "sk" | "en";
 
 export function createAppManifest(app: AppListing, locale: AppLocale, startUrl: string): MetadataRoute.Manifest {
   const english = locale === "en";
+  const themeColor = app.id === "quiz" ? "#f1f0fb" : "#f2f5f1";
   return {
     id: startUrl,
     name: `${app.name} by ADHD Slovakia`,
@@ -24,8 +25,8 @@ export function createAppManifest(app: AppListing, locale: AppLocale, startUrl: 
     start_url: startUrl,
     scope: `/${locale}/`,
     display: "standalone",
-    background_color: "#f2f5f1",
-    theme_color: "#f2f5f1",
+    background_color: themeColor,
+    theme_color: themeColor,
     lang: english ? "en" : "sk",
     icons: app.pwaIcons.map(({ src, sizes, type }) => ({ src, sizes, type, purpose: "any" })),
   };
@@ -53,6 +54,27 @@ export const appListings: AppListing[] = [
       en: "Break tasks into small steps, see your week at a glance, and make room for focus and rest.",
     },
     tags: { sk: ["Funguje offline", "Bez účtu"], en: ["Works offline", "No account"] },
+  },
+  {
+    id: "quiz",
+    name: "ADHD Quiz",
+    icon: "/apps/adhd-quiz-icon.svg?v=1",
+    pwaIcons: [
+      { src: "/apps/adhd-quiz-icon-192.png?v=1", sizes: "192x192", type: "image/png" },
+      { src: "/apps/adhd-quiz-icon-512.png?v=1", sizes: "512x512", type: "image/png" },
+      { src: "/apps/adhd-quiz-icon.svg?v=1", sizes: "any", type: "image/svg+xml" },
+    ],
+    href: "/kviz",
+    detailsHref: "/appky/quiz",
+    description: {
+      sk: "Zábavný kvíz o ADHD so 100 otázkami, piatimi levelmi a vysvetleniami. Fakty, mýty aj tipy na každodenný život.",
+      en: "A friendly ADHD quiz with 100 questions, five levels and clear explanations. Explore facts, myths and everyday strategies.",
+    },
+    details: {
+      sk: "Otestuj si vedomosti o ADHD vlastným tempom. Každá odpoveď prináša vysvetlenie, body a povzbudenie — bez časového tlaku.",
+      en: "Explore what you know about ADHD at your own pace. Every answer brings an explanation, points and encouragement — with no timer.",
+    },
+    tags: { sk: ["100 otázok", "5 levelov"], en: ["100 questions", "5 levels"] },
   },
 ];
 

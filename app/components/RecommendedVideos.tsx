@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import SiteIcon from "./SiteIcon";
 import type { RecommendedVideo } from "../lib/recommended-videos";
 import { useVideoLanguageFilter, type VideoLanguageGroup } from "./VideoLanguageFilter";
@@ -21,6 +22,7 @@ function VideoCard({ video, locale, compact = false }: { video: RecommendedVideo
             src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0${video.startAt ? `&start=${video.startAt}` : ""}`}
             title={`${video.title[locale]} — ${video.channel}`}
             loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
@@ -28,10 +30,19 @@ function VideoCard({ video, locale, compact = false }: { video: RecommendedVideo
           <button
             className={styles.preview}
             type="button"
-            style={{ backgroundImage: `linear-gradient(180deg, transparent 42%, rgba(10, 18, 12, .72)), url(https://i.ytimg.com/vi/${video.id}/hqdefault.jpg)` }}
             onClick={() => setPlaying(true)}
             aria-label={`${english ? "Play" : "Prehrať"}: ${video.title[locale]}`}
           >
+            <Image
+              className={styles.thumbnail}
+              src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+              alt=""
+              decoding="async"
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 767px) 78vw, 30vw"
+              unoptimized
+            />
             <span className={styles.playButton}><SiteIcon name="play" className={styles.playIcon} /></span>
             <span className={styles.previewLabel}>{english ? "Play on this page" : "Prehrať priamo tu"}</span>
           </button>

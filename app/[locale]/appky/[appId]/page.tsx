@@ -21,14 +21,16 @@ export async function generateMetadata({
   if (!app) return {};
   const language = locale === "en" ? "en" : "sk";
   const alternateLanguage = language === "en" ? "sk" : "en";
-  const title = language === "en" ? `${app.name} – ADHD-friendly task planner` : `${app.name} – plánovač úloh pre ADHD`;
+  const title = app.id === "flow"
+    ? (language === "en" ? `${app.name} – ADHD-friendly task planner` : `${app.name} – plánovač úloh pre ADHD`)
+    : (language === "en" ? `${app.name} – a friendly ADHD knowledge quiz` : `${app.name} – zábavný kvíz o ADHD`);
   const description = app.description[language];
   const image = app.pwaIcons.find((icon) => icon.type === "image/png" && icon.sizes === "512x512")?.src ?? app.icon;
   return {
     title,
     description,
     applicationName: app.name,
-    category: language === "en" ? "Productivity" : "Produktivita",
+    category: app.id === "flow" ? (language === "en" ? "Productivity" : "Produktivita") : (language === "en" ? "Education" : "Vzdelávanie"),
     alternates: {
       canonical: `/${language}/appky/${app.id}`,
       languages: {
@@ -70,6 +72,9 @@ export default async function AppDetailPage({
   if (!app) notFound();
   const locale = rawLocale === "en" ? "en" : "sk";
   const english = locale === "en";
+  const title = app.id === "flow"
+    ? (english ? `${app.name} – ADHD-friendly task planner` : `${app.name} – plánovač úloh pre ADHD`)
+    : (english ? `${app.name} – a friendly ADHD knowledge quiz` : `${app.name} – zábavný kvíz o ADHD`);
   const pageUrl = `https://www.adhdslovakia.eu/${locale}/appky/${app.id}`;
   const storeUrl = `https://www.adhdslovakia.eu/${locale}/appky`;
   const structuredData = {
@@ -77,7 +82,7 @@ export default async function AppDetailPage({
     "@graph": [
       {
         "@type": "WebPage",
-        name: `${app.name} – ${english ? "ADHD-friendly task planner" : "plánovač úloh pre ADHD"}`,
+        name: title,
         description: app.description[locale],
         url: pageUrl,
         inLanguage: locale,
@@ -98,9 +103,13 @@ export default async function AppDetailPage({
           priceCurrency: "EUR",
           url: pageUrl,
         },
-        featureList: english
-          ? ["Progressive web app", "Works offline", "No account required", "Tasks stay on your device"]
-          : ["Progresívna webová aplikácia", "Funguje offline", "Bez potreby účtu", "Úlohy zostávajú v zariadení"],
+        featureList: app.id === "flow"
+          ? (english
+              ? ["Progressive web app", "Works offline", "No account required", "Tasks stay on your device"]
+              : ["Progresívna webová aplikácia", "Funguje offline", "Bez potreby účtu", "Úlohy zostávajú v zariadení"])
+          : (english
+              ? ["Progressive web app", "100 ADHD knowledge questions", "Five levels", "Progress stays on your device"]
+              : ["Progresívna webová aplikácia", "100 otázok o ADHD", "Päť levelov", "Postup zostáva v zariadení"]),
         publisher: { "@id": "https://www.adhdslovakia.eu/#organization" },
       },
       {
@@ -146,9 +155,9 @@ export default async function AppDetailPage({
             <AppsClient locale={locale} appName={app.name} />
           </div>
           <p className={styles.privacy}>
-            {english
-              ? "No account needed. Your planner stays on this device."
-              : "Bez účtu. Tvoje úlohy zostávajú uložené iba v tomto zariadení."}
+            {app.id === "flow"
+              ? (english ? "No account needed. Your planner stays on this device." : "Bez účtu. Tvoje úlohy zostávajú uložené iba v tomto zariadení.")
+              : (english ? "No account needed. Your quiz progress stays on this device." : "Bez účtu. Tvoj postup v kvíze zostáva iba v tomto zariadení.")}
           </p>
         </section>
         </div>

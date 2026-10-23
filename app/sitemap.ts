@@ -4,7 +4,7 @@ import { appListings } from "./lib/apps";
 
 const site = "https://www.adhdslovakia.eu";
 const locales = ["sk", "en"] as const;
-const staticRoutes = ["", "clanky", "appky", "informacie-o-adhd", "o-nas", "kontakt", "test", "ochrana-sukromia"];
+const staticRoutes = ["", "clanky", "appky", "kviz", "informacie-o-adhd", "o-nas", "kontakt", "test", "ochrana-sukromia"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

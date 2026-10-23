@@ -1,5 +1,5 @@
-const CACHE_NAME = "adhd-planner-v1";
-const APP_SHELL = ["/sk/planovac", "/en/planovac", "/sk/appky", "/en/appky", "/sk/appky/flow", "/en/appky/flow"];
+const CACHE_NAME = "adhd-tools-v2";
+const APP_SHELL = ["/sk/planovac", "/en/planovac", "/sk/kviz", "/en/kviz", "/sk/appky", "/en/appky", "/sk/appky/flow", "/en/appky/flow"];
 
 async function cacheShell(cache, path) {
   const response = await fetch(path);
@@ -43,7 +43,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => Promise.all(
-      keys.filter((key) => key.startsWith("adhd-planner-") && key !== CACHE_NAME)
+      keys.filter((key) => key.startsWith("adhd-tools-") && key !== CACHE_NAME)
         .map((key) => caches.delete(key)),
     )).then(() => self.clients.claim()),
   );
@@ -63,7 +63,9 @@ self.addEventListener("fetch", (event) => {
       }).catch(async () => {
         const cached = await caches.match(request);
         if (cached) return cached;
-        const fallback = url.pathname.startsWith("/en/") ? "/en/planovac" : "/sk/planovac";
+        const fallback = url.pathname.includes("/kviz")
+          ? (url.pathname.startsWith("/en/") ? "/en/kviz" : "/sk/kviz")
+          : (url.pathname.startsWith("/en/") ? "/en/planovac" : "/sk/planovac");
         return (await caches.match(fallback)) || Response.error();
       }),
     );

@@ -14,8 +14,8 @@ export async function generateMetadata({
   const isEnglish = locale === "en";
   const title = isEnglish ? "ADHD Apps and Tools" : "Aplikácie pre ADHD";
   const description = isEnglish
-    ? "Explore practical, free ADHD-friendly web apps from ADHD Slovakia, including ADHD Flow, a gentle task planner for everyday life."
-    : "Objav bezplatné webové aplikácie pre ľudí s ADHD od ADHD Slovakia. Vyskúšaj ADHD Flow, jemný plánovač úloh pre každý deň.";
+    ? "Explore practical, free ADHD-friendly web apps from ADHD Slovakia, including ADHD Flow and the 100-question ADHD Quiz."
+    : "Objav bezplatné webové aplikácie pre ľudí s ADHD od ADHD Slovakia — ADHD Flow aj kvíz so 100 otázkami.";
   return {
     title,
     description,
@@ -49,8 +49,8 @@ export default async function AppsPage({
     "@type": "CollectionPage",
     name: english ? "ADHD Apps and Tools" : "Aplikácie pre ADHD",
     description: english
-      ? "Practical, free web apps from ADHD Slovakia."
-      : "Praktické bezplatné webové aplikácie od ADHD Slovakia.",
+      ? "Practical, free web apps and learning tools from ADHD Slovakia."
+      : "Praktické bezplatné webové aplikácie a vzdelávacie nástroje od ADHD Slovakia.",
     url: pageUrl,
     inLanguage: locale,
     mainEntity: {
@@ -87,7 +87,13 @@ export default async function AppsPage({
             <div className={styles.heroMeta}>
               <div className={styles.collectionCount}>
                 <span className={styles.countDot} />
-                {english ? `${appListings.length} app${appListings.length === 1 ? "" : "s"} available` : `${appListings.length} ${appListings.length === 1 ? "aplikácia" : "appiek"} k dispozícii`}
+                {english
+                  ? `${appListings.length} app${appListings.length === 1 ? "" : "s"} available`
+                  : appListings.length === 1
+                    ? "1 aplikácia k dispozícii"
+                    : appListings.length < 5
+                      ? `${appListings.length} appky k dispozícii`
+                      : `${appListings.length} appiek k dispozícii`}
               </div>
               <span className={styles.freeLabel}>{english ? "Free · No account required" : "Bezplatné · Bez registrácie"}</span>
             </div>
@@ -112,7 +118,7 @@ export default async function AppsPage({
                   </div>
                   <span className={styles.available}>{english ? "AVAILABLE" : "DOSTUPNÁ"}</span>
                 </div>
-                <p className={styles.appPublisher}>ADHD SLOVAKIA · {english ? "DAILY LIFE" : "KAŽDODENNOSŤ"}</p>
+                <p className={styles.appPublisher}>ADHD SLOVAKIA · {app.id === "quiz" ? (english ? "LEARNING" : "UČENIE") : (english ? "DAILY LIFE" : "KAŽDODENNOSŤ")}</p>
                 <h3>{app.name}</h3>
                 <p className={styles.appDescription}>{app.description[locale]}</p>
                 <p className={styles.appDetails}>{app.details[locale]}</p>
