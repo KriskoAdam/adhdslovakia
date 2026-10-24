@@ -75,16 +75,16 @@
 .floatChipSecond { top: auto; right: auto; bottom: 18%; left: 0; animation-delay: -1.8s; }
 
 .game { width: min(100%, 830px); margin: 0 auto; padding: 10px 0 30px; animation: rise-in .5s both; overflow-anchor: none; }
-.gameTop { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 0 6px 18px; }
-.gameTopActions { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
-.levelEyebrow { margin: 0 0 8px; color: var(--quiz-purple); font-size: 10px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.gameTop { position: relative; width: min(100%, 760px); margin: 0 auto 16px; padding: 15px 52px; border: 1px solid var(--quiz-edge); border-radius: 20px; background: var(--quiz-glass); box-shadow: 0 8px 24px rgba(49,43,96,.05), inset 0 1px 0 rgba(255,255,255,.85); text-align: center; }
+.levelEyebrow { margin: 0 0 4px; color: var(--quiz-purple); font-size: 10px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 .levelEyebrow > span { padding: 0 3px; color: var(--quiz-muted); }
-.gameTop h1 { margin: 0; color: var(--quiz-ink); font-family: var(--font-display), sans-serif; font-size: clamp(20px, 3vw, 29px); font-weight: 750; letter-spacing: -.045em; }
-.scorePill { flex: 0 0 auto; display: flex; align-items: center; gap: 7px; padding: 10px 13px; border: 1px solid var(--quiz-edge); border-radius: 14px; background: var(--quiz-glass); box-shadow: 0 7px 18px rgba(49,43,96,.06); color: var(--quiz-ink); font-size: 12px; font-weight: 750; }
-.scorePill > span { color: #f3ad38; font-size: 17px; }
-.scoreCelebration { position: relative; animation: score-pop .55s cubic-bezier(.2,.8,.2,1) both; }
-.scorePill .xpReward { position: absolute; right: -7px; bottom: -15px; z-index: 2; padding: 4px 7px; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: linear-gradient(120deg, #fff4c9, #ffe5a0); box-shadow: 0 4px 12px rgba(196,139,42,.2); color: #895b14; font-size: 9px; font-weight: 850; line-height: 1; white-space: nowrap; animation: xp-reward .85s cubic-bezier(.2,.8,.2,1) both; }
-.restartButton { width: 39px; height: 39px; flex: 0 0 39px; display: inline-grid; place-items: center; border: 1px solid var(--quiz-line); border-radius: 13px; padding: 0; background: var(--quiz-glass); color: var(--quiz-muted); font-size: 11px; font-weight: 700; cursor: pointer; transition: color .18s ease, border-color .18s ease, background .18s ease; }
+.gameTop h1 { margin: 0; color: var(--quiz-ink); font-family: var(--font-display), sans-serif; font-size: clamp(17px, 2.4vw, 24px); font-weight: 750; line-height: 1.3; letter-spacing: -.035em; }
+.scoreCelebration { animation: score-pop .55s cubic-bezier(.2,.8,.2,1) both; }
+.questionMetaRewards { display: flex; min-width: 0; align-items: center; justify-content: flex-end; gap: 8px; }
+.questionScore { position: relative; display: inline-flex; flex: 0 0 auto; align-items: center; gap: 4px; padding: 5px 8px; border: 1px solid rgba(113,87,232,.18); border-radius: 999px; background: var(--quiz-purple-soft); color: var(--quiz-purple); font-size: 10px; font-weight: 800; letter-spacing: 0; white-space: nowrap; }
+.questionScoreIcon { color: #f3ad38; font-size: 13px; }
+.questionScore .xpReward { position: absolute; top: -15px; right: -5px; z-index: 2; padding: 4px 7px; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: linear-gradient(120deg, #fff4c9, #ffe5a0); box-shadow: 0 4px 12px rgba(196,139,42,.2); color: #895b14; font-size: 9px; font-weight: 850; line-height: 1; white-space: nowrap; animation: xp-reward .85s cubic-bezier(.2,.8,.2,1) both; }
+.restartButton { position: absolute; top: 50%; right: 9px; width: 36px; height: 36px; display: inline-grid; place-items: center; transform: translateY(-50%); border: 1px solid var(--quiz-line); border-radius: 12px; padding: 0; background: var(--quiz-glass); color: var(--quiz-muted); font-size: 11px; font-weight: 700; cursor: pointer; transition: color .18s ease, border-color .18s ease, background .18s ease; }
 .restartButton:hover { border-color: rgba(113,87,232,.3); background: var(--quiz-strong); color: var(--quiz-purple); }
 .restartButton > span:first-child { font-size: 21px; line-height: 1; }
 .progressTrack { height: 8px; overflow: hidden; margin: 0 7px 18px; border-radius: 99px; background: rgba(113,87,232,.11); }
@@ -123,7 +123,6 @@
 .feedbackDescription { margin: 13px 0 22px; color: var(--quiz-muted); font-size: 14px; line-height: 1.6; }
 .feedbackModal .primaryButton { width: 100%; }
 .gameFooter { display: flex; justify-content: space-between; gap: 12px; margin: 14px 7px 0; color: var(--quiz-muted); font-size: 10px; }
-.gameFooter > span:last-child { color: var(--quiz-purple); font-weight: 750; white-space: nowrap; }
 .resultCard { width: min(100%, 590px); margin: 28px auto; padding: clamp(28px, 6vw, 54px); text-align: center; animation: rise-in .5s both; }
 .resultIcon { width: 74px; height: 74px; display: grid; place-items: center; margin: 0 auto 21px; border: 1px solid var(--quiz-edge); border-radius: 23px; background: linear-gradient(145deg, rgba(255,255,255,.9), rgba(242,238,255,.5)); box-shadow: 0 12px 32px rgba(91,73,170,.12); font-size: 38px; animation: hover 3s ease-in-out infinite; }
 .resultCard .eyebrow { justify-content: center; }
@@ -183,18 +182,16 @@
   .floatChip { top: 13%; right: 6%; font-size: 10px; }
   .floatChipSecond { top: auto; right: auto; bottom: 12%; left: 7%; }
   .game { padding-top: 3px; }
-  .gameTop { align-items: start; gap: 10px; margin-inline: 2px; }
-  .gameTop > div:first-child { min-width: 0; }
-  .gameTopActions { gap: 5px; }
-  .gameTop h1 { max-width: 440px; font-size: 20px; }
-  .scorePill { gap: 5px; padding: 8px 9px; font-size: 10px; }
+  .gameTop { margin-bottom: 14px; padding: 12px 48px; border-radius: 17px; }
+  .levelEyebrow { font-size: 9px; }
+  .gameTop h1 { font-size: clamp(15px, 4vw, 19px); }
   .levelTrack { gap: 3px; margin-inline: 2px; }
   .levelStep { justify-content: center; }
   .levelStep > span { width: 24px; height: 24px; flex-basis: 24px; }
   .levelStep small { display: none; }
   .questionCard { padding: 22px 16px 18px; border-radius: 24px; }
   .questionNumber { top: 23px; right: 17px; font-size: 39px; }
-  .questionCard h2 { max-width: none; min-height: 6.35em; margin: 25px 43px 18px 0; font-size: clamp(19px, 5.5vw, 26px); overflow-wrap: break-word; word-break: normal; hyphens: none; -webkit-hyphens: none; }
+  .questionCard h2 { max-width: none; min-height: 5.1em; margin: 25px 43px 18px 0; font-size: clamp(19px, 5.5vw, 26px); overflow-wrap: break-word; word-break: normal; hyphens: none; -webkit-hyphens: none; }
   .answers { grid-template-columns: 1fr; gap: 8px; }
   .answer { min-height: 53px; border-radius: 14px; padding: 9px 11px; font-size: 12px; }
   .gameFooter { font-size: 9px; }
@@ -204,10 +201,14 @@
 @media (max-width: 370px) {
   .brandText { font-size: 12px; }
   .installButton { width: 35px; padding: 0; font-size: 0; }
-  .gameTop h1 { font-size: 18px; }
+  .gameTop { padding-inline: 43px; }
+  .gameTop h1 { font-size: 15px; }
+  .questionMeta { gap: 5px; font-size: 10px; }
+  .questionMetaRewards { gap: 4px; }
+  .questionScore { gap: 3px; padding: 4px 6px; font-size: 9px; }
   .questionCard { padding-inline: 13px; }
   .questionNumber { right: 14px; font-size: 34px; }
-  .questionCard h2 { min-height: 6.35em; margin-right: 37px; font-size: 19px; }
+  .questionCard h2 { min-height: 5.1em; margin-right: 37px; font-size: 19px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

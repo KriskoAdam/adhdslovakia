@@ -9,12 +9,38 @@ import styles from "./QuizClient.module.css";
 
 type InstallPromptEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> };
 type Progress = { started: boolean; level: number; question: number; score: number; streak: number; selected: number | null; finished: boolean };
-const STORAGE_KEY = "adhdslovakia-quiz-v1";
+const STORAGE_KEY = "adhdslovakia-quiz-v2";
+const LEGACY_STORAGE_KEY = "adhdslovakia-quiz-v1";
 const SOUND_KEY = "adhdslovakia-quiz-sound";
 const initialProgress: Progress = { started: false, level: 0, question: 0, score: 0, streak: 0, selected: null, finished: false };
 const formatPoints = (value: number, locale: QuizLocale) => {
   if (locale === "en") return `${value} ${value === 1 ? "point" : "points"}`;
   return `${value} ${value === 1 ? "bod" : value > 1 && value < 5 ? "body" : "bodov"}`;
+};
+
+const shuffleWithSeed = (values: number[], seed: number) => {
+  const shuffled = [...values];
+  let state = seed >>> 0;
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+    const swapIndex = state % (index + 1);
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled;
+};
+
+const getAnswerOrder = (level: number, question: number, correctAnswer: number) => {
+  const block = Math.floor(question / 4);
+  const blockSeed = Math.imul(level + 1, 0x9e3779b1) + Math.imul(block + 1, 0x85ebca6b);
+  const correctPosition = shuffleWithSeed([0, 1, 2, 3], blockSeed)[question % 4];
+  const distractors = shuffleWithSeed([0, 1, 2, 3].filter((answer) => answer !== correctAnswer), blockSeed ^ Math.imul(question + 1, 0xc2b2ae35));
+  const order = Array<number>(4);
+  order[correctPosition] = correctAnswer;
+  let distractorIndex = 0;
+  for (let position = 0; position < order.length; position += 1) {
+    if (position !== correctPosition) order[position] = distractors[distractorIndex++];
+  }
+  return order;
 };
 
 const text = {
@@ -56,10 +82,17 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
       if (cancelled) return;
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          const value = JSON.parse(saved) as Partial<Progress>;
+        const legacySaved = saved ? null : localStorage.getItem(LEGACY_STORAGE_KEY);
+        if (saved || legacySaved) {
+          const value = JSON.parse(saved ?? legacySaved ?? "null") as Partial<Progress>;
           if (typeof value.level === "number" && value.level >= 0 && value.level < quizLevels.length) {
-            setProgress({ ...initialProgress, ...value });
+            const question = typeof value.question === "number" ? Math.max(0, Math.min(19, value.question)) : 0;
+            const restored = { ...initialProgress, ...value, question };
+            if (legacySaved && typeof value.selected === "number" && value.selected >= 0 && value.selected < 4) {
+              const correctAnswer = quizLevels[value.level].questions[question].correct;
+              restored.selected = getAnswerOrder(value.level, question, correctAnswer).indexOf(value.selected);
+            }
+            setProgress(restored);
           }
         }
         setSoundOn(localStorage.getItem(SOUND_KEY) !== "off");
@@ -85,17 +118,26 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
   const currentQuestion = currentLevel.questions[progress.question];
   const totalAnswered = progress.finished ? 100 : progress.level * 20 + progress.question + (progress.selected === null ? 0 : 1);
   const feedbackRank = Math.min(4, Math.floor(progress.score / 20));
-  const correct = progress.selected === currentQuestion?.correct;
   const answerOptions = useMemo(() => answerLabels[locale], [locale]);
+  const answerOrder = useMemo(() => getAnswerOrder(progress.level, progress.question, currentQuestion.correct), [progress.level, progress.question, currentQuestion.correct]);
+  const questionOptions = answerOrder.map((index) => answerOptions[index]);
+  const correctChoice = answerOrder.indexOf(currentQuestion.correct);
+  const correct = progress.selected === correctChoice;
+
+  const getAudioContext = () => {
+    const Context = window.AudioContext;
+    if (!Context) return null;
+    if (!audioRef.current || audioRef.current.state === "closed") audioRef.current = new Context();
+    const context = audioRef.current;
+    if (context.state !== "running") void context.resume().catch(() => undefined);
+    return context;
+  };
 
   const playTone = (success: boolean) => {
     if (!soundOn) return;
     try {
-      const Context = window.AudioContext;
-      if (!Context) return;
-      const context = audioRef.current ?? new Context();
-      audioRef.current = context;
-      if (context.state === "suspended") void context.resume();
+      const context = getAudioContext();
+      if (!context) return;
       const notes = success ? [523.25, 659.25, 783.99] : [392, 330];
       notes.forEach((frequency, index) => {
         const oscillator = context.createOscillator();
@@ -124,7 +166,7 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
 
   const chooseAnswer = (choice: number) => {
     if (progress.selected !== null || !currentQuestion) return;
-    const isCorrect = choice === currentQuestion.correct;
+    const isCorrect = choice === correctChoice;
     playTone(isCorrect);
     setProgress((previous) => ({
       ...previous,
@@ -149,7 +191,12 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
   }, [progress.selected, correct, advance]);
 
   const startQuiz = () => setProgress((previous) => ({ ...previous, started: true }));
-  const restart = () => setProgress({ ...initialProgress, started: true });
+  const restart = () => {
+    if (soundOn) {
+      try { getAudioContext(); } catch { /* Audio remains optional when the browser blocks playback. */ }
+    }
+    setProgress({ ...initialProgress, started: true });
+  };
 
   const install = async () => {
     setInstallMessage("");
@@ -215,27 +262,31 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
         ) : (
           <section className={styles.game}>
             <div className={styles.gameTop}>
-              <div><p className={styles.levelEyebrow}>{copy.level} {progress.level + 1} {copy.of} 5 <span>·</span> {currentLevel.title[locale]}</p><h1>{currentLevel.subtitle[locale]}</h1></div>
-              <div className={styles.gameTopActions}>
-                <div className={`${styles.scorePill} ${progress.selected !== null && correct ? styles.scoreCelebration : ""}`}>
-                  <span aria-hidden="true">✦</span>{formatPoints(progress.score, locale)}
-                  {progress.selected !== null && correct && <span className={styles.xpReward} aria-hidden="true">{progress.streak >= 3 && progress.streak % 3 === 0 ? `🔥 ${progress.streak} ${locale === "sk" ? "v rade" : "in a row"}` : "✨ +1 XP"}</span>}
-                </div>
-                <button className={styles.restartButton} type="button" onClick={restart} aria-label={copy.restart} title={copy.restart}><span aria-hidden="true">↻</span></button>
-              </div>
+              <p className={styles.levelEyebrow}>{copy.level} {progress.level + 1} {copy.of} 5 <span>·</span> {currentLevel.title[locale]}</p>
+              <h1>{currentLevel.subtitle[locale]}</h1>
+              <button className={styles.restartButton} type="button" onClick={restart} aria-label={copy.restart} title={copy.restart}><span aria-hidden="true">↻</span></button>
             </div>
             <div className={styles.progressTrack} role="progressbar" aria-label={locale === "en" ? "Quiz progress" : "Postup kvízom"} aria-valuemin={0} aria-valuemax={100} aria-valuenow={totalAnswered}><span style={{ width: `${totalAnswered}%` }} /></div>
             <div className={styles.levelTrack} aria-label={locale === "en" ? "Levels" : "Levely"}>{quizLevels.map((level, index) => <div key={level.title.sk} className={`${styles.levelStep} ${index < progress.level ? styles.levelComplete : ""} ${index === progress.level ? styles.levelCurrent : ""}`}><span>{index < progress.level ? "✓" : index + 1}</span><small>{level.title[locale]}</small></div>)}</div>
 
             <article className={`${styles.questionCard} ${progress.selected !== null ? (correct ? styles.correctCard : styles.incorrectCard) : ""}`}>
-              <div className={styles.questionMeta}><span>{copy.question} {progress.question + 1} {copy.of} 20</span>{progress.streak > 1 && <span className={styles.streak}>🔥 {progress.streak} {copy.streak}</span>}</div>
+              <div className={styles.questionMeta}>
+                <span>{copy.question} {progress.question + 1} {copy.of} 20</span>
+                <div className={styles.questionMetaRewards}>
+                  {progress.streak > 1 && <span className={styles.streak}>🔥 {progress.streak} {copy.streak}</span>}
+                  <span className={`${styles.questionScore} ${progress.selected !== null && correct ? styles.scoreCelebration : ""}`}>
+                    <span className={styles.questionScoreIcon} aria-hidden="true">✦</span>{formatPoints(progress.score, locale)}
+                    {progress.selected !== null && correct && <span className={styles.xpReward} aria-hidden="true">{progress.streak >= 3 && progress.streak % 3 === 0 ? `🔥 ${progress.streak} ${locale === "sk" ? "v rade" : "in a row"}` : "✨ +1 XP"}</span>}
+                  </span>
+                </div>
+              </div>
               <div className={styles.questionNumber}>{String(progress.question + 1).padStart(2, "0")}</div>
               <h2>{currentQuestion.statement[locale]}</h2>
               <p className={styles.chooseHint}>{copy.choose}</p>
               <div className={styles.answers}>
-                {answerOptions.map((option, index) => {
+                {questionOptions.map((option, index) => {
                   const isSelected = progress.selected === index;
-                  const isCorrect = currentQuestion.correct === index;
+                  const isCorrect = correctChoice === index;
                   const resultClass = progress.selected === null ? "" : isCorrect ? styles.answerCorrect : isSelected ? styles.answerWrong : styles.answerDim;
                   return <button key={option} type="button" className={`${styles.answer} ${resultClass}`} onClick={() => chooseAnswer(index)} disabled={progress.selected !== null} aria-pressed={isSelected}>
                     <span className={styles.answerLetter}>{String.fromCharCode(65 + index)}</span><span>{option}</span>{progress.selected !== null && isCorrect && <span className={styles.answerCheck}>✓</span>}
@@ -243,7 +294,7 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
                 })}
               </div>
             </article>
-            <div className={styles.gameFooter}><span>{copy.keepGoing}</span><span>✦ {formatPoints(progress.score, locale)}</span></div>
+            <div className={styles.gameFooter}><span>{copy.keepGoing}</span></div>
             <p className={styles.disclaimer}>{copy.share}</p>
           </section>
         )}
@@ -252,7 +303,7 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
         <section className={styles.feedbackModal} role="dialog" aria-modal="true" aria-labelledby="answer-feedback-title" aria-describedby="answer-feedback-description">
           <span className={styles.feedbackIcon} aria-hidden="true">💡</span>
           <p className={styles.feedbackEyebrow}>{copy.incorrect}</p>
-          <h2 id="answer-feedback-title">{copy.correctAnswer} {answerOptions[currentQuestion.correct]}.</h2>
+          <h2 id="answer-feedback-title">{copy.correctAnswer} {questionOptions[correctChoice]}.</h2>
           <p id="answer-feedback-description" className={styles.feedbackDescription}>{currentQuestion.explanation[locale]}</p>
           <button className={styles.primaryButton} type="button" onClick={advance} autoFocus>{progress.question < 19 ? copy.next : progress.level < 4 ? copy.nextLevel : copy.finish}<span aria-hidden="true">→</span></button>
         </section>
