@@ -144,7 +144,7 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
 
   useEffect(() => {
     if (progress.selected === null || !correct) return;
-    const timeout = window.setTimeout(advance, 750);
+    const timeout = window.setTimeout(advance, 1100);
     return () => window.clearTimeout(timeout);
   }, [progress.selected, correct, advance]);
 
@@ -217,7 +217,10 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
             <div className={styles.gameTop}>
               <div><p className={styles.levelEyebrow}>{copy.level} {progress.level + 1} {copy.of} 5 <span>·</span> {currentLevel.title[locale]}</p><h1>{currentLevel.subtitle[locale]}</h1></div>
               <div className={styles.gameTopActions}>
-                <div className={styles.scorePill}><span aria-hidden="true">✦</span>{formatPoints(progress.score, locale)}</div>
+                <div className={`${styles.scorePill} ${progress.selected !== null && correct ? styles.scoreCelebration : ""}`}>
+                  <span aria-hidden="true">✦</span>{formatPoints(progress.score, locale)}
+                  {progress.selected !== null && correct && <span className={styles.xpReward} aria-hidden="true">{progress.streak >= 3 && progress.streak % 3 === 0 ? `🔥 ${progress.streak} ${locale === "sk" ? "v rade" : "in a row"}` : "✨ +1 XP"}</span>}
+                </div>
                 <button className={styles.restartButton} type="button" onClick={restart} aria-label={copy.restart} title={copy.restart}><span aria-hidden="true">↻</span></button>
               </div>
             </div>
