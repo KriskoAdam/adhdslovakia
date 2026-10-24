@@ -82,9 +82,9 @@
 .gameTop h1 { margin: 0; color: var(--quiz-ink); font-family: var(--font-display), sans-serif; font-size: clamp(20px, 3vw, 29px); font-weight: 750; letter-spacing: -.045em; }
 .scorePill { flex: 0 0 auto; display: flex; align-items: center; gap: 7px; padding: 10px 13px; border: 1px solid var(--quiz-edge); border-radius: 14px; background: var(--quiz-glass); box-shadow: 0 7px 18px rgba(49,43,96,.06); color: var(--quiz-ink); font-size: 12px; font-weight: 750; }
 .scorePill > span { color: #f3ad38; font-size: 17px; }
-.restartButton { min-height: 39px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid var(--quiz-line); border-radius: 13px; padding: 0 10px; background: var(--quiz-glass); color: var(--quiz-muted); font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer; transition: color .18s ease, border-color .18s ease, background .18s ease; }
+.restartButton { width: 39px; height: 39px; flex: 0 0 39px; display: inline-grid; place-items: center; border: 1px solid var(--quiz-line); border-radius: 13px; padding: 0; background: var(--quiz-glass); color: var(--quiz-muted); font-size: 11px; font-weight: 700; cursor: pointer; transition: color .18s ease, border-color .18s ease, background .18s ease; }
 .restartButton:hover { border-color: rgba(113,87,232,.3); background: var(--quiz-strong); color: var(--quiz-purple); }
-.restartButton > span:first-child { font-size: 17px; line-height: 1; }
+.restartButton > span:first-child { font-size: 21px; line-height: 1; }
 .progressTrack { height: 8px; overflow: hidden; margin: 0 7px 18px; border-radius: 99px; background: rgba(113,87,232,.11); }
 .progressTrack > span { height: 100%; display: block; border-radius: inherit; background: linear-gradient(90deg, #957fff, #6e54dd 55%, #42c69c); box-shadow: 0 0 16px rgba(113,87,232,.28); transition: width .55s cubic-bezier(.2,.8,.2,1); }
 .levelTrack { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; margin: 0 7px 20px; }
@@ -178,7 +178,8 @@
   .floatChip { top: 13%; right: 6%; font-size: 10px; }
   .floatChipSecond { top: auto; right: auto; bottom: 12%; left: 7%; }
   .game { padding-top: 3px; }
-  .gameTop { align-items: start; margin-inline: 2px; }
+  .gameTop { align-items: start; gap: 10px; margin-inline: 2px; }
+  .gameTop > div:first-child { min-width: 0; }
   .gameTopActions { gap: 5px; }
   .gameTop h1 { max-width: 440px; font-size: 20px; }
   .scorePill { gap: 5px; padding: 8px 9px; font-size: 10px; }
@@ -199,8 +200,6 @@
   .brandText { font-size: 12px; }
   .installButton { width: 35px; padding: 0; font-size: 0; }
   .gameTop h1 { font-size: 18px; }
-  .restartButton { width: 36px; padding: 0; }
-  .restartButton > span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
   .questionCard { padding-inline: 13px; }
   .questionNumber { right: 14px; font-size: 34px; }
   .questionCard h2 { min-height: 6.35em; margin-right: 37px; font-size: 19px; }

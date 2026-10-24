@@ -218,7 +218,7 @@ export default function QuizClient({ locale }: { locale: QuizLocale }) {
               <div><p className={styles.levelEyebrow}>{copy.level} {progress.level + 1} {copy.of} 5 <span>·</span> {currentLevel.title[locale]}</p><h1>{currentLevel.subtitle[locale]}</h1></div>
               <div className={styles.gameTopActions}>
                 <div className={styles.scorePill}><span aria-hidden="true">✦</span>{formatPoints(progress.score, locale)}</div>
-                <button className={styles.restartButton} type="button" onClick={restart} aria-label={copy.restart}><span aria-hidden="true">↻</span><span>{copy.restart}</span></button>
+                <button className={styles.restartButton} type="button" onClick={restart} aria-label={copy.restart} title={copy.restart}><span aria-hidden="true">↻</span></button>
               </div>
             </div>
             <div className={styles.progressTrack} role="progressbar" aria-label={locale === "en" ? "Quiz progress" : "Postup kvízom"} aria-valuemin={0} aria-valuemax={100} aria-valuenow={totalAnswered}><span style={{ width: `${totalAnswered}%` }} /></div>
