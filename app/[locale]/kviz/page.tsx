@@ -4,10 +4,10 @@ import QuizClient from "./QuizClient";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const english = locale === "en";
-  const title = english ? "ADHD Quiz – 100 questions, 5 levels" : "ADHD Quiz – 100 otázok, 5 levelov";
+  const title = english ? "ADHD Quiz – 120 questions, 6 levels" : "ADHD Quiz – 120 otázok, 6 levelov";
   const description = english
-    ? "A friendly, no-pressure quiz about ADHD myths, facts and everyday strategies. Five levels, 100 questions and clear explanations."
-    : "Zábavný kvíz bez časového tlaku o mýtoch, faktoch a každodenných stratégiách pri ADHD. Päť levelov, 100 otázok a jasné vysvetlenia.";
+    ? "A friendly, no-pressure quiz about ADHD myths, facts and everyday strategies. Six levels, 120 questions and clear explanations."
+    : "Zábavný kvíz bez časového tlaku o mýtoch, faktoch a každodenných stratégiách pri ADHD. Šesť levelov, 120 otázok a jasné vysvetlenia.";
   return {
     title,
     description,
@@ -31,10 +31,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function QuizPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const language = locale === "en" ? "en" : "sk";
-  const title = language === "en" ? "ADHD Quiz – 100 questions, 5 levels" : "ADHD Quiz – 100 otázok, 5 levelov";
+  const title = language === "en" ? "ADHD Quiz – 120 questions, 6 levels" : "ADHD Quiz – 120 otázok, 6 levelov";
   const description = language === "en"
-    ? "A friendly, no-pressure quiz about ADHD myths, facts and everyday strategies. Five levels, 100 questions and clear explanations."
-    : "Zábavný kvíz bez časového tlaku o mýtoch, faktoch a každodenných stratégiách pri ADHD. Päť levelov, 100 otázok a jasné vysvetlenia.";
+    ? "A friendly, no-pressure quiz about ADHD myths, facts and everyday strategies. Six levels, 120 questions and clear explanations."
+    : "Zábavný kvíz bez časového tlaku o mýtoch, faktoch a každodenných stratégiách pri ADHD. Šesť levelov, 120 otázok a jasné vysvetlenia.";
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
