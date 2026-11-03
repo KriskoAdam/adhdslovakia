@@ -4,7 +4,10 @@ export default function robots() {
       { userAgent: "*", allow: "/", disallow: ["/admin", "/api/"] },
       { userAgent: ["GPTBot", "OAI-SearchBot", "ClaudeBot", "PerplexityBot", "Google-Extended"], allow: "/", disallow: ["/admin", "/api/"] },
     ],
-    sitemap: "https://www.adhdslovakia.eu/sitemap.xml",
+    sitemap: [
+      "https://www.adhdslovakia.eu/sitemap.xml",
+      "https://www.adhdslovakia.eu/sitemaps/sitemap.xml",
+    ],
     host: "https://www.adhdslovakia.eu",
   };
 }
