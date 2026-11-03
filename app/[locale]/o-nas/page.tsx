@@ -19,6 +19,16 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     alternates: { canonical: `/${locale}/o-nas`, languages: { sk: "/sk/o-nas", en: "/en/o-nas" } },
+    openGraph: {
+      type: "profile",
+      siteName: "ADHD Slovakia",
+      title: locale === "en" ? "About ADHD Slovakia and its founder" : "O projekte ADHD Slovakia a jeho zakladateľovi",
+      description: t("description"),
+      url: `https://www.adhdslovakia.eu/${locale}/o-nas`,
+      locale: locale === "en" ? "en_US" : "sk_SK",
+      images: ["/images/logo.png"],
+    },
+    twitter: { card: "summary_large_image", title: t("title"), description: t("description"), images: ["/images/logo.png"] },
   };
 }
 
@@ -27,7 +37,7 @@ export default async function ONasPage({
 }: {
   params: Promise<{ locale: "sk" | "en" }>;
 }) {
-  await params;
+  const { locale } = await params;
   const t = await getTranslations("About");
 
   const cards = [
@@ -52,10 +62,33 @@ export default async function ONasPage({
       desc: t("cards.advocacy.desc"),
     },
   ];
+  const english = locale === "en";
+  const aboutUrl = `https://www.adhdslovakia.eu/${english ? "en" : "sk"}/o-nas`;
+  const founderData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    url: aboutUrl,
+    name: english ? "About ADHD Slovakia" : "O projekte ADHD Slovakia",
+    inLanguage: english ? "en" : "sk",
+    about: {
+      "@type": "Person",
+      "@id": `${aboutUrl}#adam-krisko`,
+      name: "Adam Kriško",
+      jobTitle: english ? "Founder of ADHD Slovakia" : "Zakladateľ ADHD Slovakia",
+      url: aboutUrl,
+      worksFor: {
+        "@type": "Organization",
+        "@id": "https://www.adhdslovakia.eu/#organization",
+        name: "ADHD Slovakia",
+        url: "https://www.adhdslovakia.eu",
+      },
+    },
+  };
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <Nav />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(founderData).replace(/</g, "\\u003c") }} />
 
       <main id="main-content" tabIndex={-1} className="outline-none">
       <div className="max-w-2xl mx-auto px-8 pt-14 pb-20">
@@ -80,6 +113,8 @@ export default async function ONasPage({
           <p>{t("story.p3")}</p>
 
           <p>{t("story.p4")}</p>
+
+          <p>{t("story.p5")}</p>
         </div>
 
         <div className="border-t border-[var(--border-color)] my-12" />

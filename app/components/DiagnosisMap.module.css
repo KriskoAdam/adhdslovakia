@@ -40,7 +40,7 @@
 .mapHeader h3, .resultsHeading h3 { margin: 0; font-size: 1rem; font-weight: 800; }
 .mapHeader > span { display: flex; align-items: center; gap: .45rem; color: var(--text-muted); font-size: .72rem; }
 .mapHeader > span > span { width: .42rem; height: .42rem; }
-.map { position: relative; width: 100%; aspect-ratio: 570 / 350; min-height: 350px; margin-top: .8rem; overflow: hidden; border: 1px solid var(--border-color); border-radius: 1rem; background: radial-gradient(ellipse at 52% 52%, color-mix(in srgb, var(--accent) 12%, var(--bg-secondary)), transparent 70%), var(--bg-primary); touch-action: none; cursor: grab; }
+.map { position: relative; z-index: 0; isolation: isolate; width: 100%; aspect-ratio: 570 / 350; min-height: 350px; margin-top: .8rem; overflow: hidden; border: 1px solid var(--border-color); border-radius: 1rem; background: radial-gradient(ellipse at 52% 52%, color-mix(in srgb, var(--accent) 12%, var(--bg-secondary)), transparent 70%), var(--bg-primary); touch-action: none; cursor: grab; }
 .map:active { cursor: grabbing; }
 .mapCanvas { position: absolute; inset: 0; transform-origin: center; will-change: transform; }
 .mapDrawing { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
@@ -75,7 +75,7 @@
 .layerPopover i, .mapLegend i { width: .72rem; height: .72rem; border-radius: 50%; background: var(--accent); }
 .layerPopover .onlineKey { border-radius: 2px; background: #4b94df; }
 .layerPopover .communityKey, .mapLegend .communityKey { background: #d97706; }
-.mapLegend { position: absolute; z-index: 3; inset: auto .8rem .8rem; display: grid; grid-template-columns: max-content max-content minmax(0, 1fr); align-items: center; gap: .35rem .7rem; padding: .58rem .7rem; border: 1px solid var(--border-color); border-radius: .8rem; background: color-mix(in srgb, var(--bg-secondary) 96%, transparent); color: var(--text-secondary); font-size: .7rem; box-shadow: 0 3px 10px #0002; }
+.mapLegend { position: absolute; z-index: 1100; inset: auto .8rem .8rem; display: grid; grid-template-columns: max-content max-content minmax(0, 1fr); align-items: center; gap: .35rem .7rem; padding: .58rem .7rem; border: 1px solid var(--border-color); border-radius: .8rem; background: color-mix(in srgb, var(--bg-secondary) 96%, transparent); color: var(--text-secondary); font-size: .7rem; box-shadow: 0 3px 10px #0002; }
 .mapLegend small { justify-self: end; color: var(--text-muted); font-size: .64rem; text-align: right; }
 .mapHint { margin: .55rem .15rem 0; color: var(--text-muted); font-size: .72rem; line-height: 1.45; }
 .results { padding: 1rem; }
@@ -121,7 +121,7 @@
 .results { box-shadow: none; }
 .providerCard { transition: border-color .18s ease, background .18s ease, transform .18s ease; }
 .providerCard:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 42%, var(--border-color)); background: color-mix(in srgb, var(--accent-soft) 40%, var(--bg-primary)); }
-.fullscreen { position: fixed; inset: 1rem; z-index: 1000; display: flex; flex-direction: column; padding: 1rem; background: var(--bg-secondary); box-shadow: 0 0 0 200vmax #0009; }
+.fullscreen { position: fixed; inset: 1rem; z-index: 40; display: flex; flex-direction: column; padding: 1rem; background: var(--bg-secondary); box-shadow: 0 0 0 200vmax #0009; }
 .fullscreen .map { flex: 1; min-height: 0; aspect-ratio: auto; }
 .submissionBar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1180px; margin: 0 auto 1rem; padding: .75rem 1rem; border: 1px solid var(--border-color); border-radius: 1rem; background: color-mix(in srgb, var(--accent-soft) 42%, var(--bg-secondary)); color: var(--text-secondary); font-size: .82rem; line-height: 1.4; }
 .addAction, .cancelAction { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: .5rem; min-height: 2.8rem; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border-color)); border-radius: .8rem; padding: .55rem .9rem; background: var(--accent); color: var(--bg-primary); font: inherit; font-size: .8rem; line-height: 1.25; font-weight: 800; text-align: center; cursor: pointer; }
@@ -212,3 +212,4 @@
 .mapPin > span { transform: rotate(45deg); }
 .mapFullscreenAction { position: absolute; z-index: 1000; top: .8rem; left: .8rem; max-width: calc(100% - 4.2rem); border: 1px solid rgb(24 35 40 / 13%); border-radius: .75rem; padding: .7rem .8rem; background: rgb(255 255 255 / 95%); color: #263238; box-shadow: 0 2px 8px rgb(20 34 40 / 16%); font: inherit; font-size: .76rem; font-weight: 750; cursor: pointer; }
 .mapFullscreenAction:focus-visible { outline: 2px solid #16866f; outline-offset: 2px; }
+.featuredCard { scroll-margin-top: 12rem; }

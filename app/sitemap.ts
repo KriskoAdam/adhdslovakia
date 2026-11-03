@@ -4,7 +4,7 @@ import { appListings } from "./lib/apps";
 
 const site = "https://www.adhdslovakia.eu";
 const locales = ["sk", "en"] as const;
-const staticRoutes = ["", "clanky", "appky", "kviz", "informacie-o-adhd", "o-nas", "kontakt", "test", "ochrana-sukromia"];
+const staticRoutes = ["", "clanky", "appky", "kviz", "mapa-odbornikov", "informacie-o-adhd", "o-nas", "kontakt", "test", "ochrana-sukromia"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${site}/${locale}/clanky/${article.slug}`,
         changeFrequency: "monthly",
         priority: 0.8,
+        images: article.coverImage ? [new URL(article.coverImage, site).toString()] : undefined,
         alternates: { languages: languageUrls },
       });
     }

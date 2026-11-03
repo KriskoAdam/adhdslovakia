@@ -10,6 +10,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     title: en ? "Privacy and cookies policy" : "Ochrana súkromia a cookies",
     description: en ? "How ADHD Slovakia uses cookies, analytics, advertising and comment services." : "Ako ADHD Slovakia používa cookies, analytiku, reklamu a službu komentárov.",
     alternates: { canonical: `/${locale}/ochrana-sukromia`, languages: { sk: "/sk/ochrana-sukromia", en: "/en/ochrana-sukromia" } },
+    openGraph: {
+      type: "website", siteName: "ADHD Slovakia",
+      title: en ? "Privacy and cookies policy" : "Ochrana súkromia a cookies",
+      description: en ? "How ADHD Slovakia uses cookies, analytics, advertising and comment services." : "Ako ADHD Slovakia používa cookies, analytiku, reklamu a službu komentárov.",
+      url: `https://www.adhdslovakia.eu/${locale}/ochrana-sukromia`, locale: en ? "en_US" : "sk_SK",
+      images: ["/images/logo.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: en ? "Privacy and cookies policy" : "Ochrana súkromia a cookies",
+      description: en ? "How ADHD Slovakia uses cookies, analytics, advertising and comment services." : "Ako ADHD Slovakia používa cookies, analytiku, reklamu a službu komentárov.",
+      images: ["/images/logo.png"],
+    },
   };
 }
 

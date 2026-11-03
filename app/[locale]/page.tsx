@@ -242,6 +242,14 @@ export default async function Home({
       </div>
 
       <DiagnosisMap locale={locale} />
+      <div className="px-4 pb-10 text-center sm:px-8">
+        <a
+          href={`/${locale}/mapa-odbornikov`}
+          className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none"
+        >
+          {locale === "en" ? "Open the ADHD provider directory" : "Otvoriť samostatnú stránku mapy odborníkov"}
+        </a>
+      </div>
 
       </VideoLanguageFilterProvider>
       </main>

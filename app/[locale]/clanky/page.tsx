@@ -16,6 +16,12 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     alternates: { canonical: `/${locale}/clanky`, languages: { sk: "/sk/clanky", en: "/en/clanky" } },
+    openGraph: {
+      type: "website", siteName: "ADHD Slovakia", title: t("title"), description: t("description"),
+      url: `https://www.adhdslovakia.eu/${locale}/clanky`, locale: locale === "en" ? "en_US" : "sk_SK",
+      images: ["/images/logo.png"],
+    },
+    twitter: { card: "summary_large_image", title: t("title"), description: t("description"), images: ["/images/logo.png"] },
   };
 }
 

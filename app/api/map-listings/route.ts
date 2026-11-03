@@ -1,40 +1,14 @@
 import { createHash, randomUUID } from "node:crypto";
 import { Redis } from "@upstash/redis";
 import { NextRequest, NextResponse } from "next/server";
+import { getMapListings, mapListingKey } from "../../lib/map-listings-store";
+import type { MapListing } from "../../lib/map-listing-types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const redis = Redis.fromEnv();
-const listingKey = "map:listings:v1";
 const daySeconds = 60 * 60 * 24;
-
-type Listing = {
-  id: string;
-  listingType: "workplace" | "professional";
-  name: string;
-  city: string;
-  regionId: number | null;
-  address: string;
-  providerKind: "psychologist" | "psychiatrist" | "neurologist" | "therapist" | "support" | "other";
-  serviceMode: "inPerson" | "online" | "both";
-  audience: "adults" | "youngPeople" | "both";
-  services: string[];
-  price: string;
-  insuranceType: "contracted" | "selfPay" | "mixed" | "unknown";
-  insuranceDetails: string;
-  waitingTime: string;
-  accepting: "yes" | "no" | "unknown";
-  phone: string;
-  email: string;
-  website: string;
-  mapUrl: string;
-  sourceUrl: string;
-  details: string;
-  locale: "sk" | "en";
-  coordinates: [number, number] | null;
-  createdAt: string;
-};
 
 const clean = (value: unknown, maxLength: number) => typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 const publicUrl = (value: unknown) => {
@@ -45,11 +19,7 @@ const publicUrl = (value: unknown) => {
 const normalize = (value: string) => value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 
 export async function GET() {
-  const stored = await redis.lrange<string | Listing>(listingKey, 0, 499);
-  const listings = stored.flatMap((item) => {
-    if (typeof item !== "string") return [item];
-    try { return [JSON.parse(item) as Listing]; } catch { return []; }
-  });
+  const listings = await getMapListings();
   return NextResponse.json({ listings }, { headers: { "Cache-Control": "no-store" } });
 }
 
@@ -90,11 +60,11 @@ export async function POST(request: NextRequest) {
   }
 
   const services = Array.isArray(input.services) ? input.services.filter((service): service is string => typeof service === "string" && ["assessment", "diagnosis", "medication", "therapy", "support", "biofeedback", "other"].includes(service)).slice(0, 7) : [];
-  const listing: Listing = {
-    id: randomUUID(), listingType: listingType as Listing["listingType"], name, city, regionId: Number.isInteger(Number(input.regionId)) && Number(input.regionId) >= 1 && Number(input.regionId) <= 8 ? Number(input.regionId) : null,
-    address, providerKind: providerKind as Listing["providerKind"], serviceMode: serviceMode as Listing["serviceMode"], audience: audience as Listing["audience"], services,
-    price: clean(input.price, 120), insuranceType: ["contracted", "selfPay", "mixed"].includes(String(input.insuranceType)) ? input.insuranceType as Listing["insuranceType"] : "unknown",
-    insuranceDetails: clean(input.insuranceDetails, 160), waitingTime: clean(input.waitingTime, 100), accepting: ["yes", "no"].includes(String(input.accepting)) ? input.accepting as Listing["accepting"] : "unknown",
+  const listing: MapListing = {
+    id: randomUUID(), listingType: listingType as MapListing["listingType"], name, city, regionId: Number.isInteger(Number(input.regionId)) && Number(input.regionId) >= 1 && Number(input.regionId) <= 8 ? Number(input.regionId) : null,
+    address, providerKind: providerKind as MapListing["providerKind"], serviceMode: serviceMode as MapListing["serviceMode"], audience: audience as MapListing["audience"], services,
+    price: clean(input.price, 120), insuranceType: ["contracted", "selfPay", "mixed"].includes(String(input.insuranceType)) ? input.insuranceType as MapListing["insuranceType"] : "unknown",
+    insuranceDetails: clean(input.insuranceDetails, 160), waitingTime: clean(input.waitingTime, 100), accepting: ["yes", "no"].includes(String(input.accepting)) ? input.accepting as MapListing["accepting"] : "unknown",
     phone: clean(input.phone, 40), email: clean(input.email, 160), website: publicUrl(input.website), mapUrl: publicUrl(input.mapUrl), sourceUrl: publicUrl(input.sourceUrl), details: clean(input.details, 1000), locale,
     coordinates: onlineOnly ? null : coords as [number, number], createdAt: new Date().toISOString(),
   };
@@ -103,7 +73,7 @@ export async function POST(request: NextRequest) {
   const duplicateKey = `map:listing-duplicate:${createHash("sha256").update(identity).digest("hex")}`;
   const created = await redis.createScript<number>(
     'if redis.call("SET", KEYS[1], ARGV[1], "NX") then redis.call("LPUSH", KEYS[2], ARGV[2]); return 1 else return 0 end',
-  ).eval([duplicateKey, listingKey], [listing.id, JSON.stringify(listing)]);
+  ).eval([duplicateKey, mapListingKey], [listing.id, JSON.stringify(listing)]);
   if (!created) return NextResponse.json({ error: "duplicate" }, { status: 409 });
   return NextResponse.json({ listing }, { status: 201, headers: { "Cache-Control": "no-store" } });
 }

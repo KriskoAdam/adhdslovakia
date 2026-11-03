@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent, type MouseEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent } from "react";
 import dynamic from "next/dynamic";
 import styles from "./DiagnosisMap.module.css";
 import { mapRegions } from "./slovakiaRegions";
+import type { MapListing } from "../lib/map-listing-types";
 
 const ProviderMap = dynamic(() => import("./ProviderMap"), {
   ssr: false,
@@ -18,12 +19,6 @@ type ProviderType = "psychologist" | "psychiatrist" | "support" | "neurologist" 
 type Centre = RawCentre & {
   providerType: ProviderType;
   coordinates: [number, number] | null;
-};
-type SavedListing = {
-  id: string; name: string; city: string; regionId: number | null; address: string;
-  providerKind: string; serviceMode: "inPerson" | "online" | "both"; audience: "adults" | "youngPeople" | "both";
-  price: string; insuranceType: string; insuranceDetails: string; details: string; services: string[]; waitingTime: string; accepting: "yes" | "no" | "unknown"; phone: string; email: string;
-  website: string; mapUrl: string; sourceUrl: string; coordinates: [number, number] | null; createdAt: string; locale: Locale;
 };
 type RawCentre = {
   id: string;
@@ -546,7 +541,7 @@ const regionNames: Record<Locale, Record<RegionId, string>> = {
   sk: { 1: "Bratislavský kraj", 2: "Trnavský kraj", 3: "Trenčiansky kraj", 4: "Nitriansky kraj", 5: "Žilinský kraj", 6: "Banskobystrický kraj", 7: "Prešovský kraj", 8: "Košický kraj" },
   en: { 1: "Bratislava Region", 2: "Trnava Region", 3: "Trenčín Region", 4: "Nitra Region", 5: "Žilina Region", 6: "Banská Bystrica Region", 7: "Prešov Region", 8: "Košice Region" },
 };
-export default function DiagnosisMap({ locale }: { locale: Locale }) {
+export default function DiagnosisMap({ locale, initialListings = [] }: { locale: Locale; initialListings?: MapListing[] }) {
   const text = copy[locale];
   const [filter, setFilter] = useState<AgeFilter>("all");
   const [regionFilter, setRegionFilter] = useState<RegionId | "all">("all");
@@ -554,19 +549,29 @@ export default function DiagnosisMap({ locale }: { locale: Locale }) {
   const [providerTypeFilter, setProviderTypeFilter] = useState<ProviderType | "all">("all");
   const [onlineOnly, setOnlineOnly] = useState(false);
   const [selectedId, setSelectedId] = useState("trea");
+  const selectedDetailsRef = useRef<HTMLElement>(null);
   const [query, setQuery] = useState("");
   const [view, setView] = useState<"map" | "list">("map");
   const [searchOpen, setSearchOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [mapFullscreen, setMapFullscreen] = useState(false);
   const [submissionOpen, setSubmissionOpen] = useState(false);
-  const [savedListings, setSavedListings] = useState<SavedListing[]>([]);
+  const [savedListings, setSavedListings] = useState<MapListing[]>(initialListings);
   const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "success" | "duplicate" | "coordinates" | "error">("idle");
+  const selectProvider = (id: string) => {
+    setSelectedId(id);
+    if (window.matchMedia("(max-width: 820px)").matches) {
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+        selectedDetailsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }));
+    }
+  };
   useEffect(() => {
+    if (initialListings.length) return;
     fetch("/api/map-listings", { cache: "no-store" }).then((response) => response.ok ? response.json() : Promise.reject())
-      .then((data: { listings?: SavedListing[] }) => setSavedListings(Array.isArray(data.listings) ? data.listings : []))
+      .then((data: { listings?: MapListing[] }) => setSavedListings(Array.isArray(data.listings) ? data.listings : []))
       .catch(() => undefined);
-  }, []);
+  }, [initialListings.length]);
   const dynamicCentres = useMemo<Centre[]>(() => savedListings.map((listing) => {
     const providerType: ProviderType = ["psychologist", "psychiatrist", "neurologist", "therapist", "support"].includes(listing.providerKind) ? listing.providerKind as ProviderType : "support";
     const serviceText = listing.services.map((service) => ({ assessment: text.serviceAssessment, diagnosis: text.serviceDiagnosis, medication: text.serviceMedication, therapy: text.serviceTherapy, support: text.serviceSupport, biofeedback: text.serviceBiofeedback, other: text.serviceOther }[service])).filter(Boolean).join(", ");
@@ -689,7 +694,7 @@ export default function DiagnosisMap({ locale }: { locale: Locale }) {
         throw new Error("Invalid listing");
       }
       if (!response.ok) throw new Error("Submission failed");
-      const result = await response.json() as { listing: SavedListing };
+      const result = await response.json() as { listing: MapListing };
       if (result.listing) setSavedListings((current) => [result.listing, ...current]);
       setSubmissionState("success");
       form.reset();
@@ -779,7 +784,7 @@ export default function DiagnosisMap({ locale }: { locale: Locale }) {
               providers={matchingCentres.map(({ id, city, title, providerType, coordinates }) => ({ id, city, title, providerType, coordinates }))}
               selectedId={selected?.id}
               locale={locale}
-              onSelect={setSelectedId}
+              onSelect={selectProvider}
               labels={{
                 zoomIn: text.zoomIn,
                 zoomOut: text.zoomOut,
@@ -802,7 +807,7 @@ export default function DiagnosisMap({ locale }: { locale: Locale }) {
             <h3>{text.listTitle}</h3>
             <span>{matchingCentres.length}</span>
           </div>
-          {selected && <article className={`${styles.selectedCard} ${styles.featuredCard}`}>
+          {selected && <article ref={selectedDetailsRef} className={`${styles.selectedCard} ${styles.featuredCard}`}>
             <p className={styles.selectedLabel}>{text.selected}</p>
             <h4>{selected.title}</h4>
             <span className={`${styles.providerTypeTag} ${styles[`type-${selected.providerType}`]}`}>
@@ -827,7 +832,7 @@ export default function DiagnosisMap({ locale }: { locale: Locale }) {
           </article>}
           {matchingCentres.length === 0 ? <p className={styles.noResults}>{text.noResults}</p> : <div className={styles.providerList}>
             {matchingCentres.filter((centre) => centre.id !== selected?.id).map((centre) => <article key={centre.id} className={styles.providerCard}>
-              <button type="button" className={styles.providerSelect} onClick={() => setSelectedId(centre.id)}>
+              <button type="button" className={styles.providerSelect} onClick={() => selectProvider(centre.id)}>
                 <span className={styles.providerCity}>{centre.city ?? text.online}</span>
                 <strong>{centre.title}</strong>
                 <span className={`${styles.providerTypeTag} ${styles[`type-${centre.providerType}`]}`}>

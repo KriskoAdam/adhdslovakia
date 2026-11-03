@@ -12,6 +12,8 @@ export function GET() {
     "- [English home](https://www.adhdslovakia.eu/en)",
     "- [Articles in Slovak](https://www.adhdslovakia.eu/sk/clanky)",
     "- [Articles in English](https://www.adhdslovakia.eu/en/clanky)",
+    "- [Map of ADHD specialists and support services in Slovakia](https://www.adhdslovakia.eu/sk/mapa-odbornikov)",
+    "- [Map of ADHD specialists and support services in Slovakia (English)](https://www.adhdslovakia.eu/en/mapa-odbornikov)",
     "- [About](https://www.adhdslovakia.eu/sk/o-nas)",
     "- [About in English](https://www.adhdslovakia.eu/en/o-nas)",
     "- [Privacy and cookies](https://www.adhdslovakia.eu/sk/ochrana-sukromia)",

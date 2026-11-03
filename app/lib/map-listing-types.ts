@@ -1,0 +1,26 @@
+export type MapListing = {
+  id: string;
+  listingType: "workplace" | "professional";
+  name: string;
+  city: string;
+  regionId: number | null;
+  address: string;
+  providerKind: "psychologist" | "psychiatrist" | "neurologist" | "therapist" | "support" | "other";
+  serviceMode: "inPerson" | "online" | "both";
+  audience: "adults" | "youngPeople" | "both";
+  services: string[];
+  price: string;
+  insuranceType: "contracted" | "selfPay" | "mixed" | "unknown";
+  insuranceDetails: string;
+  waitingTime: string;
+  accepting: "yes" | "no" | "unknown";
+  phone: string;
+  email: string;
+  website: string;
+  mapUrl: string;
+  sourceUrl: string;
+  details: string;
+  locale: "sk" | "en";
+  coordinates: [number, number] | null;
+  createdAt: string;
+};
