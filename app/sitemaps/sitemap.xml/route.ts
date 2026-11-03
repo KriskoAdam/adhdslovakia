@@ -13,6 +13,7 @@ function renderUrl(entry: MetadataRoute.Sitemap[number]) {
   }
 
   for (const [language, href] of Object.entries(entry.alternates?.languages ?? {})) {
+    if (typeof href !== "string") continue;
     lines.push(`    <xhtml:link rel="alternate" hreflang="${escapeXml(language)}" href="${escapeXml(href)}" />`);
   }
 
