@@ -108,8 +108,8 @@ export default async function AppDetailPage({
               ? ["Progressive web app", "Works offline", "No account required", "Tasks stay on your device"]
               : ["Progresívna webová aplikácia", "Funguje offline", "Bez potreby účtu", "Úlohy zostávajú v zariadení"])
           : (english
-              ? ["Progressive web app", "100 ADHD knowledge questions", "Five levels", "Progress stays on your device"]
-              : ["Progresívna webová aplikácia", "100 otázok o ADHD", "Päť levelov", "Postup zostáva v zariadení"]),
+              ? ["Progressive web app", "120 true-or-myth ADHD questions", "Six levels", "Progress stays on your device"]
+              : ["Progresívna webová aplikácia", "120 otázok pravda alebo mýtus", "Šesť levelov", "Postup zostáva v zariadení"]),
         publisher: { "@id": "https://www.adhdslovakia.eu/#organization" },
       },
       {

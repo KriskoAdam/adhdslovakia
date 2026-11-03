@@ -14,8 +14,8 @@ export async function generateMetadata({
   const isEnglish = locale === "en";
   const title = isEnglish ? "ADHD Apps and Tools" : "Aplikácie pre ADHD";
   const description = isEnglish
-    ? "Explore practical, free ADHD-friendly web apps from ADHD Slovakia, including ADHD Flow and the 100-question ADHD Quiz."
-    : "Objav bezplatné webové aplikácie pre ľudí s ADHD od ADHD Slovakia — ADHD Flow aj kvíz so 100 otázkami.";
+    ? "Explore practical, free ADHD-friendly web apps from ADHD Slovakia, including ADHD Flow and a 120-question ADHD Quiz across six levels."
+    : "Objav bezplatné webové aplikácie pre ľudí s ADHD od ADHD Slovakia — ADHD Flow aj kvíz so 120 otázkami v šiestich leveloch.";
   return {
     title,
     description,

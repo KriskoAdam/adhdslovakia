@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
 import { routing } from "../../i18n/routing";
 import "../globals.css";
+import "leaflet/dist/leaflet.css";
 import Script from "next/script";
 import SplashScreen from "../SplashScreen";
 import CookieConsent from "../components/CookieConsent";
@@ -77,24 +78,11 @@ export default async function RootLayout({
           content="ca-pub-6150590591009223"
         />
 
-        {/* Dark mode */}
-        <Script
-          id="theme-init"
-          strategy="beforeInteractive"
-        >{`
-          (function() {
-            try {
-              var theme = localStorage.getItem('theme');
-
-              if (theme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-              }
-            } catch (e) {}
-          })();
-        `}</Script>
       </head>
 
       <body className={`${syne.variable} ${dmSans.variable}`}>
+        {/* The external bootstrap avoids inline script rendering errors in Next.js. */}
+        <Script src="/theme-init.js" strategy="beforeInteractive" />
         <a className="skip-link" href="#main-content">{locale === "en" ? "Skip to main content" : "Preskočiť na hlavný obsah"}</a>
         <SplashScreen />
 

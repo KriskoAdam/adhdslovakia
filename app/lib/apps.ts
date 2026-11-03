@@ -67,14 +67,14 @@ export const appListings: AppListing[] = [
     href: "/kviz",
     detailsHref: "/appky/quiz",
     description: {
-      sk: "Zábavný kvíz o ADHD so 100 otázkami, piatimi levelmi a vysvetleniami. Fakty, mýty aj tipy na každodenný život.",
-      en: "A friendly ADHD quiz with 100 questions, five levels and clear explanations. Explore facts, myths and everyday strategies.",
+      sk: "Zábavný kvíz o ADHD so 120 otázkami v šiestich leveloch. Rozlišuj pravdu od mýtov a získaj jasné vysvetlenia.",
+      en: "A friendly ADHD quiz with 120 questions across six levels. Tell facts from myths and get clear explanations.",
     },
     details: {
       sk: "Otestuj si vedomosti o ADHD vlastným tempom. Každá odpoveď prináša vysvetlenie, body a povzbudenie — bez časového tlaku.",
       en: "Explore what you know about ADHD at your own pace. Every answer brings an explanation, points and encouragement — with no timer.",
     },
-    tags: { sk: ["100 otázok", "5 levelov"], en: ["100 questions", "5 levels"] },
+    tags: { sk: ["120 otázok", "6 levelov", "Pravda alebo mýtus"], en: ["120 questions", "6 levels", "True or myth"] },
   },
 ];
 

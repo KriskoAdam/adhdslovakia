@@ -9,6 +9,7 @@ import SiteIcon, { type SiteIconName } from "../components/SiteIcon";
 import { FeaturedVideos, VideoCarousel } from "../components/RecommendedVideos";
 import { VideoLanguageFilterProvider } from "../components/VideoLanguageFilter";
 import { recommendedVideos } from "../lib/recommended-videos";
+import DiagnosisMap from "../components/DiagnosisMap";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: "sk" | "en" }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -37,7 +38,6 @@ export default async function Home({
 
   const allArticles = getAllArticles(locale);
   const featuredArticles = allArticles.slice(0, 3);
-  const listArticles = allArticles.slice(3, 7);
 
   const awarenessCards = [
     {
@@ -83,11 +83,11 @@ export default async function Home({
             </p>
 
             <div className="flex flex-wrap gap-3 animate-fade-up delay-300">
-              <a href={`/${locale}/clanky`} className="inline-flex min-h-11 items-center rounded-lg bg-green-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none">
-                {t("readArticles")}
+              <a href="#diagnosis-map" className="inline-flex min-h-11 items-center rounded-lg bg-green-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none">
+                {t("map")}
               </a>
-              <a href={`/${locale}/o-nas`} className="inline-flex min-h-11 items-center rounded-lg border border-[var(--border-color)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-tertiary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none">
-                {t("aboutProject")}
+              <a href={`/${locale}/clanky`} className="inline-flex min-h-11 items-center rounded-lg border border-white bg-white px-5 py-2.5 text-sm font-semibold text-[#17211a] transition-colors hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none">
+                {t("readArticles")}
               </a>
               <a href={`/${locale}/test`} className="hidden min-h-11 items-center rounded-lg border border-[var(--border-color)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] transition-colors hover:border-[var(--accent)] hover:bg-[var(--bg-tertiary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] motion-reduce:transition-none md:inline-flex">
                 {t("takeTest")}
@@ -241,49 +241,7 @@ export default async function Home({
         <VideoCarousel videos={recommendedVideos} locale={locale} />
       </div>
 
-      {/* MORE ARTICLES */}
-      {listArticles.length > 0 && (
-        <>
-          <div className="flex items-center justify-between px-8 pt-2 pb-4">
-            <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--text-muted)]">
-              {t("sections.moreArticles")}
-            </span>
-          </div>
-
-          <div className="mx-8 flex flex-col gap-px bg-[var(--border-color)] border border-[var(--border-color)] rounded-xl overflow-hidden mb-8">
-            {listArticles.map((a, i) => (
-              <a
-                key={a.slug}
-                href={`/${locale}/clanky/${a.slug}`}
-                className="flex items-center gap-5 bg-[var(--bg-secondary)] px-6 py-4 hover:opacity-90 transition-opacity group"
-              >
-                <span className="font-display text-[13px] font-extrabold text-[var(--text-muted)] min-w-[28px]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                <span className="font-display text-[14px] font-bold text-[var(--text-primary)] flex-1 leading-snug">
-                  {a.title}
-                </span>
-
-                <span className="text-[10px] font-semibold tracking-widest text-green-400 bg-green-400/10 px-2 py-1 rounded whitespace-nowrap">
-                  {tCategories(
-                    a.category as
-                      | "diagnosis"
-                      | "myths"
-                      | "medications"
-                      | "research"
-                      | "personal-story"
-                      | "science"
-                      | "lifestyle"
-                      | "interviews"
-                      | "sources",
-                  )}
-                </span>
-              </a>
-            ))}
-          </div>
-        </>
-      )}
+      <DiagnosisMap locale={locale} />
 
       </VideoLanguageFilterProvider>
       </main>
